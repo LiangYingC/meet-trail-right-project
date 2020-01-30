@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Header from '../../component/Header'
 
 class TrailDetail extends Component {
     render() {
         return (
-            <h1>TrailDetail</h1>
+            <Header />
         )
     }
 }
