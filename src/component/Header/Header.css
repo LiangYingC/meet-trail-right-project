@@ -1,0 +1,134 @@
+@import '../../common.css';
+
+#header .wrap, 
+.header-search, 
+.header-nav ul, 
+.header-nav ul li,
+.language-options-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#header {
+    width: 100%;
+    box-shadow: 0 0.5px 3.5px rgba(0,0,0,0.2);
+}
+
+#header .wrap {
+   width: 80%;
+   height: 60px;
+   margin: 0 auto;
+}
+
+.header-logo {
+    flex: none;
+    width: 165px;
+    cursor: pointer;
+}
+
+.header-search {
+   border: 0.5px solid #aaa;
+   border-radius: 6px;
+   margin-left: 30px;
+}
+
+.header-search input {
+    font-size: 1rem;
+    margin: 0px 10px;
+    border: none;
+}
+
+.header-search .search-icon {
+    width: 35px;
+    cursor: pointer;
+}
+
+.header-nav {
+    flex: auto;
+}
+
+.header-nav ul li {
+    font-size: 1.03125rem;
+    letter-spacing: 0.6px;
+    margin: 10px 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.header-nav ul li {
+    padding: 18px 0;
+    border: 4.5px solid transparent;
+    transition-duration: .2s;
+    -webkit-transition-duration: .2s;
+}
+    
+.header-nav ul li:hover  {
+    color: #222;
+    border-bottom: 4.5px solid #23b280;
+}
+
+.header-nav ul li .down-arrow-icon {
+    position: absolute;
+    top: 0px;
+    right: -28px;
+    width: 30px;
+    transition-duration: .1s;
+    -webkit-transition-duration: .1s;
+}
+
+.header-nav ul li .down-arrow-icon--active {
+    transform: rotate(180deg);
+}
+
+#header-user-btn {
+    width: 35px;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+#header-language-btn {
+    position: relative;
+}
+
+#header-language-btn .language-options-box {
+    min-width: 100px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 2.5px rgba(100, 100, 100, 0.3);
+    border-radius: 3px;
+    flex-direction: column;
+    position: absolute;
+    top: 33px;
+    right: -23px;
+    z-index: 2;
+    display: none;
+}
+
+#header-language-btn .language-options-box--active {
+    display: block !important;
+}
+
+#header-language-btn .language-options-box::before{
+    content: "";
+    display: block;
+    border-color: transparent transparent #fff ;
+    border-style: solid ;
+    border-width: 8px ;
+    position: absolute;
+    top: -14.5px;
+    right: 1px;
+}
+
+#header-language-btn .language-options-box p {
+    font-size: .84375rem;
+    padding: 10px 15px;
+    margin: 5px;
+}
+
+#header-language-btn .language-options-box p:hover {
+    background-color: #eee;
+}
+
+
+
+
