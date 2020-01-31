@@ -19,14 +19,9 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-
-/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
-}
-body {
-	line-height: 1;
 }
 ol, ul {
 	list-style: none;
@@ -44,11 +39,12 @@ table {
 	border-spacing: 0;
 }
 
-/* For All */
+/* For All Setting */
 *{
     box-sizing: border-box;
 }
 html, body {
+    line-height: 1;
     width: 100%;
     height: 100%;
     position: relative;

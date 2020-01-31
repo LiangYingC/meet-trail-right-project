@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Switch, Route } from "react-router-dom";
 
-import Home from '../page/Home';
-import Login from '../page/Login';
-import Profile from '../page/Profile';
-import Test from '../page/Test';
-import Trails from '../page/Trails';
-import TrailsRecommend from '../page/TrailsRecommend';
-import TrailDetail from '../page/TrailDetail';
+import Home from '../pages/Home';
+import Login from '../pages/Login';
+import Profile from '../pages/Profile';
+import Test from '../pages/Test';
+import Trails from '../pages/Trails';
+import TrailsRecommend from '../pages/TrailsRecommend';
+import TrailDetail from '../pages/TrailDetail';
 
 class Routes extends Component {
     render() {

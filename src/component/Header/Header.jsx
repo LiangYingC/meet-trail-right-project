@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logoImg from '../../assets/logo/logo260x70.png';
+import headerLogoImg from '../../assets/logo/logo260x70.png';
 import searchImg from '../../assets/img/search.png';
 import userImg from '../../assets/img/user.png';
 import downArrowImg from '../../assets/img/downArrow.png';
@@ -26,7 +26,7 @@ class Header extends Component {
             <section id="header">
                 <div className="wrap">
                     <div className="header-logo">
-                        <img src={logoImg} alt="選山步道 logo" />
+                        <img src={headerLogoImg} alt="選山步道 logo" />
                     </div>
                     <div className="header-search">
                         <input type="text" id="search-input" placeholder="請輸入步道名稱" />
