@@ -34,7 +34,7 @@ module.exports = {
                 use: {
                     loader: 'url-loader',
                     options: {
-                        limit: 4000, // 小於 4000 bytes, use url-loader 轉成 64 bits 無檔案
+                        limit: 8000, // 小於 8000 bytes, use url-loader 轉成 64 bits 無檔案
                         name: '[hash:7].[ext]', // for file-loader
                         outputPath: './src/assets' // for file-loader
                     }

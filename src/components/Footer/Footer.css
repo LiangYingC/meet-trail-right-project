@@ -1,0 +1,59 @@
+@import '../../common.css';
+
+#footer {
+    margin-top: 60px;
+    background-color: #333;
+}
+#footer .wrap {
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#footer .footer-info {
+    width: 100%;
+    justify-content: space-around ;
+}
+
+.footer-info p {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    color: #ccc;
+    text-align: center;
+}
+
+
+.footer-info ul {
+    justify-content: center;
+    margin: 10px;
+}
+
+.footer-info ul li {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.footer-info ul li a {
+    font-size: 1rem;
+    letter-spacing: 0.6px;
+    color: #eee;
+    text-align: center;
+}
+
+.footer-info ul li a:hover {
+    color: #fff;
+}
+
+.footer-info ul li a i {
+    font-size: 1.5rem;
+}
+
+.best-trail-web, .social-media {
+    margin: 20px;
+}
+
+.footer-icopyright {
+    font-size: .75rem;
+    color: #eee;
+}

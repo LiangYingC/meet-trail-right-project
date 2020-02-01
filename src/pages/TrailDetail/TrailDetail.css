@@ -1,0 +1,29 @@
+@import '../../common.css';
+
+ #trail-detail__basic-info .wrap, 
+ #trail-detail__traffic-info .wrap, 
+ #trail-detail__community-info .wrap {
+    background-color: #fff;
+    box-shadow: 0 0 16px 1.5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 25px auto;
+ }
+
+h3 {
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%)
+}
+
+h3::before {
+    content: '';
+    display: block;
+    width: 4.5px;
+    height: 24px;
+    background-color: #52cbd4;
+    position: absolute;
+    top: 0;
+    left: -15px;
+}
+ 

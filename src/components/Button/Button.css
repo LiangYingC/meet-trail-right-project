@@ -1,0 +1,21 @@
+@import '../../common.css';
+
+button {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: #23b280;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 5px #1e966c;
+    opacity: 0.85;
+    cursor: pointer;
+    transition-duration: .2s;
+    -webkit-transition-duration: .2s;
+}
+button:hover {
+    opacity: 1;
+    box-shadow: 0 1px #20a073;
+}

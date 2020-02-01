@@ -1,24 +1,17 @@
 @import '../../common.css';
 
-#header .wrap, 
-.header-search, 
-.header-nav ul, 
-.header-nav ul li,
-.language-options-box {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
 #header {
     width: 100%;
+    background-color: #fff;
     box-shadow: 0 0.5px 3.5px rgba(0,0,0,0.2);
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 100;
 }
 
 #header .wrap {
-   width: 80%;
    height: 60px;
-   margin: 0 auto;
 }
 
 .header-logo {
@@ -48,16 +41,20 @@
     flex: auto;
 }
 
-.header-nav ul li {
-    font-size: 1.03125rem;
-    letter-spacing: 0.6px;
-    margin: 10px 15px;
-    cursor: pointer;
-    box-sizing: border-box;
+.header-nav ul  {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .header-nav ul li {
+    display: flex;
+    align-items: center;
+    font-size: 1.03125rem;
+    letter-spacing: 0.6px;
+    margin: 10px 15px;
     padding: 18px 0;
+    cursor: pointer;
     border: 4.5px solid transparent;
     transition-duration: .2s;
     -webkit-transition-duration: .2s;

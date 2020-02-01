@@ -20,7 +20,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+footer, header, hgroup, menu, nav, section, a {
 	display: block;
 }
 ol, ul {
@@ -51,10 +51,38 @@ html, body {
     color: #555;
     font-family: 'Noto Sans TC','Microsoft JhengHei', 'sans-serif';
 }
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 1px;
+    text-align: center;
+}
+h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 1px;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    color: #555;
+    cursor: pointer;
+}
 img {
     width: 100%;
 }
-input, button {
-    outline: none
+input , button {
+    outline: none;
 }
+.wrap { 
+    width: 80%;
+    margin: 0 auto;
+}
+.flex {
+    display: flex;
+    align-items: center;
+}
+
 

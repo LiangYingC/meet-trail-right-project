@@ -24,11 +24,11 @@ class Header extends Component {
         const { isLanguagOptionsOpen } = this.state
         return (
             <section id="header">
-                <div className="wrap">
+                <div className="flex wrap">
                     <div className="header-logo">
                         <img src={headerLogoImg} alt="選山步道 logo" />
                     </div>
-                    <div className="header-search">
+                    <div className="flex header-search">
                         <input type="text" id="search-input" placeholder="請輸入步道名稱" />
                         <div className="search-icon">
                             <img src={searchImg} alt="search logo" />

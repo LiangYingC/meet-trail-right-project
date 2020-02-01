@@ -1,0 +1,9 @@
+@import '../../../common.css';
+
+.traffic-way-btns {
+    justify-content: center;
+}
+
+.go-by-car-btn,  .go-by-transport-btn{
+    margin: 30px 50px;
+}
