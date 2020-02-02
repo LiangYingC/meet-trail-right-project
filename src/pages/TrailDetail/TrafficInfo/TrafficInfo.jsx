@@ -2,32 +2,30 @@ import React, { Component } from 'react';
 import Button from '../../../components/Button';
 import './TrafficInfo.css';
 
-class TrafficInfo extends Component {
-    render() {
-        return (
-            <section id="trail-detail__traffic-info">
-                <div className="wrap">
-                    <h2>交通資訊</h2>
-                    <div className="flex traffic-way-btns">
-                        <Button text={'開車前往步道'} name={'go-by-car-btn'} />
-                        <Button text={'搭乘大眾運輸'} name={'go-by-transport-btn'} />
-                    </div>
-                    <div className="traffic-info__google-map">
-                        <h3>Google 地圖</h3>
-                        <div className="flex">
-                            <input type="text" placeholder="出發地點" />
-                            <input type="text" placeholder="抵達地點" />
-                            <Button text={'查詢'} />
-                        </div>
-                    </div>
-                    <div className="traffic-info__trail-map">
-                        <h3>步道路線圖</h3>
-                        <img src="" alt="" />
+const TrafficInfo = ({ trafficInfoData }) => {
+    return (
+        <section id="trail-detail__traffic-info">
+            <div className="wrap">
+                <h2>路線資訊</h2>
+                <div className="trail-info__start-and-end">
+                    <p>步道起點：{trafficInfoData.start}</p>
+                    <p>步道終點：{trafficInfoData.end}</p>
+                </div>
+                <div className="traffic-info__trail-map">
+                    <h3>步道路線地圖</h3>
+                </div>
+                <div className="traffic-info__google-map">
+                    <h3>如何前往步道</h3>
+                    <div className="flex">
+                        <input type="text" placeholder="出發地點" />
+                        <input type="text" placeholder="抵達地點" />
+                        <Button text={'查詢'} />
                     </div>
                 </div>
-            </section>
-        )
-    }
+            </div>
+        </section>
+    )
 }
+
 
 export default TrafficInfo

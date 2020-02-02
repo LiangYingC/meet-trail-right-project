@@ -14,6 +14,49 @@
 <body>
 
     <div id="root"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBq0wp5dHGR_DAAP3Mhsap7Y0u5VvOuPp4",
+            authDomain: "meet-trail-right.firebaseapp.com",
+            databaseURL: "https://meet-trail-right.firebaseio.com",
+            projectId: "meet-trail-right",
+            storageBucket: "meet-trail-right.appspot.com",
+            messagingSenderId: "913753126186",
+            appId: "1:913753126186:web:7f19e19456e4b3c7095a53",
+            measurementId: "G-QV2C25SEQY"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig)
+
+
+
+
+        //test
+        // const db = firebase.firestore()
+        // const trails = db.collection('trails').doc()
+        // trails.set({
+        //     id: '1',
+        //     main_image: '',
+        //     title: '知高圳步道',
+        //     create_time: '2020-02-01',
+        //     description: '知高圳步道位於烏日的知高圳，圳水引入筏子溪溪水，是南屯、烏日、大肚三地農田的重要灌溉水源。 沿著水圳以枕木鋪設修建的步道，從烏日善光寺可通至大肚，步道平緩好走，只有好漢坡稍有坡度，但也僅 80 公尺的落差，S 型的水圳步道古樸優美，欣賞架高渡槽的引水道，聽著潺潺的流水聲，沒有太多曝曬的路段，即使在炎炎夏日裡， 都能感到沁涼，適合闔家休閒健行。行經好漢坡、雪蓮步道至學田山頂，有一座落日平台，180 度的展望令人身心舒暢，綠色的草坡十分迷人，是欣賞夕陽的秘境。',
+        //     detail: {
+        //         location: '台中市烏日區',
+        //         status: '全線開放'
+        //     },
+        //     traffic_way: {
+        //         car: '',
+        //         mass_transit: ''
+        //     }
+        // }).then(() => { console.log('set ok') })
+
+
+    </script>
+
     <script src="./bundle.js"></script>
 </body>
 

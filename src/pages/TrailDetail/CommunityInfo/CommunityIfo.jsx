@@ -33,7 +33,6 @@ class CommunityInfo extends Component {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
         )
