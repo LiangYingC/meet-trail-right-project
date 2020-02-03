@@ -1,0 +1,30 @@
+@import '../../../../../style/common.css';
+
+.weather-list {
+    margin: 30px 0;
+    padding: 20px;
+    border: 0.5px solid #aaa;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.weather-item ~ .weather-item{
+    margin-left: 25px;
+}
+
+.weather-date-and-day {
+    color: #333;
+    justify-content: space-evenly;
+}
+
+.weather-temperature {
+    text-align: center;
+    letter-spacing: 1px;
+    margin: 10px;
+}
+
+.weather-status {
+    text-align: center;
+    letter-spacing: 1px;
+}
+

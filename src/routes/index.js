@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
 import { Switch, Route } from "react-router-dom";
 
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import Profile from '../pages/Profile';
-import Test from '../pages/Test';
-import Trails from '../pages/Trails';
-import TrailsRecommend from '../pages/TrailsRecommend';
-import TrailDetail from '../pages/TrailDetail';
+import Home from '../components/pages/Home';
+import Login from '../components/pages/Login';
+import Profile from '../components/pages/Profile';
+import Test from '../components/pages/Test';
+import Trails from '../components/pages/Trails';
+import TrailsRecommend from '../components/pages/TrailsRecommend';;
+import TrailDetail from '../components/pages/TrailDetail';;
 
 class Routes extends Component {
     render() {
         return (
             <Switch>
-                <Route path="/trails/recommend"><TrailsRecommend /></Route>
-                <Route path="/trails/detail"><TrailDetail /></Route>
-                <Route path="/test"><Test /></Route>
-                <Route path="/trails"><Trails /></Route>
-                <Route path="/profile"><Profile /></Route>
-                <Route path="/login"><Login /></Route>
-                <Route path="/"><Home /></Route>
+                <Route path="/trails/recommend" component={TrailsRecommend} />
+                <Route path="/trails/detail/:id" component={TrailDetail} />
+                <Route path="/test" component={Test} />
+                <Route path="/trails" component={Trails} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/login" component={Login} />
+                <Route path="/" component={Home} />
             </Switch >
         )
     }
