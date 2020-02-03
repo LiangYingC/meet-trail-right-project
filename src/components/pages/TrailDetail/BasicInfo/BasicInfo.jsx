@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './BasicInfo.css';
+import QuestionButton from '../../../shared/QuestionButton';
+import './BasicInfo.scss';
+
 
 const BasicInfo = ({ basicInfoData }) => {
     return (
@@ -37,7 +39,9 @@ const BasicInfo = ({ basicInfoData }) => {
                         </div>
                         <div className="flex basic-info-item">
                             <p className="subtitle">步道難度 :</p>
-                            <p>{basicInfoData.difficulty}</p>
+                            <p>{basicInfoData.difficulty}
+                                <QuestionButton />
+                            </p>
                         </div>
                     </div>
                 </div>

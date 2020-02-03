@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Weather from './Weather';
 import Button from '../../../shared/Button';
 import userImg from '../../../../assets/img/user.png';
-import './TopInfo.css';
+import './TopInfo.scss';
 
 const TopInfo = ({ topInfoData }) => {
     return (
@@ -21,7 +21,7 @@ const TopInfo = ({ topInfoData }) => {
                         </div>
                         <div className="top-info__report">
                             <div className="flex report-title">
-                                <h4><i class="fas fa-bullhorn"></i>最新步道狀況回報</h4>
+                                <h4><i className="fas fa-bullhorn"></i>最新步道狀況回報</h4>
                                 <p> 3 則</p>
                             </div>
                             <div className="report-list">

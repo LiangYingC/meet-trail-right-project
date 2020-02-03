@@ -1,0 +1,35 @@
+/* Basic color */
+$color-white: #fff;
+$color-dark-white: #eee;
+$color-black: #333;
+$color-grey: #666;
+$color-light-grey: #aaa;
+
+/* Brand color */
+$color-light-green: #4fd189;
+$color-green: #23b280;
+$color-dark-green: #1e966c;
+$color-blue: #52cbd4;
+
+/* Border */
+$br-basic: 4px;
+$border-basic: 0.5px solid #aaa;
+
+/* Font */
+$font-color-basic: #555;
+$font-family: "Noto Sans TC", "Microsoft JhengHei", "sans-serif";
+
+/* Mix */
+@mixin transition-duration($time) {
+	-webkit-transition-duration: $time;
+	-moz-transition-duration: $time;
+	-ms-transition-duration: $time;
+	transition-duration: $time;
+}
+
+@mixin transform($effct) {
+	-webkit-transform: $effct;
+	-moz-transform: $effct;
+	-ms-transform: $effct;
+	transform: $effct;
+}

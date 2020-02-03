@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CommunityInfo.css';
+import './CommunityInfo.scss';
 
 class CommunityInfo extends Component {
     render() {

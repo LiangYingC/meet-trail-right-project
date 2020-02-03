@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import headerLogoImg from '../../../assets/logo/logo260x70.png';
 import userImg from '../../../assets/img/user.png';
 import downArrowImg from '../../../assets/img/downArrow.png';
-import './Header.css'
+import './Header.scss'
 
 
 class Header extends Component {
@@ -22,7 +22,7 @@ class Header extends Component {
     render() {
         const { isLanguagOptionsOpen } = this.state
         return (
-            <section id="header">
+            <header id="header">
                 <div className="flex wrap">
                     <div className="header-logo">
                         <img src={headerLogoImg} alt="選山步道 logo" />
@@ -52,7 +52,7 @@ class Header extends Component {
                         </ul>
                     </div>
                 </div>
-            </section>
+            </header>
         )
     }
 }

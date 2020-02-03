@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './TrailsFilter.css'
+import QuestionButton from '../../../shared/QuestionButton'
+import './TrailsFilter.scss'
 
 const trailsFilter = [
     {
@@ -48,7 +49,11 @@ const TrailsFilter = () => {
                         trailsFilter.map(filter => {
                             return (
                                 <div className="flex filter" id={filter.id} key={filter.id}>
-                                    <div className="filter-title" >{filter.title}</div>
+                                    <div className="flex filter-title" >{filter.title}
+                                        <div className="filter-QustionBtn" style={{ opacity: `${filter.questionIcon ? '1' : '0'}` }}>
+                                            <QuestionButton />
+                                        </div>
+                                    </div>
                                     <div className="filter-list">
                                         {filter.list.map((filterItem, index) => {
                                             return (
@@ -65,7 +70,7 @@ const TrailsFilter = () => {
                     }
                 </div>
             </div>
-        </section>
+        </section >
     )
 }
 

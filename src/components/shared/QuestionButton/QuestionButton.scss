@@ -1,0 +1,18 @@
+@import "../../../styles/common.scss";
+
+.fa-question-circle {
+	font-size: 16px;
+	font-size: bold;
+	color: $color-light-green;
+	background-color: $color-white;
+	border: none;
+	border-radius: 50%;
+	margin-left: 10px;
+	cursor: pointer;
+	opacity: 0.8;
+	@include transition-duration(0.2s);
+}
+
+.fa-question-circle:hover {
+	opacity: 1;
+}

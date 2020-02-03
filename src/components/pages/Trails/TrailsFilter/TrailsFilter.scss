@@ -1,0 +1,21 @@
+@import "../../../../styles/common.scss";
+#trails-filter {
+	margin-top: 90px;
+}
+
+.filters {
+	padding: 15px 30px;
+	border: $border-basic;
+	border-radius: $br-basic;
+}
+
+.filter {
+	margin: 15px 0;
+}
+
+.filter-title {
+}
+
+.filter-item input {
+	opacity: 0;
+}

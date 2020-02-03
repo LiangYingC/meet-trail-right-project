@@ -1,0 +1,27 @@
+@import "../../../styles/common.scss";
+
+button {
+	font-size: 1rem;
+	font-weight: 500;
+	letter-spacing: 1px;
+	color: #fff;
+	background-color: $color-green;
+	padding: 5px 10px;
+	border: none;
+	border-radius: $br-basic;
+	box-shadow: 0 5px $color-dark-green;
+	opacity: 0.8;
+	cursor: pointer;
+	@include transition-duration(0.3s);
+	position: relative;
+
+	&:hover {
+		opacity: 1;
+	}
+
+	&:active {
+		opacity: 1;
+		box-shadow: 0 1px $color-dark-green;
+		top: 6px;
+	}
+}

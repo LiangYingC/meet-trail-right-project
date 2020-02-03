@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../../../shared/Button';
-import './TrafficInfo.css';
+import './TrafficInfo.scss';
 
 const TrafficInfo = ({ trafficInfoData }) => {
     return (

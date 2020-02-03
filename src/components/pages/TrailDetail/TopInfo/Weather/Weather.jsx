@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import trailImg from '../../../../../assets/img/知高圳步道.jpg'
-import './Weather.css'
+import './Weather.scss'
 
 class Weather extends Component {
     constructor(props) {

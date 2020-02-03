@@ -5,7 +5,7 @@ import TopInfo from './TopInfo';
 import BasicInfo from './BasicInfo';
 import CommunityInfo from './CommunityInfo';
 import TrafficInfo from './TrafficInfo';
-import './TrailDetail.css';
+import './TrailDetail.scss';
 
 // function TrailDetail() {
 //     const dataId = useParams()
