@@ -4,7 +4,6 @@ import QuestionButton from '../../../shared/QuestionButton';
 
 
 const BasicInfo = ({ basicInfoData }) => {
-    console.log(basicInfoData)
     return (
         <section id="trail-detail__basic-info">
             <div className="wrap">

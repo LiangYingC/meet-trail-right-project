@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Weather from './Weather';
+import Weather from './Weather.jsx';
 import Button from '../../../shared/Button';
 import userImg from '../../../../assets/img/user.png';
 
@@ -72,7 +72,7 @@ const TopInfo = ({ topInfoData }) => {
                             <Button text={'我要回報步道近況'} name={'report-btn'} />
                         </div>
                     </div>
-                    <Weather weatherData={topInfoData.weatherData} />
+                    <Weather location={topInfoData.location} />
                 </div>
             </div>
         </section>
