@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import QuestionButton from '../../../shared/QuestionButton';
 
 
-
 const BasicInfo = ({ basicInfoData }) => {
     return (
         <section id="trail-detail__basic-info">

@@ -22,16 +22,6 @@
 	color: $color-black;
 	justify-content: space-evenly;
 	position: relative;
-
-	.day {
-		padding-bottom: 5px;
-		border-bottom: 3px solid #ddd;
-	}
-
-	.night {
-		padding-bottom: 5px;
-		border-bottom: 3px solid $color-grey;
-	}
 }
 
 .weather-temperature {

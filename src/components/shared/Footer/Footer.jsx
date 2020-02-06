@@ -3,7 +3,7 @@ import React from 'react';
 
 function Footer() {
     return (
-        <section id="footer">
+        <footer id="footer">
             <div className="flex wrap">
                 <div className="flex footer-info">
                     <div className="best-trail-web">
@@ -30,7 +30,7 @@ function Footer() {
                     © 2020 選山步道 All rights reserved.
                 </div>
             </div>
-        </section >
+        </footer >
     )
 }
 

@@ -25,22 +25,6 @@ class TrailDetail extends Component {
             this.setState({
                 trailData: trailData
             })
-
-            // // Wheather API 取得天氣資訊
-            // const weatherConfig = {
-            //     apiKey: 'CWB-8C6758C8-C956-44EB-B0AD-7228A59F92C0',
-            //     baseUrl: 'https://opendata.cwb.gov.tw/api/v1/rest/datastore'
-            // }
-            // const cityId = weatherCitys.filter(city => city.name === trailData.location.city)[0].id
-            // const dist = trailData.location.dist
-            // const url = `${weatherConfig.baseUrl}/${cityId}?Authorization=${weatherConfig.apiKey}&locationName=${dist}&elementName=MaxAT,MinAT,PoP12h,WeatherDescription`
-            // fetch(url, { method: 'GET' })
-            //     .then(res => res.json())
-            //     .then(result => {
-            //         this.setState({
-            //             weatherData: result
-            //         })
-            //     })
         })
     }
 

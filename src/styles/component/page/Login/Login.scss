@@ -1,0 +1,235 @@
+#login,
+#login .wrap {
+	padding: 90px;
+	margin: 0 auto;
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	.banner {
+		width: 100%;
+		height: 350px;
+		background-image: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2Flogin-bg.jpg?alt=media&token=b2006258-8736-4dc8-9ccf-d4b6aae771e5);
+		background-position: center;
+		background-size: cover;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-45%, -40%);
+		z-index: 0;
+		opacity: 0.9;
+
+		.layer {
+			width: 50%;
+			height: 50%;
+			position: absolute;
+			top: 30px;
+			left: 30px;
+			background-color: $color-light-grey;
+			opacity: 0.2;
+			z-index: 1;
+		}
+	}
+}
+
+.banner-word-mobile {
+	display: none;
+}
+
+.banner-word-web {
+	width: 35%;
+	font-size: 36px;
+	font-weight: 550;
+	text-align: left;
+	letter-spacing: 0.8px;
+	color: #fff;
+	position: absolute;
+	top: 55%;
+	right: 0%;
+	transform: translate(0%, -55%);
+	z-index: 2;
+}
+
+.sign-in,
+.sign-up {
+	box-sizing: border-box;
+	width: 330px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 4px;
+	margin: 30px;
+	box-shadow: 0 0 10px 1.5px rgba(150, 150, 150, 0.35);
+	z-index: 3;
+	position: relative;
+}
+
+.sign-in {
+	h2 {
+		width: 100%;
+		font-size: 28px;
+		letter-spacing: 1.2px;
+		text-align: center;
+		margin: 0;
+		margin-bottom: 30px;
+		padding: 20px 0;
+		border-bottom: 1px solid #d1d1d1;
+	}
+
+	.description {
+		font-size: 14px;
+		letter-spacing: 1px;
+		margin: 10px auto;
+
+		a {
+			color: #207abf;
+		}
+	}
+
+	.sign-in_input {
+		border: 1px solid #999;
+		border-radius: 6.5px;
+		margin: 5px auto;
+
+		img {
+			width: 35px;
+			height: 35px;
+			border-radius: 6.5px;
+
+			input {
+				font-size: 16px;
+				color: #666;
+				padding: 5px 10px;
+				padding-left: 0;
+				outline: none;
+				border: none;
+				border-radius: 6.5px;
+			}
+		}
+	}
+
+	.agree_contact {
+		display: flex;
+	}
+
+	button {
+		font-size: 16px;
+		font-weight: 400;
+		letter-spacing: 1px;
+		padding: 5px 10px;
+		margin: 10px;
+		color: #fff;
+		background-color: #8b572a;
+		border: none;
+		border-radius: 6.5px;
+		cursor: pointer;
+		opacity: 0.85;
+		outline: none;
+	}
+}
+
+#login > .view .sign-in .sign-in_input input::-webkit-input-placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+.sign-in_input input::-moz-placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+.sign-in_input input::-moz-placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+.sign-in_input:-ms-input-placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+.sign-up_input input::-webkit-input-placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+.sign-up_input input::-moz-placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+.sign-up_input input::-moz-placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+.sign-up_input:-ms-input-placeholder {
+	color: rgba(0, 0, 0, 0.35);
+}
+
+#login > .view .sign-in #login > .view .sign-in button:hover {
+	opacity: 1;
+}
+
+.go-sign-in {
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	border-top: 1px solid #d1d1d1;
+	padding: 10px 50px;
+	margin-top: 35px;
+}
+
+.sign-up {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	z-index: -1;
+	transform: translate(-50%, -50%) scale(0);
+	transition-duration: 0.3s;
+}
+
+.sign-up--show {
+	transition-duration: 0.3s;
+	z-index: 9 !important;
+	transform: translate(0%, 0%) scale(1) !important;
+}
+
+@media (max-width: 990px) {
+	#login,
+	#login > .view {
+		width: 100%;
+		height: 100%;
+		flex-direction: column;
+		justify-content: center;
+
+		.sign-in {
+			margin-top: 15px;
+			margin-bottom: 120px;
+		}
+
+		.banner {
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			transform: translate(0, 0);
+			opacity: 0.6;
+
+			.layer {
+				display: none;
+			}
+		}
+	}
+
+	.banner-word-mobile {
+		display: block;
+		width: 330px;
+		height: 45px;
+		line-height: 45px;
+		font-size: 25px;
+		font-weight: 600;
+		font-style: italic;
+		letter-spacing: 0.6px;
+		text-align: center;
+		color: #8b572a;
+		z-index: 5;
+	}
+
+	.banner-word-web {
+		display: none;
+	}
+
+	#go-sign-up_submit {
+		margin: 0;
+	}
+}

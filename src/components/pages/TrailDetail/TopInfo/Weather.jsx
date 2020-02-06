@@ -98,9 +98,8 @@ class Weather extends Component {
     }
 
     componentDidMount() {
-        // Wheather API 取得天氣資訊
         const { location } = this.props
-        console.log(location)
+        // Wheather API 取得天氣資訊
         const weatherConfig = {
             apiKey: 'CWB-8C6758C8-C956-44EB-B0AD-7228A59F92C0',
             baseUrl: 'https://opendata.cwb.gov.tw/api/v1/rest/datastore'
@@ -110,9 +109,10 @@ class Weather extends Component {
         const url = `${weatherConfig.baseUrl}/${cityId}?Authorization=${weatherConfig.apiKey}&locationName=${dist}&elementName=MaxAT,MinAT,PoP12h,WeatherDescription`
         fetch(url, { method: 'GET' })
             .then(res => res.json())
-            .then(result => {
+            .then(data => {
+
                 // 處理天氣資料
-                const weatherElementList = result.records.locations[0].location[0].weatherElement
+                const weatherElementList = data.records.locations[0].location[0].weatherElement
                 const PoP12h = weatherElementList[0].time
                 const MixAT = weatherElementList[1].time
                 const WeatherDescription = weatherElementList[2].time
@@ -153,7 +153,6 @@ class Weather extends Component {
                         return 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/weatherIcons%2F%E9%99%A3%E9%9B%A8.png?alt=media&token=c8f6edab-4b8c-434a-b68c-75e5e4745719'
                     }
                 }
-
 
                 // 製作最終天氣表
                 let weatherList = []

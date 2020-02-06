@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     HashRouter as Router,
-    Link
+    Link,
 } from 'react-router-dom'
 import headerLogoImg from '../../../assets/logo/logo260x70.png';
 import userImg from '../../../assets/img/user.png';
