@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Weather from './Weather';
 import Button from '../../../shared/Button';
 import userImg from '../../../../assets/img/user.png';
-import './TopInfo.scss';
+
 
 const TopInfo = ({ topInfoData }) => {
     return (
@@ -12,8 +12,8 @@ const TopInfo = ({ topInfoData }) => {
                     <div className="flex top-info__header">
                         <h1>{topInfoData.title}</h1>
                         <div className="top-info__stars"></div>
-                        <p>創建者：{topInfoData.createTime}</p>
-                        <p>創建日期：{topInfoData.createUser.name}</p>
+                        <p>創建者：{topInfoData.createUser.name}</p>
+                        <p>創建日期：{topInfoData.createTime}</p>
                     </div>
                     <div className="flex top-info__pic-and-report">
                         <div className="top-info__pic">
@@ -21,7 +21,10 @@ const TopInfo = ({ topInfoData }) => {
                         </div>
                         <div className="top-info__report">
                             <div className="flex report-title">
-                                <h4><i className="fas fa-bullhorn"></i>最新步道狀況回報</h4>
+                                <h4>
+                                    <i className="fas fa-bullhorn"></i>
+                                    最新步道狀況回報
+                                </h4>
                                 <p> 3 則</p>
                             </div>
                             <div className="report-list">
@@ -66,10 +69,10 @@ const TopInfo = ({ topInfoData }) => {
                                     <div className="report-content">目前的步道已經長出新生的綠葉，和照片中有些許不同囉</div>
                                 </div>
                             </div>
-                            <Button text={'我要回報步道狀況'} name={'report-btn'} />
+                            <Button text={'我要回報步道近況'} name={'report-btn'} />
                         </div>
                     </div>
-                    <Weather />
+                    <Weather weatherData={topInfoData.weatherData} />
                 </div>
             </div>
         </section>

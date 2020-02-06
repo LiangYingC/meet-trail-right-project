@@ -1,0 +1,65 @@
+.weather-list {
+	flex-wrap: nowrap;
+	margin: 30px 0;
+	padding: 15px 10px;
+	border-radius: $br-basic;
+	background-color: #fafafa;
+	overflow: scroll;
+}
+
+.weather-item {
+	flex: none;
+	width: calc(16.666% - 20px);
+	padding: 10px;
+	box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.1);
+	border-radius: $br-basic;
+	margin: 10px;
+}
+
+.weather-date-and-day {
+	font-weight: 550;
+	letter-spacing: 0.6px;
+	color: $color-black;
+	justify-content: space-evenly;
+	position: relative;
+
+	.day {
+		padding-bottom: 5px;
+		border-bottom: 3px solid #ddd;
+	}
+
+	.night {
+		padding-bottom: 5px;
+		border-bottom: 3px solid $color-grey;
+	}
+}
+
+.weather-temperature {
+	letter-spacing: 1px;
+	margin: 10px;
+
+	.fas {
+		font-size: 1rem;
+		color: $color-blue;
+		margin-left: 3px;
+		margin-right: 10px;
+	}
+}
+
+.weather-rain-chain {
+	letter-spacing: 1px;
+	margin: 10px;
+
+	.fas {
+		font-size: 0.875rem;
+		color: $color-blue;
+		margin-right: 8px;
+	}
+}
+
+.weather-status {
+	font-size: 0.875rem;
+	letter-spacing: 1px;
+	text-align: center;
+	letter-spacing: 1px;
+}

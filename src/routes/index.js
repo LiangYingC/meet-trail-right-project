@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Switch, Route } from "react-router-dom";
 
 import Home from '../components/pages/Home';
@@ -6,8 +6,8 @@ import Login from '../components/pages/Login';
 import Profile from '../components/pages/Profile';
 import Test from '../components/pages/Test';
 import Trails from '../components/pages/Trails';
-import TrailsRecommend from '../components/pages/TrailsRecommend';;
-import TrailDetail from '../components/pages/TrailDetail';;
+import TrailsRecommend from '../components/pages/TrailsRecommend';
+import TrailDetail from '../components/pages/TrailDetail';
 
 class Routes extends Component {
     render() {

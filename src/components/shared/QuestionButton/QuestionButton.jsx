@@ -1,7 +1,7 @@
 import React from 'react';
-import './QuestionButton.scss'
 
-const QuestionButton = () => {
+
+const QuestionButton = ({ onClick }) => {
     return <i className="far fa-question-circle"></i>
 }
 

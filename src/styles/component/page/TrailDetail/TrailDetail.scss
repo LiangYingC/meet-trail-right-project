@@ -1,0 +1,90 @@
+#trail-detail__basic-info .wrap,
+#trail-detail__traffic-info .wrap,
+#trail-detail__community-info .wrap {
+	background-color: $color-white;
+	box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+	margin: 25px auto;
+
+	h2 {
+		display: inline-block;
+		position: relative;
+		left: 50%;
+		margin: 30px 0;
+		@include transform(translateX(-50%));
+
+		&::before {
+			content: "";
+			display: block;
+			width: 100px;
+			height: 4px;
+			background-color: $color-blue;
+			position: absolute;
+			bottom: -10px;
+			left: 50%;
+			@include transform(translateX(-50%));
+		}
+	}
+
+	h3 {
+		display: inline-block;
+		position: relative;
+		margin: 30px;
+
+		&::before {
+			content: "";
+			display: block;
+			border-style: solid;
+			border-width: 8px;
+			border-color: transparent transparent transparent $color-blue;
+			position: absolute;
+			top: 3px;
+			left: -15px;
+		}
+	}
+}
+
+.side-bar {
+	height: 120px;
+	width: 35px;
+	position: fixed;
+	top: 50%;
+	left: 5%;
+	@include transform(translate(-50%, -5%));
+	background-color: $color-white;
+	border: 1px solid $color-light-grey;
+	border-radius: $br-basic * 4;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+
+	.dot {
+		height: 10px;
+		width: 10px;
+		border: 2px solid $color-light-grey;
+		border-radius: 50%;
+		cursor: pointer;
+
+		&:hover {
+			border: 2px solid $color-green;
+		}
+	}
+
+	.dot-1 {
+		position: relative;
+		background-color: $color-green;
+		border: 2px solid $color-green;
+
+		&::after {
+			content: "首頁";
+			display: block;
+			font-size: 14px;
+			font-weight: 600;
+			color: #999;
+			position: absolute;
+			top: -5px;
+			left: 25px;
+			letter-spacing: 1px;
+		}
+	}
+}

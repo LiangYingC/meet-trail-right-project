@@ -1,0 +1,70 @@
+.trails-qty {
+	flex: none;
+	padding: 0 0 20px 20px;
+}
+
+.trail-offer-btn {
+	flex: auto;
+	text-align: right;
+}
+
+.trails-list {
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.trail-img {
+	img {
+		border-top-left-radius: $br-basic;
+		border-top-right-radius: $br-basic;
+	}
+}
+
+.trail-detail {
+	padding: 15px 30px;
+}
+
+.trail-item {
+	width: calc(33.333% - 40px);
+	box-shadow: 0 1px 16px 1.5px rgba(0, 0, 0, 0.2);
+	margin: 20px;
+	border-radius: $br-basic;
+
+	h3 {
+		letter-spacing: 1.2px;
+		padding-bottom: 10px;
+
+		.fas {
+			color: $color-blue;
+			padding-right: 5px;
+		}
+	}
+
+	p {
+		font-size: 0.875rem;
+		color: $color-grey;
+		padding: 5px 0;
+
+		.fas,
+		.far {
+			color: $color-grey;
+			padding-right: 5px;
+		}
+
+		.fa-map {
+			font-size: 12px;
+		}
+	}
+
+	.decoration {
+		height: 6px;
+		width: 100%;
+		background-color: $color-blue;
+		border-bottom-left-radius: $br-basic;
+		border-bottom-right-radius: $br-basic;
+	}
+}
+
+.trail-stars {
+	padding-top: 10px;
+}

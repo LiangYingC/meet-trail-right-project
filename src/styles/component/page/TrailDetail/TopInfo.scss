@@ -1,7 +1,5 @@
-@import "../../../../styles/common.scss";
-
 #trail-detail__top-info {
-	margin-top: 90px;
+	margin-top: 100px;
 	background-color: $color-white;
 }
 
@@ -14,6 +12,12 @@
 		font-weight: bold;
 		letter-spacing: 1.2px;
 		color: $color-black;
+	}
+
+	p {
+		font-size: 0.875rem;
+		padding-top: 12px;
+		padding-left: 15px;
 	}
 }
 
@@ -49,7 +53,7 @@
 		color: $color-black;
 		position: relative;
 
-		i {
+		.fas {
 			font-size: 1.25rem;
 			color: $color-blue;
 			position: absolute;
@@ -69,7 +73,7 @@
 
 .report-list {
 	height: 265px;
-	margin: 0 20px;
+	margin: 0 25px;
 	overflow: scroll;
 	border-bottom: $border-basic;
 }
@@ -101,7 +105,7 @@
 	border-top-left-radius: 0;
 }
 
-.report-btn {
+#report-btn {
 	display: block;
 	margin: 20px auto;
 	text-align: center;

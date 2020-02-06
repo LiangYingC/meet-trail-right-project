@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CommunityInfo.scss';
+
 
 class CommunityInfo extends Component {
     render() {
@@ -10,7 +10,7 @@ class CommunityInfo extends Component {
                     <div className="community-info__instagram">
                         <h3> Instagram</h3>
                         <div className="instagram-item">
-
+                            <img src="" alt="" />
                         </div>
                         <div className="instagram-item">
 

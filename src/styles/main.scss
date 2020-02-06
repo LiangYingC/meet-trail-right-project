@@ -1,0 +1,20 @@
+@import "./constant.scss";
+@import "./reset.scss";
+
+/* page component */
+@import "./component/page/Trails/Trails.scss";
+@import "./component/page/Trails/TrailsList.scss";
+@import "./component/page/Trails/TrailsFilter.scss";
+
+@import "./component/page/TrailDetail/TrailDetail.scss";
+@import "./component/page/TrailDetail/TopInfo.scss";
+@import "./component/page/TrailDetail/Weather.scss";
+@import "./component/page/TrailDetail/BasicInfo.scss";
+@import "./component/page/TrailDetail/CommunityInfo.scss";
+@import "./component/page/TrailDetail/TrafficInfo.scss";
+
+/* shared component */
+@import "./component/shared/Button.scss";
+@import "./component/shared/QuestionButton.scss";
+@import "./component/shared/Header.scss";
+@import "./component/shared/Footer.scss";
