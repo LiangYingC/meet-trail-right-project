@@ -6,25 +6,27 @@
 }
 
 .youtube-item {
-	flex: none;
-	align-items: flex-start;
-	border-radius: $br-basic;
-	position: relative;
-	padding-top: 30px;
-	padding-bottom: 30%;
-	height: 0;
-	width: calc(33.333% - 20px);
-	margin: 10px;
-	overflow: hidden;
-	box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.1);
+	.video-container {
+		flex: none;
+		align-items: flex-start;
+		border-radius: $br-basic;
+		position: relative;
+		padding-top: 20px;
+		padding-bottom: 30%;
+		height: 0;
+		width: calc(33.333% - 20px);
+		margin: 10px;
+		overflow: hidden;
+		box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.1);
 
-	iframe,
-	object,
-	embed {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
+		iframe,
+		object,
+		embed {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+		}
 	}
 
 	.title {

@@ -63,8 +63,10 @@ class TrailDetail extends Component {
 
             const trafficInfoData = {
                 title: trailData.title,
+                routeImage: trailData.route_image,
                 start: trailData.tr_start,
-                end: trailData.tr_end
+                end: trailData.tr_end,
+                type: trailData.tr_type
             }
 
             return (
@@ -75,23 +77,6 @@ class TrailDetail extends Component {
                     <CommunityInfo communityInfoData={communityInfoData} />
                     <TrafficInfo trafficInfoData={trafficInfoData} />
                     <Footer />
-                    {/* <div className="flex side-bar">
-                    <div className="dot dot-1">
-                        <a href="#trail-detail__top-info"></a>
-                    </div>
-                    <a href="#trail-detail__basic-info">
-                        <div className="dot dot-2"></div>
-                    </a>
-                    <div className="dot dot-3">
-                        <a href="#trail-detail__community-info"></a>
-                    </div>
-                    <div className="dot dot-4">
-                        <a href="#trail-detail__traffic-info"></a>
-                    </div>
-                    <div className="dot dot-5">
-                        <a href=""></a>
-                    </div>
-                </div> */}
                 </Fragment >
             )
         }

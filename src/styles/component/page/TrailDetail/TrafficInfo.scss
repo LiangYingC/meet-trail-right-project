@@ -1,0 +1,53 @@
+.route-content {
+	align-items: flex-start;
+
+	.start-and-end {
+		flex: none;
+		font-size: 1rem;
+		letter-spacing: 0.6px;
+		flex-direction: column;
+		margin-left: 35px;
+
+		div {
+			margin-bottom: 15px;
+		}
+
+		div:nth-child(3) {
+			margin-left: 16px;
+		}
+
+		p {
+			padding: 0 10px;
+		}
+
+		img {
+			margin-right: 5px;
+			width: 25px;
+			height: 25px;
+		}
+
+		span {
+			font-size: 1.125rem;
+			font-weight: bold;
+		}
+
+		.basic-btn {
+			margin-top: 10px;
+
+			a {
+				color: $color-white;
+			}
+		}
+	}
+
+	.route-map {
+		flex: auto;
+		margin: 0px 50px;
+		border-radius: $br-basic;
+		overflow: hidden;
+	}
+}
+
+.traffic-info__google-map {
+	min-height: 550px;
+}

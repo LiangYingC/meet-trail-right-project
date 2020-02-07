@@ -33,6 +33,7 @@ class Login extends Component {
                                 <div className="description">還沒有會員嗎？</div>
                                 <button id="go-sign-up_submit">立即註冊</button>
                             </div>
+
                             <div className="sign-up">
                                 <h2>Stylish 註冊</h2>
                                 <div className="description">註冊享有會員福利 !</div>

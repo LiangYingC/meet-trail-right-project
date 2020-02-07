@@ -52,7 +52,16 @@ class Youtube extends Component {
                         youtubeList.map(youtube => {
                             return (
                                 <div className="youtube-item">
-                                    <iframe width="350px" height="220" src={`https://www.youtube.com/embed/${youtube.videoId}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                                    <div className="video-container">
+                                        <iframe
+                                            width="350px"
+                                            height="220"
+                                            src={`https://www.youtube.com/embed/${youtube.videoId}`}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen>
+                                        </iframe>
+                                    </div>
                                     <div className="title">{youtube.title}</div>
                                 </div>
                             )

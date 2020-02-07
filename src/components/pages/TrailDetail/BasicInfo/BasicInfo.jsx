@@ -29,12 +29,12 @@ const BasicInfo = ({ basicInfoData }) => {
                     <div className="down-right">
                         <div className="flex basic-info-item">
                             <p className="subtitle">適合時間 :</p>
-                            <p>全程 {basicInfoData.time} </p>
+                            <p>全程約 {basicInfoData.time} </p>
                         </div>
 
                         <div className="flex basic-info-item">
                             <p className="subtitle">步道全長 :</p>
-                            <p>單趟 {basicInfoData.length} 公里</p>
+                            <p>單趟約 {basicInfoData.length} 公里</p>
                         </div>
                         <div className="flex basic-info-item">
                             <p className="subtitle">步道難度 :</p>

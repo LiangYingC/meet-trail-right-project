@@ -113,20 +113,6 @@
 		display: flex;
 	}
 
-	button {
-		font-size: 16px;
-		font-weight: 400;
-		letter-spacing: 1px;
-		padding: 5px 10px;
-		margin: 10px;
-		color: #fff;
-		background-color: #8b572a;
-		border: none;
-		border-radius: 6.5px;
-		cursor: pointer;
-		opacity: 0.85;
-		outline: none;
-	}
 }
 
 #login > .view .sign-in .sign-in_input input::-webkit-input-placeholder {
