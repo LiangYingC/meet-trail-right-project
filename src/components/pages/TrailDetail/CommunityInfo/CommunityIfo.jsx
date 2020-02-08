@@ -19,7 +19,7 @@ const CommunityInfo = ({ communityInfoData }) => {
 
                     </div>
                 </div>
-                <Youtube title={communityInfoData.title} />
+                <Youtube title={communityInfoData.title} id={communityInfoData.id} />
             </div>
         </section>
     )

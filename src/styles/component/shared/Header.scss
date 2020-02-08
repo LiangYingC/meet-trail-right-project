@@ -41,15 +41,15 @@
 			line-height: 34px;
 			text-align: center;
 			color: $color-white;
-			background-color: $color-light-green;
+			background-color: $color-green;
 			border-top-right-radius: $br-basic;
 			border-bottom-right-radius: $br-basic;
 			border: none;
 			position: absolute;
 			right: 0.5px;
-			opacity: 0.9;
+			opacity: 0.75;
 			cursor: pointer;
-			@include transition-duration(0.2s);
+			@include transition-duration(0.15s);
 
 			&:hover {
 				opacity: 1;
@@ -79,7 +79,7 @@
 
 			&:hover {
 				color: #222;
-				border-bottom: 4.5px solid #4fd189;
+				border-bottom: 4.5px solid $color-green;
 			}
 
 			.down-arrow-icon {

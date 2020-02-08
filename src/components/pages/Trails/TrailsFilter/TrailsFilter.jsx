@@ -16,28 +16,21 @@ const trailsFilterList = [
         title: '步道難度',
         questionIcon: true,
         tag: 'difficulty',
-        list: ['全部', '輕鬆', '普通', '有點挑戰', '很有挑戰', '非常困難']
+        list: ['全部', '輕鬆', '普通', '有點挑戰', '很有挑戰']
     },
     {
         id: 2,
-        title: '步道全長',
-        questionIcon: false,
-        tag: 'length',
-        list: ['全部', '5 公里以下', '5 - 10 公里', '10 公里以上']
-    },
-    {
-        id: 3,
         title: '所需時間',
         questionIcon: false,
         tag: 'time',
-        list: ['全部', '3 小時以下', '3 - 6 小時', '6 - 12 小時', '12 小時以上']
+        list: ['全部', '1 小時以下', '1 - 3 小時', '3 - 5 小時', '5 小時以上']
     },
     {
-        id: 4,
-        title: '熱門程度',
-        questionIcon: true,
-        tag: 'hot',
-        list: ['全部', '低', '中', '高']
+        id: 3,
+        title: '步道全長',
+        questionIcon: false,
+        tag: 'length',
+        list: ['全部', '3 公里以下', '3 - 6 公里', '6 - 9 公里', '9 公里以上']
     }
 ]
 

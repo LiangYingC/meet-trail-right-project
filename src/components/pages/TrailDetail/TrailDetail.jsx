@@ -58,6 +58,7 @@ class TrailDetail extends Component {
             }
 
             const communityInfoData = {
+                id: trailData.id,
                 title: trailData.title
             }
 

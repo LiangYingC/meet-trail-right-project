@@ -7,13 +7,10 @@
 		letter-spacing: 0.6px;
 		flex-direction: column;
 		margin-left: 35px;
+		align-items: flex-start;
 
 		div {
 			margin-bottom: 15px;
-		}
-
-		div:nth-child(3) {
-			margin-left: 16px;
 		}
 
 		p {

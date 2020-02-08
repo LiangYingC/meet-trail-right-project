@@ -20,23 +20,19 @@ class Trails extends Component {
                     value: 'difficulty_0'
                 },
                 {
-                    tag: 'length',
-                    value: 'length_0'
-                },
-                {
                     tag: 'time',
                     value: 'time_0'
                 },
                 {
-                    tag: 'hot',
-                    value: 'hot_0'
+                    tag: 'length',
+                    value: 'length_0'
                 }
             ]
         }
     }
 
     componentDidMount() {
-        const db = firebase.firestore();
+        const db = firebase.firestore()
         const trailsRef = db.collection('trails')
         let trailsData = []
         trailsRef.get().then(querySnapshot => {
@@ -61,6 +57,21 @@ class Trails extends Component {
                 } return filter
             })
         }))
+        this.changeList()
+    }
+
+    changeList = () => {
+        const db = firebase.firestore()
+        const trailsRef = db.collection('trails')
+        let trailsData = []
+        trailsRef.where('location.city', '==', '台中市').get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                trailsData.push(doc.data())
+                this.setState({
+                    trailsData: trailsData
+                })
+            })
+        })
     }
 
     render() {

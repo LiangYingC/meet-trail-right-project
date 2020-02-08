@@ -3,9 +3,12 @@
 	justify-content: flex-start;
 	align-items: flex-start;
 	overflow: scroll;
+	position: relative;
 }
 
 .youtube-item {
+	position: relative;
+
 	.video-container {
 		flex: none;
 		align-items: flex-start;
