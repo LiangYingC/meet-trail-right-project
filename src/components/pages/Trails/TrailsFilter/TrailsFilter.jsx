@@ -3,7 +3,7 @@ import QuestionButton from '../../../shared/QuestionButton'
 
 
 
-const trailsFilterList = [
+const trailsFilterData = [
     {
         id: 0,
         title: '所在區域',
@@ -34,14 +34,13 @@ const trailsFilterList = [
     }
 ]
 
-const TrailsFilter = ({ trailsFilter, changeFilter }) => {
+const TrailsFilter = ({ trailsFilterProps, changeFilter }) => {
     return (
         <section id="trails-filter">
             <div className="wrap">
                 <div className="filters">
                     {
-                        trailsFilterList.map(filter => {
-                            console.log(trailsFilter)
+                        trailsFilterData.map(filter => {
                             return (
                                 <div className="flex filter" key={filter.id}>
                                     <div className="flex filter-title" >{filter.title}
@@ -50,26 +49,28 @@ const TrailsFilter = ({ trailsFilter, changeFilter }) => {
                                         </div>
                                     </div>
                                     <div className="filter-list">
-                                        {filter.list.map((filterItem, index) => {
-                                            return (
-                                                <label
-                                                    className={
-                                                        `filter-item 
-                                                    ${(filter.tag + '_' + index === trailsFilter[filter.id].value) ? 'active' : ''}
+                                        {
+                                            filter.list.map((filterItem, index) => {
+                                                return (
+                                                    <label
+                                                        className={
+                                                            `filter-item 
+                                                    ${(index === trailsFilterProps[filter.id].value) ? 'active' : ''}
                                                 `}
-                                                    key={index}
-                                                >
-                                                    <input type="radio"
-                                                        name={filter.tag}
-                                                        value={`${filter.tag}_${index}`}
-                                                        checked={(filter.tag + '_' + index === trailsFilter[filter.id].value)}
-                                                        onChange={changeFilter}
-                                                    />
+                                                        key={index}
+                                                    >
+                                                        <input type="radio"
+                                                            name={filter.tag}
+                                                            value={index}
+                                                            checked={(index === trailsFilterProps[filter.id].value)}
+                                                            onChange={changeFilter}
+                                                        />
 
-                                                    {filterItem}
-                                                </label>
-                                            )
-                                        })}
+                                                        {filterItem}
+                                                    </label>
+                                                )
+                                            })
+                                        }
                                     </div>
                                 </div>
                             )

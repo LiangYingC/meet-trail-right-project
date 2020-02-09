@@ -26,7 +26,7 @@ const TrafficInfo = ({ trafficInfoData }) => {
                             </div>
                             <button className="basic-btn">
                                 <a href={trafficInfoData.routeImage} target="_blank">
-                                    看大圖 (開新分頁)
+                                    看大圖
                                 </a>
                             </button>
                         </div>

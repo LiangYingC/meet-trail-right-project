@@ -29,15 +29,12 @@ class GoogleMapContainer extends Component {
 
 
         const { trailTitle } = this.props
-        console.log(trailTitle)
         const request = {
             query: `${trailTitle}`,
             fields: ['ALL']
         }
 
         service.findPlaceFromQuery(request, data => {
-            console.log(data[0].geometry.location.lat())
-            console.log(data[0].geometry.location.lng())
             this.setState({
                 mapCenter: {
                     lat: data[0].geometry.location.lat() - 0.00015,
@@ -48,19 +45,15 @@ class GoogleMapContainer extends Component {
     }
 
     onMarkerClick = (marker) => {
-        console.log(marker)
         this.setState({
             activeMarker: marker,
             isShowInfoWindow: true
         })
     }
 
-
-
     render() {
         const { mapCenter, isShowInfoWindow, activeMarker } = this.state
         const { trailTitle, google } = this.props
-        console.log(mapCenter)
         return (
             <Map
                 google={google}
@@ -93,7 +86,7 @@ class GoogleMapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBMv6UqgFjQ2tL10bnCTH2765cpmDW',
+    apiKey: 'AIzaSyBMv6UqgFjQ2tL10bnCTH2765cpmDW_xnI',
     language: 'zh-TW'
 })(GoogleMapContainer);
 

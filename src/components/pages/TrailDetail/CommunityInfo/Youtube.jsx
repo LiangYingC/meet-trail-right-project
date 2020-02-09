@@ -9,55 +9,96 @@ class Youtube extends Component {
     }
 
     componentDidMount() {
+
         const { title, id } = this.props
+        const today = new Date()
+        const todayDate = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
         const db = firebase.firestore()
         const trailsRef = db.collection('trails').doc(id)
-        const isGetYoutube = sessionStorage.getItem('MTR-isGetYoutube')
-
-        // YouTube Data API 取得資料存進 Firebase
-        if (!isGetYoutube) {
-            const youtubeConfig = {
-                apiKey: 'AIzaSyAdjEsVveMWoqUjvz59GS3KMAwfsBVvKjQ',
-                baseUrl: 'https://www.googleapis.com/youtube/v3/search',
-                order: 'relevance',
-                maxResults: 5
-            }
-            const url = `${youtubeConfig.baseUrl}?part=snippet&type=video
-            &order=${youtubeConfig.order}&q=${title}&key=${youtubeConfig.apiKey}`
-
-            fetch(url, { method: 'Get' })
-                .then(res => res.json())
-                .then(data => {
-                    const youtubeList = data.items.map(item => {
-                        return {
-                            videoId: item.id.videoId,
-                            title: item.snippet.title,
-                            description: item.snippet.description
-                        }
-                    })
-
-                    trailsRef.set({
-                        youtube_list: youtubeList,
-                    }, { merge: true })
-
-                    sessionStorage.setItem('MTR-isGetYoutube', JSON.stringify(true))
-                })
-        }
 
         // 從 Firebase 拿 youtube list 資料
         trailsRef.get().then(doc => {
-            this.setState({
-                youtubeList: doc.data().youtube_list
-            })
+            const youtubeList = doc.data().youtube_list
+            const isNeedToUpdate = () => {
+                if (youtubeList === null) {
+                    console.log('null')
+                    return true
+                } else if (todayDate !== youtubeList.update_time) {
+                    console.log('date')
+                    return true
+                } return false
+            }
+
+            // 如果更新日期不是今天或尚無資料，從 YouTube Data API 取得資料存進 Firebase
+            if (isNeedToUpdate()) {
+                console.log(12312312321312)
+                const youtubeConfig = {
+                    apiKey: 'AIzaSyAdjEsVveMWoqUjvz59GS3KMAwfsBVvKjQ',
+                    baseUrl: 'https://www.googleapis.com/youtube/v3',
+                    order: 'relevance',
+                    maxResults: 5
+                }
+                // 取得 Video 資料
+                const vedioUrl = `${youtubeConfig.baseUrl}/search?part=snippet&type=video
+                            &order=${ youtubeConfig.order}&q=${title}&key=${youtubeConfig.apiKey}`
+
+                fetch(vedioUrl, { method: 'Get' })
+                    .then(res => res.json())
+                    .then(vedioData => {
+
+                        let youtubeList = []
+                        vedioData.items.map(vedioItem => {
+                            // 取得 channel 資料
+                            const channelUrl = `${youtubeConfig.baseUrl}/channels?part=snippet
+                            &id=${vedioItem.snippet.channelId}&key=${youtubeConfig.apiKey}`
+                            fetch(channelUrl, { method: 'Get' })
+                                .then(res => res.json())
+                                .then(channelData => {
+                                    let youtubeItem = {
+                                        channelPic: channelData.items[0].snippet.thumbnails.default.url,
+                                        channelTitle: channelData.items[0].snippet.title,
+                                        videoId: vedioItem.id.videoId,
+                                        videoTitle: vedioItem.snippet.title
+                                    }
+                                    youtubeList.push(youtubeItem)
+                                }).then(() => {
+                                    this.setState({
+                                        youtubeList: youtubeList
+                                    })
+
+                                    trailsRef.set({
+                                        youtube_list: {
+                                            data: youtubeList,
+                                            update_time: todayDate
+                                        }
+                                    }, { merge: true })
+                                })
+
+                        })
+                    })
+            } else {
+                this.setState({
+                    youtubeList: youtubeList.data
+                })
+            }
         })
     }
 
+    processTitel = (title, n) => {
+        const l = title.length
+        if (l <= n) return title
+
+        return title.slice(0, n - 6) + "..."
+    }
+
+
     render() {
         const { youtubeList } = this.state
-        console.log(youtubeList)
+
         if (youtubeList === null) {
             return <div>Loading</div>
         }
+
         return (
             <div className="community-info__youtube">
                 <h3>Youtube</h3>
@@ -73,16 +114,22 @@ class Youtube extends Component {
                                             src={`https://www.youtube.com/embed/${youtube.videoId}`}
                                             frameBorder="0"
                                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen>
-                                        </iframe>
+                                            allowFullScreen >
+                                        </iframe >
+                                    </div >
+                                    <div className="video-content">
+                                        <div className="flex">
+                                            <img src={youtube.channelPic} alt={`${youtube.channelTitle}圖片`} />
+                                            <p className="video-title">{this.processTitel(youtube.videoTitle, 45)}</p>
+                                        </div>
+                                        <p className="channel-title">{youtube.channelTitle}</p>
                                     </div>
-                                    <div className="title">{youtube.title}</div>
-                                </div>
+                                </div >
                             )
                         })
                     }
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 }

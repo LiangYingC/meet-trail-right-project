@@ -215,7 +215,10 @@ class Weather extends Component {
                                         </div>
                                     </div>
                                     <div className="weather-Icon" >
-                                        <img src={weather.iconLink} alt={weather.status} title={weather.description} />
+                                        <img
+                                            src={weather.iconLink}
+                                            alt={weather.status}
+                                            title={weather.description} />
                                     </div>
                                     <p className="weather-status">{weather.status}</p>
                                     <div className="weather-temperature">

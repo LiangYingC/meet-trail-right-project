@@ -4,7 +4,7 @@
 	padding: 15px 10px;
 	border-radius: $br-basic;
 	background-color: #fafafa;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .weather-item {
@@ -22,6 +22,20 @@
 	color: $color-black;
 	justify-content: space-evenly;
 	position: relative;
+}
+
+.weather-Icon {
+	img {
+		width: 135px;
+		margin: 0 auto;
+	}
+}
+
+.weather-status {
+	font-size: 0.875rem;
+	letter-spacing: 1px;
+	text-align: center;
+	letter-spacing: 1px;
 }
 
 .weather-temperature {
@@ -47,11 +61,4 @@
 		color: $color-blue;
 		margin-right: 8px;
 	}
-}
-
-.weather-status {
-	font-size: 0.875rem;
-	letter-spacing: 1px;
-	text-align: center;
-	letter-spacing: 1px;
 }

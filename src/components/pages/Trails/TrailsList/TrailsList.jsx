@@ -7,21 +7,20 @@ import Button from '../../../shared/Button';
 
 
 
-const TrailsList = ({ trailsData }) => {
-    console.log(trailsData)
+const TrailsList = ({ trailsVisible }) => {
     return (
         <section className="trails">
             <div className="wrap">
                 <div className="flex">
                     <div className="trails-qty">
-                        篩選結果有 {trailsData.length} 筆資料
+                        篩選結果有 {trailsVisible.length} 筆資料
                     </div>
                     <div className="trail-offer-btn">
                         <Button text={'我要提供步道資料'} />
                     </div>
                 </div>
                 <div className="flex trails-list">
-                    {trailsData.map(trail => {
+                    {trailsVisible.map(trail => {
                         return (
                             <Router>
                                 <div className="trail-item">
