@@ -88,10 +88,10 @@
 				right: -28px;
 				width: 30px;
 				@include transition-duration(0.1s);
-			}
 
-			.down-arrow-icon--active {
-				@include transform(rotate(180deg));
+				&.active {
+					@include transform(rotate(180deg));
+				}
 			}
 		}
 	}
@@ -138,9 +138,9 @@
 				background-color: $color-dark-white;
 			}
 		}
-	}
 
-	.language-options-box--active {
-		display: block !important;
+		&.active {
+			display: block !important;
+		}
 	}
 }

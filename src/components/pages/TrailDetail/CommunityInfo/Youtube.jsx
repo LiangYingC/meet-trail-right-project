@@ -9,10 +9,9 @@ class Youtube extends Component {
     }
 
     componentDidMount() {
-
         const { title, id } = this.props
         const today = new Date()
-        const todayDate = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`
+        const todayDate = `${today.getFullYear()}-${('0' + today.getMonth()).slice(-2)}-${today.getDate()}`
         const db = firebase.firestore()
         const trailsRef = db.collection('trails').doc(id)
 
@@ -21,17 +20,14 @@ class Youtube extends Component {
             const youtubeList = doc.data().youtube_list
             const isNeedToUpdate = () => {
                 if (youtubeList === null) {
-                    console.log('null')
                     return true
                 } else if (todayDate !== youtubeList.update_time) {
-                    console.log('date')
                     return true
                 } return false
             }
 
             // 如果更新日期不是今天或尚無資料，從 YouTube Data API 取得資料存進 Firebase
             if (isNeedToUpdate()) {
-                console.log(12312312321312)
                 const youtubeConfig = {
                     apiKey: 'AIzaSyAdjEsVveMWoqUjvz59GS3KMAwfsBVvKjQ',
                     baseUrl: 'https://www.googleapis.com/youtube/v3',
@@ -65,7 +61,7 @@ class Youtube extends Component {
                                     this.setState({
                                         youtubeList: youtubeList
                                     })
-
+                                    // 將 youtube list 放進 Firebase 資料庫
                                     trailsRef.set({
                                         youtube_list: {
                                             data: youtubeList,

@@ -51,7 +51,6 @@ const TrailsList = ({ trailsVisible }) => {
                                             </p>
                                             <div className="trail-stars">評價系統的星星（多少則）</div>
                                         </div>
-                                        <div className="decoration"></div>
                                     </Link>
                                 </div>
                             </Router>

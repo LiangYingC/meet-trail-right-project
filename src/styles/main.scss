@@ -1,22 +1,26 @@
 @import "./constant.scss";
 @import "./reset.scss";
 
-/* page component */
+/*** page component ***/
+
+/* Trails Page */
 @import "./component/page/Trails/Trails.scss";
 @import "./component/page/Trails/TrailsList.scss";
 @import "./component/page/Trails/TrailsFilter.scss";
-
+/* TrailDetail Page */
 @import "./component/page/TrailDetail/TrailDetail.scss";
-@import "./component/page/TrailDetail/TopInfo.scss";
-@import "./component/page/TrailDetail/Weather.scss";
-@import "./component/page/TrailDetail/BasicInfo.scss";
-@import "./component/page/TrailDetail/CommunityInfo.scss";
-@import "./component/page/TrailDetail/TrafficInfo.scss";
-@import "./component/page/TrailDetail/Youtube.scss";
+@import "./component/page/TrailDetail/TopInfo/TopInfo.scss";
+@import "./component/page/TrailDetail/TopInfo/Report.scss";
+@import "./component/page/TrailDetail/TopInfo/Weather.scss";
+@import "./component/page/TrailDetail/BasicInfo/BasicInfo.scss";
+@import "./component/page/TrailDetail/CommunityInfo/CommunityInfo.scss";
+@import "./component/page/TrailDetail/CommunityInfo/Youtube.scss";
+@import "./component/page/TrailDetail/TrafficInfo/TrafficInfo.scss";
 
+/* Login Page */
 @import "./component/page/Login/Login.scss";
 
-/* shared component */
+/*** shared component ***/
 @import "./component/shared/Button.scss";
 @import "./component/shared/QuestionButton.scss";
 @import "./component/shared/Header.scss";

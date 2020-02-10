@@ -39,6 +39,7 @@ class TrailDetail extends Component {
             )
         } else {
             const topInfoData = {
+                id: trailData.id,
                 title: trailData.title,
                 mainImage: trailData.main_image,
                 createTime: trailData.create_time,

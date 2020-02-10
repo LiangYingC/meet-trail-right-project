@@ -1,0 +1,200 @@
+.report-title {
+	border-bottom: 0.5px solid #aaa;
+	margin: 25px 30px 10px 65px;
+
+	h4 {
+		font-size: 1.25rem;
+		font-weight: 550;
+		letter-spacing: 1px;
+		padding-bottom: 20px;
+		color: $color-black;
+		position: relative;
+
+		.fas {
+			font-size: 1.25rem;
+			color: $color-grey;
+			position: absolute;
+			top: 1px;
+			left: -33px;
+		}
+	}
+
+	p {
+		font-size: 0.875rem;
+		font-weight: 550;
+		letter-spacing: 1px;
+		text-align: center;
+		padding: 0 0 20px 10px;
+	}
+}
+
+.report-list {
+	height: 265px;
+	margin: 0 25px;
+	overflow: scroll;
+	border-bottom: $border-basic;
+	position: relative;
+}
+
+.report-info {
+	div {
+		margin: 10px;
+		font-size: 0.875rem;
+	}
+
+	.report-user-img {
+		width: 25px;
+
+		img {
+			border-radius: 50%;
+		}
+	}
+}
+
+.report-content {
+	font-size: 0.875rem;
+	margin: 0 25px;
+	padding: 5px 15px;
+	background-color: $color-white;
+	letter-spacing: 0.6px;
+	line-height: 1.5;
+	border: $border-basic;
+	border-radius: $br-basic * 3;
+	border-top-left-radius: 0;
+}
+
+#report-btn {
+	display: block;
+	margin: 20px auto;
+	text-align: center;
+}
+
+.report-input {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 100;
+	@include transition-duration(0.2s);
+
+	&.active {
+		visibility: visible;
+		opacity: 1;
+		@include transition-duration(0.2s);
+	}
+
+	.layer {
+		height: 100%;
+		width: 100%;
+		background-color: $color-black;
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0.5;
+	}
+
+	.report-input-box {
+		width: 330px;
+		height: 400px;
+		background-color: $color-white;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		padding: 35px 30px 20px 30px;
+		border-radius: $br-basic;
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0);
+		-webkit-transform: translate(-50%, -50%) scale(0);
+		@include transition-duration(0.2s);
+
+		&.active {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+			-webkit-transform: translate(-50%, -50%) scale(1);
+			@include transition-duration(0.2s);
+		}
+
+		h3 {
+			text-align: center;
+		}
+
+		.block {
+			margin: 30px;
+		}
+
+		label {
+			font-size: 0.875rem;
+			display: block;
+			margin: 10px 0;
+			position: relative;
+
+			&::before {
+				content: "";
+				display: block;
+				border-style: solid;
+				border-width: 6px;
+				border-color: transparent transparent transparent $color-blue;
+				position: absolute;
+				top: 2.5px;
+				left: -12px;
+			}
+		}
+
+		input,
+		textarea {
+			padding: 5px 10px;
+			border: $border-basic;
+			border-radius: $br-basic;
+			letter-spacing: 0.6px;
+			outline: none;
+		}
+
+		input {
+			font-size: 1.25rem;
+			height: 36px;
+		}
+
+		textarea {
+			font-size: 1rem;
+			width: 220px;
+			height: 100px;
+		}
+
+		.close-btn {
+			cursor: pointer;
+
+			&::after,
+			&::before {
+				position: absolute;
+				top: 20px;
+				right: 10px;
+				content: "";
+				width: 22px;
+				height: 2px;
+				background-color: $color-light-grey;
+			}
+
+			&::after {
+				@include transform(rotate(-45deg));
+			}
+
+			&::before {
+				@include transform(rotate(45deg));
+			}
+		}
+
+		#send-report-btn {
+			left: 50%;
+			@include transform(translateX(-50%));
+		}
+	}
+}
+
+@media (max-width: 1200px) {
+	.report-list {
+		height: 190px;
+	}
+}

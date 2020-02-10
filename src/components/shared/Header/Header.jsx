@@ -18,7 +18,7 @@ class Header extends Component {
     }
 
     toggleLanguagOptions = () => {
-        this.setState((preState) => ({
+        this.setState(preState => ({
             isLanguagOptionsOpen: !preState.isLanguagOptionsOpen
         }))
     }
@@ -46,8 +46,8 @@ class Header extends Component {
                                 <li >
                                     <div id="header-language-btn" onClick={this.toggleLanguagOptions}>
                                         <p>繁體中文</p>
-                                        <div className={`down-arrow-icon ${isLanguagOptionsOpen ? 'down-arrow-icon--active' : ''}`}><img src={downArrowImg} alt="more options logo" /></div>
-                                        <div className={`language-options-box ${isLanguagOptionsOpen ? 'language-options-box--active' : ''}`} >
+                                        <div className={`down-arrow-icon ${isLanguagOptionsOpen ? 'active' : ''}`}><img src={downArrowImg} alt="more options logo" /></div>
+                                        <div className={`language-options-box ${isLanguagOptionsOpen ? 'active' : ''}`} >
                                             <p>繁體中文</p>
                                             <p>English</p>
                                         </div>

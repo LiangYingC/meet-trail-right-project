@@ -1,0 +1,42 @@
+#trail-detail__top-info {
+	margin-top: 100px;
+	background-color: $color-white;
+}
+
+.top-info__header {
+	margin: 30px;
+
+	h1 {
+		flex: none;
+		font-size: 2rem;
+		font-weight: bold;
+		letter-spacing: 1.2px;
+		color: $color-black;
+	}
+
+	p {
+		font-size: 0.875rem;
+		padding-top: 12px;
+		padding-left: 15px;
+	}
+}
+
+.top-info__pic-and-report {
+	align-items: stretch;
+	justify-content: center;
+}
+
+.top-info__pic {
+	flex: none;
+	width: 55%;
+	min-width: 500px;
+}
+
+.top-info__report {
+	flex: auto;
+	width: 40%;
+	background-color: #f6f6f6;
+	margin-left: 20px;
+	border-radius: 4px;
+	box-shadow: 0 0 16px 1.5px rgba(0, 0, 0, 0.1);
+}

@@ -28,7 +28,8 @@
 	width: calc(33.333% - 40px);
 	box-shadow: 0 1px 16px 1.5px rgba(0, 0, 0, 0.2);
 	margin: 20px;
-	border-radius: $br-basic;
+	border-radius: $br-basic * 2;
+	border-bottom: 6px solid $color-blue;
 
 	h3 {
 		letter-spacing: 1.2px;
@@ -54,14 +55,6 @@
 		.fa-map {
 			font-size: 12px;
 		}
-	}
-
-	.decoration {
-		height: 6px;
-		width: 100%;
-		background-color: $color-blue;
-		border-bottom-left-radius: $br-basic;
-		border-bottom-right-radius: $br-basic;
 	}
 }
 

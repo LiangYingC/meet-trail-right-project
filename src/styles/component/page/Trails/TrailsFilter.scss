@@ -42,10 +42,9 @@
 		opacity: 0;
 		position: absolute;
 	}
-}
-
-.active {
-	font-weight: 550;
-	color: $color-dark-green;
-	border: 1.2px solid $color-dark-green;
+	&.active {
+		font-weight: 550;
+		color: $color-dark-green;
+		border: 1.2px solid $color-dark-green;
+	}
 }
