@@ -146,8 +146,10 @@ class Weather extends Component {
                         return 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/weatherIcons%2F%E9%99%B0%E5%A4%A9.png?alt=media&token=99c6a370-47db-4449-9905-7a6aa6ebd6b1'
                     } else if (status === '短暫雨' || status === '陰短暫雨') {
                         return 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/weatherIcons%2F%E7%9F%AD%E6%9A%AB%E9%99%A3%E9%9B%A8.png?alt=media&token=40a71d61-732c-4cab-98ce-6cff5e2674cd'
-                    } else if (status === '多雲短暫雨') {
+                    } else if (status === '多雲短暫雨' || status === '多雲短暫陣雨') {
                         return 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/weatherIcons%2F%E5%A4%9A%E9%9B%B2%E7%9F%AD%E6%9A%AB%E9%99%A3%E9%9B%A8.png?alt=media&token=a9551eb1-f769-46a0-8322-e2b0de7cea8b'
+                    } else if (status === '多雲時陰短暫陣雨或雷雨' || status === '多雲短暫陣雨或雷雨') {
+                        return 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/weatherIcons%2F%E9%9B%B7%E9%99%A3%E9%9B%A8.png?alt=media&token=4ed051ea-883b-4581-9622-f9a6c80bec55'
                     }
                     else {
                         return 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/weatherIcons%2F%E9%99%A3%E9%9B%A8.png?alt=media&token=c8f6edab-4b8c-434a-b68c-75e5e4745719'
@@ -218,7 +220,7 @@ class Weather extends Component {
                                             {weather.isDay ? '白天' : '夜晚'}
                                         </div>
                                     </div>
-                                    <div className="weather-icon" >
+                                    <div className="flex weather-icon" >
                                         <img
                                             src={weather.iconLink}
                                             alt={`${weather.date} ${weather.status}`}

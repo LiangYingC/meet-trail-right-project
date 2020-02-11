@@ -1,72 +1,79 @@
-.report-title {
-	border-bottom: 0.5px solid #aaa;
-	margin: 25px 30px 10px 65px;
+.top-info__report {
+	flex-direction: column;
 
-	h4 {
-		font-size: 1.25rem;
-		font-weight: 550;
-		letter-spacing: 1px;
-		padding-bottom: 20px;
-		color: $color-black;
-		position: relative;
+	.report-title {
+		flex: none;
+		border-bottom: 0.5px solid #aaa;
+		margin: 25px 30px 10px 65px;
 
-		.fas {
+		h4 {
 			font-size: 1.25rem;
-			color: $color-grey;
-			position: absolute;
-			top: 1px;
-			left: -33px;
+			font-weight: 550;
+			letter-spacing: 1px;
+			padding-bottom: 20px;
+			color: $color-black;
+			position: relative;
+
+			.fas {
+				font-size: 1.25rem;
+				color: $color-grey;
+				position: absolute;
+				top: 1px;
+				left: -33px;
+			}
+		}
+
+		p {
+			font-size: 0.875rem;
+			font-weight: 550;
+			letter-spacing: 1px;
+			text-align: center;
+			padding: 0 0 20px 10px;
 		}
 	}
 
-	p {
+	.report-list {
+		flex: auto;
+		height: 270px;
+		margin: 0 25px;
+		overflow: scroll;
+		border-bottom: $border-basic;
+		position: relative;
+	}
+
+	.report-info {
+		div {
+			margin: 10px;
+			font-size: 0.875rem;
+		}
+
+		.report-user-img {
+			width: 25px;
+
+			img {
+				border-radius: 50%;
+			}
+		}
+	}
+
+	.report-content {
 		font-size: 0.875rem;
-		font-weight: 550;
-		letter-spacing: 1px;
+		margin: 0 25px;
+		padding: 5px 15px;
+		background-color: $color-white;
+		letter-spacing: 0.6px;
+		line-height: 1.5;
+		border: $border-basic;
+		border-radius: $br-basic * 3;
+		border-top-left-radius: 0;
+	}
+
+	#report-btn {
+		flex: none;
+		display: block;
+		margin: 20px auto;
 		text-align: center;
-		padding: 0 0 20px 10px;
 	}
-}
-
-.report-list {
-	height: 265px;
-	margin: 0 25px;
-	overflow: scroll;
-	border-bottom: $border-basic;
-	position: relative;
-}
-
-.report-info {
-	div {
-		margin: 10px;
-		font-size: 0.875rem;
-	}
-
-	.report-user-img {
-		width: 25px;
-
-		img {
-			border-radius: 50%;
-		}
-	}
-}
-
-.report-content {
-	font-size: 0.875rem;
-	margin: 0 25px;
-	padding: 5px 15px;
-	background-color: $color-white;
-	letter-spacing: 0.6px;
-	line-height: 1.5;
-	border: $border-basic;
-	border-radius: $br-basic * 3;
-	border-top-left-radius: 0;
-}
-
-#report-btn {
-	display: block;
-	margin: 20px auto;
-	text-align: center;
 }
 
 .report-input {

@@ -12,8 +12,8 @@ class Login extends Component {
                         <div className="banner">
                             <div className="layer"></div>
                         </div>
-                        <div className="banner-word-mobile">尋找最適合你的山林步道</div>
-                        <div className="banner-word-web">尋找最適合你的山林步道</div>
+                        <div className="banner-word-mobile">Meet Trail Right</div>
+                        <div className="banner-word-web">Meet Trail Right</div>
                         <div className="sign-in">
                             <h2>選山步道 登入</h2>
                             <div className="description">登入即可快速結帳 !</div>

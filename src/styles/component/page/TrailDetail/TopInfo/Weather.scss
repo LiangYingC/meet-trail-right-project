@@ -35,6 +35,7 @@
 .weather-item {
 	flex: none;
 	width: calc(16.666% - 20px);
+	max-height: 250px;
 	padding: 10px;
 	box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.1);
 	border-radius: $br-basic;
@@ -55,25 +56,29 @@
 }
 
 .weather-icon {
+	width: 130px;
+	margin: 0 auto;
 	position: relative;
 	img {
-		width: 135px;
+		width: 100%;
 		margin: 0 auto;
 	}
 }
 
 .weather-description {
-	opacity: 0;
-	position: absolute;
-	top: 0;
 	font-size: 0.875rem;
 	letter-spacing: 0.6px;
 	line-height: 1.5;
 	color: $color-white;
 	background-color: $color-black;
-	padding: 15px 10px;
-	margin: 10px 0;
+	padding: 5px 10px;
 	border-radius: $br-basic;
+	width: 105%;
+	height: 100%;
+	opacity: 0;
+	position: absolute;
+	top: 15px;
+	left: -5px;
 	@include transition-duration(0.4s);
 }
 
