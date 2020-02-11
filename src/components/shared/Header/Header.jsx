@@ -55,9 +55,11 @@ class Header extends Component {
                                         </div>
                                     </div>
                                 </li>
-                                <div id="header-user-btn">
-                                    <img src={userImg} alt="user logo" />
-                                </div>
+                                <Link to='/Login' >
+                                    <div id="header-user-btn">
+                                        <img src={userImg} alt="user logo" />
+                                    </div>
+                                </Link>
                             </ul>
                         </div>
                     </div>
