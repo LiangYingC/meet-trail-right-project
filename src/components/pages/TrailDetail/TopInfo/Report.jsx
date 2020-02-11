@@ -21,7 +21,7 @@ class Report extends Component {
         const db = firebase.firestore()
         const trailsRef = db.collection('trails').doc(id)
         trailsRef.collection('report_list')
-            .orderBy('report_time', 'desc')
+            .orderBy('timestamp', 'desc')
             .onSnapshot(querySnapshot => {
                 let reportList = []
                 querySnapshot.forEach(doc => {
@@ -55,13 +55,14 @@ class Report extends Component {
     setReportData = () => {
         const { id } = this.props
         const today = new Date()
-        const todayTime = `${today.getHours()}:${('0' + today.getMinutes()).slice(-2)}:${today.getSeconds()}`
+        const todayTime = `${('0' + today.getHours()).slice()}:${('0' + today.getMinutes()).slice(-2)}`
         this.setState(preState => {
             const db = firebase.firestore()
             const trailsRef = db.collection('trails').doc(id)
             trailsRef.collection('report_list').doc()
                 .set({
-                    report_time: preState.dateValue + " " + todayTime,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    report_time: preState.dateValue + " , " + todayTime,
                     report_content: preState.contentValue,
                     create_user: {
                         id: 'Test123',
