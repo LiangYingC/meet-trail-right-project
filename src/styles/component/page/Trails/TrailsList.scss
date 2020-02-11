@@ -14,7 +14,13 @@
 }
 
 .trail-img {
+	overflow: hidden;
+	border-top-left-radius: $br-basic;
+	border-top-right-radius: $br-basic;
 	img {
+		@include transition-duration(0.25s);
+		opacity: 0.9;
+		transform: scale(1);
 		border-top-left-radius: $br-basic;
 		border-top-right-radius: $br-basic;
 	}
@@ -26,10 +32,20 @@
 
 .trail-item {
 	width: calc(33.333% - 40px);
-	box-shadow: 0 1px 16px 1.5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 4px 15px 1.5px rgba(0, 0, 0, 0.3);
 	margin: 20px;
 	border-radius: $br-basic * 2;
 	border-bottom: 6px solid $color-blue;
+	position: relative;
+	top: 0;
+	left: 0;
+	transform: scale(1);
+	@include transition-duration(0.25s);
+
+	&:hover .trail-img img {
+		opacity: 1;
+		transform: scale(1.05);
+	}
 
 	h3 {
 		letter-spacing: 1.2px;
@@ -56,8 +72,4 @@
 			font-size: 12px;
 		}
 	}
-}
-
-.trail-stars {
-	padding-top: 10px;
 }

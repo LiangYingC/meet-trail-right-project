@@ -1,0 +1,177 @@
+#trail-create {
+	margin-top: 60px;
+	margin-bottom: 0;
+	padding-bottom: 90px;
+	background-color: #f9f9f9;
+
+	h2 {
+		font-size: 2.25rem;
+		color: #555;
+		padding: 50px 0;
+		text-align: center;
+		letter-spacing: 1.2px;
+	}
+
+	.wrap {
+		width: 65%;
+		border-radius: $br-basic;
+		box-shadow: 0 0 8px 0.5px rgba(0, 0, 0, 0.1);
+		padding: 30px 50px;
+		background-color: $color-white;
+		position: relative;
+	}
+
+	.form-item {
+		padding: 20px;
+
+		p {
+			margin: 10px;
+		}
+	}
+
+	label {
+		font-size: 0.9375rem;
+		font-weight: bold;
+		color: $color-black;
+		letter-spacing: 1px;
+		display: block;
+		margin: 10px 0;
+		position: relative;
+	}
+
+	.mark-word {
+		position: absolute;
+		right: 20px;
+		top: -30px;
+
+		.mark {
+			font-size: 2rem;
+			position: absolute;
+			top: 0;
+			left: -20px;
+		}
+	}
+
+	.mark {
+		font-size: 1.25rem;
+		margin-left: 5px;
+		color: #d50000;
+		position: absolute;
+		top: 0;
+	}
+
+	input,
+	select,
+	textarea {
+		background-color: transparent;
+		display: block;
+		padding: 5px 10px;
+		border: 1px solid #ddd;
+		border-radius: $br-basic;
+		color: rgba(0, 0, 0, 0.65);
+		line-height: 1.75;
+		font-size: 16px;
+		font-weight: 400;
+		outline: none;
+		@include transition-duration(0.2s);
+	}
+	input {
+		width: 40%;
+		min-width: 330px;
+	}
+
+	select {
+		width: 20%;
+		height: 40px;
+		margin-right: 20px;
+	}
+
+	textarea {
+		width: 50%;
+		min-width: 330px;
+		height: 150px;
+	}
+
+	.reminder {
+		padding: 10px 20px;
+		margin-left: 30px;
+		background-color: #effff5;
+	}
+
+	.reminder-icon {
+		font-size: 1.5rem;
+		color: $color-green;
+		margin-right: 10px;
+	}
+
+	.reminder-content span {
+		font-weight: 900;
+		color: $color-black;
+	}
+
+	.form-item {
+		.form-item-scenery {
+			position: relative;
+			flex: auto;
+			text-align: center;
+			letter-spacing: 0.6px;
+			padding: 3px 12px;
+			margin-left: 10px;
+			border: 1.2px solid $color-light-grey;
+			border-radius: $br-basic;
+			cursor: pointer;
+			position: relative;
+			@include transition-duration(0.2s);
+
+			&:hover {
+				font-weight: 550;
+				padding: 13px 12px;
+				color: $color-dark-green;
+				border: 1.2px solid $color-dark-green;
+			}
+
+			&.active {
+				font-weight: 550;
+				color: $color-dark-green;
+				border: 1.2px solid $color-dark-green;
+			}
+
+			input {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				opacity: 0;
+				z-index: -1;
+				@include transform(translate(-50%, -50%));
+			}
+		}
+
+		.form-item-time {
+			input {
+				min-width: 100px;
+				width: 100px;
+			}
+		}
+	}
+
+	.confirm-btns {
+		margin: 20px auto 0 auto;
+		text-align: center;
+
+		#clear-all-btn {
+			margin-left: 20px;
+			background-color: $color-grey;
+			box-shadow: 0 5px #444;
+			opacity: 0.8;
+			position: relative;
+			cursor: pointer;
+			@include transition-duration(0.2s);
+
+			&:active {
+				opacity: 1;
+				box-shadow: 0 1px #333;
+				top: 6px;
+			}
+		}
+	}
+}

@@ -11,7 +11,7 @@ class Report extends Component {
         this.state = {
             reportList: null,
             dateValue: todayDate,
-            contentValue: null,
+            contentValue: '',
             isShowReportInputBox: false
         }
     }
@@ -90,9 +90,7 @@ class Report extends Component {
                             最新步道狀況回報
                      </h4>
                     </div>
-                    <div className="report-list">
-
-                    </div>
+                    <div className="report-list"></div>
                     <Button text={'我要回報步道近況'} name={'report-btn'} onClick={this.toggleReportInputBox} />
                 </div>
             )
@@ -140,7 +138,7 @@ class Report extends Component {
                             <label htmlFor="input-report-content">
                                 回報內容
                             </label>
-                            <textarea id="input-report-content" placeholder="簡要描述步道的近況" onChange={this.updateContentValue} ></textarea>
+                            <textarea id="input-report-content" placeholder="簡要描述步道近況，例如：大樹倒塌擋住某路段 ; 步道植物是枯萎狀態" onChange={this.updateContentValue} ></textarea>
                         </div>
                         <Button text={'確認送出'} name={'send-report-btn'} onClick={this.setReportData} />
                         <div className="close-btn" onClick={this.toggleReportInputBox}></div>

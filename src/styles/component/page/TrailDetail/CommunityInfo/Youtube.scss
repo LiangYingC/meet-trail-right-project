@@ -2,9 +2,34 @@
 	width: 100%;
 	justify-content: flex-start;
 	align-items: stretch;
-	overflow-y: scroll;
+	overflow-x: hidden;
 	position: relative;
 	padding-bottom: 20px;
+
+	&:hover {
+		overflow-x: scroll;
+		padding-bottom: 12px;
+	}
+
+	&::-webkit-scrollbar {
+		height: 8px;
+		background-color: $color-white;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: $color-light-grey;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		cursor: pointer;
+		background-color: $color-grey;
+	}
+
+	&::-webkit-scrollbar-thumb:active {
+		cursor: pointer;
+		background-color: $color-grey;
+	}
 }
 
 .youtube-item {

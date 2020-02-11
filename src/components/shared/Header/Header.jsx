@@ -17,6 +17,7 @@ class Header extends Component {
         }
     }
 
+
     toggleLanguagOptions = () => {
         this.setState(preState => ({
             isLanguagOptionsOpen: !preState.isLanguagOptionsOpen
@@ -43,6 +44,7 @@ class Header extends Component {
                         <div className="header-nav">
                             <ul>
                                 <Link to='/trails' ><li>全部步道</li></Link>
+                                <Link to='/trailCreate' ><li>提供步道</li></Link>
                                 <li >
                                     <div id="header-language-btn" onClick={this.toggleLanguagOptions}>
                                         <p>繁體中文</p>

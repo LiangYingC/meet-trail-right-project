@@ -15,9 +15,6 @@ const TrailsList = ({ trailsVisible }) => {
                     <div className="trails-qty">
                         篩選結果有 {trailsVisible.length} 筆資料
                     </div>
-                    <div className="trail-offer-btn">
-                        <Button text={'我要提供步道資料'} />
-                    </div>
                 </div>
                 <div className="flex trails-list">
                     {trailsVisible.map(trail => {
@@ -47,7 +44,12 @@ const TrailsList = ({ trailsVisible }) => {
                                             </p>
                                             <p className="trail-time">
                                                 <i className="far fa-clock"></i>
-                                                {trail.time}
+                                                {
+                                                    trail.time > 60 ?
+                                                        `${Math.floor(trail.time / 60)} 小時 
+                                                    ${trail.time % 60 > 0 ? `${trail.time % 60}分鐘` : ''}`
+                                                        : `${trail.time} 分鐘`
+                                                }
                                             </p>
                                             <div className="trail-stars">評價系統的星星（多少則）</div>
                                         </div>

@@ -105,16 +105,18 @@
 		left: 50%;
 		padding: 35px 30px 20px 30px;
 		border-radius: $br-basic;
+		box-shadow: 0 0 10px 2px rgba($color: $color-black, $alpha: 0.3);
 		opacity: 0;
 		transform: translate(-50%, -50%) scale(0);
 		-webkit-transform: translate(-50%, -50%) scale(0);
-		@include transition-duration(0.2s);
+
+		@include transition-duration(0.3s);
 
 		&.active {
 			opacity: 1;
 			transform: translate(-50%, -50%) scale(1);
 			-webkit-transform: translate(-50%, -50%) scale(1);
-			@include transition-duration(0.2s);
+			@include transition-duration(0.3s);
 		}
 
 		h3 {
@@ -144,9 +146,10 @@
 		}
 
 		input,
+		select,
 		textarea {
 			padding: 5px 10px;
-			border: $border-basic;
+			border: 1px solid #ddd;
 			border-radius: $br-basic;
 			letter-spacing: 0.6px;
 			outline: none;

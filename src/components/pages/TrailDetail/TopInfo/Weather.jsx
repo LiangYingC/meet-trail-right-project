@@ -206,6 +206,10 @@ class Weather extends Component {
                 <div className="flex weather-list">
                     {
                         weatherList.map(weather => {
+                            let periodPosition = weather.description.indexOf('。')
+                            periodPosition = weather.description.indexOf('。', periodPosition + 1)
+                            const weatherDescriptionProcessed = weather.description.slice(periodPosition + 1)
+
                             return (
                                 <div className="weather-item">
                                     <div className="flex weather-date-and-day">
@@ -214,11 +218,12 @@ class Weather extends Component {
                                             {weather.isDay ? '白天' : '夜晚'}
                                         </div>
                                     </div>
-                                    <div className="weather-Icon" >
+                                    <div className="weather-icon" >
                                         <img
                                             src={weather.iconLink}
-                                            alt={weather.status}
-                                            title={weather.description} />
+                                            alt={`${weather.date} ${weather.status}`}
+                                        />
+                                        <p className="weather-description">{weatherDescriptionProcessed}</p>
                                     </div>
                                     <p className="weather-status">{weather.status}</p>
                                     <div className="weather-temperature">
