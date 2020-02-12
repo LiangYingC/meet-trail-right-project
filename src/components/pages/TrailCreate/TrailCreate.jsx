@@ -183,8 +183,8 @@ class TestCreate extends Component {
                         </div>
 
                         <div className="confirm-btns">
-                            <Button text={'確認送出'} name={'confirm-create-btn'} />
-                            <Button text={'清空全部'} name={'clear-all-btn'} />
+                            <Button text={'確認送出'} id={'confirm-create-btn'} />
+                            <Button text={'清空全部'} id={'clear-all-btn'} />
                         </div>
                     </div>
                 </section>

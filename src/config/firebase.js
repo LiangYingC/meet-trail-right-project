@@ -1,6 +1,5 @@
-
 // Your web app's Firebase configuration
-const firebaseConfig = {
+export const firebaseConfig = {
     apiKey: "AIzaSyBq0wp5dHGR_DAAP3Mhsap7Y0u5VvOuPp4",
     authDomain: "meet-trail-right.firebaseapp.com",
     databaseURL: "https://meet-trail-right.firebaseio.com",
@@ -10,6 +9,9 @@ const firebaseConfig = {
     appId: "1:913753126186:web:7f19e19456e4b3c7095a53",
     measurementId: "G-QV2C25SEQY"
 }
+firebase.initializeApp(firebaseConfig)
+
+
 
 
 // // Create a reference to the file whose metadata we want to retrieve
@@ -66,4 +68,3 @@ const firebaseConfig = {
 //     )
 
 
-export default firebaseConfig

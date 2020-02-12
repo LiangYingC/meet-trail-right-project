@@ -113,11 +113,15 @@
 			.alert-word {
 				font-size: 0.875rem;
 				letter-spacing: 0.6px;
-				margin-top: -5px;
-				padding-bottom: 6px;
+				margin-top: -10px;
+				padding-bottom: 10px;
 				text-align: center;
 				color: #d50000;
 				opacity: 0;
+
+				&.active {
+					opacity: 1;
+				}
 			}
 
 			#sign-in-btn,

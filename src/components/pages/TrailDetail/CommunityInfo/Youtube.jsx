@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { DB } from '../../../../lib'
 
 class Youtube extends Component {
     constructor(props) {
@@ -11,9 +12,8 @@ class Youtube extends Component {
     componentDidMount() {
         const { title, id } = this.props
         const today = new Date()
-        const todayDate = `${today.getFullYear()}-${('0' + today.getMonth()).slice(-2)}-${today.getDate()}`
-        const db = firebase.firestore()
-        const trailsRef = db.collection('trails').doc(id)
+        const todayDate = `${today.getFullYear()}-${('0' + today.getMonth()).slice(-2)})-${today.getDate()}`
+        const trailsRef = DB.ref('trails').doc(id)
 
         // 從 Firebase 拿 youtube list 資料
         trailsRef.get().then(doc => {
@@ -61,7 +61,7 @@ class Youtube extends Component {
                                     this.setState({
                                         youtubeList: youtubeList
                                     })
-                                    // 將 youtube list 放進 Firebase 資料庫
+                                    // 放進 Firebase 資料庫
                                     trailsRef.set({
                                         youtube_list: {
                                             data: youtubeList,

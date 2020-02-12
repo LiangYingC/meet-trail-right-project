@@ -3,6 +3,7 @@ import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import TrailsFilter from './TrailsFilter';
 import TrailsList from './TrailsList';
+import { DB } from '../../../lib';
 
 
 const trailsFilterData = [
@@ -36,8 +37,6 @@ const trailsFilterData = [
     }
 ]
 
-
-
 class Trails extends Component {
     constructor(props) {
         super(props)
@@ -70,10 +69,7 @@ class Trails extends Component {
     }
 
     componentDidMount() {
-        const db = firebase.firestore()
-        const trailsRef = db.collection('trails')
-
-        trailsRef.get()
+        DB.ref('trails').get()
             .then(querySnapshot => {
                 let trailsData = []
                 querySnapshot.forEach(doc => {
@@ -105,8 +101,6 @@ class Trails extends Component {
     setVisibleList = () => {
         this.setState(preState => ({
             trailsVisible: preState.trailsAll.filter(trail => {
-
-
                 const areaFilter = preState.trailsFilterList[0]
                 const difficultyFilter = preState.trailsFilterList[1]
                 const timeFilter = preState.trailsFilterList[2]

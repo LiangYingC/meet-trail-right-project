@@ -84,8 +84,7 @@ const weatherCitys = [
     {
         id: 'F-D0047-087',
         name: '金門縣'
-    },
-
+    }
 ]
 
 

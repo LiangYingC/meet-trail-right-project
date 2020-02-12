@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Button from '../../../shared/Button';
-import userImg from '../../../../assets/img/user.png';
+import { DB } from '../../../../lib';
+import { AuthUserContext } from '../../../../contexts/AuthUserContext';
 
 const today = new Date()
 const todayDate = `${today.getFullYear()}-${('0' + today.getMonth()).slice(-2)}-${today.getDate()}`
@@ -18,9 +19,7 @@ class Report extends Component {
 
     componentDidMount() {
         const { id } = this.props
-        const db = firebase.firestore()
-        const trailsRef = db.collection('trails').doc(id)
-        trailsRef.collection('report_list')
+        DB.ref('trails').doc(id).collection('report_list')
             .orderBy('timestamp', 'desc')
             .onSnapshot(querySnapshot => {
                 let reportList = []
@@ -55,20 +54,18 @@ class Report extends Component {
     setReportData = () => {
         const { id } = this.props
         const today = new Date()
-        const todayTime = `${('0' + today.getHours()).slice()}:${('0' + today.getMinutes()).slice(-2)}`
+        const todayTime = `${('0' + today.getHours()).slice(-2)}:${('0' + today.getMinutes()).slice(-2)}`
         this.setState(preState => {
-            const db = firebase.firestore()
-            const trailsRef = db.collection('trails').doc(id)
-            trailsRef.collection('report_list').doc()
+            DB.ref('trails').doc(id).collection('report_list').doc()
                 .set({
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                     report_time: preState.dateValue + " , " + todayTime,
                     report_content: preState.contentValue,
                     create_user: {
                         id: 'Test123',
                         name: 'TestUser',
                         picture: 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2Flogo300x300.png?alt=media&token=6df50e02-8911-4a1d-9583-9197d8859acf'
-                    }
+                    },
+                    timestamp: DB.time
                 })
 
             return (
@@ -83,8 +80,13 @@ class Report extends Component {
     }
 
     render() {
-        const { dateValue, isShowReportInputBox, reportList } = this.state
-
+        const {
+            dateValue,
+            isShowReportInputBox,
+            reportList
+        } = this.state
+        console.log('report')
+        console.log(this.context)
         if (reportList === null) {
             return (
                 <div className="flex top-info__report">
@@ -95,13 +97,18 @@ class Report extends Component {
                      </h4>
                     </div>
                     <div className="report-list"></div>
-                    <Button text={'我要回報步道近況'} name={'report-btn'} onClick={this.toggleReportInputBox} />
+                    <Button
+                        text={'我要回報步道近況'}
+                        id={'report-btn'}
+                        onClick={this.toggleReportInputBox}
+                    />
                 </div>
             )
         }
 
+
         return (
-            <Fragment>
+            < Fragment >
                 <div className="top-info__report">
                     <div className="flex report-title">
                         <h4>
@@ -126,7 +133,11 @@ class Report extends Component {
                             })
                         }
                     </div>
-                    <Button text={'我要回報步道近況'} name={'report-btn'} onClick={this.toggleReportInputBox} />
+                    <Button
+                        text={'我要回報步道近況'}
+                        id={'report-btn'}
+                        onClick={this.toggleReportInputBox}
+                    />
                 </div>
                 <div className={`report-input ${isShowReportInputBox ? 'active' : ''}`} >
                     <div className="layer"></div>
@@ -144,13 +155,20 @@ class Report extends Component {
                             </label>
                             <textarea id="input-report-content" placeholder="簡要描述步道近況，例如：大樹倒塌擋住某路段 ; 步道植物是枯萎狀態" onChange={this.updateContentValue} ></textarea>
                         </div>
-                        <Button text={'確認送出'} name={'send-report-btn'} onClick={this.setReportData} />
+                        <Button
+                            text={'確認送出'}
+                            id={'send-report-btn'}
+                            onClick={this.setReportData}
+                        />
                         <div className="close-btn" onClick={this.toggleReportInputBox}></div>
                     </div>
                 </div>
-            </Fragment>
+            </Fragment >
         )
     }
 }
 
+Report.contextType = AuthUserContext;
+console.log('authuser')
+console.log(AuthUserContext)
 export default Report

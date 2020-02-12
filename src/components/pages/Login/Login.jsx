@@ -2,23 +2,106 @@ import React, { Component, Fragment } from 'react';
 import Header from '../../../components/shared/Header';
 import Footer from '../../../components/shared/Footer';
 import Button from '../../shared/Button';
+import { DB } from '../../../lib';
 
 class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isShowSignIn: true
+            isShowSignIn: true,
+            inputValue: {
+                name: '',
+                email: '',
+                pwd: '',
+            },
+            alertWord: {
+                isShow: false,
+                word: '歡迎登入 / 註冊'
+            }
         }
+    }
+
+    changeValue = (e) => {
+        e.persist()
+        const targetId = e.target.id
+        if (targetId === 'sign-up-name') {
+            this.setState(preState => ({
+                inputValue: {
+                    ...preState.inputValue,
+                    name: e.target.value
+                }
+            }))
+        } else if (targetId === 'sign-up-email' || targetId === 'sign-in-email') {
+            this.setState(preState => ({
+                inputValue: {
+                    ...preState.inputValue,
+                    email: e.target.value
+                }
+            }))
+        } else {
+            this.setState(preState => ({
+                inputValue: {
+                    ...preState.inputValue,
+                    pwd: e.target.value
+                }
+            }))
+        }
+    }
+
+    loginFirebase = (e) => {
+        const { inputValue } = this.state
+        const history = this.props.history
+        const targetId = e.target.id
+
+        targetId === 'sign-up-btn' ?
+            DB.signUp(inputValue.email, inputValue.pwd, inputValue.name, this.toggleAlertWord) :
+            DB.signIn(inputValue.email, inputValue.pwd, history, this.toggleAlertWord)
+    }
+
+    toggleAlertWord = (error) => {
+        console.log(error.code)
+        this.setState(preState => {
+            let alertword = '輸入有誤，請重新確認'
+            switch (error.code) {
+                case 'auth/wrong-password':
+                    alertword = '密碼輸入錯誤，請重新輸入'
+                    break;
+                case 'auth/invalid-email':
+                    alertword = '信箱輸入錯誤，請重新輸入'
+                    break;
+                case 'auth/email-already-in-use':
+                    alertword = '信箱已經註冊過囉'
+                    break;
+                case 'auth/weak-password':
+                    alertword = '密碼至少需六位數'
+                    break;
+                default:
+                    alertword = '輸入有誤，請重新確認'
+                    break;
+            }
+            return {
+                isShowSignIn: preState.isShowSignIn,
+                inputValue: preState.inputValue,
+                alertWord: {
+                    isShow: true,
+                    word: alertword
+                }
+            }
+        })
     }
 
     toggleSignInUp = () => {
         this.setState(preState => ({
-            isShowSignIn: !preState.isShowSignIn
+            isShowSignIn: !preState.isShowSignIn,
+            alertWord: {
+                isShow: false,
+                word: '歡迎登入 / 註冊'
+            }
         }))
     }
 
     render() {
-        const { isShowSignIn } = this.state
+        const { isShowSignIn, inputValue, alertWord } = this.state
         return (
             <Fragment>
                 <Header />
@@ -30,20 +113,38 @@ class Login extends Component {
                             </div>
                             <div className={`login-sign-in-panel ${isShowSignIn ? 'active' : ''}`}>
                                 <div className="login-title">
-                                    <h3><i class="fas fa-sign-in-alt"></i>登入</h3>
+                                    <h3><i className="fas fa-sign-in-alt"></i>登入</h3>
                                     <p>登入尋找適合您的山林步道！</p>
                                 </div>
                                 <div className="sign-container">
                                     <div className="flex sign-item">
-                                        <i class="fas fa-envelope"></i>
-                                        <input type="email" id="sign-in-email" placeholder="輸入信箱" />
+                                        <i className="fas fa-envelope"></i>
+                                        <input
+                                            type="email"
+                                            id="sign-in-email"
+                                            placeholder="輸入信箱"
+                                            value={inputValue.email}
+                                            onChange={this.changeValue}
+                                        />
                                     </div>
                                     <div className="flex sign-item">
-                                        <i class="fas fa-key"></i>
-                                        <input type="password" id="sign-in-psd" placeholder="輸入密碼" />
+                                        <i className="fas fa-key"></i>
+                                        <input
+                                            type="password"
+                                            id="sign-in-pwd"
+                                            placeholder="輸入密碼"
+                                            value={inputValue.pwd}
+                                            onChange={this.changeValue}
+                                        />
                                     </div>
-                                    <div className="alert-word">信箱有誤，請重新確認</div>
-                                    <Button text={'登入'} name={'sign-in-btn'} />
+                                    <div className={`alert-word ${alertWord.isShow ? 'active' : ''}`}>
+                                        {alertWord.word}
+                                    </div>
+                                    <Button
+                                        text={'登入'}
+                                        id={'sign-in-btn'}
+                                        onClick={this.loginFirebase}
+                                    />
                                 </div>
                                 <div className="flex forgot-and-sign-up">
                                     <button id="forgot-pwd-btn">忘記密碼</button>
@@ -65,23 +166,46 @@ class Login extends Component {
 
                             <div className={`login-sign-up-panel ${isShowSignIn ? '' : 'active'}`}>
                                 <div className="login-title">
-                                    <h3><i class="fas fa-user-plus"></i>註冊</h3>
+                                    <h3><i className="fas fa-user-plus"></i>註冊</h3>
                                 </div>
                                 <div className="sign-container">
                                     <div className="flex sign-item">
-                                        <i class="fas fa-user"></i>
-                                        <input type="name" id="sign-in-name" placeholder="輸入姓名" />
+                                        <i className="fas fa-user"></i>
+                                        <input
+                                            type="name"
+                                            id="sign-up-name"
+                                            placeholder="輸入稱謂"
+                                            value={inputValue.name}
+                                            onChange={this.changeValue} />
                                     </div>
                                     <div className="flex sign-item">
-                                        <i class="fas fa-envelope"></i>
-                                        <input type="email" id="sign-in-email" placeholder="輸入信箱" />
+                                        <i className="fas fa-envelope"></i>
+                                        <input
+                                            type="email"
+                                            id="sign-up-email"
+                                            placeholder="輸入信箱"
+                                            value={inputValue.email}
+                                            onChange={this.changeValue}
+                                        />
                                     </div>
                                     <div className="flex sign-item">
-                                        <i class="fas fa-key"></i>
-                                        <input type="password" id="sign-in-psd" placeholder="輸入密碼" />
+                                        <i className="fas fa-key"></i>
+                                        <input
+                                            type="password"
+                                            id="sign-up-pwd"
+                                            placeholder="輸入密碼"
+                                            value={inputValue.pwd}
+                                            onChange={this.changeValue}
+                                        />
                                     </div>
-                                    <div className="alert-word">信箱有誤，請重新確認</div>
-                                    <Button text={'註冊'} name={'sign-up-btn'} />
+                                    <div className={`alert-word ${alertWord.isShow ? 'active' : ''}`}>
+                                        {alertWord.word}
+                                    </div>
+                                    <Button
+                                        text={'註冊'}
+                                        id={'sign-up-btn'}
+                                        onClick={this.loginFirebase}
+                                    />
                                 </div>
                                 <div className="flex forgot-and-sign-up">
                                     <div className="flex go-sign-up">
