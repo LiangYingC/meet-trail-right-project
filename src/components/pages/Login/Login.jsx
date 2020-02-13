@@ -52,16 +52,16 @@ class Login extends Component {
         const { inputValue } = this.state
         const history = this.props.history
         const targetId = e.target.id
-
+        console.log(history)
         targetId === 'sign-up-btn' ?
-            DB.signUp(inputValue.email, inputValue.pwd, inputValue.name, this.toggleAlertWord) :
+            DB.signUp(inputValue.email, inputValue.pwd, inputValue.name, history, this.toggleAlertWord) :
             DB.signIn(inputValue.email, inputValue.pwd, history, this.toggleAlertWord)
     }
 
     toggleAlertWord = (error) => {
         console.log(error.code)
         this.setState(preState => {
-            let alertword = '輸入有誤，請重新確認'
+            let alertword
             switch (error.code) {
                 case 'auth/wrong-password':
                     alertword = '密碼輸入錯誤，請重新輸入'
@@ -76,7 +76,6 @@ class Login extends Component {
                     alertword = '密碼至少需六位數'
                     break;
                 default:
-                    alertword = '輸入有誤，請重新確認'
                     break;
             }
             return {

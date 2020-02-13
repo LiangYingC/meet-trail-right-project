@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Routes from './routes';
 import { HashRouter as Router } from "react-router-dom";
 import { DB } from './lib';
-import { firebaseConfig } from './config/firebase'
+import { firebaseConfig } from './config'
 import { AuthUserContext } from './contexts/AuthUserContext';
 import './styles/main.scss';
+firebase.initializeApp(firebaseConfig)
 
 class App extends Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class App extends Component {
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
+                console.log('onAuthState true')
                 DB.ref('users').doc(user.uid)
                     .get()
                     .then(doc => {
@@ -56,6 +58,7 @@ class App extends Component {
                         this.state.handleUserData(userData)
                     })
             } else {
+                console.log('onAuthState false')
                 this.state.toggleLogin(false)
             }
         })

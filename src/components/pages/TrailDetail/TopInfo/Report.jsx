@@ -53,6 +53,9 @@ class Report extends Component {
 
     setReportData = () => {
         const { id } = this.props
+        console.log('report')
+        console.log(this.context)
+        const { userData } = this.context
         const today = new Date()
         const todayTime = `${('0' + today.getHours()).slice(-2)}:${('0' + today.getMinutes()).slice(-2)}`
         this.setState(preState => {
@@ -61,9 +64,9 @@ class Report extends Component {
                     report_time: preState.dateValue + " , " + todayTime,
                     report_content: preState.contentValue,
                     create_user: {
-                        id: 'Test123',
-                        name: 'TestUser',
-                        picture: 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2Flogo300x300.png?alt=media&token=6df50e02-8911-4a1d-9583-9197d8859acf'
+                        id: userData.id,
+                        name: userData.name,
+                        picture: userData.picture
                     },
                     timestamp: DB.time
                 })
@@ -85,8 +88,6 @@ class Report extends Component {
             isShowReportInputBox,
             reportList
         } = this.state
-        console.log('report')
-        console.log(this.context)
         if (reportList === null) {
             return (
                 <div className="flex top-info__report">
@@ -169,6 +170,4 @@ class Report extends Component {
 }
 
 Report.contextType = AuthUserContext;
-console.log('authuser')
-console.log(AuthUserContext)
 export default Report
