@@ -23,6 +23,11 @@ export const DB = {
         return ref
     },
 
+    storageRef: filePath => {
+        const storageRef = firebase.storage().ref()
+        return storageRef.child(filePath)
+    },
+
     signUp: (email, pwd, name, history, callback) => {
         firebase
             .auth()
@@ -75,4 +80,6 @@ export const DB = {
             // An error happened.
         })
     }
+
+
 }

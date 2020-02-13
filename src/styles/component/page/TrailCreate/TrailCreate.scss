@@ -23,9 +23,69 @@
 
 	.form-item {
 		padding: 20px;
-
 		p {
 			margin: 10px;
+		}
+
+		.upload-img-wrap {
+			position: relative;
+			min-height: 233.3px;
+			justify-content: center;
+			text-align: center;
+
+			.upload-area {
+				width: 350px;
+				height: 233px;
+				background-color: #eee;
+				position: absolute;
+				top: 0;
+				left: 0;
+				border: 1.5px solid transparent;
+				border-radius: $br-basic;
+				cursor: pointer;
+				overflow: hidden;
+				@include transition-duration(0.2s);
+
+				&:hover {
+					border: 1.5px solid $color-green;
+				}
+
+				&:active {
+					border: 3px solid $color-dark-green;
+				}
+
+				.fa-image {
+					font-size: 50px;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					@include transform(translate(-50%, -50%));
+					z-index: 1;
+
+					p {
+						font-size: 18px;
+						font-weight: bold;
+						color: $color-green;
+						padding-right: 15px;
+
+						.fa-plus-circle {
+							padding-right: 5px;
+						}
+					}
+				}
+
+				img {
+					width: 100.5%;
+					height: 100.5%;
+					margin: -1px;
+					z-index: 2;
+					outline: none;
+				}
+			}
+
+			.upload-img {
+				opacity: 0;
+			}
 		}
 	}
 
@@ -55,7 +115,7 @@
 	.mark {
 		font-size: 1.25rem;
 		margin-left: 5px;
-		color: #d50000;
+		color: $color-red;
 		position: absolute;
 		top: 0;
 	}
@@ -93,6 +153,7 @@
 	}
 
 	.reminder {
+		text-align: left;
 		padding: 10px 20px;
 		margin-left: 30px;
 		background-color: #effff5;
@@ -110,7 +171,7 @@
 	}
 
 	.form-item {
-		.form-item-scenery {
+		.scenery {
 			position: relative;
 			flex: auto;
 			text-align: center;
@@ -123,15 +184,10 @@
 			position: relative;
 			@include transition-duration(0.2s);
 
-			&:hover {
-				font-weight: 550;
-				padding: 13px 12px;
-				color: $color-dark-green;
-				border: 1.2px solid $color-dark-green;
-			}
-
+			&:hover,
 			&.active {
 				font-weight: 550;
+				padding: 13px 12px;
 				color: $color-dark-green;
 				border: 1.2px solid $color-dark-green;
 			}
@@ -146,16 +202,21 @@
 			}
 		}
 
-		.form-item-time {
+		.time {
 			input {
+				text-align: center;
 				min-width: 100px;
 				width: 100px;
 			}
 		}
+
+		#report {
+			height: 90px;
+		}
 	}
 
 	.confirm-btns {
-		margin: 20px auto 0 auto;
+		margin: 30px auto 10px auto;
 		text-align: center;
 
 		#clear-all-btn {

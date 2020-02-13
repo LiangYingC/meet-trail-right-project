@@ -23,26 +23,27 @@ class Login extends Component {
 
     changeValue = (e) => {
         e.persist()
-        const targetId = e.target.id
-        if (targetId === 'sign-up-name') {
+        const id = e.target.id
+        const value = e.target.value
+        if (id === 'sign-up-name') {
             this.setState(preState => ({
                 inputValue: {
                     ...preState.inputValue,
-                    name: e.target.value
+                    name: value
                 }
             }))
-        } else if (targetId === 'sign-up-email' || targetId === 'sign-in-email') {
+        } else if (id === 'sign-up-email' || id === 'sign-in-email') {
             this.setState(preState => ({
                 inputValue: {
                     ...preState.inputValue,
-                    email: e.target.value
+                    email: value
                 }
             }))
         } else {
             this.setState(preState => ({
                 inputValue: {
                     ...preState.inputValue,
-                    pwd: e.target.value
+                    pwd: value
                 }
             }))
         }
