@@ -77,9 +77,12 @@
 				img {
 					width: 100.5%;
 					height: 100.5%;
-					margin: -1px;
+					margin: -0.5px;
 					z-index: 2;
 					outline: none;
+					position: absolute;
+					top: 0;
+					left: 0;
 				}
 			}
 
@@ -172,11 +175,12 @@
 
 	.form-item {
 		.scenery {
+			font-weight: 450;
 			position: relative;
 			flex: auto;
 			text-align: center;
 			letter-spacing: 0.6px;
-			padding: 3px 12px;
+			padding: 5px 12px;
 			margin-left: 10px;
 			border: 1.2px solid $color-light-grey;
 			border-radius: $br-basic;

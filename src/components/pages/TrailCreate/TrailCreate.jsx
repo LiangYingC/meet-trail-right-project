@@ -125,8 +125,12 @@ class TestCreate extends Component {
                     // Handle successful uploads on complete
                     uploadTask.snapshot.ref.getDownloadURL()
                         .then(downloadURL => {
-                            this.setState({
-                            })
+                            this.setState(preState => ({
+                                inputValue: {
+                                    ...preState.inputValue,
+                                    [(nameTage === '封面圖' ? 'coverImg' : 'routeImg')]: downloadURL
+                                }
+                            }))
                             console.log('File available at', downloadURL)
                         })
                 })
@@ -160,7 +164,6 @@ class TestCreate extends Component {
             alterBox
         } = this.state
         console.log(this.state.inputValue)
-
         return (
             <Fragment>
                 <Header />
@@ -376,7 +379,7 @@ class TestCreate extends Component {
                                     <i className="far fa-image">
                                         <p><i className="fas fa-plus-circle"></i>點擊上傳</p>
                                     </i>
-                                    <img src="" alt="" />
+                                    <img src={inputValue.routeImg} />
                                 </label>
                                 <div className="upload-img">
                                     <input
