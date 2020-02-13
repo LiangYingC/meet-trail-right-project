@@ -1,17 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import Button from '../../../shared/Button';
-import { DB } from '../../../../lib';
+import { DB, APP } from '../../../../lib';
 import { AuthUserContext } from '../../../../contexts/AuthUserContext';
-
-const today = new Date()
-const todayDate = `${today.getFullYear()}-${('0' + today.getMonth()).slice(-2)}-${today.getDate()}`
+import App from '../../../../App';
 
 class Report extends Component {
     constructor(props) {
         super(props)
         this.state = {
             reportList: null,
-            dateValue: todayDate,
+            dateValue: APP.getDay(),
             contentValue: '',
             isShowReportInputBox: false
         }
@@ -53,28 +51,24 @@ class Report extends Component {
 
     setReportData = () => {
         const { id } = this.props
-        console.log('report')
-        console.log(this.context)
         const { userData } = this.context
-        const today = new Date()
-        const todayTime = `${('0' + today.getHours()).slice(-2)}:${('0' + today.getMinutes()).slice(-2)}`
         this.setState(preState => {
             DB.ref('trails').doc(id).collection('report_list').doc()
                 .set({
-                    report_time: preState.dateValue + " , " + todayTime,
+                    report_time: preState.dateValue + " , " + APP.getTime(),
                     report_content: preState.contentValue,
                     create_user: {
                         id: userData.id,
                         name: userData.name,
                         picture: userData.picture
                     },
-                    timestamp: DB.time
+                    timestamp: DB.time()
                 })
 
             return (
                 {
                     reportList: preState.reportList,
-                    dateValue: todayDate,
+                    dateValue: APP.getDay(),
                     contentValue: null,
                     isShowReportInputBox: false
                 }

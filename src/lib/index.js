@@ -1,6 +1,19 @@
+// APP (Meet Trail Right app)
+export const APP = {
+    getDay: () => {
+        const today = new Date()
+        const todayDate = `${today.getFullYear()}-${('0' + today.getMonth()).slice(-2)}-${today.getDate()}`
+        return todayDate
+    },
 
+    getTime: () => {
+        const today = new Date()
+        const todayTime = `${('0' + today.getHours()).slice(-2)}:${('0' + today.getMinutes()).slice(-2)}`
+        return todayTime
+    }
+}
 
-// Firebase
+// Firebase Database
 export const DB = {
     time: () => firebase.firestore.FieldValue.serverTimestamp(),
 
