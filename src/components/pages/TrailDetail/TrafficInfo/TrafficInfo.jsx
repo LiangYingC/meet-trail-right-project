@@ -24,11 +24,11 @@ const TrafficInfo = ({ trafficInfoData }) => {
                                 <img src="https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhikingIcon%2F%E8%B7%AF%E5%BE%91.png?alt=media&token=c0a30495-f666-489b-b6b1-7cbaf373d3c0" alt="路徑圖" />
                                 <p>推薦步道型態：<span>{trafficInfoData.type}</span></p>
                             </div>
-                            <button className="basic-btn">
-                                <a href={trafficInfoData.routeImage} target="_blank">
+                            <a href={trafficInfoData.routeImage} target="_blank">
+                                <button className="basic-btn">
                                     看大圖
-                                </a>
-                            </button>
+                                </button>
+                            </a>
                         </div>
                         <div className="route-map">
                             <img src={trafficInfoData.routeImage}

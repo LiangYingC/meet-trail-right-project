@@ -34,7 +34,7 @@
 
 	.report-list {
 		flex: auto;
-		height: 270px;
+		height: 300px;
 		margin: 0 25px;
 		overflow: scroll;
 		border-bottom: $border-basic;
@@ -71,7 +71,7 @@
 	#report-btn {
 		flex: none;
 		display: block;
-		margin: 20px auto;
+		margin: 30px auto 20px auto;
 		text-align: center;
 	}
 }
@@ -200,11 +200,5 @@
 			left: 50%;
 			@include transform(translateX(-50%));
 		}
-	}
-}
-
-@media (max-width: 1200px) {
-	.report-list {
-		height: 190px;
 	}
 }

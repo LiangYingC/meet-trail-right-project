@@ -96,7 +96,7 @@
 					padding-left: 10px;
 				}
 
-				input {
+				> input {
 					width: 100%;
 					background-color: transparent;
 					display: block;
@@ -126,9 +126,16 @@
 
 			#sign-in-btn,
 			#sign-up-btn {
+				font-size: 16px;
 				width: 100%;
 				left: 50%;
-				@include transform(translateX(-50%));
+				padding: 10px;
+				box-shadow: none;
+				position: relative;
+				transform: translateX(-50%) scale(1);
+				&:active {
+					transform: translateX(-50%) scale(0.95);
+				}
 			}
 		}
 
@@ -148,8 +155,8 @@
 
 			#forgot-pwd-btn {
 				border: none;
-				border-radius: $br-basic;
-				background-color: #ccc;
+				border-bottom: 1px solid #555;
+				padding: 0;
 				opacity: 0.85;
 				&:hover {
 					opacity: 1;
@@ -158,12 +165,15 @@
 
 			#go-sign-up-btn,
 			#go-sign-in-btn {
-				border: 0.5px solid transparent;
+				border: 1.5px solid transparent;
 				border-radius: $br-basic;
 				color: $color-green;
 				margin-left: 5px;
+				overflow: visible;
+				@include transition-duration(0.2s);
+
 				&:hover {
-					border: 0.5px solid $color-green;
+					border: 1.5px solid $color-green;
 				}
 			}
 
@@ -200,30 +210,28 @@
 		align-items: center;
 	}
 
-	.social-login-btn {
-		font-size: 1rem;
-		font-weight: 450;
-		letter-spacing: 1px;
+	#google-sign-btn,
+	#fb-sign-btn {
+		font-size: 16px;
 		width: 85%;
-		cursor: pointer;
-		height: 45px;
-		text-align: center;
-		margin: 10px auto;
-		border-radius: $br-basic;
-		opacity: 0.85;
-		@include transition-duration(0.25s);
+		padding: 10px;
+		box-shadow: none;
+		transform: scale(1);
 
-		&:hover {
-			opacity: 1;
+		&:active {
+			transform: scale(0.95);
 		}
 	}
 
 	#fb-sign-btn {
 		color: white;
 		background-color: rgb(66, 103, 178);
+		margin-top: 10px;
+		margin-bottom: 20px;
 	}
 
 	#google-sign-btn {
+		color: $color-black;
 		background-color: #f0f0f0;
 	}
 

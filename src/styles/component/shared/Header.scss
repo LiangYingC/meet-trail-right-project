@@ -20,6 +20,7 @@
 
 .header-search {
 	border: $border-basic;
+	border-width: 1px;
 	border-radius: $br-basic;
 	margin-left: 30px;
 
@@ -37,8 +38,8 @@
 		.fas {
 			font-size: 1rem;
 			width: 50px;
-			height: 34px;
-			line-height: 34px;
+			height: 35px;
+			line-height: 35px;
 			text-align: center;
 			color: $color-white;
 			background-color: $color-green;
@@ -46,7 +47,7 @@
 			border-bottom-right-radius: 3px;
 			border: none;
 			position: absolute;
-			right: 0.5px;
+			right: -1px;
 			opacity: 0.75;
 			cursor: pointer;
 			@include transition-duration(0.15s);

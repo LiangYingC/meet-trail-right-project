@@ -159,8 +159,14 @@ class Login extends Component {
                                     <span></span>
                                 </div>
                                 <div className="flex social-sign-container">
-                                    <button className="social-login-btn" id="fb-sign-btn">Facebook 註冊</button>
-                                    <button className="social-login-btn" id="google-sign-btn">Google 註冊</button>
+                                    <Button
+                                        text={'Facebook 登入'}
+                                        id={'fb-sign-btn'}
+                                    />
+                                    <Button
+                                        text={'Google 登入'}
+                                        id={'google-sign-btn'}
+                                    />
                                 </div>
                             </div>
 
@@ -219,8 +225,14 @@ class Login extends Component {
                                     <span></span>
                                 </div>
                                 <div className="flex social-sign-container">
-                                    <button className="social-login-btn" id="fb-sign-btn">Facebook 登入</button>
-                                    <button className="social-login-btn" id="google-sign-btn">Google 登入</button>
+                                    <Button
+                                        text={'Facebook 註冊'}
+                                        id={'fb-sign-btn'}
+                                    />
+                                    <Button
+                                        text={'Google 註冊'}
+                                        id={'google-sign-btn'}
+                                    />
                                 </div>
                             </div>
                         </div>

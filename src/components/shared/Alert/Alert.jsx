@@ -14,7 +14,7 @@ const Alert = ({
             <div className={`flex alert-box ${isShow ? 'active' : ''}`}>
                 <div className="flex icon">
                     <i className="fas fa-exclamation-circle"></i>
-                    <p>貼心提醒</p>
+                    <p>提醒</p>
                 </div>
                 <div className="content">
                     <p>{wordHead}
@@ -23,7 +23,7 @@ const Alert = ({
                     </p>
                 </div>
                 <Button
-                    text={'收到囉'}
+                    text={'確認'}
                     name={'alter-check-btn'}
                     onClick={onClick}
                 />

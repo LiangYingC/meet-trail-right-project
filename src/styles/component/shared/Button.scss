@@ -7,11 +7,11 @@
 	padding: 5px 10px;
 	border: none;
 	border-radius: $br-basic;
-	box-shadow: 0 5px $color-dark-green;
 	opacity: 0.8;
 	position: relative;
 	cursor: pointer;
-	@include transition-duration(0.2s);
+	@include transform(scale(1));
+	@include transition-duration(0.25s);
 
 	&:hover {
 		opacity: 1;
@@ -19,7 +19,6 @@
 
 	&:active {
 		opacity: 1;
-		box-shadow: 0 1px $color-dark-green;
-		top: 6px;
+		@include transform(scale(0.95));
 	}
 }

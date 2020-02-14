@@ -20,7 +20,7 @@ const TrailsList = ({ trailsVisible }) => {
                     {trailsVisible.map(trail => {
                         return (
                             <Router>
-                                <div className="trail-item">
+                                <div className="trail-item" key={trail.id}>
                                     <Link to={`/trails/detail/${trail.id}`}>
                                         <div className="trail-img">
                                             <img src={trail.main_image} alt={`${trail.title}圖片`} />
