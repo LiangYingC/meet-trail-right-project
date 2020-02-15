@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import Button from '../../../shared/Button';
 import { DB, APP } from '../../../../lib';
 import { AuthUserContext } from '../../../../contexts/AuthUserContext';
-import App from '../../../../App';
 
 class Report extends Component {
     constructor(props) {
@@ -14,6 +13,7 @@ class Report extends Component {
             isShowReportInputBox: false
         }
     }
+
 
     componentDidMount() {
         const { id } = this.props

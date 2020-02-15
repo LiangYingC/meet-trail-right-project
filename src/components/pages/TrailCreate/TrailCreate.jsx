@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import { DB } from '../../../lib';
+import { DB, APP } from '../../../lib';
 import { TC } from '../../../constants';
+import { AuthUserContext } from '../../../contexts/AuthUserContext';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import Button from '../../shared/Button';
 import Alter from '../../shared/Alert';
 
-class TestCreate extends Component {
+class TrailCreate extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -58,6 +59,12 @@ class TestCreate extends Component {
         console.log(e.target)
         console.log(id)
         console.log(value)
+        if (Number(value)) {
+            console.log('isNum')
+        } else {
+            console.log('isNotNum')
+        }
+
         console.log(name)
 
         switch (name) {
@@ -192,9 +199,15 @@ class TestCreate extends Component {
 
     createTrail = () => {
         const { inputValue } = this.state
+        const { userData } = this.context
+        const { difficultyList, sceneryList } = TC
+        const sceneryData = processRadioCheckbox(inputValue.scenery, sceneryList)
+        const difficultyData = processRadioCheckbox(inputValue.difficulty, difficultyList)
+
         DB.ref('trails').doc()
             .set({
                 title: inputValue.title,
+                description: inputValue.description,
                 location: {
                     area: inputValue.area,
                     city: inputValue.city,
@@ -203,8 +216,39 @@ class TestCreate extends Component {
                 images: {
                     main_image: inputValue.coverImg,
                     route_image: inputValue.routeImg
-                }
+                },
+                routes: {
+                    start: inputValue.start,
+                    end: inputValue.end,
+                    type: inputValue.type
+                },
+                create_user: {
+                    id: userData.id,
+                    name: userData.name,
+                    picture: userData.picture
+                },
+                create_time: APP.getDay(),
+                height: Number(inputValue.height),
+                length: Number(inputValue.length),
+                time: (Number(inputValue.hour) * 60) + Number(inputValue.minute),
+                scenery: sceneryData,
+                difficulty: difficultyData,
+                timestamp: DB.time(),
+                youtubeList: null
             })
+
+        function processRadioCheckbox(keyList, dataList) {
+            return Object.keys(keyList)
+                .filter(key => {
+                    if (keyList[key]) {
+                        for (let i = 0; i < dataList.length; i++) {
+                            if (dataList[i].value === key) {
+                                return dataList[i].name
+                            }
+                        }
+                    }
+                })
+        }
     }
 
     clearAllInput = () => {
@@ -239,12 +283,6 @@ class TestCreate extends Component {
                 length: '',
                 hour: '',
                 minute: '',
-            },
-            alterBox: {
-                isShow: false,
-                wordHead: '',
-                wordTail: '',
-                hightlight: ''
             }
         }))
     }
@@ -596,4 +634,5 @@ class TestCreate extends Component {
     }
 }
 
-export default TestCreate;
+TrailCreate.contextType = AuthUserContext;
+export default TrailCreate;

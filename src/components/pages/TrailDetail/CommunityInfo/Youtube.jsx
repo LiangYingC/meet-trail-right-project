@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { DB } from '../../../../lib'
+import { DB, APP } from '../../../../lib'
 
 class Youtube extends Component {
     constructor(props) {
@@ -11,8 +11,7 @@ class Youtube extends Component {
 
     componentDidMount() {
         const { title, id } = this.props
-        const today = new Date()
-        const todayDate = `${today.getFullYear()}-${('0' + today.getMonth()).slice(-2)})-${today.getDate()}`
+        const todayDate = APP.getDay()
         const trailsRef = DB.ref('trails').doc(id)
 
         // 從 Firebase 拿 youtube list 資料
