@@ -18,12 +18,13 @@ const TrailsList = ({ trailsVisible }) => {
                 </div>
                 <div className="flex trails-list">
                     {trailsVisible.map(trail => {
+                        console.log(trail)
                         return (
                             <Router>
                                 <div className="trail-item" key={trail.id}>
                                     <Link to={`/trails/detail/${trail.id}`}>
                                         <div className="trail-img">
-                                            <img src={trail.main_image} alt={`${trail.title}圖片`} />
+                                            <img src={trail.images.main_image} alt={`${trail.title}圖片`} />
                                         </div>
                                         <div className="trail-detail">
                                             <h3>

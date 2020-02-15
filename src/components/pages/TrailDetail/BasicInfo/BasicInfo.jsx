@@ -19,7 +19,13 @@ const BasicInfo = ({ basicInfoData }) => {
                         </div>
                         <div className="flex basic-info-item">
                             <p className="subtitle">登頂風景 :</p>
-                            <p>{basicInfoData.scenery}</p>
+                            <p>
+                                {
+                                    basicInfoData.scenery.map(scenery => {
+                                        return <span>{`${scenery} `}</span>
+                                    })
+                                }
+                            </p>
                         </div>
                         <div className="flex basic-info-item">
                             <p className="subtitle">海拔高度 :</p>

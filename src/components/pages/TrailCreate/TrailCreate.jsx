@@ -10,45 +10,7 @@ import Alter from '../../shared/Alert';
 class TrailCreate extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            inputValue: {
-                coverImg: null,
-                routeImg: null,
-                title: '',
-                description: '',
-                area: '',
-                city: '',
-                dist: '',
-                start: '',
-                end: '',
-                type: '',
-                difficulty: {
-                    easy: false,
-                    general: false,
-                    challenge: false,
-                    hard: false
-                },
-                scenery: {
-                    town: false,
-                    mountain: false,
-                    ocean: false,
-                    stars: false,
-                    sunset: false,
-                    sunrise: false
-                },
-                height: '',
-                length: '',
-                hour: '',
-                minute: '',
-                report: ''
-            },
-            alterBox: {
-                isShow: false,
-                wordHead: '',
-                wordTail: '',
-                hightlight: ''
-            }
-        }
+        this.state = TC.initialState
     }
 
     changeValue = (e) => {
@@ -56,16 +18,11 @@ class TrailCreate extends Component {
         const id = e.target.id
         const name = e.target.name
         const value = e.target.value
-        console.log(e.target)
-        console.log(id)
-        console.log(value)
         if (Number(value)) {
             console.log('isNum')
         } else {
             console.log('isNotNum')
         }
-
-        console.log(name)
 
         switch (name) {
             case 'upload-img':
@@ -201,11 +158,13 @@ class TrailCreate extends Component {
         const { inputValue } = this.state
         const { userData } = this.context
         const { difficultyList, sceneryList } = TC
-        const sceneryData = processRadioCheckbox(inputValue.scenery, sceneryList)
-        const difficultyData = processRadioCheckbox(inputValue.difficulty, difficultyList)
+        const history = this.props.history
+        const sceneryData = processRadioOrCheckbox(inputValue.scenery, sceneryList)
+        const difficultyData = processRadioOrCheckbox(inputValue.difficulty, difficultyList)
 
         DB.ref('trails').doc()
             .set({
+                id: null,
                 title: inputValue.title,
                 description: inputValue.description,
                 location: {
@@ -234,56 +193,42 @@ class TrailCreate extends Component {
                 scenery: sceneryData,
                 difficulty: difficultyData,
                 timestamp: DB.time(),
-                youtubeList: null
+                youtube_list: null
+            }).then(() => {
+                DB.ref('trails')
+                    .get()
+                    .then(querySnapshot => {
+                        querySnapshot.forEach(doc => {
+                            if (doc.data().id === null) {
+                                DB.ref('trails').doc(doc.id)
+                                    .update({ id: doc.id })
+                                history.push(`/trails/detail/${doc.id}`)
+                            }
+                        })
+                    })
             })
 
-        function processRadioCheckbox(keyList, dataList) {
-            return Object.keys(keyList)
-                .filter(key => {
-                    if (keyList[key]) {
-                        for (let i = 0; i < dataList.length; i++) {
-                            if (dataList[i].value === key) {
-                                return dataList[i].name
-                            }
-                        }
+        function processRadioOrCheckbox(keyList, dataList) {
+            const trueKeyList = Object.keys(keyList)
+                .filter(key => keyList[key])
+
+            const trueNameList = trueKeyList.map(trueKey => {
+                for (let i = 0; i < dataList.length; i++) {
+                    if (dataList[i].value === trueKey) {
+                        return dataList[i].name
                     }
-                })
+                }
+            })
+
+            return trueNameList
         }
     }
 
     clearAllInput = () => {
         this.setState(preState => ({
             ...preState,
-            inputValue: {
-                coverImg: null,
-                routeImg: null,
-                title: '',
-                description: '',
-                area: '',
-                city: '',
-                dist: '',
-                start: '',
-                end: '',
-                type: '',
-                difficulty: {
-                    easy: false,
-                    general: false,
-                    challenge: false,
-                    hard: false
-                },
-                scenery: {
-                    town: false,
-                    mountain: false,
-                    ocean: false,
-                    stars: false,
-                    sunset: false,
-                    sunrise: false
-                },
-                height: '',
-                length: '',
-                hour: '',
-                minute: '',
-            }
+            inputValue: TC.initialState.inputValue,
+            alertBox: TC.initialState.alterBox
         }))
     }
 

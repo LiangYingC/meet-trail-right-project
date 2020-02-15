@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { DB } from '../../../lib'
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import TopInfo from './TopInfo';
@@ -18,14 +19,13 @@ class TrailDetail extends Component {
     componentDidMount() {
         // Firebase API 取得單一步道詳細資訊
         const dataId = this.props.match.params.id
-        const db = firebase.firestore()
-        const trailsRef = db.collection('trails').doc(dataId)
-        trailsRef.get().then(doc => {
-            const trailData = doc.data()
-            this.setState({
-                trailData: trailData
+        DB.ref('trails').doc(dataId)
+            .onSnapshot(doc => {
+                const trailData = doc.data()
+                this.setState({
+                    trailData: trailData
+                })
             })
-        })
     }
 
     render() {
@@ -41,7 +41,7 @@ class TrailDetail extends Component {
             const topInfoData = {
                 id: trailData.id,
                 title: trailData.title,
-                mainImage: trailData.main_image,
+                mainImage: trailData.images.main_image,
                 createTime: trailData.create_time,
                 createUser: trailData.create_user,
                 weatherData: weatherData,
@@ -64,11 +64,12 @@ class TrailDetail extends Component {
             }
 
             const trafficInfoData = {
+                id: trailData.id,
                 title: trailData.title,
-                routeImage: trailData.route_image,
-                start: trailData.tr_start,
-                end: trailData.tr_end,
-                type: trailData.tr_type
+                routeImage: trailData.images.route_image,
+                start: trailData.routes.start,
+                end: trailData.routes.end,
+                type: trailData.routes.type
             }
 
             return (

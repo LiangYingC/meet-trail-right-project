@@ -1,5 +1,6 @@
 .top-info__report {
 	flex-direction: column;
+	overflow: hidden;
 
 	.report-title {
 		flex: none;
@@ -37,8 +38,17 @@
 		height: 300px;
 		margin: 0 25px;
 		overflow: scroll;
-		border-bottom: $border-basic;
 		position: relative;
+		animation: show 0.6s;
+	}
+
+	@keyframes show {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
 	}
 
 	.report-info {
@@ -66,6 +76,14 @@
 		border: $border-basic;
 		border-radius: $br-basic * 3;
 		border-top-left-radius: 0;
+		box-shadow: 0 0 3px 0 rgba($color: $color-black, $alpha: 0.1);
+	}
+
+	.divider {
+		width: 84%;
+		height: 1px;
+		background-color: #aaa;
+		margin: 0 0px 0 60px;
 	}
 
 	#report-btn {
@@ -73,6 +91,38 @@
 		display: block;
 		margin: 30px auto 20px auto;
 		text-align: center;
+	}
+
+	.no-report-list {
+		width: 100%;
+		height: 300px;
+		position: relative;
+
+		.wrap {
+			width: 80%;
+			height: 200px;
+			background-color: $color-white;
+			flex-direction: column;
+			text-align: center;
+			justify-content: center;
+			border-radius: $br-basic;
+			position: absolute;
+			top: 65%;
+			left: 50%;
+			@include transform(translate(-50%, -65%));
+		}
+
+		p {
+			font-size: 1.125rem;
+			font-weight: 550;
+			letter-spacing: 1px;
+			line-height: 1.3;
+			padding: 0 10px 30px 10px;
+
+			.fa-smile {
+				padding-left: 5px;
+			}
+		}
 	}
 }
 

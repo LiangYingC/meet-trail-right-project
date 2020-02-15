@@ -14,7 +14,6 @@ class Report extends Component {
         }
     }
 
-
     componentDidMount() {
         const { id } = this.props
         DB.ref('trails').doc(id).collection('report_list')
@@ -23,7 +22,6 @@ class Report extends Component {
                 let reportList = []
                 querySnapshot.forEach(doc => {
                     reportList.push(doc.data())
-
                 })
                 this.setState({
                     reportList: reportList
@@ -82,6 +80,7 @@ class Report extends Component {
             isShowReportInputBox,
             reportList
         } = this.state
+
         if (reportList === null) {
             return (
                 <div className="flex top-info__report">
@@ -100,8 +99,6 @@ class Report extends Component {
                 </div>
             )
         }
-
-
         return (
             < Fragment >
                 <div className="top-info__report">
@@ -111,28 +108,50 @@ class Report extends Component {
                             最新步道狀況回報
                                 </h4>
                         <p>{reportList.length} 則</p>
-                    </div>
-                    <div className="report-list">
-                        {
-                            reportList.map(reportItem => {
-                                return (
-                                    <div className="report-item">
-                                        <div className="flex report-info">
-                                            <div className="report-user-img"><img src={reportItem.create_user.picture} alt={`${reportItem.create_user.name}的照片`} /></div>
-                                            <div className="report-user-name">{reportItem.create_user.name}</div>
-                                            <div className="report-time">{reportItem.report_time}</div>
-                                        </div>
-                                        <div className="report-content">{reportItem.report_content}</div>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                    <Button
-                        text={'我要回報步道近況'}
-                        id={'report-btn'}
-                        onClick={this.toggleReportInputBox}
-                    />
+                    </div>{
+                        reportList.length === 0 ?
+                            <div className="no-report-list">
+                                <div className="flex wrap">
+                                    <p>分享，讓彼此擁有更棒的步道體驗<i className="far fa-smile"></i></p>
+                                    < Button
+                                        text={'立刻分享步道近況'}
+                                        id={'first-report-btn'}
+                                        onClick={this.toggleReportInputBox}
+                                    />
+                                </div>
+                            </div>
+                            :
+                            <div className="report-list">
+                                {
+                                    reportList.map(reportItem => {
+                                        return (
+                                            <div className="report-item">
+                                                <div className="flex report-info">
+                                                    <div className="report-user-img">
+                                                        <img src={reportItem.create_user.picture} alt={`${reportItem.create_user.name}的照片`} />
+                                                    </div>
+                                                    <div className="report-user-name">{reportItem.create_user.name}</div>
+                                                    <div className="report-time">{reportItem.report_time}</div>
+                                                </div>
+                                                <div className="report-content">{reportItem.report_content}</div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                    }
+
+                    {
+                        reportList.length === 0 ? '' :
+                            <Fragment>
+                                <div className="divider"></div>
+                                <Button
+                                    text={'我要回報步道近況'}
+                                    id={'report-btn'}
+                                    onClick={this.toggleReportInputBox}
+                                />
+                            </Fragment>
+                    }
                 </div>
                 <div className={`report-input ${isShowReportInputBox ? 'active' : ''}`} >
                     <div className="layer"></div>

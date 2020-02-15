@@ -1,9 +1,44 @@
 import React, { Component } from 'react';
 import GoogleMap from './GoogleMap.jsx'
+import { DB } from '../../../../lib/index.js';
 
 
 
 const TrafficInfo = ({ trafficInfoData }) => {
+
+    const changeImgValue = (e) => {
+        const file = e.target.files[0]
+        const fileTitle = trafficInfoData.title + '路線圖'
+        const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}`).put(file)
+
+        uploadTask.on('state_changed', snapshot => {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done')
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING: // or 'running'
+                    console.log('Upload is running');
+                    break;
+            }
+        }, error => {
+            console.log(error)
+        }, () => {
+            // Handle successful uploads on complete
+            uploadTask.snapshot.ref.getDownloadURL()
+                .then(downloadURL => {
+                    DB.ref('trails').doc(trafficInfoData.id)
+                        .set({
+                            images: {
+                                route_image: downloadURL
+                            }
+                        }, { merge: true })
+                })
+        })
+    }
+
     return (
         <section id="trail-detail__traffic-info">
             <div className="wrap">
@@ -24,16 +59,37 @@ const TrafficInfo = ({ trafficInfoData }) => {
                                 <img src="https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhikingIcon%2F%E8%B7%AF%E5%BE%91.png?alt=media&token=c0a30495-f666-489b-b6b1-7cbaf373d3c0" alt="路徑圖" />
                                 <p>推薦步道型態：<span>{trafficInfoData.type}</span></p>
                             </div>
-                            <a href={trafficInfoData.routeImage} target="_blank">
-                                <button className="basic-btn">
-                                    看大圖
-                                </button>
-                            </a>
+                            {
+                                trafficInfoData.routeImage ?
+                                    <a href={trafficInfoData.routeImage} target="_blank">
+                                        <button className="basic-btn">
+                                            看大圖
+                                        </button>
+                                    </a> : ''
+                            }
+
                         </div>
-                        <div className="route-map">
-                            <img src={trafficInfoData.routeImage}
-                                alt={`${trafficInfoData.title}路線圖`} />
-                        </div>
+                        {
+                            trafficInfoData.routeImage ?
+                                <div className="route-map">
+                                    <img src={trafficInfoData.routeImage}
+                                        alt={`${trafficInfoData.title}路線圖`} />
+                                </div> :
+                                <div className="upload-route-img-wrap">
+                                    <label for="upload-route-img" className="upload-route-img">
+                                        <i className="far fa-image">
+                                            <p><i className="fas fa-plus-circle"></i>點擊上傳路線圖</p>
+                                        </i>
+                                        <input
+                                            type="file"
+                                            id="upload-route-img"
+                                            name="upload-img"
+                                            onChange={changeImgValue}
+                                            accept="image/png,image/jpeg,image/jpg"
+                                        />
+                                    </label>
+                                </div>
+                        }
                     </div>
                 </div>
                 <div className="traffic-info__google-map">

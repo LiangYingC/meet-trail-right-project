@@ -56,7 +56,6 @@ export const DB = {
             .auth()
             .signInWithEmailAndPassword(email, pwd)
             .then(data => {
-                console.log(data)
                 const user = data.user
                 DB.ref('users').doc(user.uid)
                     .set({
@@ -65,7 +64,6 @@ export const DB = {
                         email: user.email,
                         picture: user.picture
                     }, { merge: true })
-                console.log('history')
                 history.push('/trails')
             })
             .catch(error => {
