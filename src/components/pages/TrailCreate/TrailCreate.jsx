@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { DB, APP } from '../../../lib';
 import { TC } from '../../../constants';
-import { AuthUserContext } from '../../../contexts/AuthUserContext';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import Button from '../../shared/Button';
 import Alter from '../../shared/Alert';
+import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class TrailCreate extends Component {
     constructor(props) {

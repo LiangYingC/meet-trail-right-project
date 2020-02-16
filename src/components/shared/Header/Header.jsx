@@ -6,6 +6,7 @@ import {
 import headerLogoImg from '../../../assets/logo/logo260x70.png';
 import userImg from '../../../assets/img/user.png';
 import downArrowImg from '../../../assets/img/downArrow.png';
+import AuthUserContext from '../../../contexts/AuthUserContext';
 
 
 
@@ -26,6 +27,7 @@ class Header extends Component {
 
     render() {
         const { isLanguagOptionsOpen } = this.state
+        const { isLogin } = this.context
         return (
             <Router>
                 <header id="header">
@@ -55,7 +57,7 @@ class Header extends Component {
                                         </div>
                                     </div>
                                 </li>
-                                <Link to='/Login' >
+                                <Link to={`${isLogin ? '/profile' : '/login'}`} >
                                     <div id="header-user-btn">
                                         <img src={userImg} alt="user logo" />
                                     </div>
@@ -69,4 +71,5 @@ class Header extends Component {
     }
 }
 
+Header.contextType = AuthUserContext
 export default Header;

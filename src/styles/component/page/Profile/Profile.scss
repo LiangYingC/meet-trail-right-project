@@ -1,0 +1,161 @@
+#profile {
+	width: 100%;
+	min-height: 800px;
+	margin-top: 60px;
+	margin-bottom: 0;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	background-color: #fafafa;
+
+	.wrap {
+		width: 80%;
+		height: 100%;
+		align-items: flex-start;
+
+		.profile-aside {
+			width: 25%;
+			font-size: 1rem;
+			padding: 0 15px;
+
+			.profile-aside-user,
+			.profile-aside-menu {
+				background-color: $color-white;
+				border-radius: $br-basic;
+				box-shadow: 0 0 5px 0 rgba($color: $color-black, $alpha: 0.1);
+			}
+
+			.profile-aside-user {
+				padding: 10px;
+				margin-bottom: 15px;
+
+				.user-img {
+					padding: 10px;
+
+					img {
+						width: 120px;
+						height: 120px;
+						border-radius: 50%;
+						margin: 0 auto;
+						display: block;
+					}
+
+					input {
+						position: absolute;
+						top: 50px;
+						left: 0;
+						opacity: 1;
+						width: 10px;
+					}
+				}
+
+				.user-name,
+				.user-status {
+					text-align: center;
+					p {
+						font-size: 1rem;
+						font-weight: bold;
+						padding: 10px;
+						letter-spacing: 1px;
+					}
+				}
+
+				.user-name {
+					color: #111;
+				}
+			}
+
+			.profile-aside-menu {
+				ul {
+					padding: 10px;
+
+					li {
+						letter-spacing: 1px;
+						display: flex;
+						padding: 15px;
+
+						.fas {
+							color: #666;
+							padding-right: 10px;
+						}
+
+						&:hover {
+							border-radius: $br-basic;
+							background-color: #f4fff8;
+						}
+
+						&.active {
+							color: $color-green;
+							@include transition-duration(0.2s);
+						}
+
+						&.active .fas {
+							color: $color-green;
+							@include transition-duration(0.2s);
+						}
+					}
+				}
+
+				#sign-out-btn {
+					font-size: 1rem;
+					color: #666;
+					border: none;
+					border-top: 1px solid #eee;
+					width: 100%;
+					justify-content: center;
+					padding: 10px;
+					cursor: pointer;
+					@include transition-duration(0.2s);
+
+					&:hover {
+						color: #333;
+					}
+				}
+			}
+		}
+
+		.profile-main {
+			width: 80%;
+			background-color: $color-white;
+			padding: 30px;
+			box-shadow: 0 0 5px 0 rgba($color: $color-black, $alpha: 0.1);
+
+			h2 {
+				font-size: 1.75rem;
+				color: #333;
+				letter-spacing: 1px;
+				padding-bottom: 20px;
+				border-bottom: 1px solid #eee;
+			}
+
+			.num-list {
+				font-size: 1rem;
+				font-weight: 500;
+				padding: 20px 10px;
+				letter-spacing: 0.6px;
+
+				span {
+					font-weight: bold;
+					color: $color-green;
+				}
+			}
+
+			.empty-list {
+				flex-direction: column;
+				justify-content: center;
+				.empty-img {
+					width: 250px;
+					height: 250px;
+					margin: 0 auto;
+				}
+
+				.empty-word {
+					color: #777;
+					letter-spacing: 0.6px;
+					position: relative;
+					top: -40px;
+					text-align: center;
+				}
+			}
+		}
+	}
+}

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Button from '../../../shared/Button';
 import { DB, APP } from '../../../../lib';
-import { AuthUserContext } from '../../../../contexts/AuthUserContext';
+import AuthUserContext from '../../../../contexts/AuthUserContext';
 
 class Report extends Component {
     constructor(props) {
@@ -48,7 +48,7 @@ class Report extends Component {
     }
 
     setReportData = () => {
-        const { id } = this.props
+        const { id, title } = this.props
         const { userData } = this.context
         this.setState(preState => {
             DB.ref('trails').doc(id).collection('report_list').doc()
@@ -59,6 +59,17 @@ class Report extends Component {
                         id: userData.id,
                         name: userData.name,
                         picture: userData.picture
+                    },
+                    timestamp: DB.time()
+                })
+
+            DB.ref('users').doc(userData.id).collection('report_list').doc()
+                .set({
+                    report_time: preState.dateValue + " , " + APP.getTime(),
+                    report_content: preState.contentValue,
+                    repoer_trail: {
+                        id: id,
+                        title: title
                     },
                     timestamp: DB.time()
                 })

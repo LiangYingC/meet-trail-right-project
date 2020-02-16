@@ -3,8 +3,9 @@ import Routes from './routes';
 import { HashRouter as Router } from "react-router-dom";
 import { DB } from './lib';
 import { firebaseConfig } from './config'
-import { AuthUserContext } from './contexts/AuthUserContext';
+import AuthUserContext from './contexts/AuthUserContext';
 import './styles/main.scss';
+
 firebase.initializeApp(firebaseConfig)
 
 class App extends Component {
@@ -23,18 +24,20 @@ class App extends Component {
                     id: userData.id,
                     name: userData.name,
                     email: userData.email,
-                    picture: userData.picture
+                    picture: userData.picture,
+                    status: userData.status
                 }
             })
         }
 
         this.state = {
-            isLogin: false,
+            isLogin: null,
             userData: {
                 id: '',
                 name: '',
                 email: '',
-                picture: ''
+                picture: '',
+                status: ''
             },
             toggleLogin: (boolen) => { this.toggleLogin(boolen) },
             handleUserData: (userData) => { this.handleUserData(userData) }
@@ -52,7 +55,8 @@ class App extends Component {
                             id: doc.data().id,
                             name: doc.data().name,
                             email: doc.data().email,
-                            picture: doc.data().picture
+                            picture: doc.data().picture,
+                            state: '享受悠遊山林步道的時光'
                         }
                         this.state.toggleLogin(true)
                         this.state.handleUserData(userData)
@@ -65,6 +69,9 @@ class App extends Component {
     }
 
     render() {
+        if (this.state.isLogin === null) {
+            return <div>Loading</div>
+        }
         return (
             <Router>
                 <AuthUserContext.Provider value={this.state}>

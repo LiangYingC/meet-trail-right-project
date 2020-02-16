@@ -3,8 +3,6 @@ import {
     HashRouter as Router,
     Link
 } from "react-router-dom";
-import Button from '../../../shared/Button';
-
 
 
 const TrailsList = ({ trailsVisible }) => {
@@ -18,7 +16,6 @@ const TrailsList = ({ trailsVisible }) => {
                 </div>
                 <div className="flex trails-list">
                     {trailsVisible.map(trail => {
-                        console.log(trail)
                         return (
                             <Router>
                                 <div className="trail-item" key={trail.id}>

@@ -4,11 +4,11 @@
 	align-items: stretch;
 	overflow-x: hidden;
 	position: relative;
-	padding-bottom: 20px;
+	padding-bottom: 18px;
 
 	&:hover {
 		overflow-x: scroll;
-		padding-bottom: 12px;
+		padding-bottom: 10px;
 	}
 
 	&::-webkit-scrollbar {

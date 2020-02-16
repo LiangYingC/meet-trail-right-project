@@ -1,27 +1,38 @@
 import React, { Component } from 'react';
-import { Switch, Route } from "react-router-dom";
-
+import {
+    Switch,
+    Route,
+    Redirect
+} from "react-router-dom";
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import Profile from '../components/pages/Profile';
 import Trails from '../components/pages/Trails';
 import TrailDetail from '../components/pages/TrailDetail';
 import TrailCreate from '../components/pages/TrailCreate';
+import AuthUserContext from '../contexts/AuthUserContext';
 
 
 class Routes extends Component {
     render() {
+        const { isLogin } = this.context
+        console.log(isLogin)
         return (
             <Switch>
                 <Route path="/trails/detail/:id" component={TrailDetail} />
                 <Route path="/trails" component={Trails} />
                 <Route path="/trailCreate" component={TrailCreate} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/login" component={Login} />
+                <Route path="/profile" >
+                    {isLogin ? <Route path="/profile" component={Profile} /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/login" >
+                    {isLogin ? <Redirect to="/profile" /> : <Login />}
+                </Route>
                 <Route path="/" component={Home} />
             </Switch >
         )
     }
 }
 
+Routes.contextType = AuthUserContext
 export default Routes

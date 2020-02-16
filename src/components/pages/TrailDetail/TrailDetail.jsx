@@ -17,8 +17,8 @@ class TrailDetail extends Component {
         }
     }
     componentDidMount() {
-        // Firebase API 取得單一步道詳細資訊
         const dataId = this.props.match.params.id
+        // Firebase API 取得單一步道詳細資訊
         DB.ref('trails').doc(dataId)
             .onSnapshot(doc => {
                 const trailData = doc.data()
