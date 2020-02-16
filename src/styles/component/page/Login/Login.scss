@@ -17,6 +17,44 @@
 		height: 100%;
 		justify-content: center;
 		position: relative;
+
+		.login-panel-wrap {
+			position: static;
+			width: 0;
+			height: 0;
+
+			.layer {
+				position: static;
+				display: none;
+			}
+
+			.close-btn {
+				display: none;
+			}
+		}
+
+		.login-sign-in-panel,
+		.login-sign-up-panel {
+			width: 330px;
+			min-height: 450px;
+			background-color: $color-white;
+			box-shadow: 0 0 17px rgba(0, 0, 0, 0.24);
+			padding-bottom: 30px;
+			border-radius: 5px;
+			position: absolute;
+			top: -5%;
+			left: 20%;
+			z-index: 1;
+			opacity: 0.9;
+			@include transition-duration(0.5s);
+			@include transform(rotate3d(0, 1, 0, 180deg));
+
+			&.active {
+				opacity: 1;
+				z-index: 2;
+				@include transform(rotate3d(0, 0, 0, 180deg));
+			}
+		}
 	}
 
 	.login-bg {
@@ -40,204 +78,6 @@
 			left: 0;
 			background-color: $color-white;
 			opacity: 0.15;
-		}
-	}
-
-	.login-sign-in-panel,
-	.login-sign-up-panel {
-		width: 330px;
-		min-height: 450px;
-		background-color: $color-white;
-		box-shadow: 0 0 17px rgba(0, 0, 0, 0.24);
-		padding-bottom: 30px;
-		border-radius: 5px;
-		position: absolute;
-		top: -5%;
-		left: 20%;
-		z-index: 1;
-		opacity: 0.9;
-		@include transition-duration(0.5s);
-		@include transform(rotate3d(0, 1, 0, 180deg));
-
-		&.active {
-			opacity: 1;
-			z-index: 2;
-			@include transform(rotate3d(0, 0, 0, 180deg));
-		}
-
-		.login-title {
-			h3 {
-				text-align: center;
-				padding: 15px;
-				border-bottom: 1px solid #ddd;
-
-				.fas {
-					padding-right: 10px;
-				}
-			}
-
-			p {
-				padding-top: 30px;
-				text-align: center;
-				letter-spacing: 0.6px;
-			}
-		}
-
-		.sign-container {
-			padding: 30px 20px 20px 20px;
-
-			.sign-item {
-				position: relative;
-				margin-bottom: 15px;
-				border: 1px solid #ddd;
-				border-radius: $br-basic;
-
-				.fas {
-					padding-left: 10px;
-				}
-
-				> input {
-					width: 100%;
-					background-color: transparent;
-					display: block;
-					padding: 5px 10px;
-					border: none;
-					color: #555;
-					line-height: 1.75;
-					font-size: 1rem;
-					font-weight: 400;
-					@include transition-duration(0.2s);
-				}
-			}
-
-			.alert-word {
-				font-size: 0.875rem;
-				letter-spacing: 0.6px;
-				margin-top: -10px;
-				padding-bottom: 10px;
-				text-align: center;
-				color: $color-red;
-				opacity: 0;
-
-				&.active {
-					opacity: 1;
-				}
-			}
-
-			#sign-in-btn,
-			#sign-up-btn {
-				font-size: 16px;
-				width: 100%;
-				left: 50%;
-				padding: 10px;
-				box-shadow: none;
-				position: relative;
-				transform: translateX(-50%) scale(1);
-				&:active {
-					transform: translateX(-50%) scale(0.95);
-				}
-			}
-		}
-
-		.forgot-and-sign-up {
-			padding-bottom: 10px;
-			justify-content: space-around;
-
-			#forgot-pwd-btn,
-			#go-sign-up-btn,
-			#go-sign-in-btn {
-				font-size: 0.875rem;
-				letter-spacing: 0.6px;
-				padding: 3px 5px;
-				cursor: pointer;
-				@include transition-duration(0.25s);
-			}
-
-			#forgot-pwd-btn {
-				border: none;
-				border-bottom: 1px solid #555;
-				padding: 0;
-				opacity: 0.85;
-				&:hover {
-					opacity: 1;
-				}
-			}
-
-			#go-sign-up-btn,
-			#go-sign-in-btn {
-				border: 1.5px solid transparent;
-				border-radius: $br-basic;
-				color: $color-green;
-				margin-left: 5px;
-				overflow: visible;
-				@include transition-duration(0.2s);
-
-				&:hover {
-					border: 1.5px solid $color-green;
-				}
-			}
-
-			p {
-				font-size: 0.875rem;
-			}
-		}
-	}
-
-	.divider {
-		padding-top: 20px;
-
-		p {
-			font-size: 0.875rem;
-			font-weight: bold;
-			color: $color-black;
-			letter-spacing: 0.6px;
-			padding: 10px;
-		}
-
-		span {
-			display: block;
-			height: 1px;
-			-webkit-flex: auto;
-			-ms-flex: auto;
-			flex: auto;
-			background-color: #cccccc;
-		}
-	}
-
-	.social-sign-container {
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-
-	#google-sign-btn,
-	#fb-sign-btn {
-		font-size: 16px;
-		width: 85%;
-		padding: 10px;
-		box-shadow: none;
-		transform: scale(1);
-
-		&:active {
-			transform: scale(0.95);
-		}
-	}
-
-	#fb-sign-btn {
-		color: white;
-		background-color: rgb(66, 103, 178);
-		margin-top: 10px;
-		margin-bottom: 20px;
-	}
-
-	#google-sign-btn {
-		color: $color-black;
-		background-color: #f0f0f0;
-	}
-
-	.login-sign-in-panel {
-		.sign-container .sign-item {
-			margin-bottom: 20px;
 		}
 	}
 }

@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import Button from '../../../shared/Button';
 import { DB, APP } from '../../../../lib';
+import Button from '../../../shared/Button';
+import LoginBox from '../../../shared/LoginBox';
 import AuthUserContext from '../../../../contexts/AuthUserContext';
+
 
 class Report extends Component {
     constructor(props) {
@@ -10,7 +12,8 @@ class Report extends Component {
             reportList: null,
             dateValue: APP.getDay(),
             contentValue: '',
-            isShowReportInputBox: false
+            isShowReportInputBox: false,
+            isShowLoginBox: false
         }
     }
 
@@ -30,9 +33,21 @@ class Report extends Component {
     }
 
     toggleReportInputBox = () => {
-        this.setState(preState => ({
-            isShowReportInputBox: !preState.isShowReportInputBox
-        }))
+        const { isLogin } = this.context
+
+        if (isLogin) {
+            this.setState(preState => ({
+                ...preState,
+                isShowReportInputBox: !preState.isShowReportInputBox
+            }))
+        } else {
+            console.log(isLogin)
+            this.setState(preState => ({
+                ...preState,
+                isShowLoginBox: true
+            }))
+        }
+
     }
 
     updateDateValue = (e) => {
@@ -85,13 +100,21 @@ class Report extends Component {
         })
     }
 
+    closeLoginBox = () => {
+        this.setState(preState => ({
+            ...preState,
+            isShowLoginBox: false,
+        }))
+    }
+
     render() {
         const {
             dateValue,
+            reportList,
             isShowReportInputBox,
-            reportList
+            isShowLoginBox
         } = this.state
-
+        console.log(isShowLoginBox)
         if (reportList === null) {
             return (
                 <div className="flex top-info__report">
@@ -188,6 +211,10 @@ class Report extends Component {
                         <div className="close-btn" onClick={this.toggleReportInputBox}></div>
                     </div>
                 </div>
+                <LoginBox
+                    isShowLoginBox={isShowLoginBox}
+                    closeLoginBox={this.closeLoginBox}
+                />
             </Fragment >
         )
     }

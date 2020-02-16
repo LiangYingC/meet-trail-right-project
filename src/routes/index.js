@@ -26,7 +26,7 @@ class Routes extends Component {
                     {isLogin ? <Route path="/profile" component={Profile} /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/login" >
-                    {isLogin ? <Redirect to="/profile" /> : <Login />}
+                    {isLogin ? <Redirect to="/profile" /> : <Route path="/login" component={Login} />}
                 </Route>
                 <Route path="/" component={Home} />
             </Switch >

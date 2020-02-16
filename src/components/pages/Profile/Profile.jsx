@@ -5,6 +5,7 @@ import {
     Link,
     Switch
 } from "react-router-dom";
+import { DB } from '../../../lib'
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import ProfileLike from './ProfileLike.jsx';
@@ -45,7 +46,7 @@ const profileRoutes = [
 class Profile extends Component {
 
     signOut() {
-
+        DB.signOut()
     }
 
     render() {

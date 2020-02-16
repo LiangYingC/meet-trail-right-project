@@ -2,31 +2,30 @@ import React, { Component } from 'react';
 import {
     HashRouter as Router,
     Link,
-} from 'react-router-dom'
+} from 'react-router-dom';
 import headerLogoImg from '../../../assets/logo/logo260x70.png';
 import userImg from '../../../assets/img/user.png';
 import downArrowImg from '../../../assets/img/downArrow.png';
+import Loginbox from '../../../components/shared/LoginBox';
 import AuthUserContext from '../../../contexts/AuthUserContext';
-
-
 
 class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isLanguagOptionsOpen: false
+            isLanguagOptionsOpen: false,
         }
     }
 
-
     toggleLanguagOptions = () => {
         this.setState(preState => ({
+            ...preState,
             isLanguagOptionsOpen: !preState.isLanguagOptionsOpen
         }))
     }
 
     render() {
-        const { isLanguagOptionsOpen } = this.state
+        const { isLanguagOptionsOpen, } = this.state
         const { isLogin } = this.context
         return (
             <Router>
@@ -46,7 +45,9 @@ class Header extends Component {
                         <div className="header-nav">
                             <ul>
                                 <Link to='/trails' ><li>全部步道</li></Link>
-                                <Link to='/trailCreate' ><li>提供步道</li></Link>
+                                <Link to={`${isLogin ? '/trailCreate' : '/login'}`} >
+                                    <li>提供步道</li>
+                                </Link>
                                 <li >
                                     <div id="header-language-btn" onClick={this.toggleLanguagOptions}>
                                         <p>繁體中文</p>

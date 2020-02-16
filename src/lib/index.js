@@ -33,7 +33,6 @@ export const DB = {
             .auth()
             .createUserWithEmailAndPassword(email, pwd)
             .then(data => {
-                console.log(data)
                 const user = data.user
                 DB.ref('users').doc(user.uid)
                     .set({
@@ -43,8 +42,7 @@ export const DB = {
                         picture: 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2Flogo300x300.png?alt=media&token=6df50e02-8911-4a1d-9583-9197d8859acf',
                         timestamp: DB.time
                     })
-                console.log('history')
-                history.push('/trails')
+                history.push('/profile')
             })
             .catch(error => {
                 callback(error)
@@ -64,7 +62,7 @@ export const DB = {
                         email: user.email,
                         picture: user.picture
                     }, { merge: true })
-                history.push('/trails')
+                history.push('/profile')
             })
             .catch(error => {
                 callback(error)
@@ -72,12 +70,10 @@ export const DB = {
     },
 
     signOut: () => {
-        firebase.auth().signOut().then(function () {
-            // Sign-out successful.
-        }).catch(function (error) {
-            // An error happened.
+        firebase.auth().signOut().then(() => {
+            console.log('sucess sign out')
+        }).catch(error => {
+            console.log(error)
         })
     }
-
-
 }
