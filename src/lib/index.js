@@ -29,12 +29,9 @@ export const DB = {
     },
 
     signUp: (email, pwd, name, history, callback) => {
-        console.log('start to create')
         firebase.auth()
             .createUserWithEmailAndPassword(email, pwd)
             .then(data => {
-                console.log('start to DB')
-                console.log(data)
                 const user = data.user
                 DB.ref('users').doc(user.uid)
                     .set({
@@ -45,8 +42,6 @@ export const DB = {
                         timestamp: DB.time(),
                         status: '享受悠遊山林步道的時光'
                     })
-                console.log('data in DB')
-                console.log(history)
                 if (history) {
                     history.push('/profile')
                 }
@@ -60,7 +55,6 @@ export const DB = {
         firebase.auth()
             .signInWithEmailAndPassword(email, pwd)
             .then(data => {
-                console.log('signIn')
                 if (history) {
                     history.push('/profile')
                 }

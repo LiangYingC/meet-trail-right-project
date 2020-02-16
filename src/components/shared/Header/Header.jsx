@@ -26,7 +26,7 @@ class Header extends Component {
 
     render() {
         const { isLanguagOptionsOpen, } = this.state
-        const { isLogin } = this.context
+        const { isLogin, userData } = this.context
         return (
             <Router>
                 <header id="header">
@@ -60,7 +60,11 @@ class Header extends Component {
                                 </li>
                                 <Link to={`${isLogin ? '/profile' : '/login'}`} >
                                     <div id="header-user-btn">
-                                        <img src={userImg} alt="user logo" />
+                                        {
+                                            isLogin ? <img src={userData.picture} alt={`${userData.name}的照片`} />
+                                                : <img src={userImg} alt="user logo" />
+                                        }
+
                                     </div>
                                 </Link>
                             </ul>

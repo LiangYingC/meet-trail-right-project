@@ -41,7 +41,6 @@ class Report extends Component {
                 isShowReportInputBox: !preState.isShowReportInputBox
             }))
         } else {
-            console.log(isLogin)
             this.setState(preState => ({
                 ...preState,
                 isShowLoginBox: true

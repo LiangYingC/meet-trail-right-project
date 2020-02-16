@@ -13,6 +13,7 @@ import ProfileRecord from './ProfileRecord.jsx';
 import ProfileReport from './ProfileReport.jsx';
 import ProfileComment from './ProfileComment.jsx';
 import ProfileTrail from './ProfileTrail.jsx';
+import AuthUserContext from '../../../contexts/AuthUserContext';
 
 
 const profileRoutes = [
@@ -45,12 +46,50 @@ const profileRoutes = [
 
 class Profile extends Component {
 
-    signOut() {
+    signOut = () => {
         DB.signOut()
+    }
+
+    uploadUserImg = (e) => {
+        const { userData, handleUserData } = this.context
+        const file = e.target.files[0]
+
+        if (file.size > 1000000) {
+            console.log('檔案過大')
+        } else {
+            const uploadTask = DB.storageRef(`/users/${userData.id}/${userData.name}的照片`).put(file)
+            uploadTask.on('state_changed', snapshot => {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done')
+                switch (snapshot.state) {
+                    case firebase.storage.TaskState.PAUSED: // or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case firebase.storage.TaskState.RUNNING: // or 'running'
+                        console.log('Upload is running');
+                        break;
+                }
+            }, error => {
+                console.log(error)
+            }, () => {
+                // Handle successful uploads on complete
+                uploadTask.snapshot.ref.getDownloadURL()
+                    .then(downloadURL => {
+                        const newUserData = {
+                            ...userData,
+                            picture: downloadURL
+                        }
+                        handleUserData(newUserData)
+                        console.log('File available at', downloadURL)
+                    })
+            })
+        }
     }
 
     render() {
         const pathName = this.props.location.pathname
+        const { userData } = this.context
 
         return (
             <Fragment>
@@ -61,23 +100,24 @@ class Profile extends Component {
                             <div className="profile-aside-user">
                                 <div className="user-img-wrap">
                                     <div className="user-img">
-                                        <label htmlFor="upload-img" className="upload-img"></label>
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2Flogo300x300.png?alt=media&token=6df50e02-8911-4a1d-9583-9197d8859acf" alt="" />
+                                        <label htmlFor="upload-img" className="upload-img">上傳圖片</label>
+                                        <img src={userData.picture} alt={`${userData.name}的照片`} />
                                         <input
                                             type="file"
                                             id="upload-img"
+                                            onChange={this.uploadUserImg}
                                         />
                                     </div>
                                 </div>
 
                                 <div className="user-name-wrap">
                                     <div className="user-name">
-                                        <p>Chen Liang</p>
+                                        <p>{userData.name}</p>
                                     </div>
                                 </div>
                                 <div className="user-status-wrap">
                                     <div className="user-status">
-                                        <p>希望能養成健行的習慣</p>
+                                        <p>{userData.status}</p>
                                     </div>
                                 </div>
                             </div>
@@ -146,4 +186,6 @@ class Profile extends Component {
     }
 }
 
+
+Profile.contextType = AuthUserContext
 export default Profile;

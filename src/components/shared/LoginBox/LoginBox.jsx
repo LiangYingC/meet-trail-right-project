@@ -55,8 +55,10 @@ class LoginBox extends Component {
         targetId === 'sign-up-btn' ?
             DB.signUp(inputValue.email, inputValue.pwd, inputValue.name, history, this.toggleAlertWord) :
             DB.signIn(inputValue.email, inputValue.pwd, history, this.toggleAlertWord)
-        console.log('sign-in-sucess')
-        closeLoginBox()
+
+        if (closeLoginBox) {
+            closeLoginBox()
+        }
     }
 
     toggleAlertWord = (error) => {
