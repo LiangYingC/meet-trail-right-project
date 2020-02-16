@@ -114,7 +114,7 @@ class Report extends Component {
             isShowReportInputBox,
             isShowLoginBox
         } = this.state
-        console.log(isShowLoginBox)
+
         if (reportList === null) {
             return (
                 <div className="flex top-info__report">
@@ -211,6 +211,7 @@ class Report extends Component {
                         <div className="close-btn" onClick={this.toggleReportInputBox}></div>
                     </div>
                 </div>
+
                 <LoginBox
                     isShowLoginBox={isShowLoginBox}
                     closeLoginBox={this.closeLoginBox}

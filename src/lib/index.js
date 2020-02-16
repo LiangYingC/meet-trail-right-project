@@ -29,10 +29,12 @@ export const DB = {
     },
 
     signUp: (email, pwd, name, history, callback) => {
-        firebase
-            .auth()
+        console.log('start to create')
+        firebase.auth()
             .createUserWithEmailAndPassword(email, pwd)
             .then(data => {
+                console.log('start to DB')
+                console.log(data)
                 const user = data.user
                 DB.ref('users').doc(user.uid)
                     .set({
@@ -40,9 +42,14 @@ export const DB = {
                         name: name,
                         email: user.email,
                         picture: 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2Flogo300x300.png?alt=media&token=6df50e02-8911-4a1d-9583-9197d8859acf',
-                        timestamp: DB.time
+                        timestamp: DB.time(),
+                        status: '享受悠遊山林步道的時光'
                     })
-                history.push('/profile')
+                console.log('data in DB')
+                console.log(history)
+                if (history) {
+                    history.push('/profile')
+                }
             })
             .catch(error => {
                 callback(error)
@@ -50,19 +57,13 @@ export const DB = {
     },
 
     signIn: (email, pwd, history, callback) => {
-        firebase
-            .auth()
+        firebase.auth()
             .signInWithEmailAndPassword(email, pwd)
             .then(data => {
-                const user = data.user
-                DB.ref('users').doc(user.uid)
-                    .set({
-                        id: user.uid,
-                        name: user.name,
-                        email: user.email,
-                        picture: user.picture
-                    }, { merge: true })
-                history.push('/profile')
+                console.log('signIn')
+                if (history) {
+                    history.push('/profile')
+                }
             })
             .catch(error => {
                 callback(error)
@@ -70,10 +71,12 @@ export const DB = {
     },
 
     signOut: () => {
-        firebase.auth().signOut().then(() => {
-            console.log('sucess sign out')
-        }).catch(error => {
-            console.log(error)
-        })
+        firebase.auth()
+            .signOut()
+            .then(() => {
+                console.log('sucess sign out')
+            }).catch(error => {
+                console.log(error)
+            })
     }
 }

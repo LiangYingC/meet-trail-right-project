@@ -49,11 +49,14 @@ class LoginBox extends Component {
 
     loginFirebase = (e) => {
         const { inputValue } = this.state
+        const { closeLoginBox } = this.props
         const history = this.props.history
         const targetId = e.target.id
         targetId === 'sign-up-btn' ?
             DB.signUp(inputValue.email, inputValue.pwd, inputValue.name, history, this.toggleAlertWord) :
             DB.signIn(inputValue.email, inputValue.pwd, history, this.toggleAlertWord)
+        console.log('sign-in-sucess')
+        closeLoginBox()
     }
 
     toggleAlertWord = (error) => {
@@ -111,7 +114,6 @@ class LoginBox extends Component {
 
         return (
             <Fragment>
-
                 <div className={`login-panel-wrap ${isShowLoginBox ? 'active' : ''} `}>
                     <div className="layer"></div>
                     <div className={`login-sign-in-panel ${isShowSignIn ? 'active' : ''}`}>

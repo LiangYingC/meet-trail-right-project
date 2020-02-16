@@ -51,12 +51,13 @@ class App extends Component {
                 DB.ref('users').doc(user.uid)
                     .get()
                     .then(doc => {
+                        console.log(doc.data())
                         const userData = {
                             id: doc.data().id,
                             name: doc.data().name,
                             email: doc.data().email,
                             picture: doc.data().picture,
-                            state: '享受悠遊山林步道的時光'
+                            state: doc.data().status
                         }
                         this.state.toggleLogin(true)
                         this.state.handleUserData(userData)
