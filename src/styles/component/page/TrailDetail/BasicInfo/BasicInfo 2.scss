@@ -1,0 +1,43 @@
+.basic-info-description {
+	color: $color-grey;
+	padding: 0 30px;
+	line-height: 1.4;
+	letter-spacing: 0.6px;
+}
+
+.basic-info-list {
+	justify-content: flex-start;
+	margin: 30px;
+
+	.top-left {
+		width: 50%;
+	}
+}
+
+.basic-info-list {
+	.basic-info-item {
+		margin: 15px;
+	}
+
+	.subtitle {
+		font-size: 1rem;
+		margin-right: 10px;
+		position: relative;
+
+		&::before {
+			content: "";
+			display: block;
+			border-style: solid;
+			border-width: 8px;
+			border-color: transparent transparent transparent $color-blue;
+			position: absolute;
+			left: -15px;
+			top: 3px;
+		}
+	}
+
+	p:nth-child(2) {
+		font-size: 1.25rem;
+		font-weight: bold;
+	}
+}
