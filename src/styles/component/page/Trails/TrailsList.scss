@@ -13,23 +13,6 @@
 	width: 100%;
 }
 
-.trail-img {
-	overflow: hidden;
-	border-top-left-radius: $br-basic;
-	border-top-right-radius: $br-basic;
-	img {
-		@include transition-duration(0.25s);
-		opacity: 0.9;
-		transform: scale(1);
-		border-top-left-radius: $br-basic;
-		border-top-right-radius: $br-basic;
-	}
-}
-
-.trail-detail {
-	padding: 15px 30px;
-}
-
 .trail-item {
 	width: calc(33.333% - 40px);
 	box-shadow: 0px 4px 15px 1.5px rgba(0, 0, 0, 0.3);
@@ -47,20 +30,27 @@
 		transform: scale(1.08);
 	}
 
+	&:hover .trail-img .fa-heart {
+		bottom: 20px;
+		right: 20px;
+	}
+
 	h3 {
+		font-size: 1.3rem;
 		letter-spacing: 1.2px;
-		padding-bottom: 10px;
+		padding-bottom: 15px;
 
 		.fas {
+			font-size: 1.25rem;
 			color: $color-blue;
 			padding-right: 5px;
 		}
 	}
 
 	p {
-		font-size: 0.875rem;
+		font-size: 1rem;
 		color: $color-grey;
-		padding: 8px 0;
+		padding: 10px 5px;
 
 		.fas,
 		.far {
@@ -71,5 +61,50 @@
 		.fa-map {
 			font-size: 12px;
 		}
+	}
+
+	.trail-img {
+		overflow: hidden;
+		border-top-left-radius: $br-basic;
+		border-top-right-radius: $br-basic;
+		position: relative;
+
+		img {
+			opacity: 0.9;
+			transform: scale(1);
+			border-top-left-radius: $br-basic;
+			border-top-right-radius: $br-basic;
+			@include transition-duration(0.25s);
+		}
+
+		.fa-heart {
+			font-size: 1rem;
+			position: absolute;
+			font-weight: 500;
+			bottom: -40px;
+			right: 20px;
+			color: $color-grey;
+			background-color: $color-white;
+			box-shadow: 0 0 6px 0 rgba($color: $color-black, $alpha: 0.2);
+			padding: 10px;
+			border-radius: 50%;
+			z-index: 100;
+			@include transition-duration(0.2s);
+
+			&:hover {
+				color: $color-blue;
+			}
+
+			&.active {
+				font-weight: bold;
+				color: $color-white;
+				background-color: $color-blue;
+				bottom: 20px;
+			}
+		}
+	}
+
+	.trail-detail {
+		padding: 15px 30px;
 	}
 }

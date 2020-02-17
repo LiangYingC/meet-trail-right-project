@@ -3,7 +3,7 @@ import {
     HashRouter as Router,
     Link,
 } from 'react-router-dom';
-import headerLogoImg from '../../../assets/logo/logo260x70.png';
+import headerLogoImg from '../../../assets/logo/logo260x70-deep .png';
 import userImg from '../../../assets/img/user.png';
 import downArrowImg from '../../../assets/img/downArrow.png';
 import Loginbox from '../../../components/shared/LoginBox';

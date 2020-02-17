@@ -52,16 +52,16 @@ class App extends Component {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 console.log('onAuthState true')
+
                 DB.ref('users').doc(user.uid)
-                    .get()
-                    .then(doc => {
+                    .onSnapshot(doc => {
                         const userData = {
                             id: doc.data().id,
                             name: doc.data().name,
                             email: doc.data().email,
                             picture: doc.data().picture,
                             status: doc.data().status,
-                            likeList: doc.data().likeList,
+                            likeList: doc.data().like_list,
                             reportList: []
                         }
                         this.state.toggleLogin(true)
