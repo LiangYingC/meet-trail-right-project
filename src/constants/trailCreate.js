@@ -42,7 +42,12 @@ const TC = {
         alterWord: {
             word: '',
             inputId: ''
-        }
+        },
+        isShowImgLoading: {
+            id: '',
+            progress: ''
+        },
+        isShowCreateLoading: false
     },
 
     locationObj: {

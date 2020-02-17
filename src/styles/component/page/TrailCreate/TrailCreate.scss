@@ -192,24 +192,80 @@
 				opacity: 0;
 			}
 
-			// .loading-img-wrap {
-			// 	width: 100%;
-			// 	height: 100%;
-			// 	position: absolute;
-			// 	top: 0;
-			// 	left: 0;
-			// 	z-index: 100;
+			.loading-img-wrap {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 100;
+				opacity: 0;
+				@include transition-duration(0.2s);
 
-			// 	.layer {
-			// 		width: 100%;
-			// 		height: 100%;
-			// 		position: absolute;
-			// 		top: 0;
-			// 		left: 0;
-			// 		background-color: $color-white;
-			// 		opacity: 0.8;
-			// 	}
-			// }
+				&.active {
+					opacity: 1;
+				}
+
+				.layer {
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					background-color: $color-white;
+					opacity: 0.85;
+				}
+
+				.loading-img {
+					width: 100%;
+					height: 100%;
+					display: inline-block;
+					position: absolute;
+					top: 0;
+					left: 0;
+				}
+
+				.loading-img div {
+					display: block;
+					position: absolute;
+					top: 38%;
+					left: 47.5%;
+					width: 70px;
+					height: 70px;
+					margin: 8px;
+					border: 4px solid $color-green;
+					border-radius: 50%;
+					animation: loading-img 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+					border-color: $color-green transparent transparent transparent;
+				}
+				.loading-img div:nth-child(1) {
+					animation-delay: -0.45s;
+				}
+				.loading-img div:nth-child(2) {
+					animation-delay: -0.3s;
+				}
+				.loading-img div:nth-child(3) {
+					animation-delay: -0.15s;
+				}
+				@keyframes loading-img {
+					0% {
+						transform: translate(-50%, -50%) rotate(0deg);
+					}
+					100% {
+						transform: translate(-50%, -50%) rotate(360deg);
+					}
+				}
+
+				.loaging-word {
+					font-size: 1.25rem;
+					font-weight: bold;
+					position: absolute;
+					color: $color-green;
+					left: 51%;
+					bottom: 30%;
+					@include transform(translateX(-50%));
+				}
+			}
 		}
 
 		.route {
@@ -360,6 +416,113 @@
 			&:active {
 				opacity: 1;
 			}
+		}
+	}
+}
+
+.loading-page-wrap {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 101;
+	display: none;
+
+	&.active {
+		display: block;
+	}
+
+	> .layer {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: $color-white;
+		opacity: 0.3;
+	}
+
+	.loading-icon {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		.fas {
+			font-size: 100px;
+			color: $color-green;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) scale(1);
+			-webkit-transform: translate(-50%, -50%) scale(1);
+
+			&.m-smail {
+				animation: smail-loading 1.4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+			}
+
+			&.m-big {
+				opacity: 0.2;
+				animation: big-loading 1.4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+			}
+		}
+
+		@keyframes big-loading {
+			0% {
+				transform: dtranslate(-50%, -55%) scale(1.15);
+			}
+			5% {
+				transform: translate(-50%, -55%) scale(1);
+			}
+			39% {
+				transform: translate(-50%, -55%) scale(1.25);
+			}
+			45% {
+				transform: translate(-50%, -55%) scale(1.15);
+			}
+			60% {
+				transform: translate(-50%, -55%) scale(1.2);
+			}
+			100% {
+				transform: translate(-50%, -55%) scale(1.25);
+			}
+		}
+
+		@keyframes smail-loading {
+			0% {
+				transform: dtranslate(-50%, -50%) scale(1);
+			}
+			5% {
+				transform: translate(-50%, -50%) scale(1.1);
+			}
+			39% {
+				transform: translate(-50%, -50%) scale(0.9);
+			}
+			45% {
+				transform: translate(-50%, -50%) scale(1);
+			}
+			60% {
+				transform: translate(-50%, -50%) scale(0.95);
+			}
+			100% {
+				transform: translate(-50%, -50%) scale(0.9);
+			}
+			// 0% {
+			// 	transform: translate(-50%, -55%) scale(1);
+			// }
+			// 25% {
+			// 	transform: translate(-50%, -55%) scale(1.4);
+			// }
+			// 50% {
+			// 	transform: translate(-50%, -55%) scale(1.8);
+			// }
+			// 75% {
+			// 	transform: translate(-50%, -55%) scale(2.2);
+			// }
+			// 100% {
+			// 	transform: translate(-50%, -55%) scale(2.6);
+			// }
 		}
 	}
 }

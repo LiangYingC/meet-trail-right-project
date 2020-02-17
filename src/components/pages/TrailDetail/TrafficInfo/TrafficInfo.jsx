@@ -76,7 +76,7 @@ const TrafficInfo = ({ trafficInfoData }) => {
                                         alt={`${trafficInfoData.title}路線圖`} />
                                 </div> :
                                 <div className="upload-route-img-wrap">
-                                    <label for="upload-route-img" className="upload-route-img">
+                                    <label htmlFor="upload-route-img" className="upload-route-img">
                                         <i className="far fa-image">
                                             <p><i className="fas fa-plus-circle"></i>點擊上傳路線圖</p>
                                         </i>

@@ -14,6 +14,10 @@ const weatherCitys = [
         name: '新竹縣'
     },
     {
+        id: 'F-D0047-015',
+        name: '苗栗縣'
+    },
+    {
         id: 'F-D0047-019',
         name: '彰化縣'
     },
@@ -35,7 +39,7 @@ const weatherCitys = [
     },
     {
         id: 'F-D0047-039',
-        name: '臺東縣'
+        name: '台東縣'
     },
     {
         id: 'F-D0047-043',

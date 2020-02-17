@@ -13,6 +13,16 @@ class TrailCreate extends Component {
         this.state = TC.initialState
     }
 
+    componentDidMount() {
+        const oldInputValue = JSON.parse(localStorage.getItem('MTR_Trail_Create'))
+        if (oldInputValue) {
+            this.setState(preState => ({
+                ...preState,
+                inputValue: oldInputValue
+            }))
+        }
+    }
+
     changeValue = (e) => {
         e.persist()
         const id = e.target.id
@@ -47,9 +57,6 @@ class TrailCreate extends Component {
             id === 'length' ||
             id === 'hour' ||
             id === 'minute') {
-            console.log(value)
-            console.log(typeof (value))
-            console.log(value !== '0')
             if (!Number(value) && value !== '0' && value.length > 0) {
                 this.setState(preState => ({
                     ...preState,
@@ -60,7 +67,6 @@ class TrailCreate extends Component {
                 }))
             }
         }
-
 
         switch (name) {
             case 'upload-img':
@@ -94,8 +100,15 @@ class TrailCreate extends Component {
                     const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}${nameTage}`).put(file)
                     uploadTask.on('state_changed', snapshot => {
                         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done')
+                        const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+                        this.setState(preState => ({
+                            ...preState,
+                            isShowImgLoading: {
+                                id: id,
+                                progress: progress
+                            }
+                        }))
+
                         switch (snapshot.state) {
                             case firebase.storage.TaskState.PAUSED: // or 'paused'
                                 console.log('Upload is paused');
@@ -107,6 +120,14 @@ class TrailCreate extends Component {
                     }, error => {
                         console.log(error)
                     }, () => {
+                        this.setState(preState => ({
+                            ...preState,
+                            isShowImgLoading: {
+                                id: '',
+                                progress: ''
+                            }
+                        }))
+
                         // Handle successful uploads on complete
                         uploadTask.snapshot.ref.getDownloadURL()
                             .then(downloadURL => {
@@ -116,7 +137,6 @@ class TrailCreate extends Component {
                                         [(nameTage === '封面圖' ? 'coverImg' : 'routeImg')]: downloadURL
                                     }
                                 }))
-                                console.log('File available at', downloadURL)
                             })
                     })
                 }
@@ -149,6 +169,7 @@ class TrailCreate extends Component {
                     }
                 }))
                 break;
+
             case 'location':
                 switch (id) {
                     case 'area':
@@ -190,10 +211,12 @@ class TrailCreate extends Component {
                 }))
                 break;
         }
+
+        localStorage.setItem('MTR_Trail_Create', JSON.stringify(this.state.inputValue))
     }
 
     createTrail = () => {
-        const { inputValue, alterWord } = this.state
+        const { inputValue } = this.state
         const { userData } = this.context
         const { difficultyList, sceneryList } = TC
         const history = this.props.history
@@ -251,6 +274,10 @@ class TrailCreate extends Component {
 
 
         if (isAllInputFilled) {
+            this.setState(preState => ({
+                ...preState,
+                isShowCreateLoading: true
+            }))
             DB.ref('trails').doc()
                 .set({
                     id: null,
@@ -295,6 +322,7 @@ class TrailCreate extends Component {
                                 }
                             })
                         })
+                    localStorage.setItem('MTR_Trail_Create', JSON.stringify(null))
                 })
         } else {
             this.setState(preState => ({
@@ -303,7 +331,7 @@ class TrailCreate extends Component {
                     isShow: true,
                     wordHead: '有資料',
                     hightlight: '尚未填寫或格式錯誤',
-                    wordTail: '請再次檢查'
+                    wordTail: '，請再次檢查'
                 }
             }))
         }
@@ -349,7 +377,9 @@ class TrailCreate extends Component {
         const {
             inputValue,
             alterBox,
-            alterWord
+            alterWord,
+            isShowImgLoading,
+            isShowCreateLoading
         } = this.state
 
         const {
@@ -358,7 +388,6 @@ class TrailCreate extends Component {
             sceneryList
         } = TC
 
-        console.log(this.state.alterWord)
         return (
             <Fragment>
                 <Header />
@@ -412,12 +441,16 @@ class TrailCreate extends Component {
                                         <p><i className="fas fa-plus-circle"></i>點擊上傳</p>
                                     </i>
                                     <img src={inputValue.coverImg} />
-                                    {/* <div className="loading-img-wrap">
+                                    <div className={`loading-img-wrap 
+                                    ${isShowImgLoading.id === 'cover-img' ? 'active' : ''}`}>
                                         <div className="layer"></div>
                                         <div className="loading-img">
                                             <div></div><div></div><div></div><div></div>
                                         </div>
-                                    </div> */}
+                                        <div className="loaging-word">
+                                            {isShowImgLoading.progress} %
+                                        </div>
+                                    </div>
                                 </label>
                                 <div className="upload-img">
                                     <input type="file"
@@ -667,6 +700,16 @@ class TrailCreate extends Component {
                                         <p><i className="fas fa-plus-circle"></i>點擊上傳</p>
                                     </i>
                                     <img src={inputValue.routeImg} />
+                                    <div className={`loading-img-wrap 
+                                    ${isShowImgLoading.id === 'route-img' ? 'active' : ''}`}>
+                                        <div className="layer"></div>
+                                        <div className="loading-img">
+                                            <div></div><div></div><div></div><div></div>
+                                        </div>
+                                        <div className="loaging-word">
+                                            {isShowImgLoading.progress} %
+                                        </div>
+                                    </div>
                                 </label>
                                 <div className="upload-img">
                                     <input
@@ -712,6 +755,13 @@ class TrailCreate extends Component {
                     onClick={this.closeAlert}
                 />
                 <Footer />
+                <div className={`loading-page-wrap ${isShowCreateLoading ? 'active' : ''} `}>
+                    <div className="layer"></div>
+                    <div className="loading-icon">
+                        <i class="fas fa-mountain m-smail"></i>
+                        <i class="fas fa-mountain m-big"></i>
+                    </div>
+                </div>
             </Fragment>
         )
     }

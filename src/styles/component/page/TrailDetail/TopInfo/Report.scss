@@ -135,12 +135,12 @@
 	visibility: hidden;
 	opacity: 0;
 	z-index: 100;
-	@include transition-duration(0.2s);
+	@include transition-duration(0.15s);
 
 	&.active {
 		visibility: visible;
 		opacity: 1;
-		@include transition-duration(0.2s);
+		@include transition-duration(0.15s);
 	}
 
 	.layer {
@@ -167,13 +167,13 @@
 		transform: translate(-50%, -50%) scale(0);
 		-webkit-transform: translate(-50%, -50%) scale(0);
 
-		@include transition-duration(0.3s);
+		@include transition-duration(0.25s);
 
 		&.active {
 			opacity: 1;
 			transform: translate(-50%, -50%) scale(1);
 			-webkit-transform: translate(-50%, -50%) scale(1);
-			@include transition-duration(0.3s);
+			@include transition-duration(0.25s);
 		}
 
 		h3 {

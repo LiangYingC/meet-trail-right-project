@@ -21,8 +21,8 @@ const BasicInfo = ({ basicInfoData }) => {
                             <p className="subtitle">登頂風景 :</p>
                             <p>
                                 {
-                                    basicInfoData.scenery.map(scenery => {
-                                        return <span>{`${scenery} `}</span>
+                                    basicInfoData.scenery.map((scenery, index) => {
+                                        return <span key={index}>{`${scenery} `}</span>
                                     })
                                 }
                             </p>
