@@ -18,11 +18,49 @@ class TrailCreate extends Component {
         const id = e.target.id
         const name = e.target.name
         const value = e.target.value
-        if (Number(value)) {
-            console.log('isNum')
-        } else {
-            console.log('isNotNum')
+        console.log(id)
+        console.log(name)
+        console.log(value)
+        this.setState(preState => ({
+            ...preState,
+            alterWord: {
+                word: '',
+                inputId: ''
+            }
+        }))
+
+        if (id === 'title' ||
+            id === 'description' ||
+            id === 'start' ||
+            id === 'end') {
+            if (Number(value)) {
+                this.setState(preState => ({
+                    ...preState,
+                    alterWord: {
+                        word: `格式有誤，不能僅有數字`,
+                        inputId: `${id}`
+                    }
+                }))
+            }
+        } else if (
+            id === 'height' ||
+            id === 'length' ||
+            id === 'hour' ||
+            id === 'minute') {
+            console.log(value)
+            console.log(typeof (value))
+            console.log(value !== '0')
+            if (!Number(value) && value !== '0' && value.length > 0) {
+                this.setState(preState => ({
+                    ...preState,
+                    alterWord: {
+                        word: `僅能輸入數字`,
+                        inputId: `${id}`
+                    }
+                }))
+            }
         }
+
 
         switch (name) {
             case 'upload-img':
@@ -38,8 +76,8 @@ class TrailCreate extends Component {
                             ...preState.alertBox,
                             isShow: true,
                             wordHead: '請先輸入',
-                            wordTail: '喔',
-                            hightlight: '步道名稱'
+                            hightlight: '步道名稱',
+                            wordTail: '喔'
                         }
                     }))
                 } else if (file.size > 8000000) {
@@ -48,8 +86,8 @@ class TrailCreate extends Component {
                             ...preState.alertBox,
                             isShow: true,
                             wordHead: '檔案不可超過',
-                            wordTail: '喔',
-                            hightlight: '8 MB'
+                            hightlight: '8 MB',
+                            wordTail: '喔'
                         }
                     }))
                 } else {
@@ -155,58 +193,121 @@ class TrailCreate extends Component {
     }
 
     createTrail = () => {
-        const { inputValue } = this.state
+        const { inputValue, alterWord } = this.state
         const { userData } = this.context
         const { difficultyList, sceneryList } = TC
         const history = this.props.history
         const sceneryData = processRadioOrCheckbox(inputValue.scenery, sceneryList)
         const difficultyData = processRadioOrCheckbox(inputValue.difficulty, difficultyList)
 
-        DB.ref('trails').doc()
-            .set({
-                id: null,
-                title: inputValue.title,
-                description: inputValue.description,
-                location: {
-                    area: inputValue.area,
-                    city: inputValue.city,
-                    dist: inputValue.dist
-                },
-                images: {
-                    main_image: inputValue.coverImg,
-                    route_image: inputValue.routeImg
-                },
-                routes: {
-                    start: inputValue.start,
-                    end: inputValue.end,
-                    type: inputValue.type
-                },
-                create_user: {
-                    id: userData.id,
-                    name: userData.name,
-                    picture: userData.picture
-                },
-                create_time: APP.getDay(),
-                height: Number(inputValue.height),
-                length: Number(inputValue.length),
-                time: (Number(inputValue.hour) * 60) + Number(inputValue.minute),
-                scenery: sceneryData,
-                difficulty: difficultyData,
-                timestamp: DB.time(),
-                youtube_list: null
-            }).then(() => {
-                DB.ref('trails')
-                    .get()
-                    .then(querySnapshot => {
-                        querySnapshot.forEach(doc => {
-                            if (doc.data().id === null) {
-                                DB.ref('trails').doc(doc.id)
-                                    .update({ id: doc.id })
-                                history.push(`/trails/detail/${doc.id}`)
+        // 檢查必填是否皆已填寫級格式是否正確
+        let isAllInputFilled = true
+        const inputKeyList = Object.keys(inputValue)
+        inputKeyList.forEach(key => {
+            if (key !== 'routeImg') {
+                if (!inputValue[key]) {
+                    isAllInputFilled = false
+                }
+
+                if (key === 'title' ||
+                    key === 'description' ||
+                    key === 'start' ||
+                    key === 'end') {
+                    if (Number(inputValue[key])) {
+                        this.setState(preState => ({
+                            ...preState,
+                            alterWord: {
+                                word: `格式有誤，不能僅有數字`,
+                                inputId: `${key}`
                             }
+                        }))
+                        isAllInputFilled = false
+                    }
+                } else if (
+                    key === 'height' ||
+                    key === 'length' ||
+                    key === 'hour' ||
+                    key === 'minute'
+                ) {
+                    if (!Number(inputValue[key]) &&
+                        inputValue[key] !== '0' &&
+                        inputValue[key].length > 0) {
+                        this.setState(preState => ({
+                            ...preState,
+                            alterWord: {
+                                word: `僅能輸入數字`,
+                                inputId: `${key}`
+                            }
+                        }))
+                        isAllInputFilled = false
+                    }
+                }
+            }
+
+        })
+        if (sceneryData.length === 0 || difficultyData.length === 0) {
+            isAllInputFilled = false
+        }
+
+
+        if (isAllInputFilled) {
+            DB.ref('trails').doc()
+                .set({
+                    id: null,
+                    title: inputValue.title,
+                    description: inputValue.description,
+                    location: {
+                        area: inputValue.area,
+                        city: inputValue.city,
+                        dist: inputValue.dist
+                    },
+                    images: {
+                        main_image: inputValue.coverImg,
+                        route_image: inputValue.routeImg
+                    },
+                    routes: {
+                        start: inputValue.start,
+                        end: inputValue.end,
+                        type: inputValue.type
+                    },
+                    create_user: {
+                        id: userData.id,
+                        name: userData.name,
+                        picture: userData.picture
+                    },
+                    create_time: APP.getDay(),
+                    height: Number(inputValue.height),
+                    length: Number(inputValue.length),
+                    time: (Number(inputValue.hour) * 60) + Number(inputValue.minute),
+                    scenery: sceneryData,
+                    difficulty: difficultyData,
+                    timestamp: DB.time(),
+                    youtube_list: null
+                }).then(() => {
+                    DB.ref('trails')
+                        .get()
+                        .then(querySnapshot => {
+                            querySnapshot.forEach(doc => {
+                                if (doc.data().id === null) {
+                                    DB.ref('trails').doc(doc.id)
+                                        .update({ id: doc.id })
+                                    history.push(`/trails/detail/${doc.id}`)
+                                }
+                            })
                         })
-                    })
-            })
+                })
+        } else {
+            this.setState(preState => ({
+                alterBox: {
+                    ...preState.alertBox,
+                    isShow: true,
+                    wordHead: '有資料',
+                    hightlight: '尚未填寫或格式錯誤',
+                    wordTail: '請再次檢查'
+                }
+            }))
+        }
+
 
         function processRadioOrCheckbox(keyList, dataList) {
             const trueKeyList = Object.keys(keyList)
@@ -238,8 +339,8 @@ class TrailCreate extends Component {
                 ...preState.alertBox,
                 isShow: false,
                 wordHead: '',
-                wordTail: '',
-                hightlight: ''
+                hightlight: '',
+                wordTail: ''
             }
         }))
     }
@@ -247,7 +348,8 @@ class TrailCreate extends Component {
     render() {
         const {
             inputValue,
-            alterBox
+            alterBox,
+            alterWord
         } = this.state
 
         const {
@@ -256,7 +358,7 @@ class TrailCreate extends Component {
             sceneryList
         } = TC
 
-        console.log(this.state.inputValue)
+        console.log(this.state.alterWord)
         return (
             <Fragment>
                 <Header />
@@ -268,7 +370,13 @@ class TrailCreate extends Component {
                         </div>
 
                         <div className="form-item">
-                            <label htmlFor="title">步道名稱<span className="mark">*</span></label>
+                            <label htmlFor="title">
+                                步道名稱
+                                <span className="mark">*</span>
+                                <span className="alert-word">
+                                    {alterWord.inputId === 'title' ? alterWord.word : ''}
+                                </span>
+                            </label>
                             <input
                                 type="text"
                                 id="title"
@@ -279,7 +387,12 @@ class TrailCreate extends Component {
                         </div>
 
                         <div className="form-item">
-                            <label htmlFor="description">步道簡介<span className="mark">*</span></label>
+                            <label htmlFor="description">步道簡介
+                            <span className="mark">*</span>
+                                <span className="alert-word">
+                                    {alterWord.inputId === 'description' ? alterWord.word : ''}
+                                </span>
+                            </label>
                             <div className="textarea-wrap">
                                 <textarea
                                     id="description"
@@ -329,7 +442,8 @@ class TrailCreate extends Component {
                         </div>
 
                         <div className="form-item">
-                            <label htmlFor="area">步道位置<span className="mark">*</span></label>
+                            <label htmlFor="area">
+                                步道位置<span className="mark">*</span></label>
                             <div className="flex">
                                 <select
                                     name="location"
@@ -380,7 +494,13 @@ class TrailCreate extends Component {
                         </div>
 
                         <div className="form-item">
-                            <label htmlFor="route">步道起終點<span className="mark">*</span></label>
+                            <label htmlFor="route">
+                                步道起終點
+                            <span className="mark">*</span>
+                                <span className="alert-word">
+                                    {alterWord.inputId === 'start' || alterWord.inputId === 'end' ? alterWord.word : ''}
+                                </span>
+                            </label>
                             <div className="flex route">
                                 <div className="flex">
                                     <input
@@ -467,7 +587,13 @@ class TrailCreate extends Component {
                         </div>
 
                         <div className="form-item">
-                            <label htmlFor="height">海拔高度<span className="mark">*</span></label>
+                            <label htmlFor="height">
+                                海拔高度
+                            <span className="mark">*</span>
+                                <span className="alert-word">
+                                    {alterWord.inputId === 'height' ? alterWord.word : ''}
+                                </span>
+                            </label>
                             <div className="flex height">
                                 <input
                                     type="text"
@@ -481,7 +607,13 @@ class TrailCreate extends Component {
                         </div>
 
                         <div className="form-item">
-                            <label htmlFor="length">全程里程數<span className="mark">*</span></label>
+                            <label htmlFor="length">
+                                全程里程數
+                                <span className="mark">*</span>
+                                <span className="alert-word">
+                                    {alterWord.inputId === 'length' ? alterWord.word : ''}
+                                </span>
+                            </label>
                             <div className="flex length">
                                 <input
                                     type="text"
@@ -496,7 +628,13 @@ class TrailCreate extends Component {
 
 
                         <div className="form-item">
-                            <label htmlFor="hour">整趟所需時間<span className="mark">*</span></label>
+                            <label htmlFor="hour">
+                                整趟所需時間
+                                <span className="mark">*</span>
+                                <span className="alert-word">
+                                    {alterWord.inputId === 'hour' || alterWord.inputId === 'minute' ? alterWord.word : ''}
+                                </span>
+                            </label>
                             <div className="flex time">
                                 <div className="flex">
                                     <input

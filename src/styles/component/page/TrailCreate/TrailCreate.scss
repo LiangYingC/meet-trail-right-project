@@ -38,16 +38,24 @@
 			font-weight: bold;
 			color: $color-black;
 			letter-spacing: 1px;
-			display: inline-block;
 			margin: 10px 0;
 			position: relative;
+			display: flex;
+			align-items: center;
 
 			> .mark {
 				font-size: 1.25rem;
 				color: $color-red;
-				position: absolute;
-				top: 0;
-				right: -15px;
+				position: relative;
+				padding-left: 5px;
+				padding-right: 10px;
+			}
+
+			> .alert-word {
+				font-size: 14px;
+				color: $color-red;
+				letter-spacing: 0.6px;
+				font-weight: 400;
 			}
 		}
 
@@ -94,16 +102,12 @@
 			.words-remider {
 				font-size: 0.75rem;
 				position: absolute;
-				bottom: 0;
-				left: 40%;
+				bottom: -7px;
+				left: 39%;
+				background-color: transparent;
+				border-radius: $br-basic;
+				padding: 5px;
 			}
-		}
-
-		.words-remider {
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			z-index: 100;
 		}
 
 		.reminder {

@@ -30,14 +30,18 @@ const TC = {
             height: '',
             length: '',
             hour: '',
-            minute: '',
-            report: ''
+            minute: ''
         },
         alterBox: {
             isShow: false,
             wordHead: '',
-            wordTail: '',
-            hightlight: ''
+            hightlight: '',
+            wordTail: ''
+
+        },
+        alterWord: {
+            word: '',
+            inputId: ''
         }
     },
 
