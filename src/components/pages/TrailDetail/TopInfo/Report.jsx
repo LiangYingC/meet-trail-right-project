@@ -62,31 +62,40 @@ class Report extends Component {
     }
 
     setReportData = () => {
-        const { id, title } = this.props
-        const { userData } = this.context
+        const { id, title, picture } = this.props
+        const { userData, handleUserData } = this.context
         this.setState(preState => {
-            DB.ref('trails').doc(id).collection('report_list').doc()
-                .set({
-                    report_time: preState.dateValue + " , " + APP.getTime(),
-                    report_content: preState.contentValue,
+
+            const reportItem = {
+                report_time: preState.dateValue + " , " + APP.getTime(),
+                report_content: preState.contentValue,
+                timestamp: DB.time()
+            }
+
+            DB.ref('trails').doc(id).collection('report_list')
+                .add({
+                    ...reportItem,
                     create_user: {
                         id: userData.id,
                         name: userData.name,
                         picture: userData.picture
-                    },
-                    timestamp: DB.time()
+                    }
+                }).then(newReport => {
+                    console.log(newReport)
+                    DB.ref('users').doc(userData.id).collection('report_list').doc(newReport.id)
+                        .set({
+                            ...reportItem,
+                            report_trail: {
+                                id: id,
+                                title: title,
+                                picture: picture
+                            }
+                        })
                 })
 
-            DB.ref('users').doc(userData.id).collection('report_list').doc()
-                .set({
-                    report_time: preState.dateValue + " , " + APP.getTime(),
-                    report_content: preState.contentValue,
-                    repoer_trail: {
-                        id: id,
-                        title: title
-                    },
-                    timestamp: DB.time()
-                })
+
+
+            console.log(this.context)
 
             return (
                 {
@@ -156,9 +165,9 @@ class Report extends Component {
                             :
                             <div className="report-list">
                                 {
-                                    reportList.map(reportItem => {
+                                    reportList.map((reportItem, index) => {
                                         return (
-                                            <div className="report-item">
+                                            <div className="report-item" key={index}>
                                                 <div className="flex report-info">
                                                     <div className="report-user-img">
                                                         <img src={reportItem.create_user.picture} alt={`${reportItem.create_user.name}的照片`} />

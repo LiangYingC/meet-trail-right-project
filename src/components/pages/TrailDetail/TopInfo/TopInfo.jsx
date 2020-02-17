@@ -20,7 +20,11 @@ const TopInfo = ({ topInfoData }) => {
                         <div className="top-info__pic">
                             <img src={topInfoData.mainImage} alt={`${topInfoData.title}圖片`} />
                         </div>
-                        <Report id={topInfoData.id} title={topInfoData.title} />
+                        <Report
+                            id={topInfoData.id}
+                            title={topInfoData.title}
+                            picture={topInfoData.createUser.picture}
+                        />
                     </div>
                     <Weather location={topInfoData.location} />
                 </div>

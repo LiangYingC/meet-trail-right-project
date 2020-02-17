@@ -210,13 +210,13 @@ class Weather extends Component {
             return (
                 <div className="flex weather-list">
                     {
-                        weatherList.map(weather => {
+                        weatherList.map((weather, index) => {
                             let periodPosition = weather.description.indexOf('。')
                             periodPosition = weather.description.indexOf('。', periodPosition + 1)
                             const weatherDescriptionProcessed = weather.description.slice(periodPosition + 1)
 
                             return (
-                                <div className="weather-item">
+                                <div className="weather-item" key={index}>
                                     <div className="flex weather-date-and-day">
                                         <div className="weather-date">{weather.date}</div>
                                         <div className={`weather-day ${weather.isDay ? 'day' : 'night'}`}>

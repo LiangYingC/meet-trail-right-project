@@ -25,7 +25,9 @@ class App extends Component {
                     name: userData.name,
                     email: userData.email,
                     picture: userData.picture,
-                    status: userData.status
+                    status: userData.status,
+                    likeList: userData.likeList,
+                    reportList: userData.reportList
                 }
             })
         }
@@ -37,7 +39,9 @@ class App extends Component {
                 name: '',
                 email: '',
                 picture: '',
-                status: ''
+                status: '',
+                likeList: [],
+                reportList: []
             },
             toggleLogin: (boolen) => { this.toggleLogin(boolen) },
             handleUserData: (userData) => { this.handleUserData(userData) }
@@ -56,11 +60,35 @@ class App extends Component {
                             name: doc.data().name,
                             email: doc.data().email,
                             picture: doc.data().picture,
-                            status: doc.data().status
+                            status: doc.data().status,
+                            likeList: doc.data().likeList,
+                            reportList: []
                         }
                         this.state.toggleLogin(true)
                         this.state.handleUserData(userData)
                     })
+
+                DB.ref('users').doc(user.uid).collection('report_list')
+                    .onSnapshot(querySnapshot => {
+                        if (querySnapshot.docs.length > 0) {
+                            let reportList = []
+                            querySnapshot.forEach(doc => {
+                                const data = doc.data()
+                                let reportItem = {
+                                    time: data.report_time,
+                                    timestamp: data.timestamp,
+                                    content: data.report_content,
+                                    trail: data.report_trail
+                                }
+                                reportList.push(reportItem)
+                                this.state.handleUserData({
+                                    ...this.state.userData,
+                                    reportList: reportList
+                                })
+                            })
+                        }
+                    })
+
             } else {
                 console.log('onAuthState false')
                 this.state.toggleLogin(false)

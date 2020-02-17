@@ -278,8 +278,8 @@ class TrailCreate extends Component {
                 ...preState,
                 isShowCreateLoading: true
             }))
-            DB.ref('trails').doc()
-                .set({
+            DB.ref('trails')
+                .add({
                     id: null,
                     title: inputValue.title,
                     description: inputValue.description,
@@ -310,18 +310,8 @@ class TrailCreate extends Component {
                     difficulty: difficultyData,
                     timestamp: DB.time(),
                     youtube_list: null
-                }).then(() => {
-                    DB.ref('trails')
-                        .get()
-                        .then(querySnapshot => {
-                            querySnapshot.forEach(doc => {
-                                if (doc.data().id === null) {
-                                    DB.ref('trails').doc(doc.id)
-                                        .update({ id: doc.id })
-                                    history.push(`/trails/detail/${doc.id}`)
-                                }
-                            })
-                        })
+                }).then(newTrail => {
+                    history.push(`/trails/detail/${newTrail.id}`)
                     localStorage.setItem('MTR_Trail_Create', JSON.stringify(null))
                 })
         } else {

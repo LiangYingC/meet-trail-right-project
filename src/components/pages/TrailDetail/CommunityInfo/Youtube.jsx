@@ -101,7 +101,7 @@ class Youtube extends Component {
                     {
                         youtubeList.map(youtube => {
                             return (
-                                <div className="youtube-item">
+                                <div className="youtube-item" key={youtube.videoId}>
                                     <div className="video-container">
                                         <iframe
                                             width="350px"
