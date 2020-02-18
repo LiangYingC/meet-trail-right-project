@@ -63,7 +63,7 @@ class Report extends Component {
 
     setReportData = () => {
         const { id, title, picture } = this.props
-        const { userData, handleUserData } = this.context
+        const { userData } = this.context
         this.setState(preState => {
 
             const reportItem = {
@@ -81,7 +81,6 @@ class Report extends Component {
                         picture: userData.picture
                     }
                 }).then(newReport => {
-                    console.log(newReport)
                     DB.ref('users').doc(userData.id).collection('report_list').doc(newReport.id)
                         .set({
                             ...reportItem,
@@ -92,10 +91,6 @@ class Report extends Component {
                             }
                         })
                 })
-
-
-
-            console.log(this.context)
 
             return (
                 {

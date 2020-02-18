@@ -8,7 +8,7 @@
 	background-color: #fafafa;
 
 	.wrap {
-		width: 80%;
+		width: 100%;
 		height: 100%;
 		align-items: flex-start;
 
@@ -177,6 +177,235 @@
 					position: relative;
 					top: -40px;
 					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+.like-list {
+	.wrap {
+		width: 100% !important;
+	}
+
+	.like-item-container {
+		justify-content: flex-start;
+		align-items: stretch;
+		box-shadow: 0 0 3px 0 rgba($color: $color-black, $alpha: 0.2);
+		border-radius: $br-basic * 2;
+		overflow: hidden;
+		margin-bottom: 25px;
+		position: relative;
+		top: 0px;
+		left: 0px;
+		cursor: pointer;
+		transform: scale(1);
+		@include transition-duration(0.3s);
+
+		&:hover {
+			transform: scale(1.02);
+			box-shadow: 0 0 10px 1px rgba($color: $color-black, $alpha: 0.15);
+		}
+
+		.like-item-img {
+			flex: none;
+			width: 300px;
+			height: 200px;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.like-item-info {
+			justify-content: flex-start;
+			align-items: flex-start;
+			flex-direction: column;
+			padding: 15px 30px;
+
+			.title {
+				flex: none;
+				> h3 {
+					font-weight: bold;
+					letter-spacing: 1.2px;
+					padding: 10px 0;
+				}
+			}
+
+			p,
+			span {
+				font-size: 1rem;
+				color: $color-grey;
+				padding: 10px 5px;
+
+				.fas,
+				.far {
+					font-size: 0.75rem;
+					color: $color-grey;
+					padding-right: 5px;
+				}
+
+				.fa-map {
+					font-size: 12px;
+				}
+			}
+
+			.description {
+				flex: auto;
+				font-size: 1rem;
+				line-height: 1.4;
+				letter-spacing: 0.6px;
+			}
+
+			.like-item-subcontainer {
+				flex: none;
+				justify-content: space-around;
+
+				> div {
+					padding-right: 30px;
+				}
+
+				> div:first-child {
+					padding-left: 8px;
+				}
+
+				.scenery-list {
+					> span {
+						border: 1px solid #ccc;
+						border-radius: $br-basic;
+						margin-left: 10px;
+						padding: 3px 5px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.report-list {
+	.wrap {
+		width: 100% !important;
+	}
+	.report-item-container {
+		margin-bottom: 15px;
+		padding: 10px;
+		border-radius: $br-basic * 1;
+		border: 1px solid #ddd;
+		cursor: pointer;
+		@include transition-duration(0.25s);
+
+		&:hover {
+			border: 1px solid $color-green;
+		}
+
+		.report-item {
+			justify-content: flex-start;
+
+			.icon {
+				flex: none;
+				padding-right: 10px;
+			}
+
+			.time {
+				flex: none;
+				font-size: 0.875rem;
+				padding: 0 10px;
+			}
+
+			.title {
+				flex: none;
+				padding: 0 10px;
+				letter-spacing: 1px;
+				border-right: 1px solid #ccc;
+			}
+
+			.content {
+				flex: 1;
+				color: #666;
+				padding: 0 10px;
+				letter-spacing: 0.6px;
+			}
+		}
+	}
+}
+
+.create-list {
+	.wrap {
+		width: 100%;
+	}
+
+	.create-item-container {
+		width: 33.3%;
+
+		.create-item {
+			margin: 0 10px 15px 10px;
+			border-radius: $br-basic * 2;
+			box-shadow: 0 0 6px 0 rgba($color: $color-black, $alpha: 0.3);
+			overflow: hidden;
+			position: relative;
+			cursor: pointer;
+
+			&:hover {
+				.btn-container {
+					opacity: 1;
+				}
+			}
+
+			.img {
+				width: 100%;
+				height: 100%;
+				border-radius: $br-basic * 2;
+				position: relative;
+
+				.layer {
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.85));
+					opacity: 0.6;
+				}
+
+				.title {
+					font-size: 1.375rem;
+					font-weight: bold;
+					letter-spacing: 1px;
+					color: $color-white;
+					position: absolute;
+					bottom: 10px;
+					left: 15px;
+				}
+			}
+
+			.btn-container {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				opacity: 0;
+				@include transition-duration(0.4s);
+
+				button {
+					font-size: 1.15rem;
+					border-radius: $br-basic;
+					border-color: transparent;
+					color: #444;
+					background-color: $color-white;
+					letter-spacing: 1px;
+					padding: 5px 10px;
+					cursor: pointer;
+					@include transition-duration(0.3s);
+
+					&:hover {
+						background-color: #24b582;
+						color: $color-white;
+						opacity: 1;
+					}
+				}
+
+				#go-to-trail {
+					margin-bottom: 15px;
 				}
 			}
 		}

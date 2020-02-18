@@ -5,11 +5,10 @@ import {
     Link,
     Switch
 } from "react-router-dom";
-import { DB } from '../../../lib'
+import { DB } from '../../../lib';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import ProfileLike from './ProfileLike.jsx';
-import ProfileRecord from './ProfileRecord.jsx';
 import ProfileReport from './ProfileReport.jsx';
 import ProfileComment from './ProfileComment.jsx';
 import ProfileTrail from './ProfileTrail.jsx';
@@ -21,11 +20,6 @@ const profileRoutes = [
         path: "/profile",
         exact: true,
         main: () => <ProfileLike />
-    },
-    {
-        path: "/profile/record",
-        exact: true,
-        main: () => <ProfileRecord />
     },
     {
         path: "/profile/comment",
@@ -47,7 +41,8 @@ const profileRoutes = [
 class Profile extends Component {
 
     signOut = () => {
-        DB.signOut()
+        const history = this.props.history
+        DB.signOut(history)
     }
 
     uploadUserImg = (e) => {
@@ -128,12 +123,6 @@ class Profile extends Component {
                                             <li className={`${pathName === '/profile' ? 'active' : ''}`}>
                                                 <i className="fas fa-heart"></i>
                                                 <p>我的收藏</p>
-                                            </li>
-                                        </Link>
-                                        <Link to="/profile/record">
-                                            <li className={`${pathName === '/profile/record' ? 'active' : ''}`}>
-                                                <i className="fas fa-map-signs"></i>
-                                                <p>步道紀錄</p>
                                             </li>
                                         </Link>
                                         <Link to="/profile/comment">

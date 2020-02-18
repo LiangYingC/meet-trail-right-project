@@ -27,6 +27,7 @@ class App extends Component {
                     picture: userData.picture,
                     status: userData.status,
                     likeList: userData.likeList,
+                    createList: userData.createList,
                     reportList: userData.reportList
                 }
             })
@@ -41,10 +42,11 @@ class App extends Component {
                 picture: '',
                 status: '',
                 likeList: [],
+                createList: [],
                 reportList: []
             },
-            toggleLogin: (boolen) => { this.toggleLogin(boolen) },
-            handleUserData: (userData) => { this.handleUserData(userData) }
+            handleUserData: (userData) => { this.handleUserData(userData) },
+            toggleLogin: (boolen) => { this.toggleLogin(boolen) }
         }
     }
 
@@ -52,22 +54,7 @@ class App extends Component {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 console.log('onAuthState true')
-
-                DB.ref('users').doc(user.uid)
-                    .onSnapshot(doc => {
-                        const userData = {
-                            id: doc.data().id,
-                            name: doc.data().name,
-                            email: doc.data().email,
-                            picture: doc.data().picture,
-                            status: doc.data().status,
-                            likeList: doc.data().like_list,
-                            reportList: []
-                        }
-                        this.state.toggleLogin(true)
-                        this.state.handleUserData(userData)
-                    })
-
+                // report data 有兩層要取用麻煩，因此全部存在 context
                 DB.ref('users').doc(user.uid).collection('report_list')
                     .onSnapshot(querySnapshot => {
                         if (querySnapshot.docs.length > 0) {
@@ -81,16 +68,44 @@ class App extends Component {
                                     trail: data.report_trail
                                 }
                                 reportList.push(reportItem)
-                                this.state.handleUserData({
-                                    ...this.state.userData,
+                                this.setState(preState => ({
+                                    ...preState,
                                     reportList: reportList
-                                })
+                                }))
                             })
                         }
                     })
+                // create & like data 只有一層方便取用因此只存 id 
+                DB.ref('users').doc(user.uid)
+                    .onSnapshot(doc => {
+                        const userData = {
+                            id: doc.data().id,
+                            name: doc.data().name,
+                            email: doc.data().email,
+                            picture: doc.data().picture,
+                            status: doc.data().status,
+                            likeList: doc.data().like_list,
+                            createList: doc.data().create_list,
+                            reportList: this.state.reportList
+                        }
+                        this.state.handleUserData(userData)
+                        this.state.toggleLogin(true)
+                    })
+
 
             } else {
                 console.log('onAuthState false')
+                const userData = {
+                    id: '',
+                    name: '',
+                    email: '',
+                    picture: '',
+                    status: '',
+                    likeList: [],
+                    createList: [],
+                    reportList: []
+                }
+                this.state.handleUserData(userData)
                 this.state.toggleLogin(false)
             }
         })

@@ -28,7 +28,7 @@ export const DB = {
         return storageRef.child(filePath)
     },
 
-    signUp: (email, pwd, name, history, callback) => {
+    signUp: (email, pwd, name, history, callback, callbackSed) => {
         firebase.auth()
             .createUserWithEmailAndPassword(email, pwd)
             .then(data => {
@@ -41,10 +41,13 @@ export const DB = {
                         picture: 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2Flogo300x300.png?alt=media&token=6df50e02-8911-4a1d-9583-9197d8859acf',
                         timestamp: DB.time(),
                         status: '享受悠遊山林步道的時光',
-                        likeList: []
+                        like_List: [],
+                        create_List: []
                     })
                 if (history) {
                     history.push('/profile')
+                } else {
+                    callbackSed()
                 }
             })
             .catch(error => {
@@ -52,12 +55,14 @@ export const DB = {
             })
     },
 
-    signIn: (email, pwd, history, callback) => {
+    signIn: (email, pwd, history, callback, callbackSed) => {
         firebase.auth()
             .signInWithEmailAndPassword(email, pwd)
             .then(data => {
                 if (history) {
                     history.push('/profile')
+                } else {
+                    callbackSed()
                 }
             })
             .catch(error => {
@@ -65,14 +70,17 @@ export const DB = {
             })
     },
 
-    signOut: () => {
+    signOut: (history) => {
         firebase.auth()
             .signOut()
             .then(() => {
-                console.log('sucess sign out')
+                if (history) {
+                    history.push('/trails')
+                } else {
+                    callbackSed()
+                }
             }).catch(error => {
                 console.log(error)
             })
     }
-
 }

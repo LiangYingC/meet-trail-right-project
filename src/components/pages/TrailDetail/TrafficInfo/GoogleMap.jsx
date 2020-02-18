@@ -86,7 +86,7 @@ class GoogleMapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBMv6UqgFjQ2tL10bnCTH2765cpmDW_',
+    apiKey: 'AIzaSyBMv6UqgFjQ2tL10bnCTH2765cpmDW',
     language: 'zh-TW'
 })(GoogleMapContainer);
 

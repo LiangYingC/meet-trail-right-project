@@ -53,12 +53,8 @@ class LoginBox extends Component {
         const history = this.props.history
         const targetId = e.target.id
         targetId === 'sign-up-btn' ?
-            DB.signUp(inputValue.email, inputValue.pwd, inputValue.name, history, this.toggleAlertWord) :
-            DB.signIn(inputValue.email, inputValue.pwd, history, this.toggleAlertWord)
-
-        if (closeLoginBox) {
-            closeLoginBox()
-        }
+            DB.signUp(inputValue.email, inputValue.pwd, inputValue.name, history, this.toggleAlertWord, closeLoginBox) :
+            DB.signIn(inputValue.email, inputValue.pwd, history, this.toggleAlertWord, closeLoginBox)
     }
 
     toggleAlertWord = (error) => {

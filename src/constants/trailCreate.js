@@ -2,13 +2,15 @@
 const TC = {
     initialState: {
         inputValue: {
-            coverImg: null,
-            routeImg: null,
             title: '',
             description: '',
-            area: '',
-            city: '',
-            dist: '',
+            location: {
+                area: '',
+                city: '',
+                dist: ''
+            },
+            coverImg: null,
+            routeImg: null,
             start: '',
             end: '',
             type: '單向折返',
