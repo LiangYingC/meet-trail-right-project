@@ -74,12 +74,18 @@ class Profile extends Component {
                 // Handle successful uploads on complete
                 uploadTask.snapshot.ref.getDownloadURL()
                     .then(downloadURL => {
+
                         const newUserData = {
                             ...userData,
                             picture: downloadURL
                         }
+                        console.log(downloadURL)
+                        console.log(userData.id)
+                        DB.ref('users').doc(userData.id)
+                            .update({
+                                picture: downloadURL
+                            })
                         handleUserData(newUserData)
-                        console.log('File available at', downloadURL)
                     })
             })
         }

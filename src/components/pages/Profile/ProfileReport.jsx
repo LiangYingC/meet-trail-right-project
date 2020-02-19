@@ -18,7 +18,7 @@ class ProfileReport extends Component {
         const { userData } = this.context
         console.log(userData)
         console.log(userData.reportList)
-        if (userData.reportList.length > 0) {
+        if (userData.reportList) {
             console.log('hi')
             this.setState(preState => ({
                 ...preState,

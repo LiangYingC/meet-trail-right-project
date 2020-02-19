@@ -332,12 +332,13 @@
 .create-list {
 	.wrap {
 		width: 100%;
+		flex-wrap: wrap;
 	}
 
 	.create-item-container {
-		width: 33.3%;
-
 		.create-item {
+			width: 33.3%;
+
 			margin: 0 10px 15px 10px;
 			border-radius: $br-basic * 2;
 			box-shadow: 0 0 6px 0 rgba($color: $color-black, $alpha: 0.3);
@@ -373,7 +374,7 @@
 					letter-spacing: 1px;
 					color: $color-white;
 					position: absolute;
-					bottom: 10px;
+					bottom: 15px;
 					left: 15px;
 				}
 			}

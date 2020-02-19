@@ -41,7 +41,11 @@
 		flex: auto;
 		margin: 0px 50px;
 		border-radius: $br-basic;
-		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
 	}
 }
 

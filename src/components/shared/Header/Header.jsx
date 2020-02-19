@@ -47,8 +47,6 @@ class Header extends Component {
 
     shouldHidden = () => {
         const { movedY, positionY } = this.state
-        console.log(movedY)
-        console.log(positionY)
         if (movedY > 30) {
             this.setState({
                 movedY: 0,
@@ -71,7 +69,6 @@ class Header extends Component {
 
     render() {
         const { isLanguagOptionsOpen, isHideHeader } = this.state
-        console.log(isHideHeader)
         const { isLogin, userData } = this.context
         return (
             <Router>
