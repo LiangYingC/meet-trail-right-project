@@ -174,39 +174,27 @@ class TrailCreate extends Component {
                 switch (id) {
                     case 'area':
                         this.setState(preState => ({
-                            ...preState,
                             inputValue: {
                                 ...preState.inputValue,
-                                location: {
-                                    ...preState.inputValue.location,
-                                    area: value,
-                                    city: '',
-                                    dist: ''
-                                }
+                                area: value,
+                                city: '',
+                                dist: ''
                             }
                         }))
                         break;
                     case 'city':
                         this.setState(preState => ({
-                            ...preState,
                             inputValue: {
                                 ...preState.inputValue,
-                                location: {
-                                    ...preState.inputValue.location,
-                                    city: value,
-                                    dist: ''
-                                }
+                                city: value,
+                                dist: ''
                             }
                         }))
                     case 'dist':
                         this.setState(preState => ({
-                            ...preState,
                             inputValue: {
                                 ...preState.inputValue,
-                                location: {
-                                    ...preState.inputValue.location,
-                                    dist: value
-                                }
+                                dist: value
                             }
                         }))
                     default:
@@ -396,7 +384,7 @@ class TrailCreate extends Component {
             isShowImgLoading,
             isShowCreateLoading
         } = this.state
-        console.log(inputValue)
+
         const {
             locationObj,
             difficultyList,
@@ -440,7 +428,7 @@ class TrailCreate extends Component {
                             <div className="textarea-wrap">
                                 <textarea
                                     id="description"
-                                    placeholder="簡要介紹步道的特色"
+                                    placeholder="以你的觀點，簡要介紹步道的特色"
                                     value={inputValue.description}
                                     onChange={this.changeValue}>
                                 </textarea>
@@ -496,12 +484,12 @@ class TrailCreate extends Component {
                                 <select
                                     name="location"
                                     id="area"
-                                    value={inputValue.location.area}
+                                    value={inputValue.area}
                                     onChange={this.changeValue}
                                 >
                                     <option
                                         value='選擇區域'
-                                        className={`${inputValue.location.area.length > 0 ? 'inactive' : ''}`}>
+                                        className={`${inputValue.area.length > 0 ? 'inactive' : ''}`}>
                                         選擇區域
                                     </option>
                                     {
@@ -513,13 +501,13 @@ class TrailCreate extends Component {
                                 <select
                                     name="location"
                                     id="city"
-                                    value={inputValue.location.city}
+                                    value={inputValue.city}
                                     onChange={this.changeValue}
                                 >
                                     <option value='選擇縣市'>選擇縣市</option>
                                     {
-                                        inputValue.location.area.length > 0 ?
-                                            Object.keys(locationObj[inputValue.location.area]).map(city => {
+                                        inputValue.area.length > 0 ?
+                                            Object.keys(locationObj[inputValue.area]).map(city => {
                                                 return <option value={`${city}`}>{city}</option>
                                             }) : ''
                                     }
@@ -527,13 +515,13 @@ class TrailCreate extends Component {
                                 <select
                                     name="location"
                                     id="dist"
-                                    value={inputValue.location.dist}
+                                    value={inputValue.dist}
                                     onChange={this.changeValue}
                                 >
                                     <option value='選擇鄉鎮'>選擇鄉鎮</option>
                                     {
-                                        inputValue.location.city.length > 0 ?
-                                            locationObj[inputValue.location.area][inputValue.location.city].map(dist => {
+                                        inputValue.city.length > 0 ?
+                                            locationObj[inputValue.area][inputValue.city].map(dist => {
                                                 return <option value={`${dist}`}>{dist}</option>
                                             }) : ''
                                     }
@@ -773,8 +761,8 @@ class TrailCreate extends Component {
                 <div className={`loading-page-wrap ${isShowCreateLoading ? 'active' : ''} `}>
                     <div className="layer"></div>
                     <div className="loading-icon">
-                        <i className="fas fa-mountain m-smail"></i>
-                        <i className="fas fa-mountain m-big"></i>
+                        <i class="fas fa-mountain m-smail"></i>
+                        <i class="fas fa-mountain m-big"></i>
                     </div>
                 </div>
             </Fragment>

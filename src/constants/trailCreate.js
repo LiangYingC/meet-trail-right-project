@@ -4,19 +4,16 @@ const TC = {
         inputValue: {
             title: '',
             description: '',
-            location: {
-                area: '',
-                city: '',
-                dist: ''
-            },
             coverImg: null,
             routeImg: null,
+            area: '',
+            city: '',
+            dist: '',
             start: '',
             end: '',
             type: '單向折返',
             difficulty: {
                 easy: false,
-                general: false,
                 challenge: false,
                 hard: false
             },
@@ -139,10 +136,6 @@ const TC = {
         {
             value: 'easy',
             name: '輕鬆'
-        },
-        {
-            value: 'general',
-            name: '普通'
         },
         {
             value: 'challenge',

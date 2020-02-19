@@ -13,7 +13,52 @@ class Header extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isLanguagOptionsOpen: false,
+            positionY: window.pageYOffset,
+            movedY: 0,
+            isHideHeader: false,
+            isLanguagOptionsOpen: false
+        }
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll, true)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = () => {
+        // 當往下滾動發生，取得舊的位置，並將位置轉換成新的
+        const lastPositonY = this.state.positionY
+        this.setState({
+            positionY: window.pageYOffset
+        }, () => this.calculateScrollHeight(lastPositonY))
+    }
+
+    calculateScrollHeight = (lastPositonY) => {
+        // 取得新舊位置後，計算出目前往下滑動多少距離
+        const scrollHeight = window.pageYOffset - lastPositonY
+        const { movedY } = this.state
+        this.setState({
+            movedY: movedY + scrollHeight
+        }, this.shouldHidden)
+    }
+
+    shouldHidden = () => {
+        const { movedY, positionY } = this.state
+        console.log(movedY)
+        console.log(positionY)
+        if (movedY > 30) {
+            this.setState({
+                movedY: 0,
+                isHideHeader: true,
+            })
+        } else if (movedY <= -90 || positionY <= 30) {
+            this.setState({
+                movedY: 0,
+                isHideHeader: false,
+            })
         }
     }
 
@@ -25,11 +70,12 @@ class Header extends Component {
     }
 
     render() {
-        const { isLanguagOptionsOpen, } = this.state
+        const { isLanguagOptionsOpen, isHideHeader } = this.state
+        console.log(isHideHeader)
         const { isLogin, userData } = this.context
         return (
             <Router>
-                <header id="header">
+                <header id="header" className={`${isHideHeader ? 'hide' : ''}`}>
                     <div className="flex wrap">
                         <Link to='/' >
                             <div className="header-logo">

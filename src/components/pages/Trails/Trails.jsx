@@ -19,7 +19,7 @@ const trailsFilterData = [
         title: '步道難度',
         questionIcon: true,
         tag: 'difficulty',
-        list: ['全部', '輕鬆', '普通', '有點挑戰', '很有挑戰']
+        list: ['全部', '輕鬆', '有點挑戰', '很有挑戰']
     },
     {
         id: 2,
@@ -69,7 +69,9 @@ class Trails extends Component {
     }
 
     componentDidMount() {
-        DB.ref('trails').get()
+        DB.ref('trails')
+            .orderBy('timestamp', 'desc')
+            .get()
             .then(querySnapshot => {
                 let trailsData = []
                 querySnapshot.forEach(doc => {
@@ -105,6 +107,7 @@ class Trails extends Component {
                 const difficultyFilter = preState.trailsFilterList[1]
                 const timeFilter = preState.trailsFilterList[2]
                 const lengthFilter = preState.trailsFilterList[3]
+
 
                 let timeValue
                 let lengthValue
@@ -185,7 +188,7 @@ class Trails extends Component {
                 }
 
                 if ((trail.location.area === areaFilter.trailsFilterList[areaFilter.value] || areaFilter.value === 0) &&
-                    (trail.difficulty === difficultyFilter.trailsFilterList[difficultyFilter.value] || difficultyFilter.value === 0) &&
+                    (trail.difficulty[0] === difficultyFilter.trailsFilterList[difficultyFilter.value] || difficultyFilter.value === 0) &&
                     ((timeValue.min <= trail.time && trail.time < timeValue.max) || timeFilter.value === 0) &&
                     ((lengthValue.min <= trail.length && trail.length < lengthValue.max) || lengthFilter.value === 0)
                 ) {
@@ -197,6 +200,7 @@ class Trails extends Component {
 
     render() {
         const { trailsVisible, trailsFilterList } = this.state
+        console.log(trailsVisible)
         if (trailsVisible === null) {
             return <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
         } return (

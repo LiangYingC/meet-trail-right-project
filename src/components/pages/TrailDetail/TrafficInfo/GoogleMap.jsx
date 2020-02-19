@@ -3,8 +3,8 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Button from '../../../shared/Button';
 
 const mapStyles = {
-    width: '50%',
-    height: '60%',
+    width: '100%',
+    height: '100%',
     left: '25%',
     transform: 'translateX(-25%)'
 };
@@ -86,7 +86,7 @@ class GoogleMapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBMv6UqgFjQ2tL10bnCTH2765cpmDW',
+    apiKey: 'AIzaSyBMv6UqgFjQ2tL10bnCTH2765cpmDW_xnI',
     language: 'zh-TW'
 })(GoogleMapContainer);
 

@@ -6,6 +6,11 @@
 	top: 0;
 	left: 0;
 	z-index: 100;
+	@include transition-duration(0.3s);
+
+	&.hide {
+		top: -60px;
+	}
 
 	.wrap {
 		height: 60px;
@@ -53,6 +58,10 @@
 			@include transition-duration(0.15s);
 
 			&:hover {
+				opacity: 0.9;
+			}
+
+			&:active {
 				opacity: 1;
 			}
 		}

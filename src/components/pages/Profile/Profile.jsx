@@ -39,6 +39,9 @@ const profileRoutes = [
 ]
 
 class Profile extends Component {
+    constructor(props) {
+        super(props)
+    }
 
     signOut = () => {
         const history = this.props.history
@@ -80,6 +83,7 @@ class Profile extends Component {
                     })
             })
         }
+
     }
 
     render() {

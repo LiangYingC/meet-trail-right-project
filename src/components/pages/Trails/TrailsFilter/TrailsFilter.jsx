@@ -16,7 +16,7 @@ const trailsFilterData = [
         title: '步道難度',
         questionIcon: true,
         tag: 'difficulty',
-        list: ['全部', '輕鬆', '普通', '有點挑戰', '很有挑戰']
+        list: ['全部', '輕鬆', '有點挑戰', '很有挑戰']
     },
     {
         id: 2,

@@ -3,7 +3,8 @@
 @import "./reset.scss";
 
 /*** page component ***/
-
+/* Home Page */
+@import "./component/page/Home/Home.scss";
 /* Trails Page */
 @import "./component/page/Trails/Trails.scss";
 @import "./component/page/Trails/TrailsList.scss";
