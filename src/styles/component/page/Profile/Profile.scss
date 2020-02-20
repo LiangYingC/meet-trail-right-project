@@ -234,7 +234,7 @@
 
 			p,
 			span {
-				font-size: 1rem;
+				font-size: 0.875rem;
 				color: $color-grey;
 				padding: 10px 5px;
 
@@ -324,6 +324,7 @@
 				color: #666;
 				padding: 0 10px;
 				letter-spacing: 0.6px;
+				line-height: 1.2;
 			}
 		}
 	}
@@ -335,79 +336,86 @@
 		flex-wrap: wrap;
 	}
 
-	.create-item-container {
-		.create-item {
-			width: 33.3%;
+	.create-item {
+		width: calc(18vw);
+		height: 12vw;
+		margin: 0 10px 15px 10px;
+		border-radius: $br-basic * 2;
+		box-shadow: 0 0 6px 0 rgba($color: $color-black, $alpha: 0.3);
+		overflow: hidden;
+		position: relative;
+		cursor: pointer;
 
-			margin: 0 10px 15px 10px;
+		&:hover {
+			.layer {
+				box-shadow: inset 0 0 30px 150px rgba($color: $color-black, $alpha: 0.3);
+			}
+			.btn-container {
+				opacity: 1;
+			}
+		}
+
+		.img {
+			width: 100%;
+			height: 100%;
 			border-radius: $br-basic * 2;
-			box-shadow: 0 0 6px 0 rgba($color: $color-black, $alpha: 0.3);
-			overflow: hidden;
 			position: relative;
-			cursor: pointer;
 
-			&:hover {
-				.btn-container {
+			.layer {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.85));
+				opacity: 0.6;
+				@include transition-duration(0.4s);
+			}
+
+			.title {
+				font-size: 1.375rem;
+				font-weight: bold;
+				letter-spacing: 1px;
+				color: $color-white;
+				position: absolute;
+				bottom: 15px;
+				left: 15px;
+			}
+
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+
+		.btn-container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			opacity: 0;
+			@include transition-duration(0.4s);
+
+			button {
+				font-size: 1.15rem;
+				border-radius: $br-basic;
+				border-color: transparent;
+				color: #444;
+				background-color: $color-white;
+				letter-spacing: 1px;
+				padding: 5px 10px;
+				cursor: pointer;
+				@include transition-duration(0.3s);
+
+				&:hover {
+					background-color: #24b582;
+					color: $color-white;
 					opacity: 1;
 				}
 			}
 
-			.img {
-				width: 100%;
-				height: 100%;
-				border-radius: $br-basic * 2;
-				position: relative;
-
-				.layer {
-					width: 100%;
-					height: 100%;
-					position: absolute;
-					top: 0;
-					left: 0;
-					background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.85));
-					opacity: 0.6;
-				}
-
-				.title {
-					font-size: 1.375rem;
-					font-weight: bold;
-					letter-spacing: 1px;
-					color: $color-white;
-					position: absolute;
-					bottom: 15px;
-					left: 15px;
-				}
-			}
-
-			.btn-container {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				opacity: 0;
-				@include transition-duration(0.4s);
-
-				button {
-					font-size: 1.15rem;
-					border-radius: $br-basic;
-					border-color: transparent;
-					color: #444;
-					background-color: $color-white;
-					letter-spacing: 1px;
-					padding: 5px 10px;
-					cursor: pointer;
-					@include transition-duration(0.3s);
-
-					&:hover {
-						background-color: #24b582;
-						color: $color-white;
-						opacity: 1;
-					}
-				}
-
-				#go-to-trail {
-					margin-bottom: 15px;
-				}
+			#go-to-trail {
+				margin-bottom: 15px;
 			}
 		}
 	}

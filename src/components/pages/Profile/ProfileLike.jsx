@@ -18,7 +18,7 @@ class ProfileLike extends Component {
     componentDidMount() {
         const { userData } = this.context
         console.log(userData)
-        if (userData.likeList.length > 0) {
+        if (userData.likeList) {
             DB.ref('trails')
                 .get()
                 .then(querySnapshot => {

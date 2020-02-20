@@ -10,7 +10,7 @@
 
 .trails-list {
 	flex-wrap: wrap;
-
+	align-items: stretch;
 	width: 100%;
 
 	.trail-item {
@@ -23,7 +23,19 @@
 		top: 0;
 		left: 0;
 		transform: scale(1);
+		overflow: hidden;
 		@include transition-duration(0.25s);
+
+		.trail-img {
+			width: 18.5vw;
+			height: 12vw;
+			overflow: hidden;
+		}
+
+		.trail-img img {
+			width: 100%;
+			height: 100%;
+		}
 
 		&:hover .trail-img img {
 			opacity: 1;

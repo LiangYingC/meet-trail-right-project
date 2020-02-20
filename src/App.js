@@ -59,6 +59,7 @@ class App extends Component {
                 DB.ref('users').doc(user.uid).collection('report_list')
                     .onSnapshot(querySnapshot => {
                         if (querySnapshot.docs.length > 0) {
+                            console.log(querySnapshot)
                             let reportList = []
                             querySnapshot.forEach(doc => {
                                 const data = doc.data()
@@ -69,10 +70,16 @@ class App extends Component {
                                     trail: data.report_trail
                                 }
                                 reportList.push(reportItem)
+                                console.log(reportList)
                                 this.setState(preState => ({
                                     ...preState,
                                     reportList: reportList
                                 }))
+                                this.state.handleUserData({
+                                    ...this.state.userData,
+                                    reportList: reportList
+                                })
+                                console.log(this.context)
                             })
                         }
                     })

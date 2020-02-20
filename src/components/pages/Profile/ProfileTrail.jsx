@@ -80,19 +80,17 @@ class ProfileLike extends Component {
                                         createList.map((item, index) => {
                                             return (
 
-                                                <div className={`create-item-container key=${item.id}`}>
-                                                    <div className="create-item">
-                                                        <div className="img">
-                                                            <div className="layer"></div>
-                                                            <img src={item.mainImage} alt={`${item.title}的圖片`} />
-                                                            <div className="title">{item.title}</div>
-                                                        </div>
-                                                        <div className="btn-container">
-                                                            <Link to={`/trails/detail/${item.id}`}>
-                                                                <button id='go-to-trail'>前往步道</button>
-                                                            </Link>
-                                                            <button id='go-to-edited-trail'>編輯步道</button>
-                                                        </div>
+                                                <div className={`create-item key=${item.id}`}>
+                                                    <div className="img">
+                                                        <div className="layer"></div>
+                                                        <img src={item.mainImage} alt={`${item.title}的圖片`} />
+                                                        <div className="title">{item.title}</div>
+                                                    </div>
+                                                    <div className="btn-container">
+                                                        <Link to={`/trails/detail/${item.id}`}>
+                                                            <button id='go-to-trail'>前往步道</button>
+                                                        </Link>
+                                                        <button id='go-to-edited-trail'>編輯步道</button>
                                                     </div>
                                                 </div>
                                             )
