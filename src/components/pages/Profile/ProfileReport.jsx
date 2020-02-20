@@ -61,12 +61,14 @@ class ProfileReport extends Component {
                                                         <div className="icon">
                                                             <i className="fas fa-bullhorn"></i>
                                                         </div>
+
                                                         <div className="time">
                                                             {item.time.slice(0, 10)}
                                                         </div>
                                                         <div className="title">
                                                             {item.trail.title}
                                                         </div>
+
                                                         <div className="content">
                                                             {item.content}
                                                         </div>

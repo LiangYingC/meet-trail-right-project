@@ -95,7 +95,7 @@ class ProfileLike extends Component {
                                                             <h3>{item.title}</h3>
                                                         </div>
                                                         <div className="description">
-                                                            <p>{this.processDescription(item.description, 105)}</p>
+                                                            <p>{this.processDescription(item.description, 60)}</p>
                                                         </div>
                                                         <div className="flex like-item-subcontainer">
                                                             <div className="flex time">
@@ -115,9 +115,11 @@ class ProfileLike extends Component {
                                                             </div>
                                                             <div className="flex scenery-list">
                                                                 <i className="fas fa-mountain"></i>
-                                                                {item.scenery.map((scenery, index) => {
-                                                                    return <span key={index}>{scenery}</span>
-                                                                })}
+                                                                <div>
+                                                                    {item.scenery.map((scenery, index) => {
+                                                                        return <span key={index}>{scenery}</span>
+                                                                    })}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

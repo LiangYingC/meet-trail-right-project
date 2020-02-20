@@ -7,6 +7,10 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/'
     },
+    devServer: {
+        contentBase: './public',
+        historyApiFallback: true
+    },
     module: {
         rules: [
             {
@@ -43,9 +47,5 @@ module.exports = {
                 }
             }
         ]
-    },
-    devServer: {
-        contentBase: './public',
-        historyApiFallback: true
     }
 }
