@@ -38,7 +38,7 @@ export const DB = {
                         id: user.uid,
                         name: name,
                         email: user.email,
-                        picture: 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2Flogo300x300.png?alt=media&token=6df50e02-8911-4a1d-9583-9197d8859acf',
+                        picture: 'https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2FUserlogo.png?alt=media&token=38796a9b-348b-4995-82ee-6b6c88f70eb8',
                         timestamp: DB.time(),
                         status: '享受悠遊山林步道的時光',
                         like_list: [],

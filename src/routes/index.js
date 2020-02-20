@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     Switch,
     Route,
-    Redirect
+    Redirect,
+    BrowserRouter as Router
 } from "react-router-dom";
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
@@ -16,7 +17,6 @@ import AuthUserContext from '../contexts/AuthUserContext';
 class Routes extends Component {
     render() {
         const { isLogin } = this.context
-        console.log(isLogin)
         return (
             <Switch>
                 <Route path="/trails/detail/:id" component={TrailDetail} />

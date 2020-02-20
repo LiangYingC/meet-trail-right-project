@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Route,
     Link,
     Switch
@@ -127,34 +127,32 @@ class Profile extends Component {
                                 </div>
                             </div>
                             <div className="profile-aside-menu">
-                                <Router>
-                                    <ul>
-                                        <Link to="/profile">
-                                            <li className={`${pathName === '/profile' ? 'active' : ''}`}>
-                                                <i className="fas fa-heart"></i>
-                                                <p>我的收藏</p>
-                                            </li>
-                                        </Link>
-                                        <Link to="/profile/comment">
-                                            <li className={`${pathName === '/profile/comment' ? 'active' : ''}`}>
-                                                <i className="fas fa-comment"></i>
-                                                <p>步道評論</p>
-                                            </li>
-                                        </Link>
-                                        <Link to="/profile/report">
-                                            <li className={`${pathName === '/profile/report' ? 'active' : ''}`}>
-                                                <i className="fas fa-bullhorn"></i>
-                                                <p>步道近況回報</p>
-                                            </li>
-                                        </Link>
-                                        <Link to="/profile/trail">
-                                            <li className={`${pathName === '/profile/trail' ? 'active' : ''}`}>
-                                                <i className="fas fa-mountain"></i>
-                                                <p>我提供的步道</p>
-                                            </li>
-                                        </Link>
-                                    </ul>
-                                </Router>
+                                <ul>
+                                    <Link to="/profile">
+                                        <li className={`${pathName === '/profile' ? 'active' : ''}`}>
+                                            <i className="fas fa-heart"></i>
+                                            <p>我的收藏</p>
+                                        </li>
+                                    </Link>
+                                    <Link to="/profile/comment">
+                                        <li className={`${pathName === '/profile/comment' ? 'active' : ''}`}>
+                                            <i className="fas fa-comment"></i>
+                                            <p>步道評論</p>
+                                        </li>
+                                    </Link>
+                                    <Link to="/profile/report">
+                                        <li className={`${pathName === '/profile/report' ? 'active' : ''}`}>
+                                            <i className="fas fa-bullhorn"></i>
+                                            <p>步道近況回報</p>
+                                        </li>
+                                    </Link>
+                                    <Link to="/profile/trail">
+                                        <li className={`${pathName === '/profile/trail' ? 'active' : ''}`}>
+                                            <i className="fas fa-mountain"></i>
+                                            <p>我提供的步道</p>
+                                        </li>
+                                    </Link>
+                                </ul>
                                 <button
                                     id="sign-out-btn"
                                     className="flex"

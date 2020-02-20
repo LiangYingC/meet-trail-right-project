@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Link
 } from "react-router-dom";
 import { DB } from '../../../lib';
@@ -71,66 +71,64 @@ class ProfileLike extends Component {
         }
         return (
             <Fragment>
-                <Router>
-                    <div className="title">
-                        <h2>我的收藏</h2>
-                    </div>
-                    <div className="num-list">
-                        <p>目前有 <span>{likeList.length}</span> 則收藏</p>
-                    </div>
-                    {
-                        likeList.length === 0 ?
-                            <ProfileNoList text={'目前尚無收藏的步道喔'} /> :
-                            <div className="like-list">
-                                <div className="wrap">
-                                    {
-                                        likeList.map((item, index) => {
-                                            return (
-                                                <Link to={`/trails/detail/${item.id}`}>
-                                                    <div className={`flex like-item-container key=${item.id}`}>
-                                                        <div className="like-item-img" key={index}>
-                                                            <img src={item.mainImage} alt={`${item.title}的圖片`} />
+                <div className="title">
+                    <h2>我的收藏</h2>
+                </div>
+                <div className="num-list">
+                    <p>目前有 <span>{likeList.length}</span> 則收藏</p>
+                </div>
+                {
+                    likeList.length === 0 ?
+                        <ProfileNoList text={'目前尚無收藏的步道喔'} /> :
+                        <div className="like-list">
+                            <div className="wrap">
+                                {
+                                    likeList.map((item, index) => {
+                                        return (
+                                            <Link to={`/trails/detail/${item.id}`}>
+                                                <div className={`flex like-item-container key=${item.id}`}>
+                                                    <div className="like-item-img" key={index}>
+                                                        <img src={item.mainImage} alt={`${item.title}的圖片`} />
+                                                    </div>
+                                                    <div className="flex like-item-info">
+                                                        <div className="title">
+                                                            <h3>{item.title}</h3>
                                                         </div>
-                                                        <div className="flex like-item-info">
-                                                            <div className="title">
-                                                                <h3>{item.title}</h3>
-                                                            </div>
-                                                            <div className="description">
-                                                                <p>{this.processDescription(item.description, 105)}</p>
-                                                            </div>
-                                                            <div className="flex like-item-subcontainer">
-                                                                <div className="flex time">
-                                                                    <i className="far fa-clock"></i>
-                                                                    <p>
-                                                                        {
-                                                                            item.time > 60 ?
-                                                                                `${Math.floor(item.time / 60)} 小時 
+                                                        <div className="description">
+                                                            <p>{this.processDescription(item.description, 105)}</p>
+                                                        </div>
+                                                        <div className="flex like-item-subcontainer">
+                                                            <div className="flex time">
+                                                                <i className="far fa-clock"></i>
+                                                                <p>
+                                                                    {
+                                                                        item.time > 60 ?
+                                                                            `${Math.floor(item.time / 60)} 小時 
                                                     ${item.time % 60 > 0 ? `${item.time % 60}分鐘` : ''}`
-                                                                                : `${item.time} 分鐘`
-                                                                        }
-                                                                    </p>
-                                                                </div>
-                                                                <div className="flex location">
-                                                                    <i className="fas fa-map-marker-alt"></i>
-                                                                    <p>{item.location.city} {item.location.dist}</p>
-                                                                </div>
-                                                                <div className="flex scenery-list">
-                                                                    <i className="fas fa-mountain"></i>
-                                                                    {item.scenery.map((scenery, index) => {
-                                                                        return <span key={index}>{scenery}</span>
-                                                                    })}
-                                                                </div>
+                                                                            : `${item.time} 分鐘`
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                            <div className="flex location">
+                                                                <i className="fas fa-map-marker-alt"></i>
+                                                                <p>{item.location.city} {item.location.dist}</p>
+                                                            </div>
+                                                            <div className="flex scenery-list">
+                                                                <i className="fas fa-mountain"></i>
+                                                                {item.scenery.map((scenery, index) => {
+                                                                    return <span key={index}>{scenery}</span>
+                                                                })}
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </Link>
-                                            )
-                                        })
-                                    }
-                                </div>
+                                                </div>
+                                            </Link>
+                                        )
+                                    })
+                                }
                             </div>
-                    }
-                </Router>
+                        </div>
+                }
             </Fragment>
         )
     }

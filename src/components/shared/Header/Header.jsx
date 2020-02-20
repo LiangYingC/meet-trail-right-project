@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Link,
 } from 'react-router-dom';
 import headerLogoImg from '../../../assets/logo/logo260x70-deep .png';
@@ -71,50 +71,48 @@ class Header extends Component {
         const { isLanguagOptionsOpen, isHideHeader } = this.state
         const { isLogin, userData } = this.context
         return (
-            <Router>
-                <header id="header" className={`${isHideHeader ? 'hide' : ''}`}>
-                    <div className="flex wrap">
-                        <Link to='/' >
-                            <div className="header-logo">
-                                <img src={headerLogoImg} alt="選山步道 logo" />
-                            </div>
-                        </Link>
-                        <div className="flex header-search">
-                            <input type="text" id="search-input" placeholder="請輸入步道名稱" />
-                            <div className="search-icon">
-                                <i className="fas fa-search"></i>
-                            </div>
+            <header id="header" className={`${isHideHeader ? 'hide' : ''}`}>
+                <div className="flex wrap">
+                    <Link to='/' >
+                        <div className="header-logo">
+                            <img src={headerLogoImg} alt="選山步道 logo" />
                         </div>
-                        <div className="header-nav">
-                            <ul>
-                                <Link to='/trails' ><li>全部步道</li></Link>
-                                <Link to={`${isLogin ? '/trailCreate' : '/login'}`} >
-                                    <li>提供步道</li>
-                                </Link>
-                                <li >
-                                    <div id="header-language-btn" onClick={this.toggleLanguagOptions}>
-                                        <p>繁體中文</p>
-                                        <div className={`down-arrow-icon ${isLanguagOptionsOpen ? 'active' : ''}`}><img src={downArrowImg} alt="more options logo" /></div>
-                                        <div className={`language-options-box ${isLanguagOptionsOpen ? 'active' : ''}`} >
-                                            <p>繁體中文</p>
-                                            <p>English</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <Link to={`${isLogin ? '/profile' : '/login'}`} >
-                                    <div id="header-user-btn">
-                                        {
-                                            isLogin ? <img src={userData.picture} alt={`${userData.name}的照片`} />
-                                                : <img src={userImg} alt="user logo" />
-                                        }
-
-                                    </div>
-                                </Link>
-                            </ul>
+                    </Link>
+                    <div className="flex header-search">
+                        <input type="text" id="search-input" placeholder="請輸入步道名稱" />
+                        <div className="search-icon">
+                            <i className="fas fa-search"></i>
                         </div>
                     </div>
-                </header>
-            </Router>
+                    <div className="header-nav">
+                        <ul>
+                            <Link to='/trails' ><li>全部步道</li></Link>
+                            <Link to={`${isLogin ? '/trailCreate' : '/login'}`} >
+                                <li>提供步道</li>
+                            </Link>
+                            <li >
+                                <div id="header-language-btn" onClick={this.toggleLanguagOptions}>
+                                    <p>繁體中文</p>
+                                    <div className={`down-arrow-icon ${isLanguagOptionsOpen ? 'active' : ''}`}><img src={downArrowImg} alt="more options logo" /></div>
+                                    <div className={`language-options-box ${isLanguagOptionsOpen ? 'active' : ''}`} >
+                                        <p>繁體中文</p>
+                                        <p>English</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <Link to={`${isLogin ? '/profile' : '/login'}`} >
+                                <div id="header-user-btn">
+                                    {
+                                        isLogin ? <img src={userData.picture} alt={`${userData.name}的照片`} />
+                                            : <img src={userImg} alt="user logo" />
+                                    }
+
+                                </div>
+                            </Link>
+                        </ul>
+                    </div>
+                </div>
+            </header>
         )
     }
 }

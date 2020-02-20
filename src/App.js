@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Routes from './routes';
-import { HashRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { DB } from './lib';
 import { firebaseConfig } from './config'
 import AuthUserContext from './contexts/AuthUserContext';

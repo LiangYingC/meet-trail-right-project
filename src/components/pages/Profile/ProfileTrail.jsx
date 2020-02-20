@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Link
 } from "react-router-dom";
 import { DB } from '../../../lib';
@@ -64,42 +64,40 @@ class ProfileLike extends Component {
         console.log(createList)
         return (
             <Fragment>
-                <Router>
-                    <div className="title">
-                        <h2>我提供的步道</h2>
-                    </div>
-                    <div className="num-list">
-                        <p>已分享 <span>{createList.length}</span> 個步道囉</p>
-                    </div>
-                    {
-                        createList.length === 0 ?
-                            <ProfileNoList text={'目前尚無收藏的步道喔'} /> :
-                            <div className="create-list">
-                                <div className="flex wrap">
-                                    {
-                                        createList.map((item, index) => {
-                                            return (
+                <div className="title">
+                    <h2>我提供的步道</h2>
+                </div>
+                <div className="num-list">
+                    <p>已分享 <span>{createList.length}</span> 個步道囉</p>
+                </div>
+                {
+                    createList.length === 0 ?
+                        <ProfileNoList text={'目前尚無收藏的步道喔'} /> :
+                        <div className="create-list">
+                            <div className="flex wrap">
+                                {
+                                    createList.map((item, index) => {
+                                        return (
 
-                                                <div className={`create-item key=${item.id}`}>
-                                                    <div className="img">
-                                                        <div className="layer"></div>
-                                                        <img src={item.mainImage} alt={`${item.title}的圖片`} />
-                                                        <div className="title">{item.title}</div>
-                                                    </div>
-                                                    <div className="btn-container">
-                                                        <Link to={`/trails/detail/${item.id}`}>
-                                                            <button id='go-to-trail'>前往步道</button>
-                                                        </Link>
-                                                        <button id='go-to-edited-trail'>編輯步道</button>
-                                                    </div>
+                                            <div className={`create-item key=${item.id}`}>
+                                                <div className="img">
+                                                    <div className="layer"></div>
+                                                    <img src={item.mainImage} alt={`${item.title}的圖片`} />
+                                                    <div className="title">{item.title}</div>
                                                 </div>
-                                            )
-                                        })
-                                    }
-                                </div>
+                                                <div className="btn-container">
+                                                    <Link to={`/trails/detail/${item.id}`}>
+                                                        <button id='go-to-trail'>前往步道</button>
+                                                    </Link>
+                                                    <button id='go-to-edited-trail'>編輯步道</button>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
-                    }
-                </Router>
+                        </div>
+                }
             </Fragment>
         )
     }

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {
-    HashRouter as Router,
+    BrowserRouter as Router,
     Link
 } from "react-router-dom";
 import ProfileNoList from './ProfileNoList.jsx';
