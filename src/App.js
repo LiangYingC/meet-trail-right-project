@@ -51,6 +51,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        console.log('app 最新版本')
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 console.log('onAuthState true')

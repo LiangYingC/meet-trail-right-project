@@ -669,12 +669,12 @@
 			}
 
 			.title {
-				font-size: 1.375rem;
+				font-size: 1.125rem;
 				font-weight: bold;
 				letter-spacing: 1px;
 				color: $color-white;
 				position: absolute;
-				bottom: 15px;
+				bottom: 12px;
 				left: 15px;
 			}
 
@@ -686,27 +686,32 @@
 
 		.btn-container {
 			position: absolute;
-			top: 50%;
+			top: 40%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate(-50%, -40%);
 			opacity: 0;
 			@include transition-duration(0.4s);
 
 			button {
-				font-size: 1.15rem;
+				font-size: 1rem;
 				border-radius: $br-basic;
 				border-color: transparent;
-				color: #444;
+				color: #555;
 				background-color: $color-white;
 				letter-spacing: 1px;
-				padding: 5px 10px;
+				padding: 3px 8px;
 				cursor: pointer;
-				@include transition-duration(0.3s);
+				@include transform(scale(1));
+				@include transition-duration(0.2s);
 
 				&:hover {
 					background-color: #24b582;
 					color: $color-white;
 					opacity: 1;
+				}
+
+				&:active {
+					@include transform(scale(0.98));
 				}
 			}
 
@@ -730,6 +735,55 @@
 	.create-list {
 		> .wrap {
 			flex-direction: row !important;
+
+			.create-item {
+				width: calc(30vw);
+				height: 20vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 715px) {
+	.create-list {
+		> .wrap {
+			.create-item {
+				width: calc(40vw);
+				height: 27vw;
+
+				img {
+					title {
+						font-size: 1rem;
+					}
+				}
+
+				.btn-container {
+					#go-to-trail {
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.create-list {
+		> .wrap {
+			.create-item {
+				width: calc(80vw);
+				height: 50vw;
+
+				.btn-container {
+					button {
+						font-size: 1.125rem;
+					}
+
+					#go-to-trail {
+						margin-bottom: 15px;
+					}
+				}
+			}
 		}
 	}
 }
