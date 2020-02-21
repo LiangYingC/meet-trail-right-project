@@ -51,11 +51,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        console.log('app 最新版本')
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 console.log('onAuthState true')
-                console.log(user.uid)
                 // report data 有兩層要取用麻煩，因此全部存在 context
                 DB.ref('users').doc(user.uid).collection('report_list')
                     .onSnapshot(querySnapshot => {
@@ -87,7 +85,6 @@ class App extends Component {
                 // create & like data 只有一層方便取用因此只存 id 
                 DB.ref('users').doc(user.uid)
                     .onSnapshot(doc => {
-                        console.log(doc.data())
                         const userData = {
                             id: doc.data().id,
                             name: doc.data().name,
@@ -105,7 +102,6 @@ class App extends Component {
 
             } else {
                 console.log('onAuthState false')
-                console.log(user)
                 const userData = {
                     id: '',
                     name: '',

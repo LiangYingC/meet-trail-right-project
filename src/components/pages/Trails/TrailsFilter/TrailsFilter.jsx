@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import QuestionButton from '../../../shared/QuestionButton'
+import React, { Component, Fragment } from 'react';
+import Button from '../../../shared/Button';
+import QuestionButton from '../../../shared/QuestionButton';
 
 
 
@@ -34,52 +35,93 @@ const trailsFilterData = [
     }
 ]
 
-const TrailsFilter = ({ trailsFilterProps, changeFilter }) => {
-    return (
-        <section id="trails-filter">
-            <div className="wrap">
-                <div className="filters">
-                    {
-                        trailsFilterData.map(filter => {
-                            return (
-                                <div className="flex filter" key={filter.id}>
-                                    <div className="flex filter-title" >{filter.title}
-                                        <div className="filter-QustionBtn" style={{ opacity: `${filter.questionIcon ? '1' : '0'}` }}>
-                                            <QuestionButton />
-                                        </div>
-                                    </div>
-                                    <div className="filter-list">
-                                        {
-                                            filter.list.map((filterItem, index) => {
-                                                return (
-                                                    <label
-                                                        className={
-                                                            `filter-item 
+class TrailsFilter extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            isShowMobileFilter: false
+        }
+    }
+
+    toggleMobileFilter = () => {
+        this.setState(preSate => ({
+            isShowMobileFilter: !preSate.isShowMobileFilter
+        }))
+    }
+
+    render() {
+        const {
+            trailsFilterProps,
+            changeFilter
+        } = this.props
+
+        const {
+            isShowMobileFilter
+        } = this.state
+
+        return (
+            <Fragment>
+                <section id="trails-filter" className={`${isShowMobileFilter ? 'active' : ''}`}>
+                    <div className="layer"></div>
+                    <div className="wrap">
+                        <div className="filters">
+                            {
+                                trailsFilterData.map(filter => {
+                                    return (
+                                        <div className="flex filter mobile-active" key={filter.id}>
+                                            <div className="flex filter-title" >{filter.title}
+                                                <div className="filter-QustionBtn" style={{ opacity: `${filter.questionIcon ? '1' : '0'}` }}>
+                                                    <QuestionButton />
+                                                </div>
+                                            </div>
+                                            <div className="filter-list">
+                                                {
+                                                    filter.list.map((filterItem, index) => {
+                                                        return (
+                                                            <label
+                                                                className={
+                                                                    `filter-item 
                                                     ${(index === trailsFilterProps[filter.id].value) ? 'active' : ''}
                                                 `}
-                                                        key={index}
-                                                    >
-                                                        <input type="radio"
-                                                            name={filter.tag}
-                                                            value={index}
-                                                            checked={(index === trailsFilterProps[filter.id].value)}
-                                                            onChange={changeFilter}
-                                                        />
+                                                                key={index}
+                                                            >
+                                                                <input type="radio"
+                                                                    name={filter.tag}
+                                                                    value={index}
+                                                                    checked={(index === trailsFilterProps[filter.id].value)}
+                                                                    onChange={changeFilter}
+                                                                />
 
-                                                        {filterItem}
-                                                    </label>
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
+                                                                {filterItem}
+                                                            </label>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                            <Button
+                                text={'確認篩選'}
+                                id={'confirm-filter-btn'}
+                                onClick={this.toggleMobileFilter}
+                            />
+                        </div>
+                    </div>
+                </section >
+                <div className="mobile-show-filter-btn" onClick={this.toggleMobileFilter}>
+                    <div className="filter-container">
+                        <div className="line"></div>
+                        <div className="line"></div>
+                        <div className="line"></div>
+                    </div>
                 </div>
-            </div>
-        </section >
-    )
+            </Fragment>
+        )
+    }
 }
+
 
 export default TrailsFilter

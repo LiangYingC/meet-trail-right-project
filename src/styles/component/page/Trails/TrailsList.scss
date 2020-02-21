@@ -1,3 +1,44 @@
+#trails {
+	position: relative;
+
+	.top-btn {
+		position: fixed;
+		bottom: -75px;
+		right: 55px;
+		width: 75px;
+		height: 75px;
+		cursor: pointer;
+		background-color: $color-white;
+		border-radius: 50%;
+		overflow: hidden;
+
+		@include transform(scale(1));
+		@include transition-duration(0.2s);
+
+		&:hover {
+			@include transform(scale(1.15));
+		}
+
+		&:active {
+			@include transform(scale(0.99));
+		}
+
+		&.active {
+			position: fixed;
+			bottom: 30px;
+			right: 55px;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			bottom: 6.5px;
+			right: 1.5px;
+		}
+	}
+}
+
 .trails-qty {
 	flex: none;
 	padding: 0 0 20px 20px;
@@ -22,12 +63,12 @@
 		position: relative;
 		top: 0;
 		left: 0;
-		transform: scale(1);
 		overflow: hidden;
+		@include transform(scale(1));
 		@include transition-duration(0.25s);
 
 		.trail-img {
-			width: 18.5vw;
+			width: auto;
 			height: 12vw;
 			overflow: hidden;
 		}
@@ -39,7 +80,7 @@
 
 		&:hover .trail-img img {
 			opacity: 1;
-			transform: scale(1.08);
+			@include transform(scale(1.1));
 		}
 
 		&:hover .trail-img .fa-heart {
@@ -51,6 +92,9 @@
 			font-size: 1.3rem;
 			letter-spacing: 1.2px;
 			padding-bottom: 15px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 
 			.fas {
 				font-size: 1.25rem;
@@ -63,6 +107,9 @@
 			font-size: 0.9375rem;
 			color: $color-grey;
 			padding: 8px 5px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 
 			.fas,
 			.far {
@@ -83,9 +130,9 @@
 
 			img {
 				opacity: 0.9;
-				transform: scale(1);
 				border-top-left-radius: $br-basic;
 				border-top-right-radius: $br-basic;
+				@include transform(scale(1));
 				@include transition-duration(0.25s);
 			}
 
@@ -118,6 +165,171 @@
 
 		.trail-detail {
 			padding: 15px 30px;
+		}
+	}
+}
+
+@media screen and (max-width: 1430px) {
+	.trails-list {
+		.trail-item {
+			width: calc(33.3% - 30px);
+
+			.trail-img {
+				height: 16.5vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1330px) {
+	#trails {
+		.top-btn {
+			position: fixed;
+			bottom: -90px;
+			right: 30px;
+
+			&.active {
+				position: fixed;
+				bottom: 45px;
+				right: 30px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1140px) {
+	#trails {
+		> .wrap {
+			width: 90% !important;
+		}
+		.top-btn {
+			position: fixed;
+			bottom: -90px;
+			right: 8px;
+			width: 45px;
+			height: 45px;
+
+			&.active {
+				position: fixed;
+				bottom: 45px;
+				right: 8px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1025px) {
+	#trails {
+		> .wrap {
+			.trails-list {
+				.trail-item {
+					@include transform(scale(1));
+
+					&:hover {
+						@include transform(scale(0.95));
+					}
+
+					&:hover .trail-img img {
+						@include transform(scale(1));
+					}
+
+					&:hover .trail-img .fa-heart {
+						bottom: initial;
+						top: 20px;
+						right: 20px;
+					}
+
+					.trail-img {
+						opacity: 1;
+						position: relative;
+
+						.fa-heart {
+							position: absolute;
+							bottom: initial;
+							top: 20px;
+							right: 20px;
+						}
+					}
+				}
+			}
+		}
+
+		.top-btn {
+			display: none;
+		}
+	}
+}
+
+@media screen and (max-width: 992px) {
+	#trails {
+		> .wrap {
+			width: 95% !important;
+		}
+	}
+
+	.trails-list {
+		.trail-item {
+			width: calc(50% - 30px);
+
+			.trail-img {
+				height: 27.5vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 655px) {
+	.trails-list {
+		.trail-item {
+			width: calc(100% - 15px);
+
+			.trail-img {
+				height: 60.5vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.trails-list {
+		.trail-item {
+			width: calc(100% - 15px);
+
+			.trail-img {
+				height: 60.5vw;
+			}
+
+			h3 {
+				font-size: 1rem;
+				letter-spacing: 1px;
+				padding-bottom: 10px;
+
+				.fas {
+					font-size: 1rem;
+					color: $color-blue;
+					padding-right: 5px;
+				}
+			}
+
+			p {
+				font-size: 0.75rem;
+				color: $color-grey;
+				padding: 5px 5px;
+
+				.fas,
+				.far {
+					color: $color-grey;
+					padding-right: 5px;
+				}
+
+				.fa-map {
+					font-size: 0.625rem;
+				}
+			}
+
+			.trail-starts {
+				font-size: 0.75rem;
+			}
 		}
 	}
 }

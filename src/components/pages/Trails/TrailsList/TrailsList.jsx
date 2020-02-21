@@ -14,7 +14,64 @@ class TrailsList extends Component {
 
         this.state = {
             isShowLoginBox: false,
+            isShowTopBtn: false,
+            positionY: window.pageYOffset,
+            movedY: 0,
+            positionYCount: 0
         }
+    }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.handleScroll);
+    }
+
+    handleScroll = () => {
+        const lastPositionY = this.state.positionY
+        this.setState({
+            positionY: window.pageYOffset
+        }, () => this.calculateScrollHeight(lastPositionY))
+    }
+
+    calculateScrollHeight = (lastPositonY) => {
+        // 取得新舊位置後，計算出目前往下滑動多少距離
+        const scrollHeight = window.pageYOffset - lastPositonY
+        const { movedY } = this.state
+        this.setState({
+            movedY: movedY + scrollHeight
+        }, this.shouldShow)
+    }
+
+    shouldShow = () => {
+        const { positionY } = this.state
+        if (positionY >= 150) {
+            this.setState({
+                isShowTopBtn: true
+            })
+        } else if (positionY < 150) {
+            this.setState({
+                isShowTopBtn: false
+            })
+        }
+    }
+
+    scrollToTop = () => {
+        let moveHeight = this.state.movedY
+        const intervalId = setInterval(() => {
+            moveHeight = moveHeight - 30
+            window.scrollTo(0, moveHeight)
+            if (moveHeight <= 0) {
+                clearInterval(intervalId)
+                this.setState(preState => ({
+                    ...preState,
+                    positionY: window.pageYOffset,
+                    movedY: 0,
+                }))
+            }
+        }, 0)
     }
 
     toggleLike = (e, id) => {
@@ -53,13 +110,16 @@ class TrailsList extends Component {
 
 
     render() {
-        const { isShowLoginBox } = this.state
+        const {
+            isShowLoginBox,
+            isShowTopBtn
+        } = this.state
         const { trailsVisible } = this.props
         const { userData } = this.context
 
         return (
             <Fragment>
-                <section className="trails">
+                <section id="trails">
                     <div className="wrap">
                         <div className="flex">
                             <div className="trails-qty">
@@ -114,6 +174,9 @@ class TrailsList extends Component {
                                     )
                                 })}
                         </div>
+                    </div>
+                    <div className={`top-btn ${isShowTopBtn ? 'active' : ''}`} onClick={this.scrollToTop} >
+                        <img src="https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2FTopBtn.png?alt=media&token=112dbc3e-01f4-4f31-9004-a436806b82cb" alt="Top Button" />
                     </div>
                 </section >
                 <LoginBox

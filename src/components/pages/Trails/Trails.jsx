@@ -200,12 +200,11 @@ class Trails extends Component {
 
     render() {
         const { trailsVisible, trailsFilterList } = this.state
-        console.log(trailsVisible)
         if (trailsVisible === null) {
             return <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
         } return (
             <Fragment>
-                <Header />
+                <Header history={this.props.history} />
                 <TrailsFilter trailsFilterProps={trailsFilterList} changeFilter={this.changeFilter} />
                 <TrailsList trailsVisible={trailsVisible} />
                 <Footer />
