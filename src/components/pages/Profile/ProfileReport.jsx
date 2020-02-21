@@ -58,17 +58,17 @@ class ProfileReport extends Component {
                                             <Link to={`/trails/detail/${item.trail.id}`}>
                                                 <div className={`report-item-container key=${item.trail.id}`}>
                                                     <div className="flex report-item">
-                                                        <div className="icon">
-                                                            <i className="fas fa-bullhorn"></i>
+                                                        <div class="flex report-item-subcontainer">
+                                                            <div className="icon">
+                                                                <i className="fas fa-bullhorn"></i>
+                                                            </div>
+                                                            <div className="time">
+                                                                {item.time.slice(0, 10)}
+                                                            </div>
+                                                            <div className="title">
+                                                                {item.trail.title}
+                                                            </div>
                                                         </div>
-
-                                                        <div className="time">
-                                                            {item.time.slice(0, 10)}
-                                                        </div>
-                                                        <div className="title">
-                                                            {item.trail.title}
-                                                        </div>
-
                                                         <div className="content">
                                                             {item.content}
                                                         </div>
