@@ -10,6 +10,7 @@
 		cursor: pointer;
 		background-color: $color-white;
 		border-radius: 50%;
+		box-shadow: 0 0 8px 0 rgba(100, 100, 100, 0.2);
 		overflow: hidden;
 
 		@include transform(scale(1));

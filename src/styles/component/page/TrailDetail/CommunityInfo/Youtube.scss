@@ -4,7 +4,7 @@
 	align-items: stretch;
 	overflow-x: hidden;
 	position: relative;
-	padding-bottom: 18px;
+	padding-bottom: 13.5px;
 
 	&:hover {
 		overflow-x: scroll;
@@ -12,23 +12,21 @@
 	}
 
 	&::-webkit-scrollbar {
-		height: 8px;
-		background-color: $color-white;
+		height: 3.5px;
+		background-color: #fafafa;
 	}
 
 	&::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		background-color: $color-light-grey;
+		border-radius: $br-basic * 4;
+		background-color: $color-light-green;
 	}
 
 	&::-webkit-scrollbar-thumb:hover {
-		cursor: pointer;
-		background-color: $color-grey;
+		background-color: $color-green;
 	}
 
 	&::-webkit-scrollbar-thumb:active {
-		cursor: pointer;
-		background-color: $color-grey;
+		background-color: $color-green;
 	}
 }
 
@@ -81,5 +79,33 @@
 			color: $color-grey;
 			margin: 10px 30px 10px 40px;
 		}
+	}
+}
+
+@media screen and (max-width: 1025px) {
+	.youtube-item {
+		width: calc(33.3% + 35px);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.youtube-item {
+		width: calc(33.3% + 25px);
+	}
+}
+
+@media screen and (max-width: 595px) {
+	.youtube-item {
+		width: calc(50% + 25px);
+	}
+}
+
+@media screen and (max-width: 416px) {
+	.youtube-list {
+		padding-left: 10px;
+	}
+	.youtube-item {
+		width: calc(100% - 150px);
+		box-shadow: 0 1.5px 6px 1.5px rgba(0, 0, 0, 0.25);
 	}
 }

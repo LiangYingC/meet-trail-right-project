@@ -120,3 +120,37 @@
 		}
 	}
 }
+
+@media screen and (max-width: 992px) {
+	.traffic-info__google-map {
+		.google-map {
+			> div {
+				> div {
+					width: 90% !important;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.route-content {
+		flex-direction: column;
+
+		.start-and-end {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+@media screen and (max-width: 416px) {
+	.traffic-info__google-map {
+		.google-map {
+			> div {
+				> div {
+					width: 95% !important;
+				}
+			}
+		}
+	}
+}

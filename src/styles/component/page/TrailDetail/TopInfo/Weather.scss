@@ -1,7 +1,7 @@
 .weather-list {
 	flex-wrap: nowrap;
 	margin: 30px 0;
-	padding: 15px 10px 18px 10px;
+	padding: 15px 10px 13.5px 10px;
 	border-radius: $br-basic;
 	background-color: #fafafa;
 	overflow-x: hidden;
@@ -12,21 +12,21 @@
 	}
 
 	&::-webkit-scrollbar {
-		height: 8px;
+		height: 3.5px;
 		background-color: #fafafa;
 	}
 
 	&::-webkit-scrollbar-thumb {
-		border-radius: 10px;
-		background-color: $color-light-grey;
+		border-radius: $br-basic * 4;
+		background-color: $color-light-green;
 	}
 
 	&::-webkit-scrollbar-thumb:hover {
-		background-color: $color-grey;
+		background-color: $color-green;
 	}
 
 	&::-webkit-scrollbar-thumb:active {
-		background-color: $color-grey;
+		background-color: $color-green;
 	}
 }
 
@@ -111,5 +111,45 @@
 		font-size: 0.875rem;
 		color: $color-blue;
 		margin-right: 8px;
+	}
+}
+
+@media screen and (max-width: 1025px) {
+	.weather-item {
+		width: calc(20% - 1px);
+	}
+}
+
+@media screen and (max-width: 993px) {
+	.weather-list {
+		background-color: $color-white;
+	}
+
+	.weather-item {
+		box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.weather-item {
+		width: calc(25% + 5px);
+	}
+}
+
+@media screen and (max-width: 595px) {
+	.weather-item {
+		width: calc(33.33% + 20px);
+	}
+}
+
+@media screen and (max-width: 416px) {
+	.weather-list {
+		margin-bottom: 0;
+	}
+}
+
+@media screen and (max-width: 376px) {
+	.weather-item {
+		width: calc(33.3% + 30px);
 	}
 }
