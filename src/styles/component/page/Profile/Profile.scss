@@ -47,7 +47,8 @@
 							border-radius: 50%;
 							display: block;
 							position: absolute;
-							left: 26.5%;
+							left: 50%;
+							@include transform(translateX(-50%));
 							cursor: pointer;
 							background-color: $color-white;
 							color: #111;
@@ -322,7 +323,19 @@
 					padding-left: 8px;
 				}
 
+				.time,
+				.location,
 				.scenery-list {
+					p,
+					span {
+						white-space: nowrap;
+					}
+				}
+
+				.scenery-list {
+					flex-wrap: nowrap;
+					white-space: nowrap;
+
 					> div > span {
 						border: 1px solid #ccc;
 						border-radius: $br-basic;
@@ -373,6 +386,11 @@
 						flex-direction: column;
 						align-items: center;
 						padding-right: 5px;
+
+						p,
+						span {
+							font-size: 0.875rem;
+						}
 					}
 
 					.scenery-list {
@@ -384,7 +402,7 @@
 							overflow: hidden;
 
 							span {
-								margin: 10px 0 0 0;
+								margin: 5px 0 0 0;
 							}
 						}
 					}

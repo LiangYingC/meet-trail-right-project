@@ -53,11 +53,13 @@ class TrailCreate extends Component {
                 }))
             }
         } else if (
-            id === 'height' ||
+            id === 'minHeight' ||
+            id === 'maxHeight' ||
             id === 'length' ||
             id === 'hour' ||
             id === 'minute') {
             if (!Number(value) && value !== '0' && value.length > 0) {
+                console.log('not !!!!')
                 this.setState(preState => ({
                     ...preState,
                     alterWord: {
@@ -230,6 +232,8 @@ class TrailCreate extends Component {
             if (key !== 'routeImg') {
                 if (!inputValue[key]) {
                     isAllInputFilled = false
+                    console.log('wrong0')
+                    console.log(this.state.inputValue)
                 }
 
                 if (key === 'title' ||
@@ -244,10 +248,12 @@ class TrailCreate extends Component {
                                 inputId: `${key}`
                             }
                         }))
+                        console.log('wrong1')
                         isAllInputFilled = false
                     }
                 } else if (
-                    key === 'height' ||
+                    key === 'minHeight' ||
+                    key === 'maxHeight' ||
                     key === 'length' ||
                     key === 'hour' ||
                     key === 'minute'
@@ -262,6 +268,7 @@ class TrailCreate extends Component {
                                 inputId: `${key}`
                             }
                         }))
+                        console.log('wrong2')
                         isAllInputFilled = false
                     }
                 }
@@ -269,6 +276,7 @@ class TrailCreate extends Component {
 
         })
         if (sceneryData.length === 0 || difficultyData.length === 0) {
+            console.log('wrong3')
             isAllInputFilled = false
         }
 
@@ -297,13 +305,12 @@ class TrailCreate extends Component {
                         end: inputValue.end,
                         type: inputValue.type
                     },
-                    create_user: {
-                        id: userData.id,
-                        name: userData.name,
-                        picture: userData.picture
-                    },
+                    create_user_id: userData.id,
                     create_time: APP.getDay(),
-                    height: Number(inputValue.height),
+                    height: {
+                        max: Number(inputValue.maxHeight),
+                        min: Number(inputValue.minHeight)
+                    },
                     length: Number(inputValue.length),
                     time: (Number(inputValue.hour) * 60) + Number(inputValue.minute),
                     scenery: sceneryData,
@@ -395,7 +402,7 @@ class TrailCreate extends Component {
             <Fragment>
                 <Header />
                 <section id="trail-create">
-                    <h2>步道資料分享</h2>
+                    <h2>新增步道</h2>
                     <div className="wrap">
                         <div>
                             <p className="mark-word"><span className="mark">*</span>為必填</p>
@@ -432,7 +439,7 @@ class TrailCreate extends Component {
                                     value={inputValue.description}
                                     onChange={this.changeValue}>
                                 </textarea>
-                                <p className="words-remider">30 / 150 字</p>
+                                {/* <p className="words-remider">30 / 150 字</p> */}
                             </div>
                         </div>
 
@@ -469,7 +476,7 @@ class TrailCreate extends Component {
                                     </div>
                                     <div className="reminder-content">
                                         <p>1. 此<span>封面圖</span>會呈現在步道頁面最上方</p>
-                                        <p>2. 建議圖片尺寸比例為<span> 6 : 9 </span></p>
+                                        <p>2. 建議圖片尺寸比例為<span> 3 : 2 </span></p>
                                         <p>3. 建議圖片寬度至少大於<span> 800 像素 </span></p>
                                         <p>4. 檔案須小於<span> 8 MB</span></p>
                                     </div>
@@ -623,26 +630,6 @@ class TrailCreate extends Component {
                         </div>
 
                         <div className="form-item">
-                            <label htmlFor="height">
-                                海拔高度
-                            <span className="mark">*</span>
-                                <span className="alert-word">
-                                    {alterWord.inputId === 'height' ? alterWord.word : ''}
-                                </span>
-                            </label>
-                            <div className="flex height">
-                                <input
-                                    type="text"
-                                    value={inputValue.height}
-                                    id="height"
-                                    placeholder="最高海拔"
-                                    onChange={this.changeValue}
-                                />
-                                <p>公尺</p>
-                            </div>
-                        </div>
-
-                        <div className="form-item">
                             <label htmlFor="length">
                                 全程里程數
                                 <span className="mark">*</span>
@@ -696,6 +683,39 @@ class TrailCreate extends Component {
                         </div>
 
                         <div className="form-item">
+                            <label htmlFor="height">
+                                海拔高度
+                            <span className="mark">*</span>
+                                <span className="alert-word">
+                                    {alterWord.inputId === 'maxHeight' ? alterWord.word : ''}
+                                    {alterWord.inputId === 'minHeight' ? alterWord.word : ''}
+                                </span>
+                            </label>
+                            <div className="flex height">
+                                <div className="flex">
+                                    <input
+                                        type="text"
+                                        value={inputValue.maxHeight}
+                                        id="maxHeight"
+                                        placeholder="最低海拔"
+                                        onChange={this.changeValue}
+                                    />
+                                    <p>公尺</p>
+                                </div>
+                                <div className="flex">
+                                    <input
+                                        type="text"
+                                        value={inputValue.minHeight}
+                                        id="minHeight"
+                                        placeholder="最高海拔"
+                                        onChange={this.changeValue}
+                                    />
+                                    <p>公尺</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="form-item">
                             <label>上傳步道路線圖</label>
                             <div className="flex upload-img-wrap">
                                 <label htmlFor="route-img" className="upload-area route-img">
@@ -728,7 +748,7 @@ class TrailCreate extends Component {
                                     </div>
                                     <div className="reminder-content">
                                         <p>1. 此<span>步道路線圖</span>，呈現在步道頁面<span>路線資訊</span>處</p>
-                                        <p>2. 建議圖片尺寸比例為<span> 6 : 9 </span></p>
+                                        <p>2. 建議圖片尺寸比例為<span> 3 : 2 </span></p>
                                         <p>3. 建議圖片寬度至少大於<span> 800 像素 </span></p>
                                         <p>4. 檔案須小於<span> 8 MB</span></p>
                                     </div>
@@ -761,8 +781,8 @@ class TrailCreate extends Component {
                 <div className={`loading-page-wrap ${isShowCreateLoading ? 'active' : ''} `}>
                     <div className="layer"></div>
                     <div className="loading-icon">
-                        <i class="fas fa-mountain m-smail"></i>
-                        <i class="fas fa-mountain m-big"></i>
+                        <i className="fas fa-mountain m-smail"></i>
+                        <i className="fas fa-mountain m-big"></i>
                     </div>
                 </div>
             </Fragment>

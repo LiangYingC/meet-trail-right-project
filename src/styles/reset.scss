@@ -168,6 +168,8 @@ img {
 input,
 button {
 	outline: none;
+	font-family: $font-family;
+	color: #333;
 }
 
 .wrap {

@@ -2,7 +2,7 @@
 export const APP = {
     getDay: () => {
         const today = new Date()
-        const todayDate = `${today.getFullYear()}-${('0' + today.getMonth()).slice(-2)}-${today.getDate()}`
+        const todayDate = `${today.getFullYear()}-${(`0${(today.getMonth() + 1)}`).slice(-2)}-${today.getDate()}`
         return todayDate
     },
 

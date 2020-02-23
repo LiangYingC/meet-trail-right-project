@@ -69,7 +69,6 @@ class App extends Component {
                                     trail: data.report_trail
                                 }
                                 reportList.push(reportItem)
-                                console.log(reportList)
                                 this.setState(preState => ({
                                     ...preState,
                                     reportList: reportList
@@ -78,7 +77,6 @@ class App extends Component {
                                     ...this.state.userData,
                                     reportList: reportList
                                 })
-                                console.log(this.context)
                             })
                         }
                     })

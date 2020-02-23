@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment, useCallback } from 'react';
 import { DB } from '../../../lib'
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
@@ -22,11 +22,27 @@ class TrailDetail extends Component {
         DB.ref('trails').doc(dataId)
             .onSnapshot(doc => {
                 const trailData = doc.data()
-                this.setState({
-                    trailData: trailData
-                })
+                console.log(trailData)
+                DB.ref('users').doc(trailData.create_user_id)
+                    .onSnapshot(doc => {
+                        const userData = doc.data()
+                        console.log(userData)
+                        const newTrailData = {
+                            ...trailData,
+                            createUser: {
+                                id: userData.id,
+                                name: userData.name,
+                                picture: userData.picture
+                            }
+                        }
+                        this.setState({
+                            trailData: newTrailData
+                        }, this.getTrailCreateUser)
+                    })
+
             })
     }
+
 
     render() {
         const { trailData, weatherData } = this.state
@@ -43,7 +59,7 @@ class TrailDetail extends Component {
                 title: trailData.title,
                 mainImage: trailData.images.main_image,
                 createTime: trailData.create_time,
-                createUser: trailData.create_user,
+                createUser: trailData.createUser,
                 weatherData: weatherData,
                 location: trailData.location
             }

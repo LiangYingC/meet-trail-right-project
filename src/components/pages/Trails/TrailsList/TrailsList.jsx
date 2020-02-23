@@ -23,6 +23,7 @@ class TrailsList extends Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
+        console.log('Trail List component')
     }
 
     componentWillUnmount() {
@@ -124,56 +125,66 @@ class TrailsList extends Component {
                         <div className="flex">
                             <div className="trails-qty">
                                 篩選結果有 {trailsVisible.length} 筆資料
-                    </div>
+                            </div>
                         </div>
-                        <div className="flex trails-list">
-                            {
-                                trailsVisible.map(trail => {
-                                    return (
-                                        <div className="trail-item" key={trail.id}>
-                                            <Link to={`/trails/detail/${trail.id}`}>
-                                                <div className="trail-img">
-                                                    <img src={trail.images.main_image} alt={`${trail.title}圖片`} />
-                                                    <div>
-                                                        <i className={`far fa-heart ${userData.likeList.indexOf(trail.id) !== -1 ? 'active' : ''}`}
-                                                            onClick={(e) => { this.toggleLike(e, trail.id) }}
-                                                            name={trail.id}>
-                                                        </i>
-                                                    </div>
-                                                </div>
-                                                <div className="trail-detail">
-                                                    <h3>
-                                                        <i className="fas fa-mountain"></i>
-                                                        {trail.title}
-                                                    </h3>
-                                                    <p className="trail-location">
-                                                        <i className="fas fa-map-marker-alt"></i>
-                                                        {trail.location.city} {trail.location.dist}
-                                                    </p>
-                                                    <p className="trail-difficuty">
-                                                        <i className="fas fa-hiking"></i>
-                                                        {trail.difficulty}
-                                                    </p>
-                                                    <p className="trail-length">
-                                                        <i className="fas fa-map"></i>
-                                                        {trail.length} 公里
+                        {
+                            trailsVisible.length <= 0 ?
+                                <div className="no-trails-list">
+                                    <div className="empty-img">
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2Flogo-empty.png?alt=media&token=111f02e5-c068-4bb0-8b81-e878297b7dfe" alt="沒有相關步道" />
+                                    </div>
+                                    <h2>目前尚無相關步道哦</h2>
+                                </div>
+                                :
+                                <div className="flex trails-list">
+                                    {
+                                        trailsVisible.map(trail => {
+                                            return (
+                                                <div className="trail-item" key={trail.id}>
+                                                    <Link to={`/trails/detail/${trail.id}`}>
+                                                        <div className="trail-img">
+                                                            <img src={trail.images.main_image} alt={`${trail.title}圖片`} />
+                                                            <div>
+                                                                <i className={`far fa-heart ${userData.likeList.indexOf(trail.id) !== -1 ? 'active' : ''}`}
+                                                                    onClick={(e) => { this.toggleLike(e, trail.id) }}
+                                                                    name={trail.id}>
+                                                                </i>
+                                                            </div>
+                                                        </div>
+                                                        <div className="trail-detail">
+                                                            <h3>
+                                                                <i className="fas fa-mountain"></i>
+                                                                {trail.title}
+                                                            </h3>
+                                                            <p className="trail-location">
+                                                                <i className="fas fa-map-marker-alt"></i>
+                                                                {trail.location.city} {trail.location.dist}
+                                                            </p>
+                                                            <p className="trail-difficuty">
+                                                                <i className="fas fa-hiking"></i>
+                                                                {trail.difficulty}
+                                                            </p>
+                                                            <p className="trail-length">
+                                                                <i className="fas fa-map"></i>
+                                                                {trail.length} 公里
                                                         </p>
-                                                    <p className="trail-time">
-                                                        <i className="far fa-clock"></i>
-                                                        {
-                                                            trail.time > 60 ?
-                                                                `${Math.floor(trail.time / 60)} 小時 
+                                                            <p className="trail-time">
+                                                                <i className="far fa-clock"></i>
+                                                                {
+                                                                    trail.time > 60 ?
+                                                                        `${Math.floor(trail.time / 60)} 小時 
                                                     ${trail.time % 60 > 0 ? `${trail.time % 60}分鐘` : ''}`
-                                                                : `${trail.time} 分鐘`
-                                                        }
-                                                    </p>
-                                                    <div className="trail-stars">評價系統的星星（多少則）</div>
+                                                                        : `${trail.time} 分鐘`
+                                                                }
+                                                            </p>
+                                                            <div className="trail-stars">評價系統的星星（多少則）</div>
+                                                        </div>
+                                                    </Link>
                                                 </div>
-                                            </Link>
-                                        </div>
-                                    )
-                                })}
-                        </div>
+                                            )
+                                        })}
+                                </div>
+                        }
                     </div>
                     <div className={`top-btn ${isShowTopBtn ? 'active' : ''}`} onClick={this.scrollToTop} >
                         <img src="https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FlogoIcon%2FTopBtn.png?alt=media&token=112dbc3e-01f4-4f31-9004-a436806b82cb" alt="Top Button" />

@@ -8,8 +8,8 @@ const TrafficInfo = ({ trafficInfoData }) => {
 
     const changeImgValue = (e) => {
         const file = e.target.files[0]
-        const fileTitle = trafficInfoData.title + '路線圖'
-        const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}`).put(file)
+        const fileTitle = trafficInfoData.title
+        const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}路線圖`).put(file)
 
         uploadTask.on('state_changed', snapshot => {
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded

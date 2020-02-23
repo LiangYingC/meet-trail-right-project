@@ -69,20 +69,46 @@ class Trails extends Component {
     }
 
     componentDidMount() {
-        DB.ref('trails')
-            .orderBy('timestamp', 'desc')
-            .get()
-            .then(querySnapshot => {
-                let trailsData = []
-                querySnapshot.forEach(doc => {
-                    trailsData.push(doc.data())
-                    this.setState({
-                        trailsAll: trailsData,
-                        trailsVisible: trailsData
+        const { history } = this.props
+        this.handleSearch(history)
+    }
+
+    handleSearch = (history) => {
+        history.location.search ?
+            DB.ref('trails')
+                .orderBy('timestamp', 'desc')
+                .get()
+                .then(querySnapshot => {
+                    const equalPosition = history.location.search.indexOf('=')
+                    const searchValue = decodeURI(history.location.search.slice(equalPosition + 1))
+                    let trailsData = []
+                    querySnapshot.forEach(doc => {
+                        if (doc.data().title.indexOf(`${searchValue}`) >= 0) {
+                            trailsData.push(doc.data())
+                        }
+                        this.setState({
+                            trailsAll: trailsData,
+                            trailsVisible: trailsData
+                        })
                     })
                 })
-            })
+            :
+            DB.ref('trails')
+                .orderBy('timestamp', 'desc')
+                .get()
+                .then(querySnapshot => {
+                    let trailsData = []
+                    querySnapshot.forEach(doc => {
+                        trailsData.push(doc.data())
+                        this.setState({
+                            trailsAll: trailsData,
+                            trailsVisible: trailsData
+                        })
+                    })
+                })
     }
+
+
 
     changeFilter = (e) => {
         e.persist() // React 中，event 換到別的 thread 時，event 屬性資料會清除，用 event.persist() 使導致清空的 synthetic event 脫離 pool。
@@ -199,12 +225,19 @@ class Trails extends Component {
     }
 
     render() {
-        const { trailsVisible, trailsFilterList } = this.state
+        const {
+            trailsVisible,
+            trailsFilterList
+        } = this.state
+        const { history } = this.props
+
+        console.log(trailsVisible)
+        console.log('Trails render')
         if (trailsVisible === null) {
             return <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
         } return (
             <Fragment>
-                <Header history={this.props.history} />
+                <Header history={history} handleSearch={this.handleSearch} />
                 <TrailsFilter trailsFilterProps={trailsFilterList} changeFilter={this.changeFilter} />
                 <TrailsList trailsVisible={trailsVisible} />
                 <Footer />

@@ -60,32 +60,27 @@
 	}
 }
 
-@media screen and (max-width: 1140px) {
-	#trails-filter {
-		z-index: 200;
-		transform: scale(0) translate(0%);
-		@include transition-duration(0.25s);
-
-		&.active {
-			transform: scale(1) translateY(9%);
-		}
-
-		> .wrap {
-			width: 85% !important;
-			position: relative;
-		}
-	}
-}
-
 @media screen and (max-width: 1025px) {
 	#trails-filter {
-		margin-top: -60px !important;
+		z-index: 200;
+		transform: scale(0);
+		@include transition-duration(0.25s);
+		margin-top: 0 !important;
 		background-color: transparent;
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		min-height: 100vh;
+
+		&.active {
+			transform: scale(1);
+		}
+
+		> .wrap {
+			width: 85% !important;
+			position: relative;
+		}
 
 		.layer {
 			position: fixed;

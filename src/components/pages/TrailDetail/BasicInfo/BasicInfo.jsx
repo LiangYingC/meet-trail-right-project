@@ -29,7 +29,7 @@ const BasicInfo = ({ basicInfoData }) => {
                         </div>
                         <div className="flex basic-info-item">
                             <p className="subtitle">海拔高度 :</p>
-                            <p>{basicInfoData.height} 公尺</p>
+                            <p>{basicInfoData.height.min} - {basicInfoData.height.max} 公尺</p>
                         </div>
                     </div>
                     <div className="down-right">

@@ -1,12 +1,17 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
+import SearchBar from '../../shared/SearchBar';
 import Button from '../../shared/Button';
 
 class Home extends Component {
+    constructor(props) {
+        super(props)
+    }
 
     render() {
-        console.log(this.props)
+
         return (
             <Fragment>
                 <Header history={this.props.history} />
@@ -21,21 +26,14 @@ class Home extends Component {
                                 <h2>遇見最嚮往的山林步道</h2>
                                 <p>透過資訊整合與山友分享，尋找最適合前往的步道</p>
                             </div>
-                            <div className="flex home-search">
-                                <input
-                                    type="text"
-                                    id="home-search-input"
-                                    placeholder="輸入步道名稱"
-                                />
-                                <div className="search-icon">
-                                    <i className="fas fa-search"></i>
-                                </div>
-                            </div>
+                            < SearchBar />
                             <div className="home-btn-container">
-                                <Button
-                                    text={'前往全部步道'}
-                                    id={'home-btn'}
-                                />
+                                <Link to="/trails">
+                                    <Button
+                                        text={'前往全部步道'}
+                                        id={'home-btn'}
+                                    />
+                                </Link>
                                 <p></p>
                             </div>
                         </div>
@@ -44,7 +42,7 @@ class Home extends Component {
                         <div className="flex wrap">
                             <div className="intro-item">
                                 <div className="icon">
-                                    <i class="fas fa-mountain"></i>
+                                    <i className="fas fa-mountain"></i>
                                 </div>
                                 <div className="description">
                                     觀看步道週天氣、基本資訊以及社群近況
@@ -52,7 +50,7 @@ class Home extends Component {
                             </div>
                             <div className="intro-item">
                                 <div className="icon">
-                                    <i class="fas fa-info-circle"></i>
+                                    <i className="fas fa-info-circle"></i>
                                 </div>
                                 <div className="description">
                                     獲得山友回報的步道最新近況與步道評論
@@ -60,7 +58,7 @@ class Home extends Component {
                             </div>
                             <div className="intro-item">
                                 <div className="icon">
-                                    <i class="fas fa-edit"></i>
+                                    <i className="fas fa-edit"></i>
                                 </div>
                                 <div className="description">
                                     分享喜愛的步道資訊，讓山友有更佳資訊

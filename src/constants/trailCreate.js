@@ -26,10 +26,11 @@ const TC = {
                 sunrise: false,
                 stars: false
             },
-            height: '',
+            minHeight: '',
+            maxHeight: '',
             length: '',
-            hour: '',
-            minute: ''
+            hour: '0',
+            minute: '0'
         },
         alterBox: {
             isShow: false,
