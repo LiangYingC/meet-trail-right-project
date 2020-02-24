@@ -74,6 +74,11 @@
 			outline: none;
 			@include transition-duration(0.2s);
 		}
+
+		textarea {
+			resize: none;
+		}
+
 		input[type="text"] {
 			width: 50%;
 			min-width: 330px;
@@ -113,8 +118,9 @@
 		.reminder {
 			text-align: left;
 			padding: 10px 20px;
-			margin-left: 30px;
 			background-color: #effff5;
+			position: absolute;
+			left: 50%;
 		}
 
 		.reminder-icon {
@@ -190,6 +196,9 @@
 
 			.upload-img {
 				opacity: 0;
+				position: absolute;
+				top: 50%;
+				left: 0;
 			}
 
 			.loading-img-wrap {
@@ -380,6 +389,10 @@
 				min-width: 80px;
 				width: 100px;
 			}
+
+			p {
+				white-space: nowrap;
+			}
 		}
 
 		#report {
@@ -508,21 +521,192 @@
 			100% {
 				transform: translate(-50%, -50%) scale(0.9);
 			}
-			// 0% {
-			// 	transform: translate(-50%, -55%) scale(1);
-			// }
-			// 25% {
-			// 	transform: translate(-50%, -55%) scale(1.4);
-			// }
-			// 50% {
-			// 	transform: translate(-50%, -55%) scale(1.8);
-			// }
-			// 75% {
-			// 	transform: translate(-50%, -55%) scale(2.2);
-			// }
-			// 100% {
-			// 	transform: translate(-50%, -55%) scale(2.6);
-			// }
+		}
+	}
+}
+
+@media screen and (max-width: 1430px) {
+	#trail-create {
+		.wrap {
+			width: 75%;
+		}
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	#trail-create {
+		.wrap {
+			width: 80%;
+		}
+	}
+}
+
+@media screen and (max-width: 1140px) {
+	#trail-create {
+		.wrap {
+			width: 90%;
+			.scenery-list {
+				.scenery {
+					&:hover {
+						padding: 5px 12px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 975px) {
+	#trail-create {
+		.wrap {
+			width: 90%;
+
+			.form-item {
+				.upload-img-wrap {
+					flex-direction: column;
+					align-items: flex-start;
+
+					.upload-area {
+						position: relative;
+						width: 60vw;
+						height: 40vw;
+					}
+				}
+
+				.reminder {
+					position: static;
+				}
+
+				input[type="text"],
+				textarea {
+					width: 100%;
+					min-width: 0;
+				}
+
+				.length input,
+				.time input,
+				.height input {
+					width: 100px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 750px) {
+	#trail-create {
+		.wrap {
+			width: 95%;
+			padding: 10px 20px;
+
+			.form-item {
+				.upload-img-wrap {
+					.upload-area {
+						position: relative;
+						width: 100%;
+						height: 50vw;
+
+						p {
+							font-size: 0.875rem;
+						}
+					}
+				}
+
+				.reminder {
+					position: static;
+				}
+
+				input[type="text"],
+				textarea {
+					width: 100%;
+					min-width: 0;
+				}
+
+				.length input,
+				.time input,
+				.height input {
+					width: 100px;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 655px) {
+	#trail-create {
+		.wrap {
+			.form-item {
+				.scenery-list {
+					flex-wrap: wrap;
+
+					.scenery {
+						white-space: nowrap;
+						flex: none;
+						margin-bottom: 0;
+						margin-right: 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 595px) {
+	#trail-create {
+		.wrap {
+			.form-item {
+				.area {
+					flex-direction: column;
+					align-items: flex-start;
+
+					select {
+						margin-bottom: 6px;
+						min-width: 100%;
+					}
+				}
+				.route {
+					flex-direction: column;
+					align-items: flex-start;
+
+					> div {
+						width: 100%;
+						margin-bottom: 6px;
+					}
+
+					select {
+						width: 100%;
+						margin-right: 0;
+					}
+
+					.fas {
+						display: none;
+					}
+				}
+
+				.time,
+				.height,
+				.length {
+					p {
+						font-size: 0.875rem;
+					}
+				}
+			}
+
+			.reminder {
+				padding: 5px 10px;
+				.reminder-icon {
+					.fas {
+						display: none;
+					}
+				}
+
+				.reminder-content {
+					p {
+						font-size: 0.875rem;
+						line-height: 1.2;
+					}
+				}
+			}
 		}
 	}
 }

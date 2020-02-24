@@ -51,8 +51,6 @@ class Header extends Component {
     }
 
     shouldHidden = () => {
-        console.log(window.clientHeight)
-        console.log(positionY)
         const { movedY, positionY } = this.state
         if (movedY > 30) {
             this.setState(preState => ({

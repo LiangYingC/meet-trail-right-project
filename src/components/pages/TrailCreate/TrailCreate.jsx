@@ -487,7 +487,7 @@ class TrailCreate extends Component {
                         <div className="form-item">
                             <label htmlFor="area">
                                 步道位置<span className="mark">*</span></label>
-                            <div className="flex">
+                            <div className="flex area">
                                 <select
                                     name="location"
                                     id="area"
@@ -747,7 +747,7 @@ class TrailCreate extends Component {
                                         <i className="fas fa-exclamation"></i>
                                     </div>
                                     <div className="reminder-content">
-                                        <p>1. 此<span>步道路線圖</span>，呈現在步道頁面<span>路線資訊</span>處</p>
+                                        <p>1. 此<span>路線圖</span>，呈現在步道頁面<span>路線資訊</span>處</p>
                                         <p>2. 建議圖片尺寸比例為<span> 3 : 2 </span></p>
                                         <p>3. 建議圖片寬度至少大於<span> 800 像素 </span></p>
                                         <p>4. 檔案須小於<span> 8 MB</span></p>

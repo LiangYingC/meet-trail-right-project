@@ -316,7 +316,7 @@
 				justify-content: space-around;
 
 				> div {
-					padding-right: 30px;
+					padding-right: 15px;
 				}
 
 				> div:first-child {
@@ -348,7 +348,7 @@
 	}
 }
 
-@media screen and (max-width: 1460px) {
+@media screen and (max-width: 1330px) {
 	.like-list {
 		.wrap {
 			display: flex;
