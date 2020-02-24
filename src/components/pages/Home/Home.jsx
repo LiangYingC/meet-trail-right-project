@@ -1,17 +1,43 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { DB } from '../../../lib';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
+import TrailsList from '../../shared/TrailsList';
 import SearchBar from '../../shared/SearchBar';
 import Button from '../../shared/Button';
 
 class Home extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            homeTopList: null,
+        }
+    }
+
+    componentDidMount() {
+        DB.ref('trails')
+            .orderBy('timestamp', 'desc')
+            .get()
+            .then(querySnapshot => {
+                let trailsData = []
+                querySnapshot.forEach(doc => {
+                    if (doc.data().title.indexOf(`合歡`) >= 0) {
+                        trailsData.push(doc.data())
+                    }
+                    this.setState({
+                        homeTopList: trailsData
+                    })
+                })
+            })
     }
 
     render() {
-
+        const { homeTopList } = this.state
+        console.log(homeTopList)
+        if (homeTopList === null) {
+            return <div>Home Loading</div>
+        }
         return (
             <Fragment>
                 <Header history={this.props.history} />
@@ -66,13 +92,50 @@ class Home extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="home-top">
+                        <div className="wrap">
+                            <div className="home-top-title">
+                                <i className="fas fa-hiking"></i>  精選步道輯：合歡山
+                            </div>
+                            <div className="flex home-top-list">
+                                {
+                                    homeTopList.map(trail => {
+                                        return (
+                                            <div className="home-top-item" style={{
+                                                backgroundImage: `url(${trail.images.main_image})`
+                                            }} key={trail.id}>
+                                                <Link to={`/trails/detail/${trail.id}`}>
+                                                    <div className="layer"></div>
+                                                    <div className="content">
+                                                        <h3>{trail.title}</h3>
+                                                    </div>
+                                                    <div className="flex tag">
+                                                        <div className="time">  {
+                                                            trail.time > 60 ?
+                                                                `${Math.floor(trail.time / 60)} 小時 
+                                                    ${trail.time % 60 > 0 ? `${trail.time % 60}分鐘` : ''}`
+                                                                : `${trail.time} 分鐘`
+                                                        }</div>
+                                                        <div className="diffuculty">{trail.difficulty}</div>
+                                                        <div className="city">{trail.location.city}</div>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
                     <div className="home-trail-list">
                         <div className="wrap">
                             <div className="like-rank">
-                                <div className="title">最多人收藏</div>
+                                <div className="title"><i className="fas fa-heart"></i> 最多人喜愛</div>
+                                < TrailsList trailsList={homeTopList} />
                             </div>
                             <div className="stars-rank">
-                                <div className="title">高評價推薦</div>
+                                <div className="title"><i className="fas fa-star"></i> 高評價推薦 </div>
+                                < TrailsList trailsList={homeTopList} />
                             </div>
                         </div>
                     </div>

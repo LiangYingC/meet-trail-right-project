@@ -19,8 +19,6 @@ class Header extends Component {
             movedY: 0,
             isHideHeader: false,
             isLanguagOptionsOpen: false,
-            searchInputValue: '',
-            searchList: []
         }
     }
 

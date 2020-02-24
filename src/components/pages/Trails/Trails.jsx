@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import TrailsFilter from './TrailsFilter';
-import TrailsList from './TrailsList';
+import TrailsListArea from './TrailsListArea';
 import { DB } from '../../../lib';
 
 
@@ -231,15 +231,13 @@ class Trails extends Component {
         } = this.state
         const { history } = this.props
 
-        console.log(trailsVisible)
-        console.log('Trails render')
         if (trailsVisible === null) {
             return <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
         } return (
             <Fragment>
                 <Header history={history} handleSearch={this.handleSearch} />
                 <TrailsFilter trailsFilterProps={trailsFilterList} changeFilter={this.changeFilter} />
-                <TrailsList trailsVisible={trailsVisible} />
+                <TrailsListArea trailsVisible={trailsVisible} />
                 <Footer />
             </Fragment>
         )

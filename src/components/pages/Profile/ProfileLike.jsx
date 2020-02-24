@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import {
-    BrowserRouter as Router,
-    Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { DB } from '../../../lib';
 import ProfileNoList from './ProfileNoList.jsx';
+import LikeButton from '../../shared/LikeButton';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class ProfileLike extends Component {
@@ -17,28 +15,37 @@ class ProfileLike extends Component {
 
     componentDidMount() {
         const { userData } = this.context
-        console.log(userData)
         if (userData.likeList) {
             DB.ref('trails')
                 .get()
                 .then(querySnapshot => {
+                    console.log('like do')
+                    console.log(userData)
                     let likeList = []
                     querySnapshot.forEach(doc => {
-                        if (userData.likeList.indexOf(doc.id) > -1) {
-                            let item = {
-                                id: doc.data().id,
-                                title: doc.data().title,
-                                description: doc.data().description,
-                                mainImage: doc.data().images.main_image,
-                                location: doc.data().location,
-                                scenery: doc.data().scenery,
-                                time: doc.data().time
+                        userData.likeList.forEach(likeItem => {
+                            if (doc.id === likeItem.id) {
+                                let item = {
+                                    id: doc.data().id,
+                                    title: doc.data().title,
+                                    description: doc.data().description,
+                                    mainImage: doc.data().images.main_image,
+                                    location: doc.data().location,
+                                    scenery: doc.data().scenery,
+                                    time: doc.data().time,
+                                    likeTimestamp: likeItem.timestamp
+                                }
+                                likeList.push(item)
                             }
-                            likeList.push(item)
-                        }
+                        })
+
+                        const sortLikeList = likeList.sort((a, b) => {
+                            return a.likeTimestamp < b.likeTimestamp ? 1 : -1
+                        })
+                        console.log(sortLikeList)
                         this.setState(preState => ({
                             ...preState,
-                            likeList: likeList
+                            likeList: sortLikeList
                         }))
                     })
                 })
@@ -59,11 +66,12 @@ class ProfileLike extends Component {
 
     render() {
         const { likeList } = this.state
+        console.log(likeList)
         if (likeList === null) {
             return (
                 <Fragment>
                     <div className="title">
-                        <h2>我的收藏</h2>
+                        <h2>我的最愛</h2>
                     </div>
                     <div>Loading</div>
                 </Fragment>
@@ -72,7 +80,7 @@ class ProfileLike extends Component {
         return (
             <Fragment>
                 <div className="title">
-                    <h2>我的收藏</h2>
+                    <h2>我的最愛</h2>
                 </div>
                 <div className="num-list">
                     <p>目前有 <span>{likeList.length}</span> 則收藏</p>
@@ -91,8 +99,9 @@ class ProfileLike extends Component {
                                                         <img src={item.mainImage} alt={`${item.title}的圖片`} />
                                                     </div>
                                                     <div className="flex like-item-info">
-                                                        <div className="title">
+                                                        <div className="flex title">
                                                             <h3>{item.title}</h3>
+                                                            <LikeButton trailId={item.id} />
                                                         </div>
                                                         <div className="description">
                                                             <p>{this.processDescription(item.description, 60)}</p>
@@ -125,6 +134,7 @@ class ProfileLike extends Component {
                                                     </div>
                                                 </div>
                                             </Link>
+
                                         )
                                     })
                                 }

@@ -271,18 +271,27 @@
 		}
 
 		.like-item-info {
-			justify-content: flex-start;
+			width: 100%;
+			justify-content: flex-end;
 			align-items: flex-start;
 			flex-direction: column;
 			padding: 15px 30px;
 
 			.title {
+				width: 100%;
 				flex: none;
 				> h3 {
 					font-size: 1.5rem;
 					font-weight: bold;
 					letter-spacing: 1.2px;
 					padding: 10px 0;
+					flex: none;
+				}
+
+				.like-button {
+					flex: auto;
+					text-align: right;
+					margin: 10px;
 				}
 			}
 
@@ -529,6 +538,11 @@
 						> h3 {
 							font-size: 0.8125rem !important;
 							padding: 5px 0 5px 5px;
+						}
+					}
+					.like-button {
+						.fa-heart {
+							padding: 7.5px;
 						}
 					}
 				}

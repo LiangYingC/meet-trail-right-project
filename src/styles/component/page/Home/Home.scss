@@ -70,7 +70,7 @@
 			padding: 30px 40px;
 			justify-content: space-around;
 			margin: 0 auto;
-			border: 1.5px solid #555;
+			border: 1.5px solid #999;
 			border-radius: $br-basic;
 
 			.intro-item {
@@ -87,10 +87,143 @@
 				}
 
 				.description {
-					font-size: 1.25rem;
-					line-height: 1.2;
+					font-size: 1.125rem;
+					line-height: 1.3;
 					letter-spacing: 1px;
 				}
+			}
+		}
+	}
+
+	.home-top {
+		padding: 20px 0;
+		.home-top-title {
+			font-size: 1.4rem;
+			font-weight: 700;
+			line-height: 1.5;
+			margin-top: 30px;
+			margin-bottom: 20px;
+
+			.fas {
+				font-size: 1.75rem;
+				color: $color-black;
+				padding-right: 5px;
+			}
+		}
+
+		.home-top-list {
+			justify-content: space-between;
+
+			.home-top-item {
+				width: 25%;
+				margin: 0 6px;
+				height: 270px;
+				background-position: 50%;
+				background-size: cover;
+				border-radius: $br-basic * 2;
+				position: relative;
+				overflow: hidden;
+				@include transition-duration(0.4s);
+				cursor: pointer;
+
+				&:hover {
+					width: 45%;
+
+					.content {
+						bottom: 30px;
+					}
+
+					.tag {
+						bottom: 3px;
+					}
+				}
+
+				.layer {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background: linear-gradient(transparent 65%, rgba(0, 0, 0, 0.7));
+					border-radius: 0 0 4px 4px;
+				}
+
+				.content {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					padding: 10px 10px 15px;
+					@include transition-duration(0.45s);
+					h3 {
+						font-size: 1.125rem;
+						color: $color-white;
+						letter-spacing: 1.2px;
+					}
+				}
+
+				.tag {
+					display: flex;
+					position: absolute;
+					bottom: -70px;
+					left: 0;
+					color: $color-white;
+					padding: 5px 10px;
+					@include transition-duration(0.45s);
+
+					> div {
+						font-size: 0.875rem;
+						padding: 5px 8px;
+						margin-right: 10px;
+						border: 1px solid $color-white;
+						border-radius: $br-basic * 2;
+						box-shadow: inset 0 0 10px 3px rgba($color: $color-white, $alpha: 0.35);
+					}
+				}
+			}
+		}
+	}
+
+	.home-trail-list {
+		padding: 20px 0;
+
+		.title {
+			font-size: 1.35rem;
+			font-weight: 700;
+			line-height: 1.5;
+			margin-top: 30px;
+			margin-bottom: 10px;
+
+			.fas {
+				font-size: 1.375rem;
+				color: $color-black;
+				padding-right: 5px;
+			}
+		}
+
+		.like-rank {
+			.trails-list {
+				width: 100%;
+				.trail-item {
+					.trail-detail {
+						h3 {
+							font-size: 1.125;
+						}
+						p {
+							font-size: 13px;
+							padding: 5px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 1750px) {
+	#home {
+		.home-banner {
+			.home-content {
+				left: 18.5vw;
 			}
 		}
 	}

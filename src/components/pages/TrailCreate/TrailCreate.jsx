@@ -316,9 +316,9 @@ class TrailCreate extends Component {
                     scenery: sceneryData,
                     difficulty: difficultyData,
                     timestamp: DB.time(),
-                    youtube_list: null
+                    youtube_list: null,
+                    like_users: []
                 }).then(newTrail => {
-
                     const newCreateList = userData.createList
                     newCreateList.push(newTrail.id)
                     DB.ref('users').doc(userData.id)
@@ -696,7 +696,7 @@ class TrailCreate extends Component {
                                     <input
                                         type="text"
                                         value={inputValue.maxHeight}
-                                        id="maxHeight"
+                                        id="minHeight"
                                         placeholder="最低海拔"
                                         onChange={this.changeValue}
                                     />
@@ -706,7 +706,7 @@ class TrailCreate extends Component {
                                     <input
                                         type="text"
                                         value={inputValue.minHeight}
-                                        id="minHeight"
+                                        id="maxHeight"
                                         placeholder="最高海拔"
                                         onChange={this.changeValue}
                                     />

@@ -93,6 +93,8 @@ class App extends Component {
                             createList: doc.data().create_list,
                             reportList: this.state.reportList
                         }
+                        console.log('app user do')
+                        console.log(userData)
                         this.state.handleUserData(userData)
                         this.state.toggleLogin(true)
                     })
@@ -117,6 +119,7 @@ class App extends Component {
     }
 
     render() {
+        console.log(this.state)
         if (this.state.isLogin === null) {
             return <div>Loading</div>
         }

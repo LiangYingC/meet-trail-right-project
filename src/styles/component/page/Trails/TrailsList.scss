@@ -12,6 +12,7 @@
 		border-radius: 50%;
 		box-shadow: 0 0 8px 0 rgba(100, 100, 100, 0.2);
 		overflow: hidden;
+		z-index: 201;
 
 		@include transform(scale(1));
 		@include transition-duration(0.2s);
@@ -138,27 +139,11 @@
 			}
 
 			.fa-heart {
-				font-size: 1rem;
 				position: absolute;
-				font-weight: 500;
 				bottom: -40px;
 				right: 20px;
-				color: $color-grey;
-				background-color: $color-white;
-				box-shadow: 0 0 6px 0 rgba($color: $color-black, $alpha: 0.2);
-				padding: 10px;
-				border-radius: 50%;
-				z-index: 100;
-				@include transition-duration(0.2s);
-
-				&:hover {
-					color: $color-blue;
-				}
 
 				&.active {
-					font-weight: bold;
-					color: $color-white;
-					background-color: $color-blue;
 					bottom: 20px;
 				}
 			}
