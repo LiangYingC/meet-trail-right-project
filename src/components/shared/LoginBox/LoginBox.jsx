@@ -167,10 +167,6 @@ class LoginBox extends Component {
                         </div>
                         <div className="flex social-sign-container">
                             <Button
-                                text={'Facebook 登入'}
-                                id={'fb-sign-btn'}
-                            />
-                            <Button
                                 text={'Google 登入'}
                                 id={'google-sign-btn'}
                             />
@@ -233,10 +229,6 @@ class LoginBox extends Component {
                             <span></span>
                         </div>
                         <div className="flex social-sign-container">
-                            <Button
-                                text={'Facebook 註冊'}
-                                id={'fb-sign-btn'}
-                            />
                             <Button
                                 text={'Google 註冊'}
                                 id={'google-sign-btn'}

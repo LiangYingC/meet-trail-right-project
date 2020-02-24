@@ -105,7 +105,16 @@
 		padding-left: 10px;
 	}
 	.youtube-item {
-		width: calc(100% - 150px);
+		width: calc(100% - 105px);
 		box-shadow: 0 1.5px 6px 1.5px rgba(0, 0, 0, 0.25);
+
+		.video-content {
+			.video-title {
+				font-size: 0.8125rem;
+			}
+			.channel-title {
+				font-size: 0.8125rem;
+			}
+		}
 	}
 }

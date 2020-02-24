@@ -194,7 +194,7 @@
 	}
 
 	.divider {
-		padding-top: 20px;
+		padding: 20px 0;
 
 		p {
 			font-size: 0.875rem;
@@ -220,29 +220,18 @@
 		align-items: center;
 	}
 
-	#google-sign-btn,
-	#fb-sign-btn {
+	#google-sign-btn {
 		font-size: 16px;
 		width: 85%;
 		padding: 10px;
 		box-shadow: none;
 		transform: scale(1);
+		color: $color-black;
+		background-color: #f0f0f0;
 
 		&:active {
 			transform: scale(0.95);
 		}
-	}
-
-	#fb-sign-btn {
-		color: white;
-		background-color: rgb(66, 103, 178);
-		margin-top: 10px;
-		margin-bottom: 20px;
-	}
-
-	#google-sign-btn {
-		color: $color-black;
-		background-color: #f0f0f0;
 	}
 
 	.login-sign-in-panel {

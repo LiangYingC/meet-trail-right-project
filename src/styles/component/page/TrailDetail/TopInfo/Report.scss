@@ -278,7 +278,7 @@
 				top: 85%;
 
 				p {
-					font-size: 0.90625rem;
+					font-size: 0.875rem;
 				}
 			}
 		}
@@ -324,6 +324,10 @@
 		.top-info__report {
 			.report-list {
 				height: 30vw;
+			}
+
+			.no-report-list {
+				height: 40vw;
 			}
 		}
 	}
