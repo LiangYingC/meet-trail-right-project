@@ -135,6 +135,7 @@
 
 					.tag {
 						bottom: 3px;
+						opacity: 1;
 					}
 				}
 
@@ -168,6 +169,7 @@
 					left: 0;
 					color: $color-white;
 					padding: 5px 10px;
+					opacity: 0;
 					@include transition-duration(0.45s);
 
 					> div {

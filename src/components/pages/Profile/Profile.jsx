@@ -82,8 +82,6 @@ class Profile extends Component {
                             ...userData,
                             picture: downloadURL
                         }
-                        console.log(downloadURL)
-                        console.log(userData.id)
                         DB.ref('users').doc(userData.id)
                             .update({
                                 picture: downloadURL

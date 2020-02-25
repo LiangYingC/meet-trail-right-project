@@ -275,6 +275,7 @@ class TrailCreate extends Component {
             }
 
         })
+
         if (sceneryData.length === 0 || difficultyData.length === 0) {
             console.log('wrong3')
             isAllInputFilled = false
