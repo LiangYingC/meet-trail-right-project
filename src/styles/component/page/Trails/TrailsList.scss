@@ -78,6 +78,7 @@
 		.trail-img img {
 			width: 100%;
 			height: 100%;
+			object-fit: cover;
 		}
 
 		&:hover .trail-img img {
@@ -91,7 +92,7 @@
 		}
 
 		h3 {
-			font-size: 1.3rem;
+			font-size: 1.2rem;
 			letter-spacing: 1.2px;
 			padding-bottom: 15px;
 			white-space: nowrap;

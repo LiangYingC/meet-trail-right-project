@@ -89,7 +89,7 @@ class TrailsListArea extends Component {
                     <div className="wrap">
                         <div className="flex">
                             <div className="trails-qty">
-                                篩選結果有 {trailsVisible.length} 筆資料
+                                篩選結果有 {trailsVisible.length} 條步道
                             </div>
                         </div>
                         {

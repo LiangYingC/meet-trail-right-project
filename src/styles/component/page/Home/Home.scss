@@ -163,6 +163,7 @@
 				}
 
 				.tag {
+					white-space: nowrap;
 					display: flex;
 					position: absolute;
 					bottom: -70px;
@@ -226,6 +227,39 @@
 		.home-banner {
 			.home-content {
 				left: 18.5vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1430px) {
+	#home {
+		.home-trail-list {
+			.trails-list {
+				.trail-item {
+					width: calc(25% - 20px);
+					margin: 20px 10px;
+
+					.trail-detail {
+						padding-bottom: 8px;
+
+						h3 {
+							font-size: 1.125rem;
+							padding-bottom: 12px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	#home {
+		.home-top,
+		.home-trail-list {
+			.wrap {
+				width: 90%;
 			}
 		}
 	}

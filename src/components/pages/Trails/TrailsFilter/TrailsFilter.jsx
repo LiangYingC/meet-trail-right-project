@@ -31,7 +31,7 @@ const trailsFilterData = [
         title: '步道全長',
         questionIcon: false,
         tag: 'length',
-        list: ['全部', '3 公里以下', '3 - 6 公里', '6 - 9 公里', '9 公里以上']
+        list: ['全部', '2 公里以下', '2 - 4 公里', '4 - 8 公里', '8 公里以上']
     }
 ]
 

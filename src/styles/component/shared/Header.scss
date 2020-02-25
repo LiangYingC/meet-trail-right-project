@@ -90,6 +90,13 @@
 			}
 		}
 	}
+
+	.selected {
+		li {
+			color: #222;
+			border-bottom: 4.5px solid $color-green;
+		}
+	}
 }
 
 .header-mobile-nav {
@@ -132,6 +139,13 @@
 			.fa-mountain {
 				font-size: 1.5rem;
 				padding-bottom: 2px;
+			}
+		}
+
+		.selected {
+			li,
+			p {
+				color: $color-green;
 			}
 		}
 	}
