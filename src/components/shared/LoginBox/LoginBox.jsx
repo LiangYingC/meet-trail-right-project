@@ -58,6 +58,30 @@ class LoginBox extends Component {
             DB.signIn(inputValue.email, inputValue.pwd, history, this.toggleAlertWord, closeLoginBox)
     }
 
+    signWithGoogle = () => {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        firebase.auth().signInWithPopup(provider).then(result => {
+            const user = result.user
+            console.log(user)
+            if (user.metadata.lastSignInTime === user.metadata.creationTime) {
+                console.log('google set data')
+                DB.ref('users').doc(user.uid)
+                    .set({
+                        id: user.uid,
+                        name: user.displayName,
+                        email: user.email,
+                        picture: user.photoURL,
+                        timestamp: DB.time(),
+                        status: '享受悠遊山林步道的時光',
+                        like_list: [],
+                        create_list: []
+                    })
+                DB.ref('users').doc(user.uid).collection('report_list')
+            }
+        })
+    }
+
+
     toggleAlertWord = (error) => {
         this.setState(preState => {
             let alertword
@@ -97,26 +121,6 @@ class LoginBox extends Component {
                 word: '歡迎登入 / 註冊'
             }
         }))
-    }
-
-    signWithGoogle = () => {
-        const provider = new firebase.auth.GoogleAuthProvider()
-        firebase.auth().signInWithPopup(provider).then(result => {
-            const token = result.credential.accessToken
-            const user = result.user
-            DB.ref('users').doc(user.uid)
-                .set({
-                    id: user.uid,
-                    name: user.displayName,
-                    email: user.email,
-                    picture: user.photoURL,
-                    timestamp: DB.time(),
-                    status: '享受悠遊山林步道的時光',
-                    like_list: [],
-                    create_list: []
-                })
-            DB.ref('users').doc(user.uid).collection('report_list')
-        })
     }
 
     render() {

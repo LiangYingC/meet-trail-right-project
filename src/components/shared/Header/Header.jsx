@@ -68,7 +68,6 @@ class Header extends Component {
         const { history } = this.props
         const { isHideHeader } = this.state
         const { isLogin, userData } = this.context
-        console.log(history)
         return (
             <Fragment >
                 <header id="header" className={`${isHideHeader ? 'hide' : ''}`}>

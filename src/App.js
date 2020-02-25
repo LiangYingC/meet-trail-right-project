@@ -83,6 +83,7 @@ class App extends Component {
                 // create & like data 只有一層方便取用因此只存 id 
                 DB.ref('users').doc(user.uid)
                     .onSnapshot(doc => {
+                        console.log('app/users' + doc.data())
                         const userData = {
                             id: doc.data().id,
                             name: doc.data().name,
