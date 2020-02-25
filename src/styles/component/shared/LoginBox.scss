@@ -214,29 +214,44 @@
 		}
 	}
 
-	.social-sign-container {
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-
-	#google-sign-btn {
-		font-size: 16px;
+	.google-sign-btn {
 		width: 85%;
-		padding: 10px;
-		box-shadow: none;
-		transform: scale(1);
-		color: $color-black;
-		background-color: #f0f0f0;
+		margin: 0 auto;
+		padding: 5px 10px;
+		border-radius: $br-basic;
+		box-shadow: 0 0 2px 0 rgba($color: #333, $alpha: 0.3);
+		cursor: pointer;
+		@include transform(scale(1));
+		@include transition-duration(0.25s);
+
+		&:hover {
+			box-shadow: 0 0 2px 0 rgba($color: #222, $alpha: 1);
+		}
 
 		&:active {
-			transform: scale(0.95);
+			@include transform(scale(0.96));
+			box-shadow: 0 0 2px 0 rgba($color: $color-black, $alpha: 1);
+		}
+
+		img {
+			width: 40px;
+			height: 40px;
+			margin: 0 10px 0 40px;
+		}
+
+		p {
+			text-align: center;
+			font-size: 1.03125rem;
+			font-weight: 550;
+			letter-spacing: 1px;
+			color: $color-black;
+			border: none;
 		}
 	}
 
 	.login-sign-in-panel {
 		.sign-container .sign-item {
-			margin-bottom: 20px;
+			margin-bottom: 21px;
 		}
 	}
 }

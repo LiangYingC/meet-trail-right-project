@@ -27,11 +27,15 @@ const LikeButton = ({
                 DB.ref('trails').doc(trailId)
                     .get()
                     .then(doc => {
-                        const trailLikeUserList = doc.data().like_users
+                        const trailLikeUserList = doc.data().like_data.users
+                        const trailLikeCount = doc.data().like_data.count
                         const newTrailLikeUserList = trailLikeUserList.filter(likeUserId => likeUserId !== userData.id)
                         DB.ref('trails').doc(trailId)
                             .update({
-                                like_users: newTrailLikeUserList
+                                like_data: {
+                                    users: newTrailLikeUserList,
+                                    count: trailLikeCount - 1
+                                }
                             })
                     })
 
@@ -50,11 +54,15 @@ const LikeButton = ({
                 DB.ref('trails').doc(trailId)
                     .get()
                     .then(doc => {
-                        const trailLikeUserList = doc.data().like_users
+                        const trailLikeUserList = doc.data().like_data.users
+                        const trailLikeCount = doc.data().like_data.count
                         trailLikeUserList.push(userData.id)
                         DB.ref('trails').doc(trailId)
                             .update({
-                                like_users: trailLikeUserList
+                                like_data: {
+                                    users: trailLikeUserList,
+                                    count: trailLikeCount + 1
+                                }
                             })
                     })
             }

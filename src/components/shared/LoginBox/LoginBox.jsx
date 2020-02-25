@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Button from '../../shared/Button';
 import { DB } from '../../../lib';
+import googleLoginImg from '../../../assets/img/googleLogin.png';
 
 class LoginBox extends Component {
     constructor(props) {
@@ -98,6 +99,26 @@ class LoginBox extends Component {
         }))
     }
 
+    signWithGoogle = () => {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        firebase.auth().signInWithPopup(provider).then(result => {
+            const token = result.credential.accessToken
+            const user = result.user
+            DB.ref('users').doc(user.uid)
+                .set({
+                    id: user.uid,
+                    name: user.displayName,
+                    email: user.email,
+                    picture: user.photoURL,
+                    timestamp: DB.time(),
+                    status: '享受悠遊山林步道的時光',
+                    like_list: [],
+                    create_list: []
+                })
+            DB.ref('users').doc(user.uid).collection('report_list')
+        })
+    }
+
     render() {
         const {
             isShowSignIn,
@@ -165,11 +186,11 @@ class LoginBox extends Component {
                             <p>使用社群帳號登入</p>
                             <span></span>
                         </div>
-                        <div className="flex social-sign-container">
-                            <Button
-                                text={'Google 登入'}
-                                id={'google-sign-btn'}
-                            />
+                        <div className="social-sign-container">
+                            <div className="flex google-sign-btn" onClick={this.signWithGoogle}>
+                                <img src={googleLoginImg} alt="google login logo" />
+                                <p>Google 登入</p>
+                            </div>
                         </div>
                         <div className="close-btn" onClick={closeLoginBox}></div>
                     </div>
@@ -225,14 +246,14 @@ class LoginBox extends Component {
                         </div>
                         <div className="flex divider">
                             <span></span>
-                            <p>使用社群帳號登入</p>
+                            <p>使用社群帳號註冊</p>
                             <span></span>
                         </div>
-                        <div className="flex social-sign-container">
-                            <Button
-                                text={'Google 註冊'}
-                                id={'google-sign-btn'}
-                            />
+                        <div className="social-sign-container">
+                            <div className="flex google-sign-btn" onClick={this.signWithGoogle}>
+                                <img src={googleLoginImg} alt="google login logo" />
+                                <p>Google 註冊</p>
+                            </div>
                         </div>
                         <div className="close-btn" onClick={closeLoginBox}></div>
                     </div>

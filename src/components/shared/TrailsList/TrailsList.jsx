@@ -36,7 +36,7 @@ const TrailsList = ({
                                     <p className="trail-length">
                                         <i className="fas fa-map"></i>
                                         {trail.length} 公里
-                                                        </p>
+                                    </p>
                                     <p className="trail-time">
                                         <i className="far fa-clock"></i>
                                         {
@@ -46,7 +46,10 @@ const TrailsList = ({
                                                 : `${trail.time} 分鐘`
                                         }
                                     </p>
-                                    <div className="trail-stars">評價系統的星星（多少則）</div>
+                                    <p className="trail-like">
+                                        <i className="fas fa-heart"></i>
+                                        {trail.like_data.count} 人加入最愛
+                                    </p>
                                 </div>
                             </Link>
                         </div>

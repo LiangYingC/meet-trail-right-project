@@ -12,6 +12,7 @@ class Home extends Component {
         super(props)
         this.state = {
             homeTopList: null,
+            likeList: null
         }
     }
 
@@ -30,12 +31,29 @@ class Home extends Component {
                     })
                 })
             })
+
+
+        DB.ref('trails')
+            .orderBy('like_data.count', 'desc')
+            .limit(4)
+            .get()
+            .then(querySnapshot => {
+                let trailsData = []
+                querySnapshot.forEach(doc => {
+                    trailsData.push(doc.data())
+                    this.setState({
+                        likeList: trailsData
+                    })
+                })
+            })
+
+
     }
 
     render() {
-        const { homeTopList } = this.state
+        const { homeTopList, likeList } = this.state
         console.log(homeTopList)
-        if (homeTopList === null) {
+        if (homeTopList === null || likeList === null) {
             return <div>Home Loading</div>
         }
         return (
@@ -131,11 +149,11 @@ class Home extends Component {
                         <div className="wrap">
                             <div className="like-rank">
                                 <div className="title"><i className="fas fa-heart"></i> 最多人喜愛</div>
-                                < TrailsList trailsList={homeTopList} />
+                                < TrailsList trailsList={likeList} />
                             </div>
                             <div className="stars-rank">
                                 <div className="title"><i className="fas fa-star"></i> 高評價推薦 </div>
-                                < TrailsList trailsList={homeTopList} />
+                                < TrailsList trailsList={likeList} />
                             </div>
                         </div>
                     </div>
