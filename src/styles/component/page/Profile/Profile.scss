@@ -225,10 +225,15 @@
 	}
 }
 
+@media screen and (max-width: 767px) {
+	#profile {
+		margin-bottom: 0;
+	}
+}
+
 @media screen and (max-width: 715px) {
 	#profile {
 		margin-top: 30px;
-		margin-bottom: -50px;
 		> .wrap {
 			width: 100%;
 		}
@@ -541,6 +546,10 @@
 						}
 					}
 					.like-button {
+						position: absolute;
+						right: 5px;
+						top: 5px;
+						margin: 5px;
 						.fa-heart {
 							padding: 7.5px;
 						}

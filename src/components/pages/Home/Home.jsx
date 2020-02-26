@@ -63,7 +63,6 @@ class Home extends Component {
             likeList,
             isShowLoginBox
         } = this.state
-        console.log(homeTopList)
 
         if (homeTopList === null || likeList === null) {
             return <div>Home Loading</div>

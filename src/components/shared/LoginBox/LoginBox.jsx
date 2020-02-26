@@ -63,7 +63,6 @@ class LoginBox extends Component {
         const provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(provider).then(result => {
             const user = result.user
-            console.log(user)
             if (user.metadata.lastSignInTime === user.metadata.creationTime) {
                 console.log('google set data')
                 DB.ref('users').doc(user.uid)

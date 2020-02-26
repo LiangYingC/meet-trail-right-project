@@ -66,7 +66,6 @@ class ProfileLike extends Component {
 
     render() {
         const { likeList } = this.state
-        console.log(likeList)
         if (likeList === null) {
             return (
                 <Fragment>
