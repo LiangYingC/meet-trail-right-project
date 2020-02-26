@@ -6,11 +6,13 @@ import Footer from '../../shared/Footer';
 import TrailsList from '../../shared/TrailsList';
 import SearchBar from '../../shared/SearchBar';
 import Button from '../../shared/Button';
+import LoginBox from '../../shared/LoginBox';
 
 class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isShowLoginBox: false,
             homeTopList: null,
             likeList: null
         }
@@ -46,13 +48,23 @@ class Home extends Component {
                     })
                 })
             })
+    }
 
-
+    toggleLoginBox = () => {
+        this.setState(preState => ({
+            ...preState,
+            isShowLoginBox: !preState.isShowLoginBox,
+        }))
     }
 
     render() {
-        const { homeTopList, likeList } = this.state
+        const {
+            homeTopList,
+            likeList,
+            isShowLoginBox
+        } = this.state
         console.log(homeTopList)
+
         if (homeTopList === null || likeList === null) {
             return <div>Home Loading</div>
         }
@@ -149,15 +161,24 @@ class Home extends Component {
                         <div className="wrap">
                             <div className="like-rank">
                                 <div className="title"><i className="fas fa-heart"></i> 最多人喜愛</div>
-                                < TrailsList trailsList={likeList} />
+                                < TrailsList
+                                    trailsList={likeList}
+                                    toggleLoginBox={this.toggleLoginBox} />
                             </div>
                             <div className="stars-rank">
                                 <div className="title"><i className="fas fa-star"></i> 高評價推薦 </div>
-                                < TrailsList trailsList={likeList} />
+                                < TrailsList
+                                    trailsList={likeList}
+                                    toggleLoginBox={this.toggleLoginBox}
+                                />
                             </div>
                         </div>
                     </div>
                 </section>
+                <LoginBox
+                    isShowLoginBox={isShowLoginBox}
+                    closeLoginBox={this.toggleLoginBox}
+                />
                 <Footer />
             </Fragment>
         )

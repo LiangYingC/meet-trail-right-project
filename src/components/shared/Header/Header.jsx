@@ -65,7 +65,7 @@ class Header extends Component {
     }
 
     render() {
-        const { history } = this.props
+        const { history, handleSearch } = this.props
         const { isHideHeader } = this.state
         const { isLogin, userData } = this.context
         return (
@@ -90,13 +90,13 @@ class Header extends Component {
                                     <div className="header-search-bar">
                                         <SearchBar
                                             history={history}
-                                            handleSearch={this.props.handleSearch}
+                                            handleSearch={handleSearch}
                                         />
                                     </div>
                                 : <div className="header-search-bar">
                                     <SearchBar
                                         history={history}
-                                        handleSearch={this.props.handleSearch}
+                                        handleSearch={handleSearch}
                                     />
                                 </div>
                         }

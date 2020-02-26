@@ -59,6 +59,7 @@ class LoginBox extends Component {
     }
 
     signWithGoogle = () => {
+        const { closeLoginBox } = this.props
         const provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(provider).then(result => {
             const user = result.user
@@ -78,6 +79,7 @@ class LoginBox extends Component {
                     })
                 DB.ref('users').doc(user.uid).collection('report_list')
             }
+            closeLoginBox()
         })
     }
 

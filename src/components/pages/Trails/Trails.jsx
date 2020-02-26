@@ -73,7 +73,7 @@ class Trails extends Component {
         this.handleSearch(history)
     }
 
-    handleSearch = (history) => {
+    handleSearch = (history, callback) => {
         history.location.search ?
             DB.ref('trails')
                 .orderBy('timestamp', 'desc')
@@ -90,6 +90,7 @@ class Trails extends Component {
                             trailsAll: trailsData,
                             trailsVisible: trailsData
                         })
+                        callback()
                     })
                 })
             :

@@ -69,6 +69,13 @@ class SearchBar extends Component {
         }
     }
 
+    closeSearchDropDown = () => {
+        this.setState(preState => ({
+            ...preState,
+            searchList: []
+        }))
+    }
+
 
     render() {
         const { searchInputValue, searchList } = this.state
@@ -86,7 +93,9 @@ class SearchBar extends Component {
                 {
                     searchInputValue ?
                         <Link to={`/trails?search=${searchInputValue}`}>
-                            <div className="search-icon" onClick={() => handleSearch(history)}>
+                            <div className="search-icon"
+                                onClick={() => handleSearch(history, this.closeSearchDropDown)}
+                            >
                                 <i className="fas fa-search"></i>
                             </div>
                         </Link>
