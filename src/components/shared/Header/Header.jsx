@@ -6,7 +6,6 @@ import {
 import headerLogoImg from '../../../assets/logo/logo260x70-deep .png';
 import headerLogoSmallImg from '../../../assets/logo/logo270x270-deep .png';
 import userImg from '../../../assets/img/user.png';
-import downArrowImg from '../../../assets/img/downArrow.png';
 import Loginbox from '../../../components/shared/LoginBox';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 import SearchBar from '../SearchBar'
@@ -65,7 +64,7 @@ class Header extends Component {
     }
 
     render() {
-        const { history, handleSearch } = this.props
+        const { history } = this.props
         const { isHideHeader } = this.state
         const { isLogin, userData } = this.context
         return (
@@ -88,21 +87,15 @@ class Header extends Component {
                                     ''
                                     :
                                     <div className="header-search-bar">
-                                        <SearchBar
-                                            history={history}
-                                            handleSearch={handleSearch}
-                                        />
+                                        <SearchBar history={history} />
                                     </div>
                                 : <div className="header-search-bar">
-                                    <SearchBar
-                                        history={history}
-                                        handleSearch={handleSearch}
-                                    />
+                                    <SearchBar history={history} />
                                 </div>
                         }
                         <div className="header-nav">
                             <ul>
-                                <NavLink to='/trails' activeClassName="selected">
+                                <NavLink exact to='/trails' activeClassName="selected">
                                     <li>
                                         全部步道
                                     </li>
@@ -126,7 +119,7 @@ class Header extends Component {
                 </header>
                 <div className={`header-mobile-nav ${isHideHeader ? 'hide' : ''}`} >
                     <ul>
-                        <NavLink to='/trails' activeClassName="selected">
+                        <NavLink exact to='/trails' activeClassName="selected">
                             <li>
                                 <i className="fas fa-mountain"></i>
                                 <p>全部步道</p>

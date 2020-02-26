@@ -96,10 +96,13 @@ class Profile extends Component {
     render() {
         const pathName = this.props.location.pathname
         const { userData } = this.context
+        const { history } = this.props
+        console.log()
+        console.log(this.props)
 
         return (
             <Fragment>
-                <Header />
+                <Header history={history} />
                 <section id="profile">
                     <div className="flex wrap">
                         <div className="profile-aside">

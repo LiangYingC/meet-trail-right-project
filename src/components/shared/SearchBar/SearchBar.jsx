@@ -79,7 +79,6 @@ class SearchBar extends Component {
 
     render() {
         const { searchInputValue, searchList } = this.state
-        const { history, handleSearch } = this.props
         return (
             <div className="flex search-bar">
                 <input
@@ -93,9 +92,7 @@ class SearchBar extends Component {
                 {
                     searchInputValue ?
                         <Link to={`/trails?search=${searchInputValue}`}>
-                            <div className="search-icon"
-                                onClick={() => handleSearch(history, this.closeSearchDropDown)}
-                            >
+                            <div className="search-icon" onClick={this.closeSearchDropDown}>
                                 <i className="fas fa-search"></i>
                             </div>
                         </Link>

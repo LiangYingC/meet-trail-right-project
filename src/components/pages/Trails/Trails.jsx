@@ -73,7 +73,7 @@ class Trails extends Component {
         this.handleSearch(history)
     }
 
-    handleSearch = (history, callback) => {
+    handleSearch = (history) => {
         history.location.search ?
             DB.ref('trails')
                 .orderBy('timestamp', 'desc')
@@ -90,7 +90,6 @@ class Trails extends Component {
                             trailsAll: trailsData,
                             trailsVisible: trailsData
                         })
-                        callback()
                     })
                 })
             :
@@ -134,7 +133,6 @@ class Trails extends Component {
                 const difficultyFilter = preState.trailsFilterList[1]
                 const timeFilter = preState.trailsFilterList[2]
                 const lengthFilter = preState.trailsFilterList[3]
-
 
                 let timeValue
                 let lengthValue
@@ -233,7 +231,14 @@ class Trails extends Component {
         const { history } = this.props
 
         if (trailsVisible === null) {
-            return <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
+            return (
+                <Fragment>
+                    <Header history={history} handleSearch={this.handleSearch} />
+                    <TrailsFilter trailsFilterProps={trailsFilterList} changeFilter={this.changeFilter} />
+                    <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
+                </Fragment>
+            )
+
         } return (
             <Fragment>
                 <Header history={history} handleSearch={this.handleSearch} />
