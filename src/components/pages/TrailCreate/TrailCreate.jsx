@@ -426,6 +426,7 @@ class TrailCreate extends Component {
                                 placeholder="請先輸入步道全名"
                                 value={inputValue.title}
                                 onChange={this.changeValue}
+                                autocomplete="off"
                             />
                         </div>
 

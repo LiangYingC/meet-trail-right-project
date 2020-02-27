@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import LikeButton from "../LikeButton";
 
 const TrailsList = ({
@@ -54,7 +54,8 @@ const TrailsList = ({
                             </Link>
                         </div>
                     )
-                })}
+                })
+            }
         </div>
     )
 }

@@ -13,6 +13,10 @@ class SearchBar extends Component {
 
     componentDidMount() {
         const { history } = this.props
+        this.initSearchInputValue(history)
+    }
+
+    initSearchInputValue = (history) => {
         if (history) {
             if (history.location.search || history.location.pathname === '/trails') {
                 const equalPosition = history.location.search.indexOf('=')
@@ -69,11 +73,12 @@ class SearchBar extends Component {
         }
     }
 
-    closeSearchDropDown = () => {
-        this.setState(preState => ({
-            ...preState,
-            searchList: []
-        }))
+    changeSearchParam = (e) => {
+        if (e.key === 'Enter') {
+            const { history } = this.props
+            const { searchInputValue } = this.state
+            history.push(`/trails?search=${searchInputValue}`)
+        }
     }
 
 
@@ -87,15 +92,17 @@ class SearchBar extends Component {
                     placeholder="輸入步道名稱"
                     value={searchInputValue}
                     onChange={this.changeSearchInputValue}
+                    onKeyPress={(e) => this.changeSearchParam(e)}
+                    autocomplete="off"
                 />
 
                 {
                     searchInputValue ?
-                        <Link to={`/trails?search=${searchInputValue}`}>
-                            <div className="search-icon" onClick={this.closeSearchDropDown}>
-                                <i className="fas fa-search"></i>
-                            </div>
-                        </Link>
+                        // <Link to={`/trails?search=${searchInputValue}`}>
+                        <div className="search-icon" onClick={this.changeSearchParam}>
+                            <i className="fas fa-search"></i>
+                        </div>
+                        // </Link>
                         :
                         <div className="search-icon">
                             <i className="fas fa-search"></i>

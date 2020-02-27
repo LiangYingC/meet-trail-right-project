@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import LoginBox from '../../../shared/LoginBox';
 import TrailsList from '../../../shared/TrailsList'
+import TrailsListSkeleton from '../../../shared/TrailsList/TrialsListSkeleton.jsx';
 
 
 class TrailsListArea extends Component {
@@ -57,7 +58,7 @@ class TrailsListArea extends Component {
     scrollToTop = () => {
         let moveHeight = this.state.movedY
         const intervalId = setInterval(() => {
-            moveHeight = moveHeight - 30
+            moveHeight = moveHeight - 50
             window.scrollTo(0, moveHeight)
             if (moveHeight <= 0) {
                 clearInterval(intervalId)
@@ -90,10 +91,13 @@ class TrailsListArea extends Component {
                     <div className="wrap">
                         <div className="flex">
                             <div className="trails-qty">
-                                篩選結果有 {trailsVisible.length} 條步道
+                                {
+                                    trailsVisible ?
+                                        `篩選結果有 ${trailsVisible.length} 條步道` : ''
+                                }
                             </div>
                         </div>
-                        {
+                        {trailsVisible ?
                             trailsVisible.length <= 0 ?
                                 <div className="no-trails-list">
                                     <div className="empty-img">
@@ -106,6 +110,7 @@ class TrailsListArea extends Component {
                                     trailsList={trailsVisible}
                                     toggleLoginBox={this.toggleLoginBox}
                                 />
+                            : <TrailsListSkeleton skeletonNum={8} />
                         }
                     </div>
                     <div className={`top-btn ${isShowTopBtn ? 'active' : ''}`} onClick={this.scrollToTop} >

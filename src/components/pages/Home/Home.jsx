@@ -63,13 +63,14 @@ class Home extends Component {
             likeList,
             isShowLoginBox
         } = this.state
+        const { history } = this.props
 
         if (homeTopList === null || likeList === null) {
             return <div>Home Loading</div>
         }
         return (
             <Fragment>
-                <Header history={this.props.history} />
+                <Header history={history} />
                 <section id="home">
                     <div className="home-banner">
                         <div className="home-img">
@@ -81,7 +82,7 @@ class Home extends Component {
                                 <h2>遇見最嚮往的山林步道</h2>
                                 <p>透過資訊整合與山友分享，尋找最適合前往的步道</p>
                             </div>
-                            < SearchBar />
+                            < SearchBar history={history} />
                             <div className="home-btn-container">
                                 <Link to="/trails">
                                     <Button

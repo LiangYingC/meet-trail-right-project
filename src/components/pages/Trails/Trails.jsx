@@ -70,10 +70,10 @@ class Trails extends Component {
 
     componentDidMount() {
         const { history } = this.props
-        this.handleSearch(history)
+        this.getTrailsList(history)
     }
 
-    handleSearch = (history) => {
+    getTrailsList = (history) => {
         history.location.search ?
             DB.ref('trails')
                 .orderBy('timestamp', 'desc')
@@ -230,18 +230,9 @@ class Trails extends Component {
         } = this.state
         const { history } = this.props
 
-        if (trailsVisible === null) {
-            return (
-                <Fragment>
-                    <Header history={history} handleSearch={this.handleSearch} />
-                    <TrailsFilter trailsFilterProps={trailsFilterList} changeFilter={this.changeFilter} />
-                    <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
-                </Fragment>
-            )
-
-        } return (
+        return (
             <Fragment>
-                <Header history={history} handleSearch={this.handleSearch} />
+                <Header history={history} />
                 <TrailsFilter trailsFilterProps={trailsFilterList} changeFilter={this.changeFilter} />
                 <TrailsListArea trailsVisible={trailsVisible} />
                 <Footer />
