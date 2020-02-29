@@ -12,7 +12,7 @@ const TopInfo = ({ topInfoData }) => {
                         <div className="top-info__stars"></div>
                         <div className="flex top-info__content">
                             <p className="flex">創建者：
-                            <img src={topInfoData.createUser.picture} alt="創建者圖片" />
+                            <img src={topInfoData.createUser.picture} />
                                 <span>{topInfoData.createUser.name}</span>
                             </p>
                             <p>創建日期：{topInfoData.createTime}</p>

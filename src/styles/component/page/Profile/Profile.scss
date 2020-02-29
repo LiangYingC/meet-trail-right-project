@@ -87,6 +87,7 @@
 							line-height: 1.2;
 							padding: 10px;
 							letter-spacing: 1px;
+							white-space: nowrap;
 						}
 					}
 
@@ -147,6 +148,7 @@
 		}
 
 		.profile-main {
+			position: relative;
 			flex: auto;
 			width: 83%;
 			background-color: $color-white;
@@ -280,7 +282,7 @@
 			justify-content: flex-end;
 			align-items: flex-start;
 			flex-direction: column;
-			padding: 15px 30px;
+			padding: 15px 20px;
 
 			.title {
 				width: 100%;
@@ -291,6 +293,7 @@
 					letter-spacing: 1.2px;
 					padding: 10px 0;
 					flex: none;
+					white-space: nowrap;
 				}
 
 				.like-button {
@@ -319,14 +322,18 @@
 			}
 
 			.description {
-				flex: auto;
+				flex: none;
 				font-size: 1rem;
-				line-height: 1.4;
+				line-height: 1.5;
 				letter-spacing: 0.6px;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
 			}
 
 			.like-item-subcontainer {
-				flex: none;
+				flex: auto;
 				justify-content: space-around;
 
 				> div {
@@ -355,6 +362,43 @@
 						border-radius: $br-basic;
 						margin-left: 10px;
 						padding: 3px 5px;
+						white-space: nowrap;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1430px) {
+	.like-list {
+		.wrap {
+			.like-item-container {
+				.like-item-info {
+					padding: 10px 20px;
+					.title {
+						> h3 {
+							font-size: 1.2rem;
+						}
+					}
+					.description {
+						font-size: 0.875rem;
+					}
+				}
+			}
+
+			.like-item-subcontainer {
+				width: 100%;
+				align-items: center;
+				justify-content: space-evenly;
+				font-size: 0.75rem !important;
+
+				.time,
+				.location,
+				.scenery-list {
+					p,
+					span {
+						font-size: 0.75rem;
 					}
 				}
 			}
@@ -365,58 +409,44 @@
 @media screen and (max-width: 1330px) {
 	.like-list {
 		.wrap {
-			display: flex;
-			align-items: stretch;
-			justify-content: stretch;
-			flex-wrap: wrap;
+			.like-item-container {
+				.like-item-img {
+					width: 200px;
+					height: 160px;
+				}
+			}
+		}
+	}
+}
 
-			a {
-				width: calc(50% - 20px);
-				margin: 10px;
+@media screen and (max-width: 1025px) {
+	.like-list {
+		.wrap {
+			.like-item-container {
+				&:hover,
+				&:active {
+					transform: scale(0.98);
+					box-shadow: 0 0 5px 0.5px rgba($color: $color-black, $alpha: 0.15);
+				}
 			}
 
+			.like-item-subcontainer {
+				padding-top: 5px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 825px) {
+	.like-list {
+		.wrap {
 			.like-item-container {
-				flex-direction: column;
-
-				.like-item-info {
-					padding: 15px;
-				}
-
-				.like-item-img {
-					flex: auto;
-					width: 100%;
-					height: auto;
-				}
-
 				.like-item-subcontainer {
-					width: 100%;
-					align-items: center;
-					justify-content: space-evenly;
-					font-size: 0.75rem !important;
-
-					.time,
-					.location,
-					.scenery-list {
-						flex-direction: column;
-						align-items: center;
-						padding-right: 5px;
-
-						p,
-						span {
-							font-size: 0.875rem;
-						}
-					}
-
 					.scenery-list {
 						> div {
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							flex-wrap: nowrap;
-							overflow: hidden;
-
-							span {
-								margin: 5px 0 0 0;
+							> span {
+								border: none;
+								margin-left: 0;
 							}
 						}
 					}
@@ -426,56 +456,7 @@
 	}
 }
 
-@media screen and (max-width: 1310px) {
-	.like-list {
-		.wrap {
-			a {
-				width: calc(100% - 20px);
-				margin: 10px;
-			}
-
-			.like-item-container {
-				&:hover,
-				&:active {
-					transform: scale(0.98);
-					box-shadow: 0 0 5px 0.5px rgba($color: $color-black, $alpha: 0.15);
-				}
-
-				.like-item-subcontainer {
-					.time,
-					.location,
-					.scenery-list {
-						flex-direction: row !important;
-						padding-right: 10px;
-
-						p {
-							white-space: nowrap;
-						}
-
-						div > span {
-							margin: 0 5px;
-							white-space: nowrap;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-
 @media screen and (max-width: 767px) {
-	.like-list {
-		.wrap {
-			.like-item-container {
-				.description {
-					display: none;
-				}
-			}
-		}
-	}
-}
-
-@media screen and (max-width: 715px) {
 	.like-list {
 		.wrap {
 			width: 100% !important;
@@ -496,6 +477,15 @@
 						> h3 {
 							font-size: 1.125rem;
 						}
+					}
+
+					.description {
+						display: none;
+					}
+
+					.like-button {
+						margin: 0;
+						margin-right: 10px;
 					}
 				}
 

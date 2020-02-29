@@ -7,6 +7,7 @@ import TrailsList from '../../shared/TrailsList';
 import SearchBar from '../../shared/SearchBar';
 import Button from '../../shared/Button';
 import LoginBox from '../../shared/LoginBox';
+import LoadingPage from '../../shared/LoadingPage';
 
 class Home extends Component {
     constructor(props) {
@@ -64,10 +65,6 @@ class Home extends Component {
             isShowLoginBox
         } = this.state
         const { history } = this.props
-
-        if (homeTopList === null || likeList === null) {
-            return <div>Home Loading</div>
-        }
         return (
             <Fragment>
                 <Header history={history} />
@@ -129,49 +126,57 @@ class Home extends Component {
                             </div>
                             <div className="flex home-top-list">
                                 {
-                                    homeTopList.map(trail => {
-                                        return (
-                                            <div className="home-top-item" style={{
-                                                backgroundImage: `url(${trail.images.main_image})`
-                                            }} key={trail.id}>
-                                                <Link to={`/trails/detail/${trail.id}`}>
-                                                    <div className="layer"></div>
-                                                    <div className="content">
-                                                        <h3>{trail.title}</h3>
-                                                    </div>
-                                                    <div className="flex tag">
-                                                        <div className="time">  {
-                                                            trail.time > 60 ?
-                                                                `${Math.floor(trail.time / 60)} 小時 
+                                    homeTopList === null ?
+                                        '' :
+                                        homeTopList.map(trail => {
+                                            return (
+                                                <div className="home-top-item" style={{
+                                                    backgroundImage: `url(${trail.images.main_image})`
+                                                }} key={trail.id}>
+                                                    <Link to={`/trails/detail/${trail.id}`}>
+                                                        <div className="layer"></div>
+                                                        <div className="content">
+                                                            <h3>{trail.title}</h3>
+                                                        </div>
+                                                        <div className="flex tag">
+                                                            <div className="time">  {
+                                                                trail.time > 60 ?
+                                                                    `${Math.floor(trail.time / 60)} 小時 
                                                     ${trail.time % 60 > 0 ? `${trail.time % 60}分鐘` : ''}`
-                                                                : `${trail.time} 分鐘`
-                                                        }</div>
-                                                        <div className="diffuculty">{trail.difficulty}</div>
-                                                        <div className="city">{trail.location.city}</div>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        )
-                                    })
+                                                                    : `${trail.time} 分鐘`
+                                                            }</div>
+                                                            <div className="diffuculty">{trail.difficulty}</div>
+                                                            <div className="city">{trail.location.city}</div>
+                                                        </div>
+                                                    </Link>
+                                                </div>
+                                            )
+                                        })
                                 }
                             </div>
                         </div>
                     </div>
                     <div className="home-trail-list">
                         <div className="wrap">
-                            <div className="like-rank">
-                                <div className="title"><i className="fas fa-heart"></i> 最多人喜愛</div>
-                                < TrailsList
-                                    trailsList={likeList}
-                                    toggleLoginBox={this.toggleLoginBox} />
-                            </div>
-                            <div className="stars-rank">
-                                <div className="title"><i className="fas fa-star"></i> 高評價推薦 </div>
-                                < TrailsList
-                                    trailsList={likeList}
-                                    toggleLoginBox={this.toggleLoginBox}
-                                />
-                            </div>
+                            {
+                                likeList === null ?
+                                    '' :
+                                    <Fragment>
+                                        <div className="like-rank">
+                                            <div className="title"><i className="fas fa-heart"></i> 最多人喜愛</div>
+                                            < TrailsList
+                                                trailsList={likeList}
+                                                toggleLoginBox={this.toggleLoginBox} />
+                                        </div>
+                                        <div className="stars-rank">
+                                            <div className="title"><i className="fas fa-star"></i> 高評價推薦 </div>
+                                            < TrailsList
+                                                trailsList={likeList}
+                                                toggleLoginBox={this.toggleLoginBox}
+                                            />
+                                        </div>
+                                    </Fragment>
+                            }
                         </div>
                     </div>
                 </section>

@@ -19,7 +19,6 @@ class TrailsListArea extends Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
-        console.log(this.props)
     }
 
     componentWillUnmount() {
@@ -110,7 +109,11 @@ class TrailsListArea extends Component {
                                     trailsList={trailsVisible}
                                     toggleLoginBox={this.toggleLoginBox}
                                 />
-                            : <TrailsListSkeleton skeletonNum={8} />
+                            : <TrailsListSkeleton
+                                skeletonNum={8}
+                                isSkeletonContainerRow={true}
+                                isSkeletonItemRow={false}
+                            />
                         }
                     </div>
                     <div className={`top-btn ${isShowTopBtn ? 'active' : ''}`} onClick={this.scrollToTop} >

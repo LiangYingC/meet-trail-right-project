@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { DB } from './lib';
 import { firebaseConfig } from './config'
 import AuthUserContext from './contexts/AuthUserContext';
+import LoadingPage from './components/shared/LoadingPage'
 import './styles/main.scss';
 
 firebase.initializeApp(firebaseConfig)
@@ -54,33 +55,7 @@ class App extends Component {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 console.log('onAuthState true')
-                // report data 有兩層要取用麻煩，因此全部存在 context
-                DB.ref('users').doc(user.uid).collection('report_list')
-                    .onSnapshot(querySnapshot => {
-                        if (querySnapshot.docs.length > 0) {
-                            console.log(querySnapshot)
-                            let reportList = []
-                            querySnapshot.forEach(doc => {
-                                const data = doc.data()
-                                let reportItem = {
-                                    time: data.report_time,
-                                    timestamp: data.timestamp,
-                                    content: data.report_content,
-                                    trail: data.report_trail
-                                }
-                                reportList.push(reportItem)
-                                this.setState(preState => ({
-                                    ...preState,
-                                    reportList: reportList
-                                }))
-                                this.state.handleUserData({
-                                    ...this.state.userData,
-                                    reportList: reportList
-                                })
-                            })
-                        }
-                    })
-                // create & like data 只有一層方便取用因此只存 id 
+
                 DB.ref('users').doc(user.uid)
                     .onSnapshot(doc => {
                         console.log('app/users' + doc.data())
@@ -92,7 +67,6 @@ class App extends Component {
                             status: doc.data().status,
                             likeList: doc.data().like_list,
                             createList: doc.data().create_list,
-                            reportList: this.state.reportList
                         }
                         console.log('app user do')
                         console.log(userData)
@@ -122,7 +96,7 @@ class App extends Component {
     render() {
         console.log(this.state)
         if (this.state.isLogin === null) {
-            return <div>Loading</div>
+            return <LoadingPage isShow={true} />
         }
         return (
             <Router>

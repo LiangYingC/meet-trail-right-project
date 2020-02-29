@@ -5,6 +5,8 @@ import {
 } from "react-router-dom";
 import ProfileNoList from './ProfileNoList.jsx';
 import AuthUserContext from '../../../contexts/AuthUserContext';
+import LoadingWave from '../../shared/LoadingWave';
+import { DB } from '../../../lib/index.js';
 
 class ProfileReport extends Component {
     constructor(props) {
@@ -16,27 +18,55 @@ class ProfileReport extends Component {
 
     componentDidMount() {
         const { userData } = this.context
-        console.log(userData)
-        console.log(userData.reportList)
-        if (userData.reportList) {
-            console.log('hi')
-            this.setState(preState => ({
-                ...preState,
-                reportList: userData.reportList
-            }))
-        } else {
-            this.setState(preState => ({
-                ...preState,
-                reportList: []
-            }))
-        }
+        DB.ref('users').doc(userData.id).collection('report_list')
+            .orderBy('timestamp', 'desc')
+            .get()
+            .then(querySnapshot => {
+                if (querySnapshot.docs.length === 0) {
+                    this.setState(preState => ({
+                        ...preState,
+                        reportList: []
+                    }))
+                } else {
+                    let reportList = []
+                    querySnapshot.forEach(doc => {
+                        const reportData = doc.data()
+                        DB.ref('trails').doc(reportData.report_trail_id)
+                            .get()
+                            .then(trailData => {
+                                console.log(trailData)
+                                reportList.push({
+                                    trail: {
+                                        id: trailData.data().id,
+                                        title: trailData.data().title,
+                                        picture: trailData.data().picture,
+
+                                    },
+                                    time: reportData.report_time,
+                                    content: reportData.report_content
+                                })
+                                this.setState(preState => ({
+                                    ...preState,
+                                    reportList: reportList
+                                }))
+                            })
+                    })
+                }
+            })
     }
 
     render() {
         const { reportList } = this.state
         console.log(reportList)
         if (reportList === null) {
-            return <div>Loading</div>
+            return (
+                <Fragment>
+                    <div className="title">
+                        <h2>步道近況回報</h2>
+                    </div>
+                    <LoadingWave />
+                </Fragment>
+            )
         }
         return (
             <Fragment>
@@ -58,7 +88,7 @@ class ProfileReport extends Component {
                                             <Link to={`/trails/detail/${item.trail.id}`}>
                                                 <div className={`report-item-container key=${item.trail.id}`}>
                                                     <div className="flex report-item">
-                                                        <div class="flex report-item-subcontainer">
+                                                        <div className="flex report-item-subcontainer">
                                                             <div className="icon">
                                                                 <i className="fas fa-bullhorn"></i>
                                                             </div>

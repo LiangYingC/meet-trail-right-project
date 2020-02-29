@@ -4,6 +4,7 @@ import { DB } from '../../../lib';
 import ProfileNoList from './ProfileNoList.jsx';
 import LikeButton from '../../shared/LikeButton';
 import AuthUserContext from '../../../contexts/AuthUserContext';
+import LoadingWave from '../../shared/LoadingWave';
 
 class ProfileLike extends Component {
     constructor(props) {
@@ -19,8 +20,6 @@ class ProfileLike extends Component {
             DB.ref('trails')
                 .get()
                 .then(querySnapshot => {
-                    console.log('like do')
-                    console.log(userData)
                     let likeList = []
                     querySnapshot.forEach(doc => {
                         userData.likeList.forEach(likeItem => {
@@ -42,7 +41,6 @@ class ProfileLike extends Component {
                         const sortLikeList = likeList.sort((a, b) => {
                             return a.likeTimestamp < b.likeTimestamp ? 1 : -1
                         })
-                        console.log(sortLikeList)
                         this.setState(preState => ({
                             ...preState,
                             likeList: sortLikeList
@@ -57,13 +55,6 @@ class ProfileLike extends Component {
         }
     }
 
-    processDescription = (description, n) => {
-        const l = description.length
-        if (l <= n) return description
-
-        return description.slice(0, n - 6) + " ..."
-    }
-
     render() {
         const { likeList } = this.state
         if (likeList === null) {
@@ -72,7 +63,7 @@ class ProfileLike extends Component {
                     <div className="title">
                         <h2>我的最愛</h2>
                     </div>
-                    <div>Loading</div>
+                    <LoadingWave />
                 </Fragment>
             )
         }
@@ -103,7 +94,7 @@ class ProfileLike extends Component {
                                                             <LikeButton trailId={item.id} />
                                                         </div>
                                                         <div className="description">
-                                                            <p>{this.processDescription(item.description, 60)}</p>
+                                                            {item.description}
                                                         </div>
                                                         <div className="flex like-item-subcontainer">
                                                             <div className="flex time">
@@ -133,13 +124,13 @@ class ProfileLike extends Component {
                                                     </div>
                                                 </div>
                                             </Link>
-
                                         )
                                     })
                                 }
                             </div>
                         </div>
                 }
+
             </Fragment>
         )
     }

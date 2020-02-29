@@ -93,7 +93,7 @@ class SearchBar extends Component {
                     value={searchInputValue}
                     onChange={this.changeSearchInputValue}
                     onKeyPress={(e) => this.changeSearchParam(e)}
-                    autocomplete="off"
+                    autoComplete="off"
                 />
 
                 {

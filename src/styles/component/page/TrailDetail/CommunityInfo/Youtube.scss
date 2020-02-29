@@ -3,6 +3,7 @@
 	justify-content: flex-start;
 	align-items: stretch;
 	overflow-x: hidden;
+	overflow-y: hidden;
 	position: relative;
 	padding-bottom: 13.5px;
 
@@ -73,6 +74,10 @@
 			font-size: 0.9375rem;
 			font-weight: 600;
 			color: $color-black;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
 		}
 
 		.channel-title {

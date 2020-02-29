@@ -3,6 +3,7 @@ import { DB, APP } from '../../../../lib';
 import Button from '../../../shared/Button';
 import LoginBox from '../../../shared/LoginBox';
 import AuthUserContext from '../../../../contexts/AuthUserContext';
+import LoadingWave from '../../../shared/LoadingWave';
 
 
 class Report extends Component {
@@ -22,13 +23,35 @@ class Report extends Component {
         DB.ref('trails').doc(id).collection('report_list')
             .orderBy('timestamp', 'desc')
             .onSnapshot(querySnapshot => {
-                let reportList = []
-                querySnapshot.forEach(doc => {
-                    reportList.push(doc.data())
-                })
-                this.setState({
-                    reportList: reportList
-                })
+                if (querySnapshot.docs.length === 0) {
+                    this.setState(preState => ({
+                        ...preState,
+                        reportList: []
+                    }))
+                } else {
+                    let reportList = []
+                    querySnapshot.forEach(doc => {
+                        const createUserId = doc.data().create_user_id
+                        const reportData = doc.data()
+                        DB.ref('users').doc(createUserId)
+                            .get()
+                            .then(createUserData => {
+                                reportList.push({
+                                    createUser: {
+                                        id: createUserData.data().id,
+                                        picture: createUserData.data().picture,
+                                        name: createUserData.data().name
+                                    },
+                                    time: reportData.report_time,
+                                    content: reportData.report_content
+                                })
+                                this.setState(preState => ({
+                                    ...preState,
+                                    reportList: reportList
+                                }))
+                            })
+                    })
+                }
             })
     }
 
@@ -62,7 +85,7 @@ class Report extends Component {
     }
 
     setReportData = () => {
-        const { id, title, picture } = this.props
+        const { id } = this.props
         const { userData } = this.context
         this.setState(preState => {
 
@@ -75,20 +98,12 @@ class Report extends Component {
             DB.ref('trails').doc(id).collection('report_list')
                 .add({
                     ...reportItem,
-                    create_user: {
-                        id: userData.id,
-                        name: userData.name,
-                        picture: userData.picture
-                    }
+                    create_user_id: userData.id
                 }).then(newReport => {
                     DB.ref('users').doc(userData.id).collection('report_list').doc(newReport.id)
                         .set({
                             ...reportItem,
-                            report_trail: {
-                                id: id,
-                                title: title,
-                                picture: picture
-                            }
+                            report_trail_id: id
                         })
                 })
 
@@ -120,19 +135,23 @@ class Report extends Component {
 
         if (reportList === null) {
             return (
-                <div className="flex top-info__report">
+                <div className="top-info__report">
                     <div className="flex report-title">
                         <h4>
                             <i className="fas fa-bullhorn"></i>
                             最新步道狀況回報
-                     </h4>
+                                </h4>
                     </div>
-                    <div className="report-list"></div>
-                    <Button
-                        text={'我要回報步道近況'}
-                        id={'report-btn'}
-                        onClick={this.toggleReportInputBox}
-                    />
+                    <div className="no-report-list">
+                        <div className="flex wrap">
+                            <p>分享，讓彼此擁有更棒的步道體驗<i className="far fa-smile"></i></p>
+                            < Button
+                                text={'立刻分享步道近況'}
+                                id={'first-report-btn'}
+                                onClick={this.toggleReportInputBox}
+                            />
+                        </div>
+                    </div>
                 </div>
             )
         }
@@ -165,12 +184,12 @@ class Report extends Component {
                                             <div className="report-item" key={index}>
                                                 <div className="flex report-info">
                                                     <div className="report-user-img">
-                                                        <img src={reportItem.create_user.picture} alt={`${reportItem.create_user.name}的照片`} />
+                                                        <img src={reportItem.createUser.picture} alt={`${reportItem.createUser.name}的照片`} />
                                                     </div>
-                                                    <div className="report-user-name">{reportItem.create_user.name}</div>
-                                                    <div className="report-time">{reportItem.report_time}</div>
+                                                    <div className="report-user-name">{reportItem.createUser.name}</div>
+                                                    <div className="report-time">{reportItem.time}</div>
                                                 </div>
-                                                <div className="report-content">{reportItem.report_content}</div>
+                                                <div className="report-content">{reportItem.content}</div>
                                             </div>
                                         )
                                     })

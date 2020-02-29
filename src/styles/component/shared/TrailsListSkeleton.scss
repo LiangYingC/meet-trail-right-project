@@ -3,13 +3,6 @@
 	height: 100%;
 	flex-wrap: wrap;
 
-	.skeleton-img {
-		height: 12vw;
-		> span {
-			background-color: #ececec;
-		}
-	}
-
 	.skeleton-item {
 		width: calc(25% - 30px);
 		border-radius: $br-basic * 2;
@@ -18,13 +11,19 @@
 		box-shadow: 0px 4px 15px 1.5px rgba($color: $color-black, $alpha: 0.15);
 	}
 
+	.skeleton-img {
+		height: 12vw;
+		> span {
+			background-color: #ececec;
+		}
+	}
+
 	.skeleton-content {
 		padding: 10px 15px;
 
 		> span {
-			margin: 10px 0;
-			padding: 1.5px;
 			background-color: #ececec;
+			margin: 10px;
 		}
 	}
 }

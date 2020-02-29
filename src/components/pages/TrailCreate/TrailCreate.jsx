@@ -5,6 +5,7 @@ import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import Button from '../../shared/Button';
 import Alter from '../../shared/Alert';
+import LoadingPage from '../../shared/LoadingPage';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class TrailCreate extends Component {
@@ -783,13 +784,7 @@ class TrailCreate extends Component {
                     onClick={this.closeAlert}
                 />
                 <Footer />
-                <div className={`loading-page-wrap ${isShowCreateLoading ? 'active' : ''} `}>
-                    <div className="layer"></div>
-                    <div className="loading-icon">
-                        <i className="fas fa-mountain m-smail"></i>
-                        <i className="fas fa-mountain m-big"></i>
-                    </div>
-                </div>
+                <LoadingPage isShow={isShowCreateLoading} />
             </Fragment>
         )
     }

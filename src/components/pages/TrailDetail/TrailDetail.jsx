@@ -6,6 +6,7 @@ import TopInfo from './TopInfo';
 import BasicInfo from './BasicInfo';
 import CommunityInfo from './CommunityInfo';
 import TrafficInfo from './TrafficInfo';
+import LoadingPage from '../../shared/LoadingPage';
 
 
 class TrailDetail extends Component {
@@ -48,10 +49,7 @@ class TrailDetail extends Component {
         const { trailData, weatherData } = this.state
         if (trailData === null) {
             return (
-                <Fragment>
-                    <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
-                </Fragment>
-
+                <div></div>
             )
         } else {
             const topInfoData = {
@@ -63,7 +61,6 @@ class TrailDetail extends Component {
                 weatherData: weatherData,
                 location: trailData.location
             }
-
             const basicInfoData = {
                 description: trailData.description,
                 scenery: trailData.scenery,

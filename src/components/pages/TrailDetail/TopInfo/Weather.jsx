@@ -205,7 +205,7 @@ class Weather extends Component {
     render() {
         const { weatherList } = this.state
         if (weatherList === null) {
-            return <div>Loading</div>
+            return <div></div>
         } else {
             return (
                 <div className="flex weather-list">
