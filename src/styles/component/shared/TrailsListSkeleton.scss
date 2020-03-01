@@ -9,12 +9,18 @@
 		margin: 20px 15px;
 		overflow: hidden;
 		box-shadow: 0px 4px 15px 1.5px rgba($color: $color-black, $alpha: 0.15);
+
+		.wave {
+			&::after {
+				animation-delay: 0s;
+			}
+		}
 	}
 
 	.skeleton-img {
 		height: 12vw;
 		> span {
-			background-color: #ececec;
+			background-color: #ebebeb;
 		}
 	}
 
@@ -22,7 +28,7 @@
 		padding: 10px 15px;
 
 		> span {
-			background-color: #ececec;
+			background-color: #ebebeb;
 			margin: 10px;
 		}
 	}

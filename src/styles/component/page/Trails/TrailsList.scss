@@ -73,12 +73,32 @@
 			width: auto;
 			height: 12vw;
 			overflow: hidden;
+			border-top-left-radius: $br-basic;
+			border-top-right-radius: $br-basic;
+			position: relative;
+
+			.like-button {
+				.fa-heart {
+					position: absolute;
+					bottom: -40px;
+					right: 20px;
+
+					&.active {
+						bottom: 20px;
+					}
+				}
+			}
 		}
 
 		.trail-img img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			opacity: 0.9;
+			border-top-left-radius: $br-basic;
+			border-top-right-radius: $br-basic;
+			@include transform(scale(1));
+			@include transition-duration(0.25s);
 		}
 
 		&:hover .trail-img img {
@@ -125,33 +145,13 @@
 			}
 		}
 
-		.trail-img {
-			overflow: hidden;
-			border-top-left-radius: $br-basic;
-			border-top-right-radius: $br-basic;
-			position: relative;
-
-			img {
-				opacity: 0.9;
-				border-top-left-radius: $br-basic;
-				border-top-right-radius: $br-basic;
-				@include transform(scale(1));
-				@include transition-duration(0.25s);
-			}
-
-			.fa-heart {
-				position: absolute;
-				bottom: -40px;
-				right: 20px;
-
-				&.active {
-					bottom: 20px;
-				}
-			}
-		}
-
 		.trail-detail {
 			padding: 15px 30px;
+
+			.trail-like,
+			.trail-popular {
+				color: #222;
+			}
 		}
 	}
 }

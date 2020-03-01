@@ -309,7 +309,7 @@
 		.home-trail-list {
 			.wrap {
 				.like-rank,
-				.stars-rank {
+				.popular-rank {
 					.trails-list {
 						.trail-item {
 							.trail-img {
@@ -337,7 +337,7 @@
 			}
 
 			.like-rank,
-			.stars-rank {
+			.popular-rank {
 				.title {
 					padding-left: 30px;
 				}
@@ -453,7 +453,7 @@
 @media screen and (max-width: 768px) {
 	#home .home-trail-list {
 		.like-rank,
-		.stars-rank {
+		.popular-rank {
 			.trails-list .trail-item {
 				width: calc(33.3% + 10px);
 			}
@@ -495,7 +495,7 @@
 	#home {
 		.home-trail-list {
 			.like-rank,
-			.stars-rank {
+			.popular-rank {
 				.trails-list .trail-item {
 					width: calc(33.3% + 30px);
 					.trail-img {
@@ -551,7 +551,7 @@
 
 		.home-trail-list {
 			.like-rank,
-			.stars-rank {
+			.popular-rank {
 				.trails-list .trail-item {
 					width: calc(100% - 90px);
 

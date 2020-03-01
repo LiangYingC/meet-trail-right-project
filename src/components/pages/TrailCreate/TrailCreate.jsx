@@ -322,7 +322,8 @@ class TrailCreate extends Component {
                     like_data: {
                         users: [],
                         count: 0
-                    }
+                    },
+                    view_count: 0
                 }).then(newTrail => {
                     const newCreateList = userData.createList
                     newCreateList.push(newTrail.id)

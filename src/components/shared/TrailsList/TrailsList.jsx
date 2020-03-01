@@ -46,10 +46,16 @@ const TrailsList = ({
                                                 : `${trail.time} 分鐘`
                                         }
                                     </p>
-                                    <p className="trail-like">
-                                        <i className="fas fa-heart"></i>
-                                        {trail.like_data.count} 人加入最愛
-                                    </p>
+                                    <div className="flex">
+                                        <p className="trail-like">
+                                            <i className="fas fa-heart"></i>
+                                            {trail.like_data.count}
+                                        </p>
+                                        <p className="trail-popular">
+                                            <i class="fas fa-fire"></i>
+                                            {trail.view_count}
+                                        </p>
+                                    </div>
                                 </div>
                             </Link>
                         </div>

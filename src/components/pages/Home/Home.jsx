@@ -7,7 +7,6 @@ import TrailsList from '../../shared/TrailsList';
 import SearchBar from '../../shared/SearchBar';
 import Button from '../../shared/Button';
 import LoginBox from '../../shared/LoginBox';
-import LoadingPage from '../../shared/LoadingPage';
 
 class Home extends Component {
     constructor(props) {
@@ -15,7 +14,8 @@ class Home extends Component {
         this.state = {
             isShowLoginBox: false,
             homeTopList: null,
-            likeList: null
+            likeList: null,
+            popularList: null
         }
     }
 
@@ -49,6 +49,20 @@ class Home extends Component {
                     })
                 })
             })
+
+        DB.ref('trails')
+            .orderBy('view_count', 'desc')
+            .limit(4)
+            .get()
+            .then(querySnapshot => {
+                let trailsData = []
+                querySnapshot.forEach(doc => {
+                    trailsData.push(doc.data())
+                    this.setState({
+                        popularList: trailsData
+                    })
+                })
+            })
     }
 
     toggleLoginBox = () => {
@@ -62,6 +76,7 @@ class Home extends Component {
         const {
             homeTopList,
             likeList,
+            popularList,
             isShowLoginBox
         } = this.state
         const { history } = this.props
@@ -166,25 +181,34 @@ class Home extends Component {
                     </div>
                     <div className="home-trail-list">
                         <div className="wrap">
-                            {
-                                likeList === null ?
-                                    '' :
-                                    <Fragment>
+
+
+                            <Fragment>
+                                {
+                                    likeList === null ?
+                                        '' :
                                         <div className="like-rank">
                                             <div className="title"><i className="fas fa-heart"></i> 最多人喜愛</div>
                                             < TrailsList
                                                 trailsList={likeList}
                                                 toggleLoginBox={this.toggleLoginBox} />
                                         </div>
-                                        <div className="stars-rank">
-                                            <div className="title"><i className="fas fa-star"></i> 高評價推薦 </div>
+                                }
+
+                                {
+                                    popularList === null ?
+                                        '' :
+                                        <div className="popular-rank">
+                                            <div className="title"> <i class="fas fa-fire"></i> 最熱門瀏覽</div>
                                             < TrailsList
-                                                trailsList={likeList}
+                                                trailsList={popularList}
                                                 toggleLoginBox={this.toggleLoginBox}
                                             />
                                         </div>
-                                    </Fragment>
-                            }
+
+                                }
+                            </Fragment>
+
                         </div>
                     </div>
                 </section>
