@@ -66,7 +66,6 @@
 		top: 0;
 		left: 0;
 		overflow: hidden;
-		@include transform(scale(1));
 		@include transition-duration(0.25s);
 
 		.trail-img {
@@ -98,12 +97,12 @@
 			border-top-left-radius: $br-basic;
 			border-top-right-radius: $br-basic;
 			@include transform(scale(1));
-			@include transition-duration(0.25s);
+			@include transition-duration(0.8s);
 		}
 
 		&:hover .trail-img img {
 			opacity: 1;
-			@include transform(scale(1.1));
+			@include transform(scale(1.05));
 		}
 
 		&:hover .trail-img .fa-heart {

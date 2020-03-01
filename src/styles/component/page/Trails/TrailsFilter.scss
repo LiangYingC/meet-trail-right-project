@@ -1,6 +1,6 @@
 #trails-filter {
 	margin-top: 60px;
-	padding: 50px 0;
+	padding: 40px 0 20px 0;
 	background-color: #fafafa;
 	position: relative;
 
@@ -10,8 +10,7 @@
 		border-radius: $br-basic;
 		box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.1);
 		background-color: $color-white;
-
-		#confirm-filter-btn {
+		.mobile-filter-btns {
 			display: none;
 		}
 	}
@@ -56,6 +55,53 @@
 	}
 
 	.mobile-show-filter-btn {
+		display: none;
+	}
+
+	.sort-list {
+		margin-top: 20px;
+		margin-left: 20px;
+	}
+
+	.sort-item {
+		font-size: 1.03125rem;
+		letter-spacing: 0.6px;
+		margin-right: 20px;
+		background-color: #fff;
+		padding: 10px;
+		border: 1px solid #ccc;
+		border-radius: $br-basic * 4;
+		position: relative;
+		cursor: pointer;
+		@include transition-duration(0.2s);
+
+		&:hover {
+			background-color: $color-green;
+			color: $color-white;
+			border: 1px solid transparent;
+		}
+
+		&.active {
+			background-color: $color-green;
+			color: $color-white;
+			border: 1px solid transparent;
+		}
+
+		> input {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			opacity: 0;
+		}
+
+		.fas {
+			font-size: 1.125rem;
+			font-weight: bold;
+			padding-right: 5px;
+		}
+	}
+
+	#mobile-confirm-sort-btn {
 		display: none;
 	}
 }
@@ -113,14 +159,19 @@
 			border-radius: $br-basic * 2;
 			box-shadow: 0 4px 10px 2px rgba(100, 100, 100, 0.8);
 			position: relative;
-			padding-bottom: 20px;
+			padding-bottom: 70px;
 
-			#confirm-filter-btn {
+			.mobile-filter-btns {
 				display: block;
 				position: absolute;
 				left: 50%;
-				bottom: 15px;
+				bottom: 30px;
 				@include transform(translateX(-50%));
+
+				#mobile-go-sort-btn {
+					margin-left: 30px;
+					background-color: $color-grey;
+				}
 			}
 		}
 
@@ -153,6 +204,10 @@
 			margin-left: 0;
 			margin: 5px;
 			min-width: 110px;
+		}
+
+		.sorts {
+			display: none;
 		}
 	}
 
@@ -243,15 +298,7 @@
 		.filters {
 			width: 100%;
 			flex-wrap: wrap;
-			padding: 15px 15px 45px 15px;
-
-			#confirm-filter-btn {
-				display: block;
-				position: absolute;
-				left: 50%;
-				bottom: 15px;
-				@include transform(translateX(-50%));
-			}
+			padding: 15px 15px 90px 15px;
 		}
 
 		.filter {

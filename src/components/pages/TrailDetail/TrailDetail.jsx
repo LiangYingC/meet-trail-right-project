@@ -1,12 +1,13 @@
 import React, { Component, Fragment, useCallback } from 'react';
-import { DB } from '../../../lib'
+import { DB } from '../../../lib';
+import { Skeleton } from '@material-ui/lab';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import TopInfo from './TopInfo';
 import BasicInfo from './BasicInfo';
 import CommunityInfo from './CommunityInfo';
 import TrafficInfo from './TrafficInfo';
-import LoadingPage from '../../shared/LoadingPage';
+import LoadingWave from '../../shared/LoadingWave';
 
 
 class TrailDetail extends Component {
@@ -60,9 +61,15 @@ class TrailDetail extends Component {
 
     render() {
         const { trailData, weatherData } = this.state
+
         if (trailData === null) {
             return (
-                <div></div>
+                <Fragment>
+                    <Header />
+                    <div className="trail-detail-loading">
+                        <LoadingWave />
+                    </div>
+                </Fragment>
             )
         } else {
             const topInfoData = {

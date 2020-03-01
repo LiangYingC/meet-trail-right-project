@@ -99,3 +99,16 @@
 		}
 	}
 }
+
+.trail-detail-loading {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+
+	> .wave-loading-container {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%, -45%);
+	}
+}

@@ -52,7 +52,7 @@ const TrailsList = ({
                                             {trail.like_data.count}
                                         </p>
                                         <p className="trail-popular">
-                                            <i class="fas fa-fire"></i>
+                                            <i className="fas fa-fire"></i>
                                             {trail.view_count}
                                         </p>
                                     </div>
