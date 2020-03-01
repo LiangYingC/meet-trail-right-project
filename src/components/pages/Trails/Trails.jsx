@@ -70,10 +70,12 @@ class Trails extends Component {
 
     componentDidMount() {
         const { history } = this.props
+        console.log(history)
         this.getTrailsList(history)
     }
 
     getTrailsList = (history) => {
+        console.log(history)
         history.location.search ?
             DB.ref('trails')
                 .orderBy('timestamp', 'desc')
@@ -97,6 +99,7 @@ class Trails extends Component {
                 .orderBy('timestamp', 'desc')
                 .get()
                 .then(querySnapshot => {
+                    console.log(querySnapshot)
                     let trailsData = []
                     querySnapshot.forEach(doc => {
                         trailsData.push(doc.data())

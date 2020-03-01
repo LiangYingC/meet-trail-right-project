@@ -70,10 +70,9 @@ class Home extends Component {
                 <Header history={history} />
                 <section id="home">
                     <div className="home-banner">
-                        <div className="home-img">
-                            <div className="layer"></div>
-                            <img src="https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E6%96%B0%E5%B1%B1%E5%A4%A2%E6%B9%96%E6%AD%A5%E9%81%93.jpg?alt=media&token=007a9576-446d-43b1-ae3a-99124a034d35" alt="" />
-                        </div>
+
+                        <div className="layer"></div>
+
                         <div className="home-content">
                             <div className="home-title">
                                 <h2>遇見最嚮往的山林步道</h2>
@@ -97,25 +96,34 @@ class Home extends Component {
                                 <div className="icon">
                                     <i className="fas fa-mountain"></i>
                                 </div>
-                                <div className="description">
+                                <div className="description web">
                                     觀看步道週天氣、基本資訊以及社群近況
-                            </div>
+                                </div>
+                                <div className="description mobile">
+                                    步道資訊<br />社群近況
+                                </div>
                             </div>
                             <div className="intro-item">
                                 <div className="icon">
                                     <i className="fas fa-info-circle"></i>
                                 </div>
-                                <div className="description">
+                                <div className="description web">
                                     獲得山友回報的步道最新近況與步道評論
-                            </div>
+                                </div>
+                                <div className="description mobile">
+                                    山友回報<br />即時資訊
+                                </div>
                             </div>
                             <div className="intro-item">
                                 <div className="icon">
                                     <i className="fas fa-edit"></i>
                                 </div>
-                                <div className="description">
+                                <div className="description web">
                                     分享喜愛的步道資訊，讓山友有更佳資訊
-                            </div>
+                                </div>
+                                <div className="description mobile">
+                                    分享步道<br />資訊互惠
+                                </div>
                             </div>
                         </div>
                     </div>

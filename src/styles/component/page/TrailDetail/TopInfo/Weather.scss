@@ -5,6 +5,7 @@
 	border-radius: $br-basic;
 	background-color: #fafafa;
 	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
 
 	&:hover {
 		overflow-x: scroll;
@@ -116,6 +117,20 @@
 }
 
 @media screen and (max-width: 1025px) {
+	.weather-list {
+		overflow-x: scroll;
+
+		&::-webkit-scrollbar {
+			background-color: initial;
+		}
+
+		&::-webkit-scrollbar-thumb,
+		&::-webkit-scrollbar-thumb:hover,
+		&::-webkit-scrollbar-thumb:active {
+			background-color: transparent;
+		}
+	}
+
 	.weather-item {
 		width: calc(20% - 1px);
 	}
@@ -151,6 +166,6 @@
 
 @media screen and (max-width: 376px) {
 	.weather-item {
-		width: calc(33.3% + 30px);
+		width: calc(50% + 30px);
 	}
 }

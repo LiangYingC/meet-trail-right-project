@@ -18,16 +18,18 @@
 }
 
 .header-logo {
-	flex: none;
-	width: 165px;
-	cursor: pointer;
-}
+	&.web {
+		flex: none;
+		width: 165px;
+		cursor: pointer;
+	}
 
-.header-small-logo {
-	flex: none;
-	width: 50px;
-	cursor: pointer;
-	display: none;
+	&.mobile {
+		flex: none;
+		width: 50px;
+		cursor: pointer;
+		display: none;
+	}
 }
 
 .header-search-bar {
@@ -234,15 +236,22 @@
 
 @media screen and (max-width: 992px) {
 	.header-logo {
-		display: none;
-	}
-
-	.header-small-logo {
-		display: block;
+		&.web {
+			display: none;
+		}
+		&.mobile {
+			display: block;
+		}
 	}
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
+	#header {
+		.wrap {
+			justify-content: center;
+		}
+	}
+
 	.header-nav {
 		display: none;
 	}

@@ -72,14 +72,29 @@ class Header extends Component {
                 <header id="header" className={`${isHideHeader ? 'hide' : ''}`}>
                     <div className="flex wrap">
                         <Link to='/' >
-                            <div className="header-logo">
+                            <div className="header-logo web">
                                 <img src={headerLogoImg} alt="選山步道 logo" />
                             </div>
                         </Link>
                         <Link to='/' >
-                            <div className="header-small-logo">
-                                <img src={headerLogoSmallImg} alt="選山步道 logo" />
-                            </div>
+                            {
+                                history ?
+                                    history.location.pathname === '/' ?
+                                        <div className="header-logo mobile" style={{
+                                            width: '200px'
+
+                                        }}>
+                                            <img src={headerLogoImg} alt="選山步道 logo" />
+                                        </div>
+                                        :
+                                        <div className="header-logo mobile">
+                                            <img src={headerLogoSmallImg} alt="選山步道 logo" />
+                                        </div>
+                                    :
+                                    <div className="header-logo mobile">
+                                        <img src={headerLogoSmallImg} alt="選山步道 logo" />
+                                    </div>
+                            }
                         </Link>
                         {
                             history ?

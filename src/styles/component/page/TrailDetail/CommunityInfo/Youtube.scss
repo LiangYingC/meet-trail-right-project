@@ -6,6 +6,7 @@
 	overflow-y: hidden;
 	position: relative;
 	padding-bottom: 13.5px;
+	-webkit-overflow-scrolling: touch;
 
 	&:hover {
 		overflow-x: scroll;
@@ -88,6 +89,18 @@
 }
 
 @media screen and (max-width: 1025px) {
+	.youtube-list {
+		overflow-x: scroll;
+		&::-webkit-scrollbar {
+			background-color: initial;
+		}
+
+		&::-webkit-scrollbar-thumb,
+		&::-webkit-scrollbar-thumb:hover,
+		&::-webkit-scrollbar-thumb:active {
+			background-color: transparent;
+		}
+	}
 	.youtube-item {
 		width: calc(33.3% + 35px);
 	}
