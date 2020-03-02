@@ -145,7 +145,7 @@ class LoginBox extends Component {
                             <h3><i className="fas fa-sign-in-alt"></i>登入</h3>
                             <p>登入即可
                                         <span>提供步道</span>、
-                                        <span>即時路況</span>與
+                                        <span>收藏步道</span>與
                                         <span>參與評論</span>！
                                     </p>
                         </div>

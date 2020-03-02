@@ -1,6 +1,5 @@
 import React, { Component, Fragment, useCallback } from 'react';
 import { DB } from '../../../lib';
-import { Skeleton } from '@material-ui/lab';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import TopInfo from './TopInfo';
