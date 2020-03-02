@@ -11,6 +11,7 @@
 		color: $color-green;
 	}
 }
+
 .wave-loading {
 	display: inline-block;
 	position: absolute;
@@ -20,6 +21,7 @@
 	top: 55%;
 	@include transform(translate(-50%, -50%));
 }
+
 .wave-loading div {
 	position: absolute;
 	border: 4px solid $color-green;

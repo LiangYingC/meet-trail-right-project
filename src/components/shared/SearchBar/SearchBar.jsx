@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { DB } from '../../../lib';
+import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -98,11 +99,9 @@ class SearchBar extends Component {
 
                 {
                     searchInputValue ?
-                        // <Link to={`/trails?search=${searchInputValue}`}>
                         <div className="search-icon" onClick={this.changeSearchParam}>
                             <i className="fas fa-search"></i>
                         </div>
-                        // </Link>
                         :
                         <div className="search-icon">
                             <i className="fas fa-search"></i>

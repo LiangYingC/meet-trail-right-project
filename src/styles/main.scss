@@ -4,35 +4,37 @@
 
 /*** page component ***/
 /* Home Page */
-@import "./component/page/Home/Home.scss";
+@import "../components/pages/Home/Home.scss";
 /* Trails Page */
-@import "./component/page/Trails/Trails.scss";
-@import "./component/page/Trails/TrailsList.scss";
-@import "./component/page/Trails/TrailsFilter.scss";
+@import "../components/pages/Trails/TrailsListArea/TrailListArea.scss";
+@import "../components/pages/Trails/TrailsFilter/TrailsFilter.scss";
 /* TrailDetail Page */
-@import "./component/page/TrailDetail/TrailDetail.scss";
-@import "./component/page/TrailDetail/TopInfo/TopInfo.scss";
-@import "./component/page/TrailDetail/TopInfo/Report.scss";
-@import "./component/page/TrailDetail/TopInfo/Weather.scss";
-@import "./component/page/TrailDetail/BasicInfo/BasicInfo.scss";
-@import "./component/page/TrailDetail/CommunityInfo/CommunityInfo.scss";
-@import "./component/page/TrailDetail/CommunityInfo/Youtube.scss";
-@import "./component/page/TrailDetail/TrafficInfo/TrafficInfo.scss";
+@import "../components/pages/TrailDetail/TrailDetail.scss";
+@import "../components/pages/TrailDetail/TopInfo/TopInfo.scss";
+@import "../components/pages/TrailDetail/TopInfo/Report.scss";
+@import "../components/pages/TrailDetail/TopInfo/Weather.scss";
+@import "../components/pages/TrailDetail/BasicInfo/BasicInfo.scss";
+@import "../components/pages/TrailDetail/CommunityInfo/CommunityInfo.scss";
+@import "../components/pages/TrailDetail/CommunityInfo/Youtube.scss";
+@import "../components/pages/TrailDetail/TrafficInfo/TrafficInfo.scss";
+@import "../components/pages/TrailDetail/TrafficInfo/GoogleMap.scss";
 /*TrailCreate Page */
-@import "./component/page/TrailCreate/TrailCreate.scss";
+@import "../components/pages/TrailCreate/TrailCreate.scss";
 /* Login Page */
-@import "./component/page/Login/Login.scss";
+@import "../components/pages/Login/Login.scss";
 /* Profile Page */
-@import "./component/page/Profile/Profile.scss";
+@import "../components/pages/Profile/Profile.scss";
 
 /*** shared component ***/
-@import "./component/shared/Header.scss";
-@import "./component/shared/Footer.scss";
-@import "./component/shared/Button.scss";
-@import "./component/shared/QuestionButton.scss";
-@import "./component/shared/Alert.scss";
-@import "./component/shared/LoginBox.scss";
-@import "./component/shared/SearchBar.scss";
-@import "./component/shared/LikeButton.scss";
-@import "./component/shared/TrailsListSkeleton.scss";
-@import "./component/shared/LoadingWave.scss";
+@import "../components/shared/Header/Header.scss";
+@import "../components/shared/Footer/Footer.scss";
+@import "../components/shared/Button/Button.scss";
+@import "../components/shared/LikeButton/LikeButton.scss";
+@import "../components/shared/QuestionButton/QuestionButton.scss";
+@import "../components/shared/Alert/Alert.scss";
+@import "../components/shared/LoginBox/LoginBox.scss";
+@import "../components/shared/SearchBar/SearchBar.scss";
+@import "../components/shared/LoadingPage/LoadingPage.scss";
+@import "../components/shared/LoadingWave/LoadingWave.scss";
+@import "../components/shared/TrailsList/TrailsList.scss";
+@import "../components/shared/TrailsList/TrailsListSkeleton.scss";

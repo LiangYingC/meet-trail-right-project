@@ -81,7 +81,7 @@ export const DB = {
                     callbackSed()
                 }
             }).catch(error => {
-                console.log(error)
+
             })
     }
 }
