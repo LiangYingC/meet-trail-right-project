@@ -2,6 +2,7 @@
 	width: 100%;
 	height: 100%;
 	margin-top: 60px;
+	margin-bottom: 0px;
 
 	.home-banner {
 		background-attachment: fixed;
@@ -48,7 +49,7 @@
 		.home-btn-container {
 			#home-btn {
 				font-size: 1.125rem;
-				font-weight: 400;
+				font-weight: 600;
 				padding: 10px 15px;
 				margin-right: 15px;
 				letter-spacing: 1px;
@@ -57,7 +58,7 @@
 				border-radius: $br-basic * 2;
 
 				&:hover {
-					box-shadow: inset 0 0 10px 5px rgba($color: $color-white, $alpha: 0.2);
+					box-shadow: inset 0 0 13px 5px rgba($color: $color-white, $alpha: 0.2);
 				}
 			}
 		}
@@ -108,7 +109,9 @@
 	}
 
 	.home-top {
+		background-color: $color-white;
 		padding: 20px 0;
+		border: 1px solid $color-white;
 		.home-top-title {
 			font-size: 1.4rem;
 			font-weight: 700;
@@ -200,6 +203,7 @@
 
 	.home-trail-list {
 		padding: 20px 0;
+		background-color: $color-white;
 
 		.title {
 			font-size: 1.35rem;
@@ -286,17 +290,29 @@
 @media screen and (max-width: 1140px) {
 	#home {
 		.home-banner {
-			background-position: center center;
-			background-image: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E7%95%A2%E7%A5%BF%E5%B1%B1%E6%AD%A5%E9%81%93%20banner.jpg?alt=media&token=c83637c8-3148-450e-bcae-95227af327fa);
+			background-image: initial;
+			background-color: transparent;
+			position: relative;
 
-			.layer {
-				width: 100%;
-				height: 100%;
-				position: absolute;
-				top: 0;
+			&:before {
+				// deal with parallax with iOS
+				content: "";
+				position: fixed;
+				top: 0px;
+				height: 500px;
 				left: 0;
-				background: radial-gradient(ellipse, transparent, #333);
-				opacity: 0.5;
+				right: 0;
+				z-index: -1;
+				background: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E7%95%A2%E7%A5%BF%E5%B1%B1%E6%AD%A5%E9%81%93%20banner.jpg?alt=media&token=c83637c8-3148-450e-bcae-95227af327fa)
+					center center;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				box-shadow: inset 0 0 200px 30px rgba($color: $color-black, $alpha: 0.5);
+			}
+			.layer {
+				opacity: 0;
 			}
 
 			.home-content {
@@ -408,6 +424,7 @@
 			}
 
 			.home-top-list {
+				padding-bottom: 15px;
 				overflow-x: scroll;
 				-webkit-overflow-scrolling: touch;
 				&::-webkit-scrollbar {
@@ -531,7 +548,7 @@
 					#home-btn {
 						padding: 5px 10px;
 						font-size: 1rem;
-						box-shadow: inset 0 0 10px 5px rgba($color: $color-white, $alpha: 0.2);
+						box-shadow: inset 0 0 15px 5px rgba($color: $color-white, $alpha: 0.4);
 					}
 				}
 			}

@@ -54,7 +54,7 @@ class Header extends Component {
                 movedY: 0,
                 isHideHeader: true
             }))
-        } else if (movedY <= -90 || positionY <= 30) {
+        } else if (movedY <= -120 || positionY <= 30) {
             this.setState(preState => ({
                 ...preState,
                 movedY: 0,

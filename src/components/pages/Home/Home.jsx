@@ -199,7 +199,7 @@ class Home extends Component {
                                     popularList === null ?
                                         '' :
                                         <div className="popular-rank">
-                                            <div className="title"> <i class="fas fa-fire"></i> 最熱門觀看</div>
+                                            <div className="title"> <i className="fas fa-fire"></i> 最熱門觀看</div>
                                             < TrailsList
                                                 trailsList={popularList}
                                                 toggleLoginBox={this.toggleLoginBox}
