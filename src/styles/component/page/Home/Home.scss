@@ -130,7 +130,7 @@
 				width: 25%;
 				margin: 0 6px;
 				height: 270px;
-				background-position: 50%;
+				background-position: center center;
 				background-size: cover;
 				border-radius: $br-basic * 2;
 				position: relative;
@@ -286,7 +286,7 @@
 @media screen and (max-width: 1140px) {
 	#home {
 		.home-banner {
-			background-position: 50%;
+			background-position: center center;
 			background-image: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E7%95%A2%E7%A5%BF%E5%B1%B1%E6%AD%A5%E9%81%93%20banner.jpg?alt=media&token=c83637c8-3148-450e-bcae-95227af327fa);
 
 			.layer {
@@ -511,7 +511,7 @@
 			.home-content {
 				top: 35%;
 				left: 50%;
-				transform: translate(-50%, -35%);
+				@include transform(translate(-50%, -35%));
 
 				h2 {
 					font-size: 1.5rem;

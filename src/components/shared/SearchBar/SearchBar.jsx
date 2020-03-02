@@ -74,7 +74,7 @@ class SearchBar extends Component {
     }
 
     changeSearchParam = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' || !e.target.type) {
             const { history } = this.props
             const { searchInputValue } = this.state
             history.push(`/trails?search=${searchInputValue}`)
