@@ -115,7 +115,7 @@ class Header extends Component {
                                         全部步道
                                     </li>
                                 </NavLink>
-                                <NavLink to={`${isLogin ? '/trailCreate' : '/login'}`} activeClassName="selected">
+                                <NavLink to={`${isLogin ? '/trailCreate' : '/login'}`} activeClassName={`${isLogin ? 'selected' : ''}`}>
                                     <li>
                                         提供步道
                                     </li>
@@ -140,7 +140,7 @@ class Header extends Component {
                                 <p>全部步道</p>
                             </li>
                         </NavLink>
-                        <NavLink to={`${isLogin ? '/trailCreate' : '/login'}`} activeClassName="selected">
+                        <NavLink to={`${isLogin ? '/trailCreate' : '/login'}`} activeClassName={`${isLogin ? 'selected' : ''}`}>
                             <li>
                                 <i className="fas fa-pen-square"></i>
                                 <p>提供步道</p>

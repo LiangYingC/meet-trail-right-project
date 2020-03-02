@@ -59,8 +59,8 @@ class TrailDetail extends Component {
 
 
     render() {
-        // const { trailData, weatherData } = this.state
-        let trailData = null
+        const { trailData, weatherData } = this.state
+
         if (trailData === null) {
             return (
                 <Fragment>
