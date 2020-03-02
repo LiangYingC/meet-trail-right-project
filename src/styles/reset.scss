@@ -1,0 +1,184 @@
+/* CSS Reset Setting */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+header,
+footer,
+figure,
+section,
+a {
+	display: block;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: "";
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* CSS Basic Seting*/
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	color: $font-color-basic;
+	font-family: $font-family;
+	width: 100%;
+	height: auto;
+	position: relative;
+	line-height: 1;
+	overflow-x: hidden;
+}
+
+section {
+	margin: 40px 0;
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: $color-black;
+	letter-spacing: 1px;
+	text-align: left;
+}
+
+h3 {
+	font-size: 1.25rem;
+	font-weight: bold;
+	color: $color-black;
+	letter-spacing: 1px;
+	text-align: left;
+}
+
+a {
+	color: $font-color-basic;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+img {
+	width: 100%;
+}
+
+input,
+button {
+	outline: none;
+	font-family: $font-family;
+	color: #333;
+}
+
+.wrap {
+	width: 80%;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+}

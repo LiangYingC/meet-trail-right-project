@@ -1,28 +1,39 @@
-import React, { Component } from 'react'
-import { Switch, Route } from "react-router-dom";
+import React, { Component } from 'react';
+import {
+    Switch,
+    Route,
+    Redirect,
+    BrowserRouter as Router
+} from "react-router-dom";
+import Home from '../components/pages/Home';
+import Login from '../components/pages/Login';
+import Profile from '../components/pages/Profile';
+import Trails from '../components/pages/Trails';
+import TrailDetail from '../components/pages/TrailDetail';
+import TrailCreate from '../components/pages/TrailCreate';
+import AuthUserContext from '../contexts/AuthUserContext';
 
-import Home from '../page/Home';
-import Login from '../page/Login';
-import Profile from '../page/Profile';
-import Test from '../page/Test';
-import Trails from '../page/Trails';
-import TrailsRecommend from '../page/TrailsRecommend';
-import TrailDetail from '../page/TrailDetail';
+
 
 class Routes extends Component {
     render() {
+        const { isLogin } = this.context
         return (
             <Switch>
-                <Route path="/trails/recommend"><TrailsRecommend /></Route>
-                <Route path="/trails/detail"><TrailDetail /></Route>
-                <Route path="/test"><Test /></Route>
-                <Route path="/trails"><Trails /></Route>
-                <Route path="/profile"><Profile /></Route>
-                <Route path="/login"><Login /></Route>
-                <Route path="/"><Home /></Route>
+                <Route path="/trails/detail/:id" component={TrailDetail} />
+                <Route path="/trails" component={Trails} />
+                <Route path="/trailCreate" component={TrailCreate} />
+                <Route path="/profile" >
+                    {isLogin ? <Route path="/profile" component={Profile} /> : <Redirect to="/login" />}
+                </Route>
+                <Route path="/login" >
+                    {isLogin ? <Redirect to="/profile" /> : <Route path="/login" component={Login} />}
+                </Route>
+                <Route path="/" component={Home} />
             </Switch >
         )
     }
 }
 
+Routes.contextType = AuthUserContext
 export default Routes
