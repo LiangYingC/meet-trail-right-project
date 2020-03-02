@@ -1,0 +1,39 @@
+.traffic-info__google-map {
+	.google-map {
+		> div {
+			> div {
+				width: 60% !important;
+				height: auto !important;
+				min-height: 450px;
+				margin: 0 auto;
+				text-align: center;
+				left: 50%;
+				@include transform(translateX(-50%));
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.traffic-info__google-map {
+		.google-map {
+			> div {
+				> div {
+					width: 90% !important;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 416px) {
+	.traffic-info__google-map {
+		.google-map {
+			> div {
+				> div {
+					width: 95% !important;
+				}
+			}
+		}
+	}
+}

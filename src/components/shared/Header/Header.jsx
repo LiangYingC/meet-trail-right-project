@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import {
-    BrowserRouter as Router,
+    NavLink,
     Link,
 } from 'react-router-dom';
 import headerLogoImg from '../../../assets/logo/logo260x70-deep .png';
 import headerLogoSmallImg from '../../../assets/logo/logo270x270-deep .png';
 import userImg from '../../../assets/img/user.png';
-import downArrowImg from '../../../assets/img/downArrow.png';
 import Loginbox from '../../../components/shared/LoginBox';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 import SearchBar from '../SearchBar'
@@ -17,10 +16,7 @@ class Header extends Component {
         this.state = {
             positionY: window.pageYOffset,
             movedY: 0,
-            isHideHeader: false,
-            isLanguagOptionsOpen: false,
-            searchInputValue: '',
-            searchList: []
+            isHideHeader: false
         }
     }
 
@@ -29,7 +25,7 @@ class Header extends Component {
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('scroll', this.handleScroll)
     }
 
     handleScroll = () => {
@@ -67,67 +63,63 @@ class Header extends Component {
         }
     }
 
-    toggleLanguagOptions = () => {
-        this.setState(preState => ({
-            ...preState,
-            isLanguagOptionsOpen: !preState.isLanguagOptionsOpen
-        }))
-    }
-
     render() {
         const { history } = this.props
-        const { isLanguagOptionsOpen, isHideHeader } = this.state
+        const { isHideHeader } = this.state
         const { isLogin, userData } = this.context
-
         return (
             <Fragment >
                 <header id="header" className={`${isHideHeader ? 'hide' : ''}`}>
                     <div className="flex wrap">
                         <Link to='/' >
-                            <div className="header-logo">
+                            <div className="header-logo web">
                                 <img src={headerLogoImg} alt="選山步道 logo" />
                             </div>
                         </Link>
                         <Link to='/' >
-                            <div className="header-small-logo">
-                                <img src={headerLogoSmallImg} alt="選山步道 logo" />
-                            </div>
+                            {
+                                history ?
+                                    history.location.pathname === '/' ?
+                                        <div className="header-logo mobile" style={{
+                                            width: '200px'
+
+                                        }}>
+                                            <img src={headerLogoImg} alt="選山步道 logo" />
+                                        </div>
+                                        :
+                                        <div className="header-logo mobile">
+                                            <img src={headerLogoSmallImg} alt="選山步道 logo" />
+                                        </div>
+                                    :
+                                    <div className="header-logo mobile">
+                                        <img src={headerLogoSmallImg} alt="選山步道 logo" />
+                                    </div>
+                            }
                         </Link>
-                        {history ?
-                            history.location.pathname === '/' ?
-                                ''
-                                :
-                                <div className="header-search-bar">
-                                    <SearchBar
-                                        history={history}
-                                        handleSearch={this.props.handleSearch}
-                                    />
+                        {
+                            history ?
+                                history.location.pathname === '/' ?
+                                    ''
+                                    :
+                                    <div className="header-search-bar">
+                                        <SearchBar history={history} />
+                                    </div>
+                                : <div className="header-search-bar">
+                                    <SearchBar history={history} />
                                 </div>
-                            : <div className="header-search-bar">
-                                <SearchBar
-                                    history={history}
-                                    handleSearch={this.props.handleSearch}
-                                />
-                            </div>
                         }
                         <div className="header-nav">
                             <ul>
-                                <Link to='/trails' >
-                                    <li>全部步道</li>
-                                </Link>
-                                <Link to={`${isLogin ? '/trailCreate' : '/login'}`} >
-                                    <li>提供步道</li>
-                                </Link>
-                                {/* <li >
-                                <div id="header-language-btn" onClick={this.toggleLanguagOptions}>
-                                    <p>繁體中文</p>
-                                    <div className={`down-arrow-icon ${isLanguagOptionsOpen ? 'active' : ''}`}><img src={downArrowImg} alt="more options logo" /></div>
-                                    <div className={`language-options-box ${isLanguagOptionsOpen ? 'active' : ''}`} >
-                                        <p>繁體中文</p>
-                                        <p>English</p>
-                                    </div>
-                                </div>
-                            </li> */}
+                                <NavLink exact to='/trails' activeClassName="selected">
+                                    <li>
+                                        全部步道
+                                    </li>
+                                </NavLink>
+                                <NavLink to={`${isLogin ? '/trailCreate' : '/login'}`} activeClassName="selected">
+                                    <li>
+                                        提供步道
+                                    </li>
+                                </NavLink>
                                 <Link to={`${isLogin ? '/profile' : '/login'}`} >
                                     <div id="header-user-btn">
                                         {
@@ -140,31 +132,21 @@ class Header extends Component {
                         </div>
                     </div>
                 </header>
-                <div className={`header-mobile-nav ${isHideHeader ? 'hide' : ''}`}>
+                <div className={`header-mobile-nav ${isHideHeader ? 'hide' : ''}`} >
                     <ul>
-                        <Link to='/trails' >
+                        <NavLink exact to='/trails' activeClassName="selected">
                             <li>
                                 <i className="fas fa-mountain"></i>
                                 <p>全部步道</p>
                             </li>
-                        </Link>
-                        <Link to={`${isLogin ? '/trailCreate' : '/login'}`} >
+                        </NavLink>
+                        <NavLink to={`${isLogin ? '/trailCreate' : '/login'}`} activeClassName="selected">
                             <li>
                                 <i className="fas fa-pen-square"></i>
                                 <p>提供步道</p>
                             </li>
-                        </Link>
-                        {/* <li >
-                                <div id="header-language-btn" onClick={this.toggleLanguagOptions}>
-                                    <p>繁體中文</p>
-                                    <div className={`down-arrow-icon ${isLanguagOptionsOpen ? 'active' : ''}`}><img src={downArrowImg} alt="more options logo" /></div>
-                                    <div className={`language-options-box ${isLanguagOptionsOpen ? 'active' : ''}`} >
-                                        <p>繁體中文</p>
-                                        <p>English</p>
-                                    </div>
-                                </div>
-                            </li> */}
-                        <Link to={`${isLogin ? '/profile' : '/login'}`} >
+                        </NavLink>
+                        <NavLink to={`${isLogin ? '/profile' : '/login'}`} activeClassName="selected">
                             <div id="header-user-btn">
                                 {
                                     isLogin ? <img src={userData.picture} alt={`${userData.name}的照片`} />
@@ -172,7 +154,7 @@ class Header extends Component {
                                 }
                                 <p>個人資料</p>
                             </div>
-                        </Link>
+                        </NavLink>
                     </ul>
                 </div>
             </Fragment >

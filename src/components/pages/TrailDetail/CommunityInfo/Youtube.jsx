@@ -79,12 +79,6 @@ class Youtube extends Component {
         })
     }
 
-    processTitel = (title, n) => {
-        const l = title.length
-        if (l <= n) return title
-
-        return title.slice(0, n - 6) + "..."
-    }
 
 
     render() {
@@ -114,8 +108,8 @@ class Youtube extends Component {
                                     </div >
                                     <div className="video-content">
                                         <div className="flex">
-                                            <img src={youtube.channelPic} alt={`${youtube.channelTitle}圖片`} />
-                                            <p className="video-title">{this.processTitel(youtube.videoTitle, 45)}</p>
+                                            <img src={youtube.channelPic} />
+                                            <p className="video-title">{youtube.videoTitle}</p>
                                         </div>
                                         <p className="channel-title">{youtube.channelTitle}</p>
                                     </div>

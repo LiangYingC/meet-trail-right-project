@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { DB } from '../../../lib';
+import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -13,6 +14,10 @@ class SearchBar extends Component {
 
     componentDidMount() {
         const { history } = this.props
+        this.initSearchInputValue(history)
+    }
+
+    initSearchInputValue = (history) => {
         if (history) {
             if (history.location.search || history.location.pathname === '/trails') {
                 const equalPosition = history.location.search.indexOf('=')
@@ -69,10 +74,17 @@ class SearchBar extends Component {
         }
     }
 
+    changeSearchParam = (e) => {
+        if (e.key === 'Enter' || !e.target.type) {
+            const { history } = this.props
+            const { searchInputValue } = this.state
+            history.push(`/trails?search=${searchInputValue}`)
+        }
+    }
+
 
     render() {
         const { searchInputValue, searchList } = this.state
-        const { history, handleSearch } = this.props
         return (
             <div className="flex search-bar">
                 <input
@@ -81,15 +93,15 @@ class SearchBar extends Component {
                     placeholder="輸入步道名稱"
                     value={searchInputValue}
                     onChange={this.changeSearchInputValue}
+                    onKeyPress={(e) => this.changeSearchParam(e)}
+                    autoComplete="off"
                 />
 
                 {
                     searchInputValue ?
-                        <Link to={`/trails?search=${searchInputValue}`}>
-                            <div className="search-icon" onClick={() => handleSearch(history)}>
-                                <i className="fas fa-search"></i>
-                            </div>
-                        </Link>
+                        <div className="search-icon" onClick={this.changeSearchParam}>
+                            <i className="fas fa-search"></i>
+                        </div>
                         :
                         <div className="search-icon">
                             <i className="fas fa-search"></i>

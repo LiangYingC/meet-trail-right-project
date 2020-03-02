@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
     Switch,
     Route,
-    Redirect,
-    BrowserRouter as Router
+    Redirect
 } from "react-router-dom";
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
@@ -21,7 +20,10 @@ class Routes extends Component {
         return (
             <Switch>
                 <Route path="/trails/detail/:id" component={TrailDetail} />
-                <Route path="/trails" component={Trails} />
+                <Route
+                    path="/trails"
+                    render={(props) => <Trails {...props} key={props.location.key} />}
+                />
                 <Route path="/trailCreate" component={TrailCreate} />
                 <Route path="/profile" >
                     {isLogin ? <Route path="/profile" component={Profile} /> : <Redirect to="/login" />}
@@ -31,9 +33,10 @@ class Routes extends Component {
                 </Route>
                 <Route path="/" component={Home} />
             </Switch >
+
         )
     }
 }
 
-Routes.contextType = AuthUserContext
-export default Routes
+Routes.contextType = AuthUserContext;
+export default Routes;

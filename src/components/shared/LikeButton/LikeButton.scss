@@ -1,0 +1,23 @@
+.like-button {
+	.fa-heart {
+		font-size: 1rem;
+		font-weight: 500;
+		color: $color-grey;
+		background-color: $color-white;
+		box-shadow: 0 0 6px 0 rgba($color: $color-black, $alpha: 0.2);
+		border-radius: 50%;
+		z-index: 100;
+		padding: 10px;
+		@include transition-duration(0.2s);
+
+		&:hover {
+			color: $color-blue;
+		}
+
+		&.active {
+			font-weight: bold;
+			color: $color-white;
+			background-color: $color-blue;
+		}
+	}
+}

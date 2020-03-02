@@ -6,6 +6,8 @@ import {
 import { DB } from '../../../lib';
 import ProfileNoList from './ProfileNoList.jsx';
 import AuthUserContext from '../../../contexts/AuthUserContext';
+import LoadingWave from '../../shared/LoadingWave';
+
 
 class ProfileLike extends Component {
     constructor(props) {
@@ -17,8 +19,6 @@ class ProfileLike extends Component {
 
     componentDidMount() {
         const { userData } = this.context
-        console.log(userData)
-        console.log(userData.createList)
         if (userData.createList.length > 0) {
             DB.ref('trails')
                 .get()
@@ -57,11 +57,10 @@ class ProfileLike extends Component {
                     <div className="title">
                         <h2>我提供的步道</h2>
                     </div>
-                    <div>Loading</div>
+                    <LoadingWave />
                 </Fragment>
             )
         }
-        console.log(createList)
         return (
             <Fragment>
                 <div className="title">

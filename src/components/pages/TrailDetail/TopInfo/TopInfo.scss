@@ -1,0 +1,114 @@
+#trail-detail__top-info {
+	margin-top: 100px;
+	background-color: $color-white;
+
+	.top-info__header {
+		margin: 30px;
+
+		h1 {
+			flex: none;
+			font-size: 2rem;
+			font-weight: bold;
+			letter-spacing: 1.2px;
+			color: $color-black;
+		}
+
+		p {
+			font-size: 0.875rem;
+			padding-top: 12px;
+			padding-left: 20px;
+
+			img {
+				width: 25px;
+				height: 25px;
+				margin-right: 5px;
+				border-radius: 50%;
+			}
+
+			span {
+				font-weight: bold;
+			}
+		}
+	}
+
+	.top-info__pic-and-report {
+		align-items: stretch;
+		justify-content: center;
+	}
+
+	.top-info__pic {
+		flex: none;
+		width: 55%;
+		min-width: 600px;
+		min-height: 400px;
+		max-height: 500px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.top-info__report {
+		flex: auto;
+		width: 40%;
+		background-color: #f6f6f6;
+		margin-left: 20px;
+		border-radius: 4px;
+		box-shadow: 0 0 16px 1.5px rgba(0, 0, 0, 0.1);
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	#trail-detail__top-info {
+		.top-info__pic {
+			min-width: 30vw;
+			width: 45vw;
+			height: 30vw;
+		}
+	}
+}
+
+@media screen and (max-width: 993px) {
+	#trail-detail__top-info {
+		.top-info__pic-and-report {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.top-info__pic {
+			width: 100%;
+			min-width: 100%;
+			height: auto;
+			max-height: initial;
+			min-height: initial;
+		}
+	}
+}
+
+@media screen and (max-width: 595px) {
+	#trail-detail__top-info {
+		.top-info__header {
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: flex-start;
+			margin: 20px;
+
+			h1 {
+				font-size: 1.375rem;
+			}
+
+			p {
+				font-size: 0.75rem;
+				padding-left: 0;
+				padding-right: 20px;
+
+				img {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+	}
+}

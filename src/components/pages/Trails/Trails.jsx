@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import TrailsFilter from './TrailsFilter';
-import TrailsList from './TrailsList';
+import TrailsListArea from './TrailsListArea';
 import { DB } from '../../../lib';
 
 
@@ -33,7 +33,7 @@ const trailsFilterData = [
         title: '步道全長',
         questionIcon: false,
         tag: 'length',
-        list: ['全部', '3 公里以下', '3 - 6 公里', '6 - 9 公里', '9 公里以上']
+        list: ['全部', '2 公里以下', '2 - 4 公里', '4 - 8 公里', '8 公里以上']
     }
 ]
 
@@ -64,19 +64,55 @@ class Trails extends Component {
                     value: 0,
                     trailsFilterList: trailsFilterData[3].list
                 }
-            ]
+            ],
+            trailsSort: '0'
         }
     }
 
     componentDidMount() {
         const { history } = this.props
-        this.handleSearch(history)
+        this.getTrailsList(history)
     }
 
-    handleSearch = (history) => {
+    getTrailsList = (history) => {
+        const { trailsSort } = this.state
+
+        let sortKey
+        let sortRank
+        switch (trailsSort) {
+            case '0':
+                sortKey = 'time'
+                sortRank = 'asc'
+                break;
+
+            case '1':
+                sortKey = 'difficulty'
+                sortRank = 'desc'
+                break;
+
+            case '2':
+                sortKey = 'view_count'
+                sortRank = 'desc'
+                break;
+
+            case '3':
+                sortKey = 'like_data.count'
+                sortRank = 'desc'
+                break;
+
+            default:
+                break;
+        }
+
+        this.setState(preState => ({
+            ...preState,
+            trailsAll: null,
+            trailsVisible: null
+        }))
+
         history.location.search ?
             DB.ref('trails')
-                .orderBy('timestamp', 'desc')
+                .orderBy(sortKey, sortRank)
                 .get()
                 .then(querySnapshot => {
                     const equalPosition = history.location.search.indexOf('=')
@@ -89,25 +125,36 @@ class Trails extends Component {
                         this.setState({
                             trailsAll: trailsData,
                             trailsVisible: trailsData
-                        })
+                        }, () => this.setVisibleList())
                     })
                 })
             :
             DB.ref('trails')
-                .orderBy('timestamp', 'desc')
+                .orderBy(sortKey, sortRank)
                 .get()
                 .then(querySnapshot => {
+                    console.log(querySnapshot)
                     let trailsData = []
                     querySnapshot.forEach(doc => {
                         trailsData.push(doc.data())
                         this.setState({
                             trailsAll: trailsData,
                             trailsVisible: trailsData
-                        })
+                        }, () => this.setVisibleList())
                     })
                 })
     }
 
+    changeSort = (e) => {
+        console.log(e.target.value)
+        const { history } = this.props
+        e.persist()
+        this.setState(preState => ({
+            ...preState,
+            trailsSort: e.target.value
+        }), () => this.getTrailsList(history))
+
+    }
 
 
     changeFilter = (e) => {
@@ -133,7 +180,6 @@ class Trails extends Component {
                 const difficultyFilter = preState.trailsFilterList[1]
                 const timeFilter = preState.trailsFilterList[2]
                 const lengthFilter = preState.trailsFilterList[3]
-
 
                 let timeValue
                 let lengthValue
@@ -177,30 +223,30 @@ class Trails extends Component {
 
 
                 switch (lengthFilter.trailsFilterList[lengthFilter.value]) {
-                    case '3 公里以下':
+                    case '2 公里以下':
                         lengthValue = {
                             min: 0,
-                            max: 3
+                            max: 2
                         }
 
                         break;
-                    case '3 - 6 公里':
+                    case '2 - 4 公里':
                         lengthValue = {
-                            min: 3,
-                            max: 6
+                            min: 2,
+                            max: 4
                         }
 
                         break;
-                    case '6 - 9 公里':
+                    case '4 - 8 公里':
                         lengthValue = {
-                            min: 6,
-                            max: 9
+                            min: 4,
+                            max: 8
                         }
 
                         break;
-                    case '9 公里以上':
+                    case '8 公里以上':
                         lengthValue = {
-                            min: 9,
+                            min: 8,
                             max: 10000
                         }
                         break;
@@ -227,19 +273,21 @@ class Trails extends Component {
     render() {
         const {
             trailsVisible,
-            trailsFilterList
+            trailsFilterList,
+            trailsSort
         } = this.state
         const { history } = this.props
 
-        console.log(trailsVisible)
-        console.log('Trails render')
-        if (trailsVisible === null) {
-            return <div style={{ fontSize: '45px', padding: '50px' }}>有資料還在 Loading 別急等我啊啊啊</div>
-        } return (
+        return (
             <Fragment>
-                <Header history={history} handleSearch={this.handleSearch} />
-                <TrailsFilter trailsFilterProps={trailsFilterList} changeFilter={this.changeFilter} />
-                <TrailsList trailsVisible={trailsVisible} />
+                <Header history={history} />
+                <TrailsFilter
+                    trailsFilterProps={trailsFilterList}
+                    changeFilter={this.changeFilter}
+                    trailsSort={trailsSort}
+                    changeSort={this.changeSort}
+                />
+                <TrailsListArea trailsVisible={trailsVisible} />
                 <Footer />
             </Fragment>
         )

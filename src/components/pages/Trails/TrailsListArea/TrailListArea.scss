@@ -1,0 +1,97 @@
+#trails {
+	position: relative;
+
+	.top-btn {
+		position: fixed;
+		bottom: -75px;
+		right: 55px;
+		width: 75px;
+		height: 75px;
+		cursor: pointer;
+		background-color: $color-white;
+		border-radius: 50%;
+		box-shadow: 0 0 8px 0 rgba(100, 100, 100, 0.2);
+		overflow: hidden;
+		z-index: 201;
+
+		@include transform(scale(1));
+		@include transition-duration(0.2s);
+
+		&:hover {
+			@include transform(scale(1.15));
+		}
+
+		&:active {
+			@include transform(scale(0.99));
+		}
+
+		&.active {
+			position: fixed;
+			bottom: 30px;
+			right: 55px;
+		}
+
+		img {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			bottom: 6.5px;
+			right: 1.5px;
+		}
+	}
+}
+
+.trails-qty {
+	flex: none;
+	padding: 0 0 20px 20px;
+}
+
+.trail-offer-btn {
+	flex: auto;
+	text-align: right;
+}
+
+@media screen and (max-width: 1330px) {
+	#trails {
+		.top-btn {
+			position: fixed;
+			bottom: -90px;
+			right: 30px;
+
+			&.active {
+				position: fixed;
+				bottom: 45px;
+				right: 30px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1140px) {
+	#trails {
+		> .wrap {
+			width: 90% !important;
+		}
+		.top-btn {
+			position: fixed;
+			bottom: -90px;
+			right: 8px;
+			width: 45px;
+			height: 45px;
+
+			&.active {
+				position: fixed;
+				bottom: 45px;
+				right: 8px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1025px) {
+	#trails {
+		.top-btn {
+			display: none;
+		}
+	}
+}

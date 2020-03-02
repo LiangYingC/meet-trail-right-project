@@ -5,6 +5,7 @@ import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import Button from '../../shared/Button';
 import Alter from '../../shared/Alert';
+import LoadingPage from '../../shared/LoadingPage';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class TrailCreate extends Component {
@@ -275,6 +276,7 @@ class TrailCreate extends Component {
             }
 
         })
+
         if (sceneryData.length === 0 || difficultyData.length === 0) {
             console.log('wrong3')
             isAllInputFilled = false
@@ -316,9 +318,13 @@ class TrailCreate extends Component {
                     scenery: sceneryData,
                     difficulty: difficultyData,
                     timestamp: DB.time(),
-                    youtube_list: null
+                    youtube_list: null,
+                    like_data: {
+                        users: [],
+                        count: 0
+                    },
+                    view_count: 0
                 }).then(newTrail => {
-
                     const newCreateList = userData.createList
                     newCreateList.push(newTrail.id)
                     DB.ref('users').doc(userData.id)
@@ -422,6 +428,7 @@ class TrailCreate extends Component {
                                 placeholder="請先輸入步道全名"
                                 value={inputValue.title}
                                 onChange={this.changeValue}
+                                autocomplete="off"
                             />
                         </div>
 
@@ -695,8 +702,8 @@ class TrailCreate extends Component {
                                 <div className="flex">
                                     <input
                                         type="text"
-                                        value={inputValue.maxHeight}
-                                        id="maxHeight"
+                                        value={inputValue.minHeight}
+                                        id="minHeight"
                                         placeholder="最低海拔"
                                         onChange={this.changeValue}
                                     />
@@ -705,8 +712,8 @@ class TrailCreate extends Component {
                                 <div className="flex">
                                     <input
                                         type="text"
-                                        value={inputValue.minHeight}
-                                        id="minHeight"
+                                        value={inputValue.maxHeight}
+                                        id="maxHeight"
                                         placeholder="最高海拔"
                                         onChange={this.changeValue}
                                     />
@@ -778,13 +785,7 @@ class TrailCreate extends Component {
                     onClick={this.closeAlert}
                 />
                 <Footer />
-                <div className={`loading-page-wrap ${isShowCreateLoading ? 'active' : ''} `}>
-                    <div className="layer"></div>
-                    <div className="loading-icon">
-                        <i className="fas fa-mountain m-smail"></i>
-                        <i className="fas fa-mountain m-big"></i>
-                    </div>
-                </div>
+                <LoadingPage isShow={isShowCreateLoading} />
             </Fragment>
         )
     }

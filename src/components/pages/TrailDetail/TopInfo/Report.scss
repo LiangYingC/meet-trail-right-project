@@ -1,0 +1,362 @@
+.top-info__report {
+	flex-direction: column;
+	overflow: hidden;
+	position: relative;
+
+	.report-title {
+		flex: none;
+		border-bottom: 0.5px solid #aaa;
+		margin: 25px 30px 10px 65px;
+
+		h4 {
+			font-size: 1.25rem;
+			font-weight: 550;
+			letter-spacing: 1px;
+			padding-bottom: 20px;
+			color: $color-black;
+			position: relative;
+
+			.fas {
+				font-size: 1.25rem;
+				color: $color-grey;
+				position: absolute;
+				top: 1px;
+				left: -33px;
+			}
+		}
+
+		p {
+			font-size: 0.875rem;
+			font-weight: 550;
+			letter-spacing: 1px;
+			text-align: center;
+			padding: 0 0 20px 10px;
+		}
+	}
+
+	.report-list {
+		flex: auto;
+		height: 18vw;
+		margin: 0 25px;
+		overflow: scroll;
+		position: relative;
+		animation: show 0.6s;
+	}
+
+	@keyframes show {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	.report-info {
+		div {
+			margin: 10px;
+			font-size: 0.875rem;
+		}
+
+		.report-user-img {
+			width: 25px;
+
+			img {
+				border-radius: 50%;
+			}
+		}
+	}
+
+	.report-content {
+		font-size: 0.875rem;
+		margin: 0 25px;
+		padding: 5px 15px;
+		background-color: $color-white;
+		letter-spacing: 0.6px;
+		line-height: 1.5;
+		border: $border-basic;
+		border-radius: $br-basic * 3;
+		border-top-left-radius: 0;
+		box-shadow: 0 0 3px 0 rgba($color: $color-black, $alpha: 0.1);
+		word-wrap: break-word;
+	}
+
+	.divider {
+		width: 84%;
+		height: 1px;
+		background-color: #aaa;
+		margin: 0 0px 0 60px;
+	}
+
+	#report-btn {
+		flex: none;
+		display: block;
+		margin: 30px auto 20px auto;
+		text-align: center;
+	}
+
+	.no-report-list {
+		width: 100%;
+		height: 18vw;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		.wrap {
+			width: 80%;
+			height: 200px;
+			background-color: $color-white;
+			flex-direction: column;
+			text-align: center;
+			justify-content: center;
+			border-radius: $br-basic;
+			position: absolute;
+			top: 65%;
+			left: 50%;
+			@include transform(translate(-50%, -65%));
+		}
+
+		p {
+			font-size: 1.125rem;
+			font-weight: 550;
+			letter-spacing: 1px;
+			line-height: 1.3;
+			padding: 0 10px 30px 10px;
+
+			.fa-smile {
+				padding-left: 5px;
+			}
+		}
+	}
+}
+
+.report-input {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+	opacity: 0;
+	z-index: 100;
+	@include transition-duration(0.15s);
+
+	&.active {
+		visibility: visible;
+		opacity: 1;
+		@include transition-duration(0.15s);
+	}
+
+	.layer {
+		height: 100%;
+		width: 100%;
+		background-color: $color-black;
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0.5;
+	}
+
+	.report-input-box {
+		width: 330px;
+		height: 400px;
+		background-color: $color-white;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		padding: 35px 30px 20px 30px;
+		border-radius: $br-basic;
+		box-shadow: 0 0 10px 2px rgba($color: $color-black, $alpha: 0.3);
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0);
+		-webkit-transform: translate(-50%, -50%) scale(0);
+
+		@include transition-duration(0.25s);
+
+		&.active {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+			-webkit-transform: translate(-50%, -50%) scale(1);
+			@include transition-duration(0.25s);
+		}
+
+		h3 {
+			text-align: center;
+		}
+
+		.block {
+			margin: 30px;
+		}
+
+		label {
+			font-size: 0.875rem;
+			display: block;
+			margin: 10px 0;
+			position: relative;
+
+			&::before {
+				content: "";
+				display: block;
+				border-style: solid;
+				border-width: 6px;
+				border-color: transparent transparent transparent $color-blue;
+				position: absolute;
+				top: 2.5px;
+				left: -12px;
+			}
+		}
+
+		input,
+		select,
+		textarea {
+			padding: 5px 10px;
+			border: 1px solid #ddd;
+			border-radius: $br-basic;
+			letter-spacing: 0.6px;
+			outline: none;
+		}
+
+		input {
+			font-size: 1.25rem;
+			height: 36px;
+		}
+
+		textarea {
+			font-size: 1rem;
+			width: 220px;
+			height: 100px;
+		}
+
+		.close-btn {
+			cursor: pointer;
+
+			&::after,
+			&::before {
+				position: absolute;
+				top: 20px;
+				right: 10px;
+				content: "";
+				width: 22px;
+				height: 2px;
+				background-color: $color-light-grey;
+			}
+
+			&::after {
+				@include transform(rotate(-45deg));
+			}
+
+			&::before {
+				@include transform(rotate(45deg));
+			}
+		}
+
+		#send-report-btn {
+			left: 50%;
+			@include transform(translateX(-50%));
+		}
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	.top-info__report {
+		.report-title {
+			h4 {
+				font-size: 1.125rem;
+				font-weight: 650;
+				padding-bottom: 10px;
+			}
+			p {
+				padding-bottom: 10px;
+			}
+		}
+
+		.report-list {
+			height: 16.5vw;
+		}
+
+		.no-report-list {
+			height: 16.5vw;
+
+			.wrap {
+				top: 85%;
+
+				p {
+					font-size: 0.875rem;
+				}
+			}
+		}
+
+		#report-btn {
+			margin: 20px auto 5px auto;
+		}
+	}
+}
+
+@media screen and (max-width: 993px) {
+	#trail-detail__top-info {
+		.top-info__report {
+			width: 90%;
+			margin-top: 30px;
+			margin-left: 0;
+
+			.report-list {
+				width: 80%;
+				margin: 0 auto;
+				height: 25vw;
+			}
+
+			.no-report-list {
+				position: relative;
+				top: 0;
+				left: 0;
+				transform: translate(0, 0);
+				height: 25vw;
+
+				.wrap {
+					top: 62%;
+					width: 80%;
+					height: 80%;
+				}
+			}
+
+			#report-btn {
+				margin-bottom: 15px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#trail-detail__top-info {
+		.top-info__report {
+			.report-list {
+				height: 30vw;
+			}
+
+			.no-report-list {
+				height: 40vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 595px) {
+	#trail-detail__top-info {
+		.top-info__report {
+			.report-list {
+				height: 40vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 416px) {
+	#trail-detail__top-info {
+		.top-info__report {
+			.report-list {
+				height: 50vw;
+			}
+		}
+	}
+}

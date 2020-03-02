@@ -31,7 +31,7 @@ const trailsFilterData = [
         title: '步道全長',
         questionIcon: false,
         tag: 'length',
-        list: ['全部', '3 公里以下', '3 - 6 公里', '6 - 9 公里', '9 公里以上']
+        list: ['全部', '2 公里以下', '2 - 4 公里', '4 - 8 公里', '8 公里以上']
     }
 ]
 
@@ -53,7 +53,9 @@ class TrailsFilter extends Component {
     render() {
         const {
             trailsFilterProps,
-            changeFilter
+            changeFilter,
+            trailsSort,
+            changeSort
         } = this.props
 
         const {
@@ -80,10 +82,11 @@ class TrailsFilter extends Component {
                                                     filter.list.map((filterItem, index) => {
                                                         return (
                                                             <label
-                                                                className={
-                                                                    `filter-item 
-                                                    ${(index === trailsFilterProps[filter.id].value) ? 'active' : ''}
-                                                `}
+                                                                className=
+                                                                {`
+                                                                    filter-item 
+                                                                    ${(index === trailsFilterProps[filter.id].value) ? 'active' : ''}
+                                                                `}
                                                                 key={index}
                                                             >
                                                                 <input type="radio"
@@ -92,7 +95,6 @@ class TrailsFilter extends Component {
                                                                     checked={(index === trailsFilterProps[filter.id].value)}
                                                                     onChange={changeFilter}
                                                                 />
-
                                                                 {filterItem}
                                                             </label>
                                                         )
@@ -103,9 +105,69 @@ class TrailsFilter extends Component {
                                     )
                                 })
                             }
+                            <div className="mobile-filter-btns">
+                                <Button
+                                    text={'確認篩選'}
+                                    id={'mobile-confirm-filter-btn'}
+                                    onClick={this.toggleMobileFilter}
+                                />
+                                <Button
+                                    text={'前往排序'}
+                                    id={'mobile-go-sort-btn'}
+                                    onClick={this.toggleMobileSort}
+                                />
+                            </div>
+                        </div>
+                        <div className="sorts">
+                            <div className="flex sort-list">
+                                <label className={`sort-item ${trailsSort === '0' ? 'active' : ''}`}>
+                                    <input
+                                        name="sort"
+                                        type="radio"
+                                        value="0"
+                                        onChange={changeSort}
+                                        checked={('0' === trailsSort)}
+                                    />
+                                    <i className="fas fa-sort-amount-up"></i>
+                                    時間長短
+                                </label>
+                                <label className={`sort-item ${trailsSort === '1' ? 'active' : ''}`}>
+                                    <input
+                                        name="sort"
+                                        type="radio"
+                                        value="1"
+                                        onChange={changeSort}
+                                        checked={('1' === trailsSort)}
+                                    />
+                                    <i className="fas fa-sort-amount-up"></i>
+                                    困難程度
+                                </label>
+                                <label className={`sort-item ${trailsSort === '2' ? 'active' : ''}`}>
+                                    <input
+                                        name="sort"
+                                        type="radio"
+                                        value="2"
+                                        onChange={changeSort}
+                                        checked={('2' === trailsSort)}
+                                    />
+                                    <i className="fas fa-sort-amount-down"></i>
+                                    熱門程度
+                                </label>
+                                <label className={`sort-item ${trailsSort === '3' ? 'active' : ''}`}>
+                                    <input
+                                        name="sort"
+                                        type="radio"
+                                        value="3"
+                                        onChange={changeSort}
+                                        checked={('3' === trailsSort)}
+                                    />
+                                    <i className="fas fa-sort-amount-down"></i>
+                                    喜愛程度
+                                </label>
+                            </div>
                             <Button
-                                text={'確認篩選'}
-                                id={'confirm-filter-btn'}
+                                text={'確認排序'}
+                                id={'mobile-confirm-sort-btn'}
                                 onClick={this.toggleMobileFilter}
                             />
                         </div>
