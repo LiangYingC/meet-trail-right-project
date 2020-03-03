@@ -1,62 +1,38 @@
 import React from 'react';
+import { TrailsConst } from '../../../../constants';
 import Button from '../../../shared/Button';
 
+
 const TrailsSort = ({
-    trailsSortChecked,
+    sortCheckedValue,
     changeSort,
     isShowMobileSortList,
     toggleMobileSortList
 }) => {
+    const sortListConst = TrailsConst.sortList
     return (
         <section id="trails-sort" className={`${isShowMobileSortList ? 'active' : ''}`}>
             <div className="layer"></div>
             <div className="wrap">
-                <div className="sorts">
+                <div className="sorts-container">
                     <div className="flex sort-list">
-                        <label className={`sort-item ${trailsSortChecked === '0' ? 'active' : ''}`}>
-                            <input
-                                name="sort"
-                                type="radio"
-                                value="0"
-                                onChange={changeSort}
-                                checked={('0' === trailsSortChecked)}
-                            />
-                            <i className="fas fa-sort-amount-down"></i>
-                            熱門程度
-                                </label>
-                        <label className={`sort-item ${trailsSortChecked === '1' ? 'active' : ''}`}>
-                            <input
-                                name="sort"
-                                type="radio"
-                                value="1"
-                                onChange={changeSort}
-                                checked={('1' === trailsSortChecked)}
-                            />
-                            <i className="fas fa-sort-amount-up"></i>
-                            時間長短
-                                </label>
-                        <label className={`sort-item ${trailsSortChecked === '2' ? 'active' : ''}`}>
-                            <input
-                                name="sort"
-                                type="radio"
-                                value="2"
-                                onChange={changeSort}
-                                checked={('2' === trailsSortChecked)}
-                            />
-                            <i className="fas fa-sort-amount-up"></i>
-                            困難程度
-                                </label>
-                        <label className={`sort-item ${trailsSortChecked === '3' ? 'active' : ''}`}>
-                            <input
-                                name="sort"
-                                type="radio"
-                                value="3"
-                                onChange={changeSort}
-                                checked={('3' === trailsSortChecked)}
-                            />
-                            <i className="fas fa-sort-amount-down"></i>
-                            喜愛排名
-                                </label>
+                        {
+                            sortListConst.map((sortItem, index) => {
+                                return (
+                                    <label className={`sort-item ${sortCheckedValue === index ? 'active' : ''}`} key={index}>
+                                        <input
+                                            name="sort"
+                                            type="radio"
+                                            value={index}
+                                            onChange={changeSort}
+                                            checked={(index === sortCheckedValue)}
+                                        />
+                                        <i className={`fas ${sortItem.iconClassName}`}></i>
+                                        {sortItem.option}
+                                    </label>
+                                )
+                            })
+                        }
                     </div>
                     <Button
                         text={'確認排序'}

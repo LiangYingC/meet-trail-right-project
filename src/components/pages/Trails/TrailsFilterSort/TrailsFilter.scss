@@ -4,7 +4,7 @@
 	background-color: #fafafa;
 	position: relative;
 
-	.filters {
+	.filters-container {
 		padding: 15px 30px;
 		border: $border-basic;
 		border-radius: $br-basic;
@@ -12,7 +12,7 @@
 		background-color: $color-white;
 	}
 
-	.filter {
+	.filter-list-container {
 		padding: 18px 0;
 	}
 
@@ -97,7 +97,7 @@
 			display: flex;
 		}
 
-		.filters {
+		.filters-container {
 			display: flex;
 			justify-content: center;
 			align-items: flex-start;
@@ -107,7 +107,7 @@
 			padding-bottom: 70px;
 		}
 
-		.filter {
+		.filter-list-container {
 			padding: 18px 0;
 			flex-direction: column;
 			justify-content: center;
@@ -148,13 +148,13 @@
 
 @media screen and (max-width: 750px) {
 	#trails-filter {
-		.filters {
+		.filters-container {
 			width: 100%;
 			flex-wrap: wrap;
 			padding: 15px 15px 25px 15px;
 		}
 
-		.filter {
+		.filter-list-container {
 			padding: 10px 0;
 			margin: 0 10px;
 			width: calc(50% - 20px);

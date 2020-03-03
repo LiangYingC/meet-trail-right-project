@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TrailsFilter from './TrailsFilter.jsx';
 import TrailsSort from './TrailsSort.jsx';
-import Button from '../../../shared/Button';
 
 class TrailsFilterSort extends Component {
     constructor(props) {
@@ -14,6 +13,7 @@ class TrailsFilterSort extends Component {
             movedY: 0
         }
     }
+
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
     }
@@ -76,9 +76,9 @@ class TrailsFilterSort extends Component {
 
     render() {
         const {
-            trailsFilterProps,
+            filterCheckedList,
             changeFilter,
-            trailsSortChecked,
+            sortCheckedValue,
             changeSort
         } = this.props
 
@@ -91,13 +91,13 @@ class TrailsFilterSort extends Component {
         return (
             <Fragment>
                 <TrailsFilter
-                    trailsFilterProps={trailsFilterProps}
+                    filterCheckedList={filterCheckedList}
                     changeFilter={changeFilter}
                     isShowMobileFilterList={isShowMobileFilterList}
                     toggleMobileFilterList={this.toggleMobileFilterList}
                 />
                 <TrailsSort
-                    trailsSortChecked={trailsSortChecked}
+                    sortCheckedValue={sortCheckedValue}
                     changeSort={changeSort}
                     isShowMobileSortList={isShowMobileSortList}
                     toggleMobileSortList={this.toggleMobileSortList}
