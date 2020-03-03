@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
-import TrailsFilter from './TrailsFilter';
+import TrailsFilterSort from './TrailsFilterSort';
 import TrailsListArea from './TrailsListArea';
 import { DB } from '../../../lib';
 
@@ -43,7 +43,7 @@ class Trails extends Component {
         this.state = {
             trailsAll: null,
             trailsVisible: null,
-            trailsFilterList: [
+            trailsFilterCheckedList: [
                 {
                     tag: 'area',
                     value: 0,
@@ -65,7 +65,7 @@ class Trails extends Component {
                     trailsFilterList: trailsFilterData[3].list
                 }
             ],
-            trailsSort: '0'
+            trailsSortChecked: '0'
         }
     }
 
@@ -75,23 +75,23 @@ class Trails extends Component {
     }
 
     getTrailsList = (history) => {
-        const { trailsSort } = this.state
+        const { trailsSortChecked } = this.state
 
         let sortKey
         let sortRank
-        switch (trailsSort) {
+        switch (trailsSortChecked) {
             case '0':
+                sortKey = 'view_count'
+                sortRank = 'desc'
+                break;
+
+            case '1':
                 sortKey = 'time'
                 sortRank = 'asc'
                 break;
 
-            case '1':
-                sortKey = 'difficulty'
-                sortRank = 'desc'
-                break;
-
             case '2':
-                sortKey = 'view_count'
+                sortKey = 'difficulty'
                 sortRank = 'desc'
                 break;
 
@@ -133,7 +133,6 @@ class Trails extends Component {
                 .orderBy(sortKey, sortRank)
                 .get()
                 .then(querySnapshot => {
-                    console.log(querySnapshot)
                     let trailsData = []
                     querySnapshot.forEach(doc => {
                         trailsData.push(doc.data())
@@ -146,21 +145,19 @@ class Trails extends Component {
     }
 
     changeSort = (e) => {
-        console.log(e.target.value)
         const { history } = this.props
         e.persist()
         this.setState(preState => ({
             ...preState,
-            trailsSort: e.target.value
+            trailsSortChecked: e.target.value
         }), () => this.getTrailsList(history))
-
     }
 
 
     changeFilter = (e) => {
         e.persist() // React 中，event 換到別的 thread 時，event 屬性資料會清除，用 event.persist() 使導致清空的 synthetic event 脫離 pool。
         this.setState(preState => ({
-            trailsFilterList: preState.trailsFilterList.map((filter, index) => {
+            trailsFilterCheckedList: preState.trailsFilterCheckedList.map((filter, index) => {
                 if (filter.tag === e.target.name) {
                     return {
                         tag: e.target.name,
@@ -176,14 +173,13 @@ class Trails extends Component {
     setVisibleList = () => {
         this.setState(preState => ({
             trailsVisible: preState.trailsAll.filter(trail => {
-                const areaFilter = preState.trailsFilterList[0]
-                const difficultyFilter = preState.trailsFilterList[1]
-                const timeFilter = preState.trailsFilterList[2]
-                const lengthFilter = preState.trailsFilterList[3]
+                const areaFilter = preState.trailsFilterCheckedList[0]
+                const difficultyFilter = preState.trailsFilterCheckedList[1]
+                const timeFilter = preState.trailsFilterCheckedList[2]
+                const lengthFilter = preState.trailsFilterCheckedList[3]
 
                 let timeValue
                 let lengthValue
-
                 switch (timeFilter.trailsFilterList[timeFilter.value]) {
                     case '1 小時以下':
                         timeValue = {
@@ -273,18 +269,18 @@ class Trails extends Component {
     render() {
         const {
             trailsVisible,
-            trailsFilterList,
-            trailsSort
+            trailsFilterCheckedList,
+            trailsSortChecked
         } = this.state
         const { history } = this.props
 
         return (
             <Fragment>
                 <Header history={history} />
-                <TrailsFilter
-                    trailsFilterProps={trailsFilterList}
+                <TrailsFilterSort
+                    trailsFilterProps={trailsFilterCheckedList}
                     changeFilter={this.changeFilter}
-                    trailsSort={trailsSort}
+                    trailsSortChecked={trailsSortChecked}
                     changeSort={this.changeSort}
                 />
                 <TrailsListArea trailsVisible={trailsVisible} />

@@ -6,7 +6,6 @@ import {
 import headerLogoImg from '../../../assets/logo/logo260x70-deep .png';
 import headerLogoSmallImg from '../../../assets/logo/logo270x270-deep .png';
 import userImg from '../../../assets/img/user.png';
-import Loginbox from '../../../components/shared/LoginBox';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 import SearchBar from '../SearchBar'
 

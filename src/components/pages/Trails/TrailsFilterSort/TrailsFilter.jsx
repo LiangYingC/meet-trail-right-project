@@ -1,0 +1,95 @@
+import React from 'react';
+import Button from '../../../shared/Button';
+import QuestionButton from '../../../shared/QuestionButton';
+
+const trailsFilterData = [
+    {
+        id: 0,
+        title: '所在區域',
+        questionIcon: false,
+        tag: 'area',
+        list: ['全部', '北部', '中部', '南部', '東部', '外島']
+    },
+    {
+        id: 1,
+        title: '步道難度',
+        questionIcon: true,
+        tag: 'difficulty',
+        list: ['全部', '輕鬆', '有點挑戰', '很有挑戰']
+    },
+    {
+        id: 2,
+        title: '所需時間',
+        questionIcon: false,
+        tag: 'time',
+        list: ['全部', '1 小時以下', '1 - 3 小時', '3 - 5 小時', '5 小時以上']
+    },
+    {
+        id: 3,
+        title: '步道全長',
+        questionIcon: false,
+        tag: 'length',
+        list: ['全部', '2 公里以下', '2 - 4 公里', '4 - 8 公里', '8 公里以上']
+    }
+]
+
+const TrailsFilter = ({
+    trailsFilterProps,
+    changeFilter,
+    isShowMobileFilterList,
+    toggleMobileFilterList
+}) => {
+    return (
+        <section id="trails-filter" className={`${isShowMobileFilterList ? 'active' : ''}`}>
+            <div className="layer"></div>
+            <div className="wrap">
+                <div className="filters">
+                    {
+                        trailsFilterData.map(filter => {
+                            return (
+                                <div className="flex filter mobile-active" key={filter.id}>
+                                    <div className="flex filter-title" >{filter.title}
+                                        <div className="filter-QustionBtn" style={{ opacity: `${filter.questionIcon ? '1' : '0'}` }}>
+                                            <QuestionButton />
+                                        </div>
+                                    </div>
+                                    <div className="filter-list">
+                                        {
+                                            filter.list.map((filterItem, index) => {
+                                                return (
+                                                    <label
+                                                        className=
+                                                        {`
+                                                            filter-item 
+                                                            ${(index === trailsFilterProps[filter.id].value) ? 'active' : ''}
+                                                        `}
+                                                        key={index}
+                                                    >
+                                                        <input type="radio"
+                                                            name={filter.tag}
+                                                            value={index}
+                                                            checked={(index === trailsFilterProps[filter.id].value)}
+                                                            onChange={changeFilter}
+                                                        />
+                                                        {filterItem}
+                                                    </label>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                    <Button
+                        text={'確認篩選'}
+                        id={'mobile-confirm-filter-btn'}
+                        onClick={toggleMobileFilterList}
+                    />
+                </div>
+            </div>
+        </section >
+    )
+}
+
+export default TrailsFilter;
