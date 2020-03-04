@@ -33,15 +33,14 @@ class TrailsListArea extends Component {
     }
 
     calculateScrollHeight = (lastPositonY) => {
-        // 取得新舊位置後，計算出目前往下滑動多少距離
         const scrollHeight = window.pageYOffset - lastPositonY
         const { movedY } = this.state
         this.setState({
             movedY: movedY + scrollHeight
-        }, this.shouldShow)
+        }, this.handleScrollToTopBtnShow)
     }
 
-    shouldShow = () => {
+    handleScrollToTopBtnShow = () => {
         const { positionY } = this.state
         if (positionY >= 150) {
             this.setState({
@@ -77,7 +76,6 @@ class TrailsListArea extends Component {
         }))
     }
 
-
     render() {
         const {
             isShowLoginBox,
@@ -86,7 +84,7 @@ class TrailsListArea extends Component {
         const { trailsVisible } = this.props
         return (
             <Fragment>
-                <section id="trails">
+                <section id="trails-list-area">
                     <div className="wrap">
                         <div className="flex">
                             <div className="trails-qty">
