@@ -1,4 +1,3 @@
-// Trail Create Page 
 const TC = {
     initialState: {
         inputValue: {

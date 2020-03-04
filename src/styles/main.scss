@@ -6,8 +6,10 @@
 /* Home Page */
 @import "../components/pages/Home/Home.scss";
 /* Trails Page */
-@import "../components/pages/Trails/TrailsListArea/TrailListArea.scss";
-@import "../components/pages/Trails/TrailsFilter/TrailsFilter.scss";
+@import "../components/pages/Trails/TrailsListArea/TrailsListArea.scss";
+@import "../components/pages/Trails/TrailsFilterSort/TrailsFilterSort.scss";
+@import "../components/pages/Trails/TrailsFilterSort/TrailsFilter.scss";
+@import "../components/pages/Trails/TrailsFilterSort/TrailsSort.scss";
 /* TrailDetail Page */
 @import "../components/pages/TrailDetail/TrailDetail.scss";
 @import "../components/pages/TrailDetail/TopInfo/TopInfo.scss";
