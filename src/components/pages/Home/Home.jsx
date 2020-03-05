@@ -59,10 +59,9 @@ class Home extends Component {
     }
 
     toggleLoginBox = () => {
-        this.setState(preState => ({
-            ...preState,
+        this.setState({
             isShowLoginBox: !preState.isShowLoginBox,
-        }))
+        })
     }
 
     render() {

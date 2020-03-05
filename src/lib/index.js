@@ -54,6 +54,8 @@ export const APP = {
 
 // Firebase Database library
 import { db } from '../config';
+import firebase from '../config';
+
 export const DB = {
     time: () => firebase.firestore.FieldValue.serverTimestamp(),
 
@@ -119,8 +121,6 @@ export const DB = {
                 } else {
                     callbackSed()
                 }
-            }).catch(error => {
-
             })
     }
 }
