@@ -36,10 +36,9 @@ class TrailDetail extends Component {
                                 picture: userData.picture
                             }
                         }
-                        this.setState(preState => ({
-                            ...preState,
+                        this.setState({
                             trailData: newTrailData
-                        }))
+                        })
                     })
             })
         DB.ref('trails').doc(trailId)

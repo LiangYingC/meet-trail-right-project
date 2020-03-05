@@ -24,10 +24,9 @@ class Report extends Component {
             .orderBy('timestamp', 'desc')
             .onSnapshot(querySnapshot => {
                 if (querySnapshot.docs.length === 0) {
-                    this.setState(preState => ({
-                        ...preState,
+                    this.setState({
                         reportList: []
-                    }))
+                    })
                 } else {
                     let reportList = []
                     querySnapshot.forEach(doc => {
@@ -45,10 +44,9 @@ class Report extends Component {
                                     time: reportData.report_time,
                                     content: reportData.report_content
                                 })
-                                this.setState(preState => ({
-                                    ...preState,
+                                this.setState({
                                     reportList: reportList
-                                }))
+                                })
                             })
                     })
                 }
@@ -60,14 +58,12 @@ class Report extends Component {
 
         if (isLogin) {
             this.setState(preState => ({
-                ...preState,
                 isShowReportInputBox: !preState.isShowReportInputBox
             }))
         } else {
-            this.setState(preState => ({
-                ...preState,
+            this.setState({
                 isShowLoginBox: true
-            }))
+            })
         }
 
     }
@@ -88,7 +84,6 @@ class Report extends Component {
         const { id } = this.props
         const { userData } = this.context
         this.setState(preState => {
-
             const reportItem = {
                 report_time: preState.dateValue + " , " + APP.getTime(),
                 report_content: preState.contentValue,
@@ -119,10 +114,9 @@ class Report extends Component {
     }
 
     closeLoginBox = () => {
-        this.setState(preState => ({
-            ...preState,
+        this.setState({
             isShowLoginBox: false,
-        }))
+        })
     }
 
     render() {

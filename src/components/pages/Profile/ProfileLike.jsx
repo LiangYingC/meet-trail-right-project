@@ -47,10 +47,9 @@ class ProfileLike extends Component {
                     })
                 })
         } else {
-            this.setState(preState => ({
-                ...preState,
+            this.setState({
                 likeList: []
-            }))
+            })
         }
     }
 
@@ -129,7 +128,6 @@ class ProfileLike extends Component {
                             </div>
                         </div>
                 }
-
             </Fragment>
         )
     }

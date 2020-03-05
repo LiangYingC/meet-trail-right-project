@@ -95,14 +95,13 @@ class LoginBox extends Component {
     }
 
     toggleSignInUp = () => {
-        this.setState(preState => ({
-            ...preState,
+        this.setState({
             isShowSignIn: !preState.isShowSignIn,
             alertWord: {
                 isShow: false,
                 word: '歡迎登入 / 註冊'
             }
-        }))
+        })
     }
 
     render() {

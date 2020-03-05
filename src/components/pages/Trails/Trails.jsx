@@ -83,11 +83,10 @@ class Trails extends Component {
     }
 
     clearTrailsList = () => {
-        this.setState(preState => ({
-            ...preState,
+        this.setState({
             trailsAll: null,
             trailsVisible: null
-        }))
+        })
     }
 
     getTrailsList = (sortKey, sortRank, searchValue) => {
@@ -147,10 +146,9 @@ class Trails extends Component {
 
     changeSort = (e) => {
         e.persist()
-        this.setState(preState => ({
-            ...preState,
+        this.setState({
             sortCheckedValue: Number(e.target.value)
-        }), this.handleSort)
+        }, this.handleSort)
     }
 
     changeFilter = (e) => {
