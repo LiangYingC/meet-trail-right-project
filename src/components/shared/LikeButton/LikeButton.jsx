@@ -81,7 +81,6 @@ const LikeButton = ({
                         isLiked = true
                     }
                 })
-
                 return (
                     <div className="like-button">
                         <i className={`far fa-heart ${isLiked ? 'active' : ''}`}
