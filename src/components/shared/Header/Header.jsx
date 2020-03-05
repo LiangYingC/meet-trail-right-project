@@ -28,7 +28,6 @@ class Header extends Component {
     }
 
     handleScroll = () => {
-        // 當往下滾動發生，取得舊的位置，並將位置轉換成新的
         const lastPositonY = this.state.positionY
         this.setState({
             positionY: window.pageYOffset
@@ -36,14 +35,13 @@ class Header extends Component {
     }
 
     calculateScrollHeight = (lastPositonY) => {
-        // 取得新舊位置後，計算出目前往下滑動多少距離
         const scrollHeight = window.pageYOffset - lastPositonY
         this.setState(preState => ({
             movedY: preState.movedY + scrollHeight
-        }), this.shouldHidden)
+        }), this.handleHeaderHide)
     }
 
-    shouldHidden = () => {
+    handleHeaderHide = () => {
         const { movedY, positionY } = this.state
         if (movedY > 30) {
             this.setState({

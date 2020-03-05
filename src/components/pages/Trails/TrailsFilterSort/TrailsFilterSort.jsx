@@ -24,10 +24,9 @@ class TrailsFilterSort extends Component {
 
     handleScroll = () => {
         const lastPositonY = this.state.positionY
-        this.setState((preState) => ({
-            ...preState,
+        this.setState({
             positionY: window.pageYOffset
-        }), () => this.calculateScrollHeight(lastPositonY))
+        }, () => this.calculateScrollHeight(lastPositonY))
     }
 
     calculateScrollHeight = (lastPositonY) => {
@@ -41,25 +40,22 @@ class TrailsFilterSort extends Component {
     handleMobileFilterSortBtnShow = () => {
         const { movedY, positionY } = this.state
         if (movedY > 30) {
-            this.setState(preState => ({
-                ...preState,
+            this.setState({
                 movedY: 0,
                 isShowMobileFilterListSortBtn: false
-            }))
+            })
         } else if (movedY <= -120 || positionY <= 30) {
-            this.setState(preState => ({
-                ...preState,
+            this.setState({
                 movedY: 0,
                 isShowMobileFilterListSortBtn: true
-            }))
+            })
         }
     }
 
     showFilterSortBtn = () => {
-        this.setState(preSate => ({
-            ...preSate,
+        this.setState({
             isShowMobileFilterListSortBtn: true
-        }))
+        })
     }
 
     toggleMobileFilterList = () => {
