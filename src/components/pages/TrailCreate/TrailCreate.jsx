@@ -6,8 +6,13 @@ import Footer from '../../shared/Footer';
 import Button from '../../shared/Button';
 import Alter from '../../shared/Alert';
 import LoadingPage from '../../shared/LoadingPage';
-import SingleTextInput from './SingleTextInput.jsx';
-import UploadImgInput from './UploadImgInput.jsx';
+import SingleTextInput from './Inputs/SingleTextInput.jsx';
+import DoubleTextInput from './Inputs/DoubleTextInput.jsx';
+import UploadImgInput from './Inputs/UploadImgInput.jsx';
+import RadioCheckboxInput from './Inputs/RadioCheckboxInput.jsx';
+import TrailLocationInput from './Inputs/TrailLocationInput.jsx';
+import TrailRouteInput from './Inputs/TrailRouteInput.jsx';
+
 import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class TrailCreate extends Component {
@@ -19,15 +24,13 @@ class TrailCreate extends Component {
     componentDidMount() {
         const oldInputValue = JSON.parse(localStorage.getItem('MTR_Trail_Create'))
         if (oldInputValue) {
-            this.setState(preState => ({
-                ...preState,
+            this.setState({
                 inputValue: oldInputValue
-            }))
+            })
         }
     }
 
     changeValue = (e) => {
-        console.log('changeValue')
         e.persist()
         const id = e.target.id
         const name = e.target.name
@@ -51,29 +54,26 @@ class TrailCreate extends Component {
                     uploadTask.on('state_changed', snapshot => {
                         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                         const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-                        this.setState(preState => ({
-                            ...preState,
+                        this.setState({
                             isShowImgLoading: {
                                 id: id,
                                 progress: progress
                             }
-                        }))
+                        })
                     }, error => {
                         if (error) {
                             this.toggleAlertBox(true, '有錯誤發生，請重新上傳', '', '')
                         }
                     }, () => {
-                        this.setState(preState => ({
-                            ...preState,
+                        this.setState({
                             isShowImgLoading: {
                                 id: '',
                                 progress: ''
                             }
-                        }))
+                        })
                         // Handle successful uploads on complete
                         uploadTask.snapshot.ref.getDownloadURL()
                             .then(downloadURL => {
-                                console.log(downloadURL)
                                 this.setState(preState => ({
                                     inputValue: {
                                         ...preState.inputValue,
@@ -199,10 +199,9 @@ class TrailCreate extends Component {
         const { userData } = this.context
         const { history } = this.props
 
-        this.setState(preState => ({
-            ...preState,
+        this.setState({
             isShowCreateLoading: true
-        }))
+        })
 
         DB.ref('trails')
             .add(
@@ -227,9 +226,6 @@ class TrailCreate extends Component {
     }
 
     checkValueType = (inputId, value, TurnInputsCheckedFalse) => {
-        console.log('checkValueType')
-        console.log(inputId)
-        console.log(value)
         this.toggleAlterWord('', '')
         if (inputId === 'title' ||
             inputId === 'description' ||
@@ -257,34 +253,27 @@ class TrailCreate extends Component {
     }
 
     toggleAlterWord = (word, inputId) => {
-        console.log('toggleAlterWord')
-        this.setState(preState => ({
-            ...preState,
+        this.setState({
             alterWord: {
                 word: word,
                 inputId: inputId
             }
-        }), () => { console.log(this.state.alterWord) })
+        })
     }
 
     toggleAlertBox = (isShow, wordHead, hightlight, wordTail) => {
-        this.setState(preState => ({
+        this.setState({
             alterBox: {
-                ...preState.alertBox,
                 isShow: isShow,
                 wordHead: wordHead,
                 hightlight: hightlight,
                 wordTail: wordTail
             }
-        }))
+        })
     }
 
     clearAllInputs = () => {
-        this.setState(preState => ({
-            ...preState,
-            inputValue: TrailCreateConst.initialState.inputValue,
-            alertBox: TrailCreateConst.initialState.alterBox
-        }))
+        this.setState(TrailCreateConst.initialState)
     }
 
     render() {
@@ -348,150 +337,37 @@ class TrailCreate extends Component {
                             }
                         />
 
-                        <div className="form-item">
-                            <label htmlFor="area">
-                                步道位置<span className="mark">*</span></label>
-                            <div className="flex area">
-                                <select
-                                    name="location"
-                                    id="area"
-                                    value={inputValue.area}
-                                    onChange={this.changeValue}
-                                >
-                                    <option
-                                        value='選擇區域'
-                                        className={`${inputValue.area.length > 0 ? 'inactive' : ''}`}>
-                                        選擇區域
-                                    </option>
-                                    {
-                                        Object.keys(locationObj).map(area => {
-                                            return <option value={`${area}`}>{area}</option>
-                                        })
-                                    }
-                                </select>
-                                <select
-                                    name="location"
-                                    id="city"
-                                    value={inputValue.city}
-                                    onChange={this.changeValue}
-                                >
-                                    <option value='選擇縣市'>選擇縣市</option>
-                                    {
-                                        inputValue.area.length > 0 ?
-                                            Object.keys(locationObj[inputValue.area]).map(city => {
-                                                return <option value={`${city}`}>{city}</option>
-                                            }) : ''
-                                    }
-                                </select>
-                                <select
-                                    name="location"
-                                    id="dist"
-                                    value={inputValue.dist}
-                                    onChange={this.changeValue}
-                                >
-                                    <option value='選擇鄉鎮'>選擇鄉鎮</option>
-                                    {
-                                        inputValue.city.length > 0 ?
-                                            locationObj[inputValue.area][inputValue.city].map(dist => {
-                                                return <option value={`${dist}`}>{dist}</option>
-                                            }) : ''
-                                    }
-                                </select>
-                            </div>
-                        </div>
+                        <TrailLocationInput
+                            inputValue={inputValue}
+                            changeValue={this.changeValue}
+                            locationObj={locationObj}
+                        />
 
-                        <div className="form-item">
-                            <label htmlFor="route">
-                                步道起終點
-                            <span className="mark">*</span>
-                                <span className="alert-word">
-                                    {alterWord.inputId === 'start' || alterWord.inputId === 'end' ? alterWord.word : ''}
-                                </span>
-                            </label>
-                            <div className="flex route">
-                                <div className="flex">
-                                    <input
-                                        type="text"
-                                        id="start"
-                                        placeholder="起點處"
-                                        value={inputValue.start}
-                                        onChange={this.changeValue}
-                                    />
-                                </div>
-                                <i className="fas fa-long-arrow-alt-right"></i>
-                                <div className="flex">
-                                    <input
-                                        type="text"
-                                        id="end"
-                                        placeholder="終點處"
-                                        value={inputValue.end}
-                                        onChange={this.changeValue}
-                                    />
-                                </div>
-                                <i className="fas fa-mountain"></i>
-                                <div className="flex">
-                                    <select
-                                        name="route"
-                                        id="type"
-                                        value={inputValue.type}
-                                        onChange={this.changeValue}
-                                    >
-                                        <option value="單向折返">單向折返</option>
-                                        <option value="雙向進出">雙向進出</option>
-                                        <option value="環狀步道">環狀步道</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                        <TrailRouteInput
+                            inputValue={inputValue}
+                            changeValue={this.changeValue}
+                            alterWord={alterWord}
+                        />
 
-                        <div className="form-item">
-                            <label>步道難度<span className="mark">*</span></label>
-                            <div className="flex difficulty-list">
-                                {
-                                    difficultyList.map(difficultyItem => {
-                                        return (
-                                            <label className={`flex difficulty ${inputValue.difficulty[difficultyItem.value] ? 'active' : ''}`}>
-                                                <input
-                                                    id={difficultyItem.value}
-                                                    name="difficulty"
-                                                    type="radio"
-                                                    value={difficultyItem.value}
-                                                    onChange={this.changeValue}
-                                                    checked={inputValue.difficulty[difficultyItem.value]}
-                                                />
-                                                <span className="radio-mark"></span>
-                                                {difficultyItem.name}
-                                            </label>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div>
+                        <RadioCheckboxInput
+                            title={'步道難度'}
+                            type={'radio'}
+                            name={'difficulty'}
+                            listName={'difficulty-list'}
+                            listConst={difficultyList}
+                            checkedList={inputValue.difficulty}
+                            changeValue={this.changeValue}
+                        />
 
-                        <div className="form-item">
-                            <label>登頂風景<span className="mark">*</span></label>
-                            <div className="flex">
-                                <div className="flex scenery-list">
-                                    {
-                                        sceneryList.map(sceneryItem => {
-                                            return (
-                                                <label className={`scenery ${inputValue.scenery[sceneryItem.value] ? 'active' : ''}`}>
-                                                    <input
-                                                        id={sceneryItem.value}
-                                                        name="scenery"
-                                                        type="checkbox"
-                                                        value={sceneryItem.value}
-                                                        onChange={this.changeValue}
-                                                        checked={inputValue.scenery[sceneryItem.value]}
-                                                    />
-                                                    {sceneryItem.name}
-                                                </label>
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </div>
-                        </div>
+                        <RadioCheckboxInput
+                            title={'登頂風景'}
+                            type={'checkbox'}
+                            name={'scenery'}
+                            listName={'scenery-list'}
+                            listConst={sceneryList}
+                            checkedList={inputValue.scenery}
+                            changeValue={this.changeValue}
+                        />
 
                         <SingleTextInput
                             title={'全程里程數'}
@@ -506,69 +382,45 @@ class TrailCreate extends Component {
                             }
                         />
 
-                        <div className="form-item">
-                            <label htmlFor="hour">
-                                整趟所需時間
-                                <span className="mark">*</span>
-                                <span className="alert-word">
-                                    {alterWord.inputId === 'hour' || alterWord.inputId === 'minute' ? alterWord.word : ''}
-                                </span>
-                            </label>
-                            <div className="time">
-                                <div className="flex">
-                                    <input
-                                        type="text"
-                                        id="hour"
-                                        placeholder="0"
-                                        value={inputValue.hour}
-                                        onChange={this.changeValue}
-                                    />
-                                    <p>小時</p>
-                                </div>
-                                <div className="flex">
-                                    <input
-                                        type="text"
-                                        id="minute"
-                                        placeholder="0"
-                                        value={inputValue.minute}
-                                        onChange={this.changeValue}
-                                    />
-                                    <p>分鐘</p>
-                                </div>
-                            </div>
-                        </div>
+                        <DoubleTextInput
+                            title={'整趟所需時間'}
+                            type={'text'}
+                            changeValue={this.changeValue}
+                            alterWord={alterWord}
+                            idAll={'time'}
+                            idOne={'hour'}
+                            idTwo={'minute'}
+                            placeholderOne={'0'}
+                            placeholderTwo={'0'}
+                            valueOne={inputValue.hour}
+                            valueTwo={inputValue.minute}
+                            inputUnitOne={
+                                <p>小時</p>
+                            }
+                            inputUnitTwo={
+                                <p>分鐘</p>
+                            }
+                        />
 
-                        <div className="form-item">
-                            <label htmlFor="height">
-                                海拔高度
-                            <span className="mark">*</span>
-                                <span className="alert-word">
-                                    {alterWord.inputId === 'maxHeight' || alterWord.inputId === 'minHeight' ? alterWord.word : ''}
-                                </span>
-                            </label>
-                            <div className="height">
-                                <div className="flex">
-                                    <input
-                                        type="text"
-                                        value={inputValue.minHeight}
-                                        id="minHeight"
-                                        placeholder="最低海拔"
-                                        onChange={this.changeValue}
-                                    />
-                                    <p>公尺</p>
-                                </div>
-                                <div className="flex">
-                                    <input
-                                        type="text"
-                                        value={inputValue.maxHeight}
-                                        id="maxHeight"
-                                        placeholder="最高海拔"
-                                        onChange={this.changeValue}
-                                    />
-                                    <p>公尺</p>
-                                </div>
-                            </div>
-                        </div>
+                        <DoubleTextInput
+                            title={'海拔高度'}
+                            type={'text'}
+                            changeValue={this.changeValue}
+                            alterWord={alterWord}
+                            idAll={'height'}
+                            idOne={'minHeight'}
+                            idTwo={'maxHeight'}
+                            placeholderOne={'最低海拔'}
+                            placeholderTwo={'最高海拔'}
+                            valueOne={inputValue.minHeight}
+                            valueTwo={inputValue.maxHeight}
+                            inputUnitOne={
+                                <p>公尺</p>
+                            }
+                            inputUnitTwo={
+                                <p>公尺</p>
+                            }
+                        />
 
                         <UploadImgInput
                             title={'上傳步道路線圖'}
