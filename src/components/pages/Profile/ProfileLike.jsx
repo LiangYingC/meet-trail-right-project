@@ -41,10 +41,9 @@ class ProfileLike extends Component {
                         const sortLikeList = likeList.sort((a, b) => {
                             return a.likeTimestamp < b.likeTimestamp ? 1 : -1
                         })
-                        this.setState(preState => ({
-                            ...preState,
+                        this.setState({
                             likeList: sortLikeList
-                        }))
+                        })
                     })
                 })
         } else {

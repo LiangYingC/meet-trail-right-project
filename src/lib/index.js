@@ -122,5 +122,28 @@ export const DB = {
                     callbackSed()
                 }
             })
+    },
+
+    signWithGoogle: (closeLoginBox) => {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        firebase.auth().signInWithPopup(provider)
+            .then(result => {
+                const user = result.user
+                if (user.metadata.lastSignInTime === user.metadata.creationTime) { // first sign up set user data
+                    DB.ref('users').doc(user.uid)
+                        .set({
+                            id: user.uid,
+                            name: user.displayName,
+                            email: user.email,
+                            picture: user.photoURL,
+                            timestamp: DB.time(),
+                            status: '享受悠遊山林步道的時光',
+                            like_list: [],
+                            create_list: []
+                        })
+                    DB.ref('users').doc(user.uid).collection('report_list')
+                }
+                closeLoginBox()
+            })
     }
 }
