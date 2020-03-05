@@ -112,13 +112,13 @@ class Trails extends Component {
         const filterListConst = TrailsConst.filterList
         this.setState(preState => ({
             trailsVisible: preState.trailsAll.filter(trail => {
-                // Every trail data
+                // Every trail's data
                 const trailAreaName = trail.location.area
                 const trailDifficultyName = trail.difficulty[0]
                 const trailTimeValue = trail.time
                 const trailLengthValue = trail.length
 
-                // Be checked trail condition data
+                // Be checked filter condition data
                 const areaFilterChecked = preState.filterCheckedList[0]
                 const areaCheckedName = filterListConst[0].optionList[areaFilterChecked.value].name
 
@@ -133,7 +133,7 @@ class Trails extends Component {
                 const lengthCheckedMinValue = filterListConst[3].optionList[lengthFilterChecked.value].minValue
                 const lengthCheckedMaxValue = trailLengthValue < filterListConst[3].optionList[lengthFilterChecked.value].maxValue
 
-                // Filter should show trail
+                // Filter visibale trail
                 if ((trailAreaName === areaCheckedName || areaFilterChecked.value === 0) &&
                     (trailDifficultyName === difficultyCheckedName || difficultyFilterChecked.value === 0) &&
                     ((timeCheckedMinValue <= trailTimeValue && trailTimeValue < timeCheckedMaxValue) || timeFilterChecked.value === 0) &&

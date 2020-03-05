@@ -13,13 +13,19 @@ class Home extends Component {
         super(props)
         this.state = {
             isShowLoginBox: false,
-            homeTopList: null,
+            editorChooseList: null,
             likeList: null,
             popularList: null
         }
     }
 
     componentDidMount() {
+        this.getEditorChooseTrailsList()
+        this.getRankTrailsList('like_data.count', 'desc', 4, 'likeList')
+        this.getRankTrailsList('view_count', 'desc', 4, 'popularList')
+    }
+
+    getEditorChooseTrailsList = () => {
         DB.ref('trails')
             .orderBy('timestamp', 'desc')
             .get()
@@ -30,36 +36,23 @@ class Home extends Component {
                         trailsData.push(doc.data())
                     }
                     this.setState({
-                        homeTopList: trailsData
+                        editorChooseList: trailsData
                     })
                 })
             })
+    }
 
-
+    getRankTrailsList = (orderkey, orderRankType, limitNum, listName) => {
         DB.ref('trails')
-            .orderBy('like_data.count', 'desc')
-            .limit(4)
+            .orderBy(orderkey, orderRankType)
+            .limit(limitNum)
             .get()
             .then(querySnapshot => {
                 let trailsData = []
                 querySnapshot.forEach(doc => {
                     trailsData.push(doc.data())
                     this.setState({
-                        likeList: trailsData
-                    })
-                })
-            })
-
-        DB.ref('trails')
-            .orderBy('view_count', 'desc')
-            .limit(4)
-            .get()
-            .then(querySnapshot => {
-                let trailsData = []
-                querySnapshot.forEach(doc => {
-                    trailsData.push(doc.data())
-                    this.setState({
-                        popularList: trailsData
+                        [listName]: trailsData
                     })
                 })
             })
@@ -74,20 +67,19 @@ class Home extends Component {
 
     render() {
         const {
-            homeTopList,
+            editorChooseList,
             likeList,
             popularList,
             isShowLoginBox
         } = this.state
         const { history } = this.props
+
         return (
             <Fragment>
                 <Header history={history} />
-                <section id="home">
-                    <div className="home-banner">
-
+                <div id="home">
+                    <section className="home-banner">
                         <div className="layer"></div>
-
                         <div className="home-content">
                             <div className="home-title">
                                 <h2>遇見最嚮往的山林步道</h2>
@@ -104,8 +96,8 @@ class Home extends Component {
                                 <p></p>
                             </div>
                         </div>
-                    </div>
-                    <div className="home-web-intro">
+                    </section>
+                    <section className="home-web-intro">
                         <div className="flex wrap">
                             <div className="intro-item">
                                 <div className="icon">
@@ -141,19 +133,19 @@ class Home extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="home-top">
+                    </section>
+                    <section className="home-editor-choose">
                         <div className="wrap">
-                            <div className="home-top-title">
+                            <div className="home-editor-choose-title">
                                 <i className="fas fa-hiking"></i>  精選步道輯：合歡山
                             </div>
-                            <div className="flex home-top-list">
+                            <div className="flex home-editor-choose-list">
                                 {
-                                    homeTopList === null ?
+                                    editorChooseList === null ?
                                         '' :
-                                        homeTopList.map(trail => {
+                                        editorChooseList.map(trail => {
                                             return (
-                                                <div className="home-top-item" style={{
+                                                <div className="home-editor-choose-item" style={{
                                                     backgroundImage: `url(${trail.images.main_image})`
                                                 }} key={trail.id}>
                                                     <Link to={`/trails/detail/${trail.id}`}>
@@ -162,12 +154,14 @@ class Home extends Component {
                                                             <h3>{trail.title}</h3>
                                                         </div>
                                                         <div className="flex tag">
-                                                            <div className="time">  {
-                                                                trail.time > 60 ?
-                                                                    `${Math.floor(trail.time / 60)} 小時 
+                                                            <div className="time">
+                                                                {
+                                                                    trail.time > 60 ?
+                                                                        `${Math.floor(trail.time / 60)} 小時 
                                                     ${trail.time % 60 > 0 ? `${trail.time % 60}分鐘` : ''}`
-                                                                    : `${trail.time} 分鐘`
-                                                            }</div>
+                                                                        : `${trail.time} 分鐘`
+                                                                }
+                                                            </div>
                                                             <div className="diffuculty">{trail.difficulty}</div>
                                                             <div className="city">{trail.location.city}</div>
                                                         </div>
@@ -178,40 +172,34 @@ class Home extends Component {
                                 }
                             </div>
                         </div>
-                    </div>
-                    <div className="home-trail-list">
+                    </section>
+                    <section className="home-trail-list">
                         <div className="wrap">
+                            {
+                                likeList === null ?
+                                    '' :
+                                    <div className="like-rank">
+                                        <div className="title"><i className="fas fa-heart"></i> 最多人喜愛</div>
+                                        < TrailsList
+                                            trailsList={likeList}
+                                            toggleLoginBox={this.toggleLoginBox} />
+                                    </div>
+                            }
+                            {
+                                popularList === null ?
+                                    '' :
+                                    <div className="popular-rank">
+                                        <div className="title"> <i className="fas fa-fire"></i> 最熱門觀看</div>
+                                        < TrailsList
+                                            trailsList={popularList}
+                                            toggleLoginBox={this.toggleLoginBox}
+                                        />
+                                    </div>
 
-
-                            <Fragment>
-                                {
-                                    likeList === null ?
-                                        '' :
-                                        <div className="like-rank">
-                                            <div className="title"><i className="fas fa-heart"></i> 最多人喜愛</div>
-                                            < TrailsList
-                                                trailsList={likeList}
-                                                toggleLoginBox={this.toggleLoginBox} />
-                                        </div>
-                                }
-
-                                {
-                                    popularList === null ?
-                                        '' :
-                                        <div className="popular-rank">
-                                            <div className="title"> <i className="fas fa-fire"></i> 最熱門觀看</div>
-                                            < TrailsList
-                                                trailsList={popularList}
-                                                toggleLoginBox={this.toggleLoginBox}
-                                            />
-                                        </div>
-
-                                }
-                            </Fragment>
-
+                            }
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
                 <LoginBox
                     isShowLoginBox={isShowLoginBox}
                     closeLoginBox={this.toggleLoginBox}

@@ -1,4 +1,4 @@
-const TC = {
+const TrailCreateConst = {
     initialState: {
         inputValue: {
             title: '',
@@ -178,4 +178,4 @@ const TC = {
     ]
 }
 
-export default TC
+export default TrailCreateConst;

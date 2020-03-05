@@ -1,4 +1,4 @@
-// APP (Meet Trail Right app)
+// APP (Meet Trail Right app) library
 export const APP = {
     getDay: () => {
         const today = new Date()
@@ -10,10 +10,49 @@ export const APP = {
         const today = new Date()
         const todayTime = `${('0' + today.getHours()).slice(-2)}:${('0' + today.getMinutes()).slice(-2)}`
         return todayTime
+    },
+
+    tansformTrialDataFromStateToDB: (inputValue, userData, sceneryData, difficultyData) => {
+        return {
+            id: null,
+            title: inputValue.title,
+            description: inputValue.description,
+            location: {
+                area: inputValue.area,
+                city: inputValue.city,
+                dist: inputValue.dist
+            },
+            images: {
+                main_image: inputValue.coverImg,
+                route_image: inputValue.routeImg
+            },
+            routes: {
+                start: inputValue.start,
+                end: inputValue.end,
+                type: inputValue.type
+            },
+            create_user_id: userData.id,
+            create_time: APP.getDay(),
+            height: {
+                max: Number(inputValue.maxHeight),
+                min: Number(inputValue.minHeight)
+            },
+            length: Number(inputValue.length),
+            time: (Number(inputValue.hour) * 60) + Number(inputValue.minute),
+            scenery: sceneryData,
+            difficulty: difficultyData,
+            timestamp: DB.time(),
+            youtube_list: null,
+            like_data: {
+                users: [],
+                count: 0
+            },
+            view_count: 0
+        }
     }
 }
 
-// Firebase Database
+// Firebase Database library
 export const DB = {
     time: () => firebase.firestore.FieldValue.serverTimestamp(),
 

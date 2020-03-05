@@ -102,19 +102,6 @@
 			position: relative;
 		}
 
-		.textarea-wrap {
-			position: relative;
-			.words-remider {
-				font-size: 0.75rem;
-				position: absolute;
-				bottom: -7px;
-				left: 39%;
-				background-color: transparent;
-				border-radius: $br-basic;
-				padding: 5px;
-			}
-		}
-
 		.reminder {
 			text-align: left;
 			padding: 10px 20px;
@@ -384,6 +371,7 @@
 		.time,
 		.height,
 		.length {
+			display: flex;
 			input {
 				text-align: center;
 				min-width: 80px;

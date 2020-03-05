@@ -3,21 +3,20 @@ import Header from '../../../components/shared/Header';
 import Footer from '../../../components/shared/Footer';
 import Loginbox from '../../shared/LoginBox';
 
-
 const Login = () => {
     return (
         <Fragment>
             <Header />
-            <section id="login">
+            <div id="login">
                 <div className="wrap">
                     <div className="flex login-container">
-                        <div className="login-bg">
+                        <section className="login-bg">
                             <div className="layer"></div>
-                        </div>
+                        </section>
                         <Loginbox isShowLoginBox={true} />
                     </div>
                 </div>
-            </section>
+            </div>
             <Footer />
         </Fragment>
     )

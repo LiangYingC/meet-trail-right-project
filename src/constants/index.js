@@ -1,6 +1,6 @@
 // Trail Create Page constants
-import TC from './TrailCreate';
-export { TC };
+import TrailCreateConst from './TrailCreate';
+export { TrailCreateConst };
 
 // Trails Page constants
 import TrailsConst from './Trails';
