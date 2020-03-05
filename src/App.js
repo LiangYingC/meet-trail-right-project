@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import Routes from './routes';
+import firebase from './config'
 import { BrowserRouter as Router } from "react-router-dom";
 import { DB } from './lib';
-import { firebaseConfig } from './config'
 import AuthUserContext from './contexts/AuthUserContext';
 import LoadingPage from './components/shared/LoadingPage'
 import './styles/main.scss';
-
-firebase.initializeApp(firebaseConfig)
 
 class App extends Component {
     constructor(props) {

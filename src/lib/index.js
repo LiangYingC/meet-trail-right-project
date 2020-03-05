@@ -53,11 +53,11 @@ export const APP = {
 }
 
 // Firebase Database library
+import { db } from '../config';
 export const DB = {
     time: () => firebase.firestore.FieldValue.serverTimestamp(),
 
     ref: firstCollection => {
-        const db = firebase.firestore()
         const ref = db.collection(`${firstCollection}`)
         return ref
     },
