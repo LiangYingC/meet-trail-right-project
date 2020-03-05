@@ -154,12 +154,14 @@ class Home extends Component {
                                                             <h3>{trail.title}</h3>
                                                         </div>
                                                         <div className="flex tag">
-                                                            <div className="time">  {
-                                                                trail.time > 60 ?
-                                                                    `${Math.floor(trail.time / 60)} 小時 
+                                                            <div className="time">
+                                                                {
+                                                                    trail.time > 60 ?
+                                                                        `${Math.floor(trail.time / 60)} 小時 
                                                     ${trail.time % 60 > 0 ? `${trail.time % 60}分鐘` : ''}`
-                                                                    : `${trail.time} 分鐘`
-                                                            }</div>
+                                                                        : `${trail.time} 分鐘`
+                                                                }
+                                                            </div>
                                                             <div className="diffuculty">{trail.difficulty}</div>
                                                             <div className="city">{trail.location.city}</div>
                                                         </div>

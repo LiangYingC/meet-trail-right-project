@@ -48,7 +48,7 @@ class LoginBox extends Component {
         }
     }
 
-    loginFirebase = (e) => {
+    signWithFirebase = (e) => {
         const { inputValue } = this.state
         const { closeLoginBox } = this.props
         const history = this.props.history
@@ -64,7 +64,6 @@ class LoginBox extends Component {
         firebase.auth().signInWithPopup(provider).then(result => {
             const user = result.user
             if (user.metadata.lastSignInTime === user.metadata.creationTime) {
-                console.log('google set data')
                 DB.ref('users').doc(user.uid)
                     .set({
                         id: user.uid,
@@ -176,7 +175,7 @@ class LoginBox extends Component {
                             <Button
                                 text={'登入'}
                                 id={'sign-in-btn'}
-                                onClick={this.loginFirebase}
+                                onClick={this.signWithFirebase}
                             />
                         </div>
                         <div className="flex forgot-and-sign-up">
@@ -240,7 +239,7 @@ class LoginBox extends Component {
                             <Button
                                 text={'註冊'}
                                 id={'sign-up-btn'}
-                                onClick={this.loginFirebase}
+                                onClick={this.signWithFirebase}
                             />
                         </div>
                         <div className="flex forgot-and-sign-up">
