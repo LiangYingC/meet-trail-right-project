@@ -1,7 +1,6 @@
 import React from 'react';
 
-
-function Footer() {
+const Footer = () => {
     return (
         <footer id="footer">
             <div className="flex wrap">

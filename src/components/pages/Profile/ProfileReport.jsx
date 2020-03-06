@@ -23,10 +23,9 @@ class ProfileReport extends Component {
             .get()
             .then(querySnapshot => {
                 if (querySnapshot.docs.length === 0) {
-                    this.setState(preState => ({
-                        ...preState,
+                    this.setState({
                         reportList: []
-                    }))
+                    })
                 } else {
                     let reportList = []
                     querySnapshot.forEach(doc => {
@@ -34,7 +33,6 @@ class ProfileReport extends Component {
                         DB.ref('trails').doc(reportData.report_trail_id)
                             .get()
                             .then(trailData => {
-                                console.log(trailData)
                                 reportList.push({
                                     trail: {
                                         id: trailData.data().id,
@@ -45,10 +43,9 @@ class ProfileReport extends Component {
                                     time: reportData.report_time,
                                     content: reportData.report_content
                                 })
-                                this.setState(preState => ({
-                                    ...preState,
+                                this.setState({
                                     reportList: reportList
-                                }))
+                                })
                             })
                     })
                 }
@@ -57,7 +54,6 @@ class ProfileReport extends Component {
 
     render() {
         const { reportList } = this.state
-        console.log(reportList)
         if (reportList === null) {
             return (
                 <Fragment>

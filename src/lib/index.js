@@ -53,11 +53,13 @@ export const APP = {
 }
 
 // Firebase Database library
+import { db } from '../config';
+import firebase from '../config';
+
 export const DB = {
     time: () => firebase.firestore.FieldValue.serverTimestamp(),
 
     ref: firstCollection => {
-        const db = firebase.firestore()
         const ref = db.collection(`${firstCollection}`)
         return ref
     },
@@ -119,8 +121,29 @@ export const DB = {
                 } else {
                     callbackSed()
                 }
-            }).catch(error => {
+            })
+    },
 
+    signWithGoogle: (closeLoginBox) => {
+        const provider = new firebase.auth.GoogleAuthProvider()
+        firebase.auth().signInWithPopup(provider)
+            .then(result => {
+                const user = result.user
+                if (user.metadata.lastSignInTime === user.metadata.creationTime) { // first sign up set user data
+                    DB.ref('users').doc(user.uid)
+                        .set({
+                            id: user.uid,
+                            name: user.displayName,
+                            email: user.email,
+                            picture: user.photoURL,
+                            timestamp: DB.time(),
+                            status: '享受悠遊山林步道的時光',
+                            like_list: [],
+                            create_list: []
+                        })
+                    DB.ref('users').doc(user.uid).collection('report_list')
+                }
+                closeLoginBox()
             })
     }
 }

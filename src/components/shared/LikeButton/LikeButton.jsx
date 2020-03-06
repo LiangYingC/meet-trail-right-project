@@ -7,6 +7,23 @@ const LikeButton = ({
     toggleLoginBox
 }) => {
 
+    const updateUserLikeData = (userid, newLikeList) => {
+        DB.ref('users').doc(userid)
+            .update({
+                like_list: newLikeList
+            })
+    }
+
+    const updateTrailLikeData = (trailId, newTrailLikeUserList, newTrailLikeCount) => {
+        DB.ref('trails').doc(trailId)
+            .update({
+                like_data: {
+                    users: newTrailLikeUserList,
+                    count: newTrailLikeCount
+                }
+            })
+    }
+
     const toggleLike = (e, userData, isLogin, trailId) => {
         e.preventDefault()
         if (isLogin) {
@@ -19,24 +36,15 @@ const LikeButton = ({
 
             if (isLiked) {
                 const newLikeList = userData.likeList.filter(likeItem => likeItem.id !== trailId)
-                DB.ref('users').doc(userData.id)
-                    .update({
-                        like_list: newLikeList
-                    })
+                updateUserLikeData(userData.id, newLikeList)
 
                 DB.ref('trails').doc(trailId)
                     .get()
                     .then(doc => {
                         const trailLikeUserList = doc.data().like_data.users
-                        const trailLikeCount = doc.data().like_data.count
+                        const newTrailLikeCount = doc.data().like_data.count - 1
                         const newTrailLikeUserList = trailLikeUserList.filter(likeUserId => likeUserId !== userData.id)
-                        DB.ref('trails').doc(trailId)
-                            .update({
-                                like_data: {
-                                    users: newTrailLikeUserList,
-                                    count: trailLikeCount - 1
-                                }
-                            })
+                        updateTrailLikeData(trailId, newTrailLikeUserList, newTrailLikeCount)
                     })
 
             } else {
@@ -45,25 +53,15 @@ const LikeButton = ({
                     id: trailId,
                     timestamp: new Date()
                 })
-
-                DB.ref('users').doc(userData.id)
-                    .update({
-                        like_list: newLikeList
-                    })
+                updateUserLikeData(userData.id, newLikeList)
 
                 DB.ref('trails').doc(trailId)
                     .get()
                     .then(doc => {
                         const trailLikeUserList = doc.data().like_data.users
-                        const trailLikeCount = doc.data().like_data.count
+                        const newTrailLikeCount = doc.data().like_data.count + 1
                         trailLikeUserList.push(userData.id)
-                        DB.ref('trails').doc(trailId)
-                            .update({
-                                like_data: {
-                                    users: trailLikeUserList,
-                                    count: trailLikeCount + 1
-                                }
-                            })
+                        updateTrailLikeData(trailId, trailLikeUserList, newTrailLikeCount)
                     })
             }
         } else {
@@ -83,7 +81,6 @@ const LikeButton = ({
                         isLiked = true
                     }
                 })
-
                 return (
                     <div className="like-button">
                         <i className={`far fa-heart ${isLiked ? 'active' : ''}`}

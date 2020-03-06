@@ -22,21 +22,19 @@ class SearchBar extends Component {
             if (history.location.search || history.location.pathname === '/trails') {
                 const equalPosition = history.location.search.indexOf('=')
                 const searchValue = decodeURI(history.location.search.slice(equalPosition + 1))
-                this.setState(preState => ({
-                    ...preState,
+                this.setState({
                     searchInputValue: searchValue,
-                }))
+                })
             }
         }
     }
 
     changeSearchInputValue = (e) => {
         e.persist()
-        this.setState((preState) => ({
-            ...preState,
+        this.setState({
             searchInputValue: e.target.value,
             searchList: []
-        }), this.handleSearchDropDown)
+        }, this.handleSearchDropDown)
     }
 
     handleSearchDropDown = () => {

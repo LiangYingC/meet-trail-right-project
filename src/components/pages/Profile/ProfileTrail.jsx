@@ -34,17 +34,15 @@ class ProfileLike extends Component {
                             }
                             createList.push(item)
                         }
-                        this.setState(preState => ({
-                            ...preState,
+                        this.setState({
                             createList: createList
-                        }))
+                        })
                     })
                 })
         } else {
-            this.setState(preState => ({
-                ...preState,
+            this.setState({
                 createList: []
-            }))
+            })
         }
     }
 
