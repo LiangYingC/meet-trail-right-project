@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import Button from '../../shared/Button';
 import { DB } from '../../../lib';
-import googleLoginImg from '../../../assets/img/googleLogin.png';
+import SignInPanel from './SignInPanel.jsx';
+import SignUpPanel from './SignUpPanel.jsx';
+
+
 
 class LoginBox extends Component {
     constructor(props) {
@@ -63,7 +65,6 @@ class LoginBox extends Component {
         DB.signWithGoogle(closeLoginBox)
     }
 
-
     toggleAlertWord = (error) => {
         this.setState(preState => {
             let alertword
@@ -84,8 +85,7 @@ class LoginBox extends Component {
                     break;
             }
             return {
-                isShowSignIn: preState.isShowSignIn,
-                inputValue: preState.inputValue,
+                ...preState,
                 alertWord: {
                     isShow: true,
                     word: alertword
@@ -95,13 +95,13 @@ class LoginBox extends Component {
     }
 
     toggleSignInUp = () => {
-        this.setState({
+        this.setState(preState => ({
             isShowSignIn: !preState.isShowSignIn,
             alertWord: {
                 isShow: false,
                 word: '歡迎登入 / 註冊'
             }
-        })
+        }))
     }
 
     render() {
@@ -120,128 +120,27 @@ class LoginBox extends Component {
             <Fragment>
                 <div className={`login-panel-wrap ${isShowLoginBox ? 'active' : ''} `}>
                     <div className="layer"></div>
-                    <div className={`login-sign-in-panel ${isShowSignIn ? 'active' : ''}`}>
-                        <div className="login-title">
-                            <h3><i className="fas fa-sign-in-alt"></i>登入</h3>
-                            <p>登入即可
-                                        <span>提供步道</span>、
-                                        <span>收藏步道</span>與
-                                        <span>參與評論</span>！
-                                    </p>
-                        </div>
-                        <div className="sign-container">
-                            <div className="flex sign-item">
-                                <i className="fas fa-envelope"></i>
-                                <input
-                                    type="email"
-                                    id="sign-in-email"
-                                    placeholder="輸入信箱"
-                                    value={inputValue.email}
-                                    onChange={this.changeValue}
-                                />
-                            </div>
-                            <div className="flex sign-item">
-                                <i className="fas fa-key"></i>
-                                <input
-                                    type="password"
-                                    id="sign-in-pwd"
-                                    placeholder="輸入密碼"
-                                    value={inputValue.pwd}
-                                    onChange={this.changeValue}
-                                />
-                            </div>
-                            <div className={`alert-word ${alertWord.isShow ? 'active' : ''}`}>
-                                {alertWord.word}
-                            </div>
-                            <Button
-                                text={'登入'}
-                                id={'sign-in-btn'}
-                                onClick={this.signWithFirebase}
-                            />
-                        </div>
-                        <div className="flex forgot-and-sign-up">
-                            <button id="forgot-pwd-btn">忘記密碼</button>
-                            <div className="flex go-sign-up">
-                                <p>還不是會員嗎？</p>
-                                <button id="go-sign-up-btn" onClick={this.toggleSignInUp}>前往註冊</button>
-                            </div>
-                        </div>
-                        <div className="flex divider">
-                            <span></span>
-                            <p>使用社群帳號登入</p>
-                            <span></span>
-                        </div>
-                        <div className="social-sign-container">
-                            <div className="flex google-sign-btn" onClick={this.signWithGoogle}>
-                                <img src={googleLoginImg} alt="google login logo" />
-                                <p>Google 登入</p>
-                            </div>
-                        </div>
-                        <div className="close-btn" onClick={closeLoginBox}></div>
-                    </div>
+                    <SignInPanel
+                        isShowSignIn={isShowSignIn}
+                        toggleSignInUp={this.toggleSignInUp}
+                        inputValue={inputValue}
+                        changeValue={this.changeValue}
+                        alertWord={alertWord}
+                        signWithFirebase={this.signWithFirebase}
+                        signWithGoogle={this.signWithGoogle}
+                        closeLoginBox={closeLoginBox}
+                    />
 
-                    <div className={`login-sign-up-panel ${isShowSignIn ? '' : 'active'}`}>
-                        <div className="login-title">
-                            <h3><i className="fas fa-user-plus"></i>註冊</h3>
-                        </div>
-                        <div className="sign-container">
-                            <div className="flex sign-item">
-                                <i className="fas fa-user"></i>
-                                <input
-                                    type="name"
-                                    id="sign-up-name"
-                                    placeholder="輸入稱謂"
-                                    value={inputValue.name}
-                                    onChange={this.changeValue} />
-                            </div>
-                            <div className="flex sign-item">
-                                <i className="fas fa-envelope"></i>
-                                <input
-                                    type="email"
-                                    id="sign-up-email"
-                                    placeholder="輸入信箱"
-                                    value={inputValue.email}
-                                    onChange={this.changeValue}
-                                />
-                            </div>
-                            <div className="flex sign-item">
-                                <i className="fas fa-key"></i>
-                                <input
-                                    type="password"
-                                    id="sign-up-pwd"
-                                    placeholder="輸入密碼"
-                                    value={inputValue.pwd}
-                                    onChange={this.changeValue}
-                                />
-                            </div>
-                            <div className={`alert-word ${alertWord.isShow ? 'active' : ''}`}>
-                                {alertWord.word}
-                            </div>
-                            <Button
-                                text={'註冊'}
-                                id={'sign-up-btn'}
-                                onClick={this.signWithFirebase}
-                            />
-                        </div>
-                        <div className="flex forgot-and-sign-up">
-                            <div className="flex go-sign-up">
-                                <p>已經是會員了嗎？</p>
-                                <button id="go-sign-in-btn" onClick={this.toggleSignInUp}>前往登入</button>
-                            </div>
-                        </div>
-                        <div className="flex divider">
-                            <span></span>
-                            <p>使用社群帳號註冊</p>
-                            <span></span>
-                        </div>
-                        <div className="social-sign-container">
-                            <div className="flex google-sign-btn" onClick={this.signWithGoogle}>
-                                <img src={googleLoginImg} alt="google login logo" />
-                                <p>Google 註冊</p>
-                            </div>
-                        </div>
-                        <div className="close-btn" onClick={closeLoginBox}></div>
-                    </div>
+                    <SignUpPanel
+                        isShowSignIn={isShowSignIn}
+                        toggleSignInUp={this.toggleSignInUp}
+                        inputValue={inputValue}
+                        changeValue={this.changeValue}
+                        alertWord={alertWord}
+                        signWithFirebase={this.signWithFirebase}
+                        signWithGoogle={this.signWithGoogle}
+                        closeLoginBox={closeLoginBox}
+                    />
                 </div>
             </Fragment>
         )
