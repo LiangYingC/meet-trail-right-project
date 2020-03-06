@@ -1,7 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { DB } from '../../../lib';
-import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class SearchBar extends Component {
     constructor(props) {
@@ -45,11 +44,12 @@ class SearchBar extends Component {
                 .then(querySnapshot => {
                     let searchList = []
                     querySnapshot.forEach(doc => {
-                        if (doc.data().title.indexOf(`${searchInputValue}`) >= 0) {
+                        const trailData = doc.data()
+                        if (trailData.title.indexOf(`${searchInputValue}`) >= 0) {
                             let searchItem = {
                                 id: doc.id,
-                                title: doc.data().title,
-                                city: doc.data().location.city
+                                title: trailData.title,
+                                city: trailData.location.city
                             }
                             searchList.push(searchItem)
                             this.setState(preState => {
@@ -94,7 +94,6 @@ class SearchBar extends Component {
                     onKeyPress={(e) => this.changeSearchParam(e)}
                     autoComplete="off"
                 />
-
                 {
                     searchInputValue ?
                         <div className="search-icon" onClick={this.changeSearchParam}>
@@ -106,7 +105,6 @@ class SearchBar extends Component {
                         </div>
 
                 }
-
                 <div className="search-dropdown-box">
                     <div className="search-list">
                         {
