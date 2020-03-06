@@ -27,18 +27,14 @@ class TrailDetail extends Component {
     }
 
     getTrailData = (trailId) => {
-        console.log('getTrailData')
         this.unsubscribeGetTrail = DB.ref('trails').doc(trailId)
             .onSnapshot(doc => {
                 const trailData = doc.data()
-                console.log(trailData)
-                console.log(trailData.create_user_id)
-                return trailData
-            }).then(trailData => this.getTrailCreateUserData(trailData.create_user_id))
+                this.getTrailCreateUserData(trailData.create_user_id, trailData)
+            })
     }
 
-    getTrailCreateUserData = (userId) => {
-        console.log('getTrailCreateUserData')
+    getTrailCreateUserData = (userId, trailData) => {
         DB.ref('users').doc(userId)
             .get()
             .then(doc => {
@@ -58,7 +54,6 @@ class TrailDetail extends Component {
     }
 
     addTrailViewCount = (trailId) => {
-        console.log('addTrailViewCount')
         DB.ref('trails').doc(trailId)
             .get()
             .then(doc => {
@@ -72,7 +67,6 @@ class TrailDetail extends Component {
 
     render() {
         const { trailData, weatherData } = this.state
-
         if (trailData === null) {
             return (
                 <Fragment>
