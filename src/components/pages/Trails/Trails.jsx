@@ -38,6 +38,10 @@ class Trails extends Component {
         this.handleSort()
     }
 
+    componentWillUnmount() {
+        this.unsubscribeGetTrails()
+    }
+
     handleSort = () => {
         const { sortCheckedValue } = this.state
         let sortKey
@@ -90,10 +94,9 @@ class Trails extends Component {
     }
 
     getTrailsList = (sortKey, sortRank, searchValue) => {
-        DB.ref('trails')
+        this.unsubscribeGetTrails = DB.ref('trails')
             .orderBy(sortKey, sortRank)
-            .get()
-            .then(querySnapshot => {
+            .onSnapshot(querySnapshot => {
                 let trailsData = []
                 querySnapshot.forEach(doc => {
                     if (doc.data().title.indexOf(`${searchValue}`) >= 0) {

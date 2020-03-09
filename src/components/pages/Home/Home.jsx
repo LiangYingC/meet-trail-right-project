@@ -25,6 +25,10 @@ class Home extends Component {
         this.getRankTrailsList('view_count', 'desc', 4, 'popularList')
     }
 
+    componentWillUnmount() {
+        this.unsubscribeGetRankTrails()
+    }
+
     getEditorChooseTrailsList = () => {
         DB.ref('trails')
             .orderBy('timestamp', 'desc')
@@ -43,11 +47,10 @@ class Home extends Component {
     }
 
     getRankTrailsList = (orderkey, orderRankType, limitNum, listName) => {
-        DB.ref('trails')
+        this.unsubscribeGetRankTrails = DB.ref('trails')
             .orderBy(orderkey, orderRankType)
             .limit(limitNum)
-            .get()
-            .then(querySnapshot => {
+            .onSnapshot(querySnapshot => {
                 let trailsData = []
                 querySnapshot.forEach(doc => {
                     trailsData.push(doc.data())
