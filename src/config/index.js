@@ -19,6 +19,13 @@ firebase.initializeApp(firebaseConfig)
 export const db = firebase.firestore();
 export default firebase;
 
+
+// Weather
+export const weatherConfig = {
+    apiKey: 'CWB-8C6758C8-C956-44EB-B0AD-7228A59F92C0',
+    baseUrl: 'https://opendata.cwb.gov.tw/api/v1/rest/datastore'
+}
+
 // Youtube
 export const youtubeConfig = {
     apiKey: 'AIzaSyAdjEsVveMWoqUjvz59GS3KMAwfsBVvKjQ',
@@ -26,5 +33,7 @@ export const youtubeConfig = {
     order: 'relevance',
     maxResults: 5
 }
+
+
 
 

@@ -6,3 +6,6 @@ export { TrailCreateConst };
 import TrailsConst from './Trails';
 export { TrailsConst };
 
+// Trail Detail Page constants
+import TrailDetailConst from './TrailDetail';
+export { TrailDetailConst };
