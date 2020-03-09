@@ -2,18 +2,17 @@ import React, { Component, Fragment } from 'react';
 import { DB, APP } from '../../../../lib';
 import Button from '../../../shared/Button';
 import LoginBox from '../../../shared/LoginBox';
+import NoReportList from './NoReportList.jsx';
 import AuthUserContext from '../../../../contexts/AuthUserContext';
-import LoadingWave from '../../../shared/LoadingWave';
-
 
 class Report extends Component {
     constructor(props) {
         super(props)
         this.state = {
             reportList: null,
+            isShowReportInputBox: false,
             dateValue: APP.getDay(),
             contentValue: '',
-            isShowReportInputBox: false,
             isShowLoginBox: false
         }
     }
@@ -23,60 +22,60 @@ class Report extends Component {
         DB.ref('trails').doc(id).collection('report_list')
             .orderBy('timestamp', 'desc')
             .onSnapshot(querySnapshot => {
-                if (querySnapshot.docs.length === 0) {
+                querySnapshot.docs.length === 0 ?
                     this.setState({
                         reportList: []
                     })
-                } else {
-                    let reportList = []
-                    querySnapshot.forEach(doc => {
-                        const createUserId = doc.data().create_user_id
-                        const reportData = doc.data()
-                        DB.ref('users').doc(createUserId)
-                            .get()
-                            .then(createUserData => {
-                                reportList.push({
-                                    createUser: {
-                                        id: createUserData.data().id,
-                                        picture: createUserData.data().picture,
-                                        name: createUserData.data().name
-                                    },
-                                    time: reportData.report_time,
-                                    content: reportData.report_content
-                                })
-                                this.setState({
-                                    reportList: reportList
-                                })
-                            })
-                    })
-                }
+                    :
+                    this.getReportList(querySnapshot)
             })
+    }
+
+    getReportList = (querySnapshot) => {
+        let reportList = []
+        querySnapshot.forEach(doc => {
+            const reportData = doc.data()
+            const createUserId = reportData.create_user_id
+            DB.ref('users').doc(createUserId)
+                .get()
+                .then(createUserData => {
+                    reportList.push({
+                        createUser: {
+                            id: createUserData.data().id,
+                            picture: createUserData.data().picture,
+                            name: createUserData.data().name
+                        },
+                        time: reportData.report_time,
+                        content: reportData.report_content
+                    })
+                    this.setState({
+                        reportList: reportList
+                    })
+                })
+        })
     }
 
     toggleReportInputBox = () => {
         const { isLogin } = this.context
-
-        if (isLogin) {
+        isLogin ?
             this.setState(preState => ({
                 isShowReportInputBox: !preState.isShowReportInputBox
             }))
-        } else {
+            :
             this.setState({
                 isShowLoginBox: true
             })
-        }
-
     }
 
     updateDateValue = (e) => {
         this.setState({
-            dateValue: e.target.value,
+            dateValue: e.target.value
         })
     }
 
     updateContentValue = (e) => {
         this.setState({
-            contentValue: e.target.value,
+            contentValue: e.target.value
         })
     }
 
@@ -106,7 +105,7 @@ class Report extends Component {
                 {
                     reportList: preState.reportList,
                     dateValue: APP.getDay(),
-                    contentValue: null,
+                    contentValue: '',
                     isShowReportInputBox: false
                 }
             )
@@ -136,16 +135,7 @@ class Report extends Component {
                             最新步道狀況回報
                                 </h4>
                     </div>
-                    <div className="no-report-list">
-                        <div className="flex wrap">
-                            <p>分享，讓彼此擁有更棒的步道體驗<i className="far fa-smile"></i></p>
-                            < Button
-                                text={'立刻分享步道近況'}
-                                id={'first-report-btn'}
-                                onClick={this.toggleReportInputBox}
-                            />
-                        </div>
-                    </div>
+                    <NoReportList toggleReportInputBox={this.toggleReportInputBox} />
                 </div>
             )
         }
@@ -156,20 +146,11 @@ class Report extends Component {
                         <h4>
                             <i className="fas fa-bullhorn"></i>
                             最新步道狀況回報
-                                </h4>
+                        </h4>
                         <p>{reportList.length} 則</p>
                     </div>{
                         reportList.length === 0 ?
-                            <div className="no-report-list">
-                                <div className="flex wrap">
-                                    <p>分享，讓彼此擁有更棒的步道體驗<i className="far fa-smile"></i></p>
-                                    < Button
-                                        text={'立刻分享步道近況'}
-                                        id={'first-report-btn'}
-                                        onClick={this.toggleReportInputBox}
-                                    />
-                                </div>
-                            </div>
+                            <NoReportList toggleReportInputBox={this.toggleReportInputBox} />
                             :
                             <div className="report-list">
                                 {
@@ -190,7 +171,6 @@ class Report extends Component {
                                 }
                             </div>
                     }
-
                     {
                         reportList.length === 0 ? '' :
                             <Fragment>
@@ -211,13 +191,22 @@ class Report extends Component {
                             <label htmlFor="input-report-date">
                                 發生日期
                             </label>
-                            <input type="date" id="input-report-date" value={`${dateValue}`} onChange={this.updateDateValue} />
+                            <input
+                                type="date"
+                                id="input-report-date"
+                                value={`${dateValue}`}
+                                onChange={this.updateDateValue}
+                            />
                         </div>
                         <div className="block">
                             <label htmlFor="input-report-content">
                                 回報內容
                             </label>
-                            <textarea id="input-report-content" placeholder="簡要描述步道近況，例如：大樹倒塌擋住某路段 ; 步道植物是枯萎狀態" onChange={this.updateContentValue} ></textarea>
+                            <textarea
+                                id="input-report-content"
+                                placeholder="簡要描述步道近況，例如：大樹倒塌擋住某路段 ; 步道植物是枯萎狀態"
+                                onChange={this.updateContentValue} >
+                            </textarea>
                         </div>
                         <Button
                             text={'確認送出'}
@@ -238,4 +227,4 @@ class Report extends Component {
 }
 
 Report.contextType = AuthUserContext;
-export default Report
+export default Report;
