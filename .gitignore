@@ -1,2 +1,6 @@
 # dependencies
 /node_modules
+
+# cache files
+bundle.js
+/public/src/assets
