@@ -12,6 +12,13 @@ export const APP = {
         return todayTime
     },
 
+    transfromTimefromMinToHourMin: (time) => {
+        return time > 60 ?
+            `${Math.floor(time / 60)} 小時 ${time % 60 > 0 ? `${time % 60}分鐘` : ''}`
+            :
+            `${time} 分鐘`
+    },
+
     tansformTrialDataFromStateToDB: (inputValue, userData, sceneryData, difficultyData) => {
         return {
             id: null,

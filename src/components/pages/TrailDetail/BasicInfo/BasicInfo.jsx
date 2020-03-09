@@ -1,4 +1,5 @@
 import React from 'react';
+import { APP } from '../../../../lib';
 import QuestionButton from '../../../shared/QuestionButton';
 
 const BasicInfo = ({ basicInfoData }) => {
@@ -34,12 +35,7 @@ const BasicInfo = ({ basicInfoData }) => {
                     <div className="down-right">
                         <div className="flex basic-info-item">
                             <p className="subtitle">適合時間 :</p>
-                            <p>全程約  {
-                                basicInfoData.time > 60 ?
-                                    `${Math.floor(basicInfoData.time / 60)} 小時 
-                                                    ${basicInfoData.time % 60 > 0 ? `${basicInfoData.time % 60}分鐘` : ''}`
-                                    : `${basicInfoData.time} 分鐘`
-                            } </p>
+                            <p>全程約  {APP.transfromTimefromMinToHourMin(basicInfoData.time)}</p>
                         </div>
 
                         <div className="flex basic-info-item">
@@ -59,4 +55,4 @@ const BasicInfo = ({ basicInfoData }) => {
     )
 }
 
-export default BasicInfo
+export default BasicInfo;

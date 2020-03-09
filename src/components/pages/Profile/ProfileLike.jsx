@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from "react-router-dom";
-import { DB } from '../../../lib';
+import { DB, APP } from '../../../lib';
 import ProfileNoList from './ProfileNoList.jsx';
 import LikeButton from '../../shared/LikeButton';
 import AuthUserContext from '../../../contexts/AuthUserContext';
@@ -98,12 +98,7 @@ class ProfileLike extends Component {
                                                             <div className="flex time">
                                                                 <i className="far fa-clock"></i>
                                                                 <p>
-                                                                    {
-                                                                        item.time > 60 ?
-                                                                            `${Math.floor(item.time / 60)} 小時 
-                                                    ${item.time % 60 > 0 ? `${item.time % 60}分鐘` : ''}`
-                                                                            : `${item.time} 分鐘`
-                                                                    }
+                                                                    {APP.transfromTimefromMinToHourMin(item.time)}
                                                                 </p>
                                                             </div>
                                                             <div className="flex location">

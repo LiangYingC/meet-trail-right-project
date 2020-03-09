@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { APP } from '../../../lib';
 import LikeButton from "../LikeButton";
 
 const TrailsList = ({
@@ -39,12 +40,7 @@ const TrailsList = ({
                                     </p>
                                     <p className="trail-time">
                                         <i className="far fa-clock"></i>
-                                        {
-                                            trail.time > 60 ?
-                                                `${Math.floor(trail.time / 60)} 小時 
-                                                    ${trail.time % 60 > 0 ? `${trail.time % 60}分鐘` : ''}`
-                                                : `${trail.time} 分鐘`
-                                        }
+                                        {APP.transfromTimefromMinToHourMin(trail.time)}
                                     </p>
                                     <div className="flex">
                                         <p className="trail-like">
