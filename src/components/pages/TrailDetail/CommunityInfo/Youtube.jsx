@@ -26,7 +26,7 @@ class Youtube extends Component {
             }
 
             isNeedToUpdate() ?
-                this.UpdateYoutubeVideo(trailsRef, title)
+                this.UpdateYoutubeVideo(trailsRef, title, todayDate)
                 :
                 this.setState({
                     youtubeList: youtubeList.data
@@ -34,7 +34,7 @@ class Youtube extends Component {
         })
     }
 
-    UpdateYoutubeVideo = (trailsRef, title) => {
+    UpdateYoutubeVideo = (trailsRef, title, todayDate) => {
         const vedioUrl = `${youtubeConfig.baseUrl}/search?part=snippet&type=video
                             &order=${ youtubeConfig.order}&q=${title}&key=${youtubeConfig.apiKey}`
         fetch(vedioUrl, { method: 'Get' })
@@ -72,7 +72,7 @@ class Youtube extends Component {
     render() {
         const { youtubeList } = this.state
         if (youtubeList === null) {
-            return <div>Loading</div>
+            return <div></div>
         }
         return (
             <div className="community-info__youtube">
