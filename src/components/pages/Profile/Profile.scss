@@ -48,13 +48,13 @@
 							display: block;
 							position: absolute;
 							left: 50%;
-							@include transform(translateX(-50%));
+							transform: translateX(-50%);
 							cursor: pointer;
 							background-color: $color-white;
 							color: #111;
 							letter-spacing: 1px;
 							opacity: 0;
-							@include transition-duration(0.2s);
+							transition-duration: 0.2s;
 
 							&:hover {
 								opacity: 0.6;
@@ -117,12 +117,12 @@
 
 							&.active {
 								color: $color-green;
-								@include transition-duration(0.2s);
+								transition-duration: 0.2s;
 							}
 
 							&.active .fas {
 								color: $color-green;
-								@include transition-duration(0.2s);
+								transition-duration: 0.2s;
 							}
 						}
 					}
@@ -137,7 +137,7 @@
 						justify-content: center;
 						padding: 10px;
 						cursor: pointer;
-						@include transition-duration(0.2s);
+						transition-duration: 0.2s;
 
 						&:hover {
 							color: #333;
@@ -260,7 +260,7 @@
 		left: 0px;
 		cursor: pointer;
 		transform: scale(1);
-		@include transition-duration(0.3s);
+		transition-duration: 0.3s;
 
 		&:hover {
 			transform: scale(1.02);
@@ -589,8 +589,8 @@
 		border-radius: $br-basic * 1;
 		border: 1px solid #ddd;
 		cursor: pointer;
-		@include transform(scale(1));
-		@include transition-duration(0.25s);
+		transform: scale(1);
+		transition-duration: 0.25s;
 
 		&:hover {
 			border: 1px solid $color-green;
@@ -598,7 +598,7 @@
 
 		&:active {
 			border: 1px solid $color-green;
-			@include transform(scale(0.99));
+			transform: scale(0.99);
 		}
 
 		.report-item {
@@ -704,7 +704,7 @@
 				left: 0;
 				background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.85));
 				opacity: 0.6;
-				@include transition-duration(0.4s);
+				transition-duration: 0.4s;
 			}
 
 			.title {
@@ -729,7 +729,7 @@
 			left: 50%;
 			transform: translate(-50%, -40%);
 			opacity: 0;
-			@include transition-duration(0.4s);
+			transition-duration: 0.4s;
 
 			button {
 				font-size: 1rem;
@@ -740,8 +740,8 @@
 				letter-spacing: 1px;
 				padding: 3px 8px;
 				cursor: pointer;
-				@include transform(scale(1));
-				@include transition-duration(0.2s);
+				transform: scale(1);
+				transition-duration: 0.2s;
 
 				&:hover {
 					background-color: #24b582;
@@ -750,7 +750,7 @@
 				}
 
 				&:active {
-					@include transform(scale(0.98));
+					transform: scale(0.98);
 				}
 			}
 

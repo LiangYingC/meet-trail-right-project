@@ -11,7 +11,7 @@
 	&.active {
 		visibility: visible;
 		opacity: 1;
-		@include transition-duration(0.2s);
+		transition-duration: 0.2s;
 	}
 
 	.layer {
@@ -38,14 +38,12 @@
 		align-self: center;
 		flex-direction: column;
 		transform: translate(-50%, -50%) scale(0);
-		-webkit-transform: translate(-50%, -50%) scale(0);
-		@include transition-duration(0.3s);
+		transition-duration: 0.3s;
 
 		&.active {
 			opacity: 1;
 			transform: translate(-50%, -50%) scale(1);
-			-webkit-transform: translate(-50%, -50%) scale(1);
-			@include transition-duration(0.3s);
+			transition-duration: 0.3s;
 		}
 
 		.icon {

@@ -17,7 +17,7 @@
 		border-radius: $br-basic * 4;
 		position: relative;
 		cursor: pointer;
-		@include transition-duration(0.2s);
+		transition-duration: 0.2s;
 
 		&:hover {
 			background-color: $color-green;
@@ -54,7 +54,7 @@
 	#trails-sort {
 		z-index: 200;
 		transform: scale(0);
-		@include transition-duration(0.25s);
+		transition-duration: 0.25s;
 		margin-top: 0 !important;
 		background-color: transparent;
 		position: fixed;
@@ -87,7 +87,7 @@
 			position: fixed;
 			top: 50%;
 			left: 50%;
-			@include transform(translate(-50%, -50%));
+			transform: translate(-50%, -50%);
 			display: flex;
 		}
 

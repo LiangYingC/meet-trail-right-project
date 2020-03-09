@@ -68,7 +68,7 @@
 		text-align: center;
 		cursor: pointer;
 		overflow: hidden;
-		@include transition-duration(0.2s);
+		transition-duration: 0.2s;
 
 		&:hover {
 			border: 1.5px solid $color-green;
@@ -83,7 +83,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			@include transform(translate(-50%, -50%));
+			transform: translate(-50%, -50%);
 			z-index: 1;
 
 			p {

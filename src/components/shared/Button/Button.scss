@@ -10,8 +10,8 @@
 	opacity: 0.8;
 	position: relative;
 	cursor: pointer;
-	@include transform(scale(1));
-	@include transition-duration(0.25s);
+	transform: scale(1);
+	transition-duration: 0.25s;
 
 	&:hover {
 		opacity: 1;
@@ -19,6 +19,6 @@
 
 	&:active {
 		opacity: 1;
-		@include transform(scale(0.95));
+		transform: scale(0.95);
 	}
 }

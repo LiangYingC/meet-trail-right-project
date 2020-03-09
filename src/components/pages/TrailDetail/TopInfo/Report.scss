@@ -114,7 +114,7 @@
 			position: absolute;
 			top: 65%;
 			left: 50%;
-			@include transform(translate(-50%, -65%));
+			transform: translate(-50%, -65%);
 		}
 
 		p {
@@ -140,12 +140,12 @@
 	visibility: hidden;
 	opacity: 0;
 	z-index: 100;
-	@include transition-duration(0.15s);
+	transition-duration: 0.15s;
 
 	&.active {
 		visibility: visible;
 		opacity: 1;
-		@include transition-duration(0.15s);
+		transition-duration: 0.15s;
 	}
 
 	.layer {
@@ -170,15 +170,12 @@
 		box-shadow: 0 0 10px 2px rgba($color: $color-black, $alpha: 0.3);
 		opacity: 0;
 		transform: translate(-50%, -50%) scale(0);
-		-webkit-transform: translate(-50%, -50%) scale(0);
-
-		@include transition-duration(0.25s);
+		transition-duration: 0.25s;
 
 		&.active {
 			opacity: 1;
 			transform: translate(-50%, -50%) scale(1);
-			-webkit-transform: translate(-50%, -50%) scale(1);
-			@include transition-duration(0.25s);
+			transition-duration: 0.25s;
 		}
 
 		h3 {
@@ -243,17 +240,17 @@
 			}
 
 			&::after {
-				@include transform(rotate(-45deg));
+				transform: rotate(-45deg);
 			}
 
 			&::before {
-				@include transform(rotate(45deg));
+				transform: rotate(45deg);
 			}
 		}
 
 		#send-report-btn {
 			left: 50%;
-			@include transform(translateX(-50%));
+			transform: translateX(-50%);
 		}
 	}
 }

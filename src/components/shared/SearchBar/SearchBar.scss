@@ -35,7 +35,7 @@
 			right: -1px;
 			opacity: 0.75;
 			cursor: pointer;
-			@include transition-duration(0.15s);
+			transition-duration: 0.15s;
 
 			&:hover {
 				opacity: 0.9;

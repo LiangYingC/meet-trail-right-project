@@ -137,7 +137,8 @@
 				border-radius: $br-basic * 2;
 				position: relative;
 				overflow: hidden;
-				@include transition-duration(0.4s);
+				transition-duration: 0.4s;
+
 				cursor: pointer;
 
 				&:hover {
@@ -168,7 +169,7 @@
 					bottom: 0;
 					left: 0;
 					padding: 10px 10px 15px;
-					@include transition-duration(0.45s);
+					transition-duration: 0.45s;
 
 					h3 {
 						font-size: 1.125rem;
@@ -186,7 +187,7 @@
 					color: $color-white;
 					padding: 5px 10px;
 					opacity: 0;
-					@include transition-duration(0.45s);
+					transition-duration: 0.45s;
 
 					> div {
 						font-size: 0.875rem;
@@ -303,9 +304,6 @@
 				z-index: -1;
 				background: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E7%95%A2%E7%A5%BF%E5%B1%B1%E6%AD%A5%E9%81%93%20banner.jpg?alt=media&token=c83637c8-3148-450e-bcae-95227af327fa)
 					center center;
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				-o-background-size: cover;
 				background-size: cover;
 				box-shadow: inset 0 0 200px 30px rgba($color: $color-black, $alpha: 0.5);
 			}
@@ -432,13 +430,13 @@
 				.home-editor-choose-item {
 					flex: none;
 					width: calc(33.3% + 80px);
-					@include transition-duration(0.4s);
-					@include transform(scale(1));
+					transition-duration: 0.4s;
+					transform: scale(1);
 
 					&:hover,
 					&:active {
 						width: calc(33.3% + 80px);
-						@include transform(scale(0.98));
+						transform: scale(0.98);
 					}
 
 					.content {
@@ -524,7 +522,7 @@
 			.home-content {
 				top: 35%;
 				left: 50%;
-				@include transform(translate(-50%, -35%));
+				transform: translate(-50%, -35%);
 
 				h2 {
 					font-size: 1.5rem;
