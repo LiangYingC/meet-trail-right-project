@@ -10,28 +10,6 @@ import './styles/main.scss';
 class App extends Component {
     constructor(props) {
         super(props)
-
-        this.toggleLogin = (boolen) => {
-            this.setState({
-                isLogin: boolen,
-            })
-        }
-
-        this.handleUserData = (userData) => {
-            this.setState({
-                userData: {
-                    id: userData.id,
-                    name: userData.name,
-                    email: userData.email,
-                    picture: userData.picture,
-                    status: userData.status,
-                    likeList: userData.likeList,
-                    createList: userData.createList,
-                    reportList: userData.reportList
-                }
-            })
-        }
-
         this.state = {
             isLogin: null,
             userData: {
@@ -43,9 +21,7 @@ class App extends Component {
                 likeList: [],
                 createList: [],
                 reportList: []
-            },
-            handleUserData: (userData) => { this.handleUserData(userData) },
-            toggleLogin: (boolen) => { this.toggleLogin(boolen) }
+            }
         }
     }
 
@@ -53,10 +29,8 @@ class App extends Component {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 console.log('onAuthState true')
-
                 DB.ref('users').doc(user.uid)
                     .onSnapshot(doc => {
-                        console.log('app/users' + doc.data())
                         const userData = {
                             id: doc.data().id,
                             name: doc.data().name,
@@ -66,10 +40,8 @@ class App extends Component {
                             likeList: doc.data().like_list,
                             createList: doc.data().create_list,
                         }
-                        console.log('app user do')
-                        console.log(userData)
-                        this.state.handleUserData(userData)
-                        this.state.toggleLogin(true)
+                        this.handleUserData(userData)
+                        this.toggleLogin(true)
                     })
 
 
@@ -85,20 +57,44 @@ class App extends Component {
                     createList: [],
                     reportList: []
                 }
-                this.state.handleUserData(userData)
-                this.state.toggleLogin(false)
+                this.handleUserData(userData)
+                this.toggleLogin(false)
+            }
+        })
+    }
+
+    toggleLogin = (boolen) => {
+        this.setState({
+            isLogin: boolen,
+        })
+    }
+
+    handleUserData = (userData) => {
+        this.setState({
+            userData: {
+                id: userData.id,
+                name: userData.name,
+                email: userData.email,
+                picture: userData.picture,
+                status: userData.status,
+                likeList: userData.likeList,
+                createList: userData.createList,
+                reportList: userData.reportList
             }
         })
     }
 
     render() {
-        console.log(this.state)
         if (this.state.isLogin === null) {
             return <LoadingPage isShow={true} />
         }
         return (
             <Router>
-                <AuthUserContext.Provider value={this.state}>
+                <AuthUserContext.Provider value={{
+                    ...this.state,
+                    handleUserData: (userData) => { this.handleUserData(userData) },
+                    toggleLogin: (boolen) => { this.toggleLogin(boolen) }
+                }}>
                     <Routes />
                 </AuthUserContext.Provider>
             </Router>

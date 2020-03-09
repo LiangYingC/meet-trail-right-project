@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useCallback } from 'react';
+import React, { Component, Fragment } from 'react';
 import { DB } from '../../../lib';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
@@ -7,7 +7,6 @@ import BasicInfo from './BasicInfo';
 import CommunityInfo from './CommunityInfo';
 import TrafficInfo from './TrafficInfo';
 import LoadingWave from '../../shared/LoadingWave';
-
 
 class TrailDetail extends Component {
     constructor(props) {
@@ -19,28 +18,42 @@ class TrailDetail extends Component {
     }
     componentDidMount() {
         const trailId = this.props.match.params.id
-        // Firebase API 取得單一步道詳細資訊
+        this.getTrailData(trailId)
+        this.addTrailViewCount(trailId)
+    }
+
+    componentWillUnmount() {
+        this.unsubscribeGetTrail()
+    }
+
+    getTrailData = (trailId) => {
         this.unsubscribeGetTrail = DB.ref('trails').doc(trailId)
             .onSnapshot(doc => {
                 const trailData = doc.data()
-                // Firebase API 取得步道創造者資訊
-                DB.ref('users').doc(trailData.create_user_id)
-                    .get()
-                    .then(doc => {
-                        const userData = doc.data()
-                        const newTrailData = {
-                            ...trailData,
-                            createUser: {
-                                id: userData.id,
-                                name: userData.name,
-                                picture: userData.picture
-                            }
-                        }
-                        this.setState({
-                            trailData: newTrailData
-                        })
-                    })
+                this.getTrailCreateUserData(trailData.create_user_id, trailData)
             })
+    }
+
+    getTrailCreateUserData = (userId, trailData) => {
+        DB.ref('users').doc(userId)
+            .get()
+            .then(doc => {
+                const userData = doc.data()
+                const newTrailData = {
+                    ...trailData,
+                    createUser: {
+                        id: userData.id,
+                        name: userData.name,
+                        picture: userData.picture
+                    }
+                }
+                this.setState({
+                    trailData: newTrailData
+                })
+            })
+    }
+
+    addTrailViewCount = (trailId) => {
         DB.ref('trails').doc(trailId)
             .get()
             .then(doc => {
@@ -52,14 +65,8 @@ class TrailDetail extends Component {
             })
     }
 
-    componentWillUnmount() {
-        this.unsubscribeGetTrail()
-    }
-
-
     render() {
         const { trailData, weatherData } = this.state
-
         if (trailData === null) {
             return (
                 <Fragment>

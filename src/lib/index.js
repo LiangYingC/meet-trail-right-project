@@ -143,7 +143,9 @@ export const DB = {
                         })
                     DB.ref('users').doc(user.uid).collection('report_list')
                 }
-                closeLoginBox()
+                if (closeLoginBox) {
+                    closeLoginBox()
+                }
             })
     }
 }
