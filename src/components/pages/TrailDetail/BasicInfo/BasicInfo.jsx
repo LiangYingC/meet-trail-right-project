@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import QuestionButton from '../../../shared/QuestionButton';
-
 
 const BasicInfo = ({ basicInfoData }) => {
     return (
