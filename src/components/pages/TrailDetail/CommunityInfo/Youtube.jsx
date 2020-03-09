@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { DB, APP } from '../../../../lib'
+import { DB, APP } from '../../../../lib';
+import { youtubeConfig } from '../../../../config';
 
 class Youtube extends Component {
     constructor(props) {
@@ -13,10 +14,9 @@ class Youtube extends Component {
         const { title, id } = this.props
         const todayDate = APP.getDay()
         const trailsRef = DB.ref('trails').doc(id)
-
-        // 從 Firebase 拿 youtube list 資料
         trailsRef.get().then(doc => {
-            const youtubeList = doc.data().youtube_list
+            const trailData = doc.data()
+            const youtubeList = trailData.youtube_list
             const isNeedToUpdate = () => {
                 if (youtubeList === null) {
                     return true
@@ -25,69 +25,55 @@ class Youtube extends Component {
                 } return false
             }
 
-            // 如果更新日期不是今天或尚無資料，從 YouTube Data API 取得資料存進 Firebase
-            if (isNeedToUpdate()) {
-                const youtubeConfig = {
-                    apiKey: 'AIzaSyAdjEsVveMWoqUjvz59GS3KMAwfsBVvKjQ',
-                    baseUrl: 'https://www.googleapis.com/youtube/v3',
-                    order: 'relevance',
-                    maxResults: 5
-                }
-                // 取得 Video 資料
-                const vedioUrl = `${youtubeConfig.baseUrl}/search?part=snippet&type=video
-                            &order=${ youtubeConfig.order}&q=${title}&key=${youtubeConfig.apiKey}`
-
-                fetch(vedioUrl, { method: 'Get' })
-                    .then(res => res.json())
-                    .then(vedioData => {
-
-                        let youtubeList = []
-                        vedioData.items.map(vedioItem => {
-                            // 取得 channel 資料
-                            const channelUrl = `${youtubeConfig.baseUrl}/channels?part=snippet
-                            &id=${vedioItem.snippet.channelId}&key=${youtubeConfig.apiKey}`
-                            fetch(channelUrl, { method: 'Get' })
-                                .then(res => res.json())
-                                .then(channelData => {
-                                    let youtubeItem = {
-                                        channelPic: channelData.items[0].snippet.thumbnails.default.url,
-                                        channelTitle: channelData.items[0].snippet.title,
-                                        videoId: vedioItem.id.videoId,
-                                        videoTitle: vedioItem.snippet.title
-                                    }
-                                    youtubeList.push(youtubeItem)
-                                }).then(() => {
-                                    this.setState({
-                                        youtubeList: youtubeList
-                                    })
-                                    // 放進 Firebase 資料庫
-                                    trailsRef.set({
-                                        youtube_list: {
-                                            data: youtubeList,
-                                            update_time: todayDate
-                                        }
-                                    }, { merge: true })
-                                })
-
-                        })
-                    })
-            } else {
+            isNeedToUpdate() ?
+                this.UpdateYoutubeVideo(trailsRef, title)
+                :
                 this.setState({
                     youtubeList: youtubeList.data
                 })
-            }
         })
     }
 
-
+    UpdateYoutubeVideo = (trailsRef, title) => {
+        const vedioUrl = `${youtubeConfig.baseUrl}/search?part=snippet&type=video
+                            &order=${ youtubeConfig.order}&q=${title}&key=${youtubeConfig.apiKey}`
+        fetch(vedioUrl, { method: 'Get' })
+            .then(res => res.json())
+            .then(vedioData => {
+                let youtubeList = []
+                vedioData.items.map(vedioItem => {
+                    const channelUrl = `${youtubeConfig.baseUrl}/channels?part=snippet
+                            &id=${vedioItem.snippet.channelId}&key=${youtubeConfig.apiKey}`
+                    fetch(channelUrl, { method: 'Get' })
+                        .then(res => res.json())
+                        .then(channelData => {
+                            let youtubeItem = {
+                                channelPic: channelData.items[0].snippet.thumbnails.default.url,
+                                channelTitle: channelData.items[0].snippet.title,
+                                videoId: vedioItem.id.videoId,
+                                videoTitle: vedioItem.snippet.title
+                            }
+                            youtubeList.push(youtubeItem)
+                        }).then(() => {
+                            this.setState({
+                                youtubeList: youtubeList
+                            })
+                            trailsRef.set({
+                                youtube_list: {
+                                    data: youtubeList,
+                                    update_time: todayDate
+                                }
+                            }, { merge: true })
+                        })
+                })
+            })
+    }
 
     render() {
         const { youtubeList } = this.state
-
         if (youtubeList === null) {
             return <div>Loading</div>
         }
-
         return (
             <div className="community-info__youtube">
                 <h3>Youtube</h3>
@@ -123,4 +109,4 @@ class Youtube extends Component {
     }
 }
 
-export default Youtube
+export default Youtube;

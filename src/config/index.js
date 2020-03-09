@@ -1,3 +1,4 @@
+// Firebase
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
@@ -17,5 +18,13 @@ firebase.initializeApp(firebaseConfig)
 
 export const db = firebase.firestore();
 export default firebase;
+
+// Youtube
+export const youtubeConfig = {
+    apiKey: 'AIzaSyAdjEsVveMWoqUjvz59GS3KMAwfsBVvKjQ',
+    baseUrl: 'https://www.googleapis.com/youtube/v3',
+    order: 'relevance',
+    maxResults: 5
+}
 
 
