@@ -80,7 +80,7 @@
 	position: absolute;
 	top: 15px;
 	left: -5px;
-	@include transition-duration(0.4s);
+	transition-duration: 0.4s;
 }
 
 .weather-status {

@@ -47,13 +47,13 @@
 			left: 20%;
 			z-index: 1;
 			opacity: 0.9;
-			@include transition-duration(0.5s);
-			@include transform(rotate3d(0, 1, 0, 180deg));
+			transform: rotate3d(0, 1, 0, 180deg);
+			transition-duration: 0.5s;
 
 			&.active {
 				opacity: 1;
 				z-index: 2;
-				@include transform(rotate3d(0, 0, 0, 180deg));
+				transform: rotate3d(0, 0, 0, 180deg);
 			}
 		}
 	}
@@ -90,10 +90,7 @@
 			left: 0;
 			width: 992px;
 			height: 800px;
-			-webkit-filter: blur(10px);
 			filter: blur(3px);
-			-webkit-transform: scale(1.05);
-			-ms-transform: scale(1.05);
 			transform: scale(1.05);
 			position: absolute;
 		}
@@ -104,13 +101,11 @@
 				top: 190px;
 				left: 50%;
 				transform: translate(-50%, -50%) rotate3d(0, 1, 0, 180deg);
-				-webkit-transform: translate(-50%, -50%) rotate3d(0, 1, 0, 180deg);
 
 				&.active {
 					opacity: 1;
 					z-index: 2;
 					transform: translate(-50%, -50%) rotate3d(0, 0, 0, 180deg);
-					-webkit-transform: translate(-50%, -50%) rotate3d(0, 0, 0, 180deg);
 				}
 			}
 		}

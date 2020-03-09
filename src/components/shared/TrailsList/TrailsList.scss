@@ -13,7 +13,7 @@
 		top: 0;
 		left: 0;
 		overflow: hidden;
-		@include transition-duration(0.25s);
+		transition-duration: 0.25s;
 
 		.trail-img {
 			width: auto;
@@ -43,13 +43,13 @@
 			opacity: 0.9;
 			border-top-left-radius: $br-basic;
 			border-top-right-radius: $br-basic;
-			@include transform(scale(1));
-			@include transition-duration(0.8s);
+			transform: scale(1);
+			transition-duration: 0.8s;
 		}
 
 		&:hover .trail-img img {
 			opacity: 1;
-			@include transform(scale(1.05));
+			transform: scale(1.05);
 		}
 
 		&:hover .trail-img .fa-heart {
@@ -118,7 +118,7 @@
 		position: absolute;
 		left: 50%;
 		top: 90%;
-		@include transform(translate(-50%, -80%));
+		transform: translate(-50%, -80%);
 		color: #666;
 	}
 }
@@ -140,14 +140,14 @@
 		> .wrap {
 			.trails-list {
 				.trail-item {
-					@include transform(scale(1));
+					transform: scale(1);
 
 					&:hover {
-						@include transform(scale(0.95));
+						transform: scale(0.95);
 					}
 
 					&:hover .trail-img img {
-						@include transform(scale(1));
+						transform: scale(1);
 					}
 
 					&:hover .trail-img .fa-heart {

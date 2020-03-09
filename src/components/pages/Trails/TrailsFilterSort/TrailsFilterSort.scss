@@ -19,7 +19,7 @@
 		right: 0;
 		z-index: 199;
 		transform: scale(1);
-		@include transition-duration(0.3);
+		transition-duration: 0.3s;
 
 		&.hide {
 			transform: scale(0);
@@ -99,8 +99,8 @@
 		position: fixed;
 		bottom: 90px;
 		left: 50%;
-		@include transform(translateX(-50%) scale(0));
-		@include transition-duration(0.2s);
+		transform: translateX(-50%) scale(0);
+		transition-duration: 0.2s;
 		opacity: 0;
 		z-index: 199;
 		background-color: $color-white;
@@ -133,7 +133,7 @@
 
 		&.active {
 			opacity: 1;
-			@include transform(translateX(-50%) scale(1));
+			transform: translateX(-50%) scale(1);
 		}
 	}
 }

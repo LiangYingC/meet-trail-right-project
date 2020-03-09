@@ -35,14 +35,12 @@
 		z-index: 1;
 		opacity: 0.9;
 		transform: translate(-50%, -50%) rotate3d(0, 1, 0, 180deg);
-		-webkit-transform: translate(-50%, -50%) rotate3d(0, 1, 0, 180deg);
-		@include transition-duration(0.5s);
+		transition-duration: 0.5s;
 
 		&.active {
 			opacity: 1;
 			z-index: 2;
 			transform: translate(-50%, -50%) rotate3d(0, 0, 0, 180deg);
-			-webkit-transform: translate(-50%, -50%) rotate3d(0, 0, 0, 180deg);
 		}
 
 		.login-title {
@@ -93,7 +91,7 @@
 					line-height: 1.75;
 					font-size: 1rem;
 					font-weight: 400;
-					@include transition-duration(0.2s);
+					transition-duration: 0.2s;
 				}
 			}
 
@@ -136,7 +134,8 @@
 				letter-spacing: 0.6px;
 				padding: 3px 5px;
 				cursor: pointer;
-				@include transition-duration(0.25s);
+				background-color: $color-white;
+				transition-duration: 0.25s;
 			}
 
 			#forgot-pwd-btn {
@@ -156,7 +155,7 @@
 				color: $color-green;
 				margin-left: 5px;
 				overflow: visible;
-				@include transition-duration(0.2s);
+				transition-duration: 0.2s;
 
 				&:hover {
 					border: 1.5px solid $color-green;
@@ -183,11 +182,11 @@
 			}
 
 			&::after {
-				@include transform(rotate(-45deg));
+				transform: rotate(-45deg);
 			}
 
 			&::before {
-				@include transform(rotate(45deg));
+				transform: rotate(45deg);
 			}
 		}
 	}
@@ -206,8 +205,6 @@
 		span {
 			display: block;
 			height: 1px;
-			-webkit-flex: auto;
-			-ms-flex: auto;
 			flex: auto;
 			background-color: #cccccc;
 		}
@@ -220,15 +217,15 @@
 		border-radius: $br-basic;
 		box-shadow: 0 0 2px 0 rgba($color: #333, $alpha: 0.3);
 		cursor: pointer;
-		@include transform(scale(1));
-		@include transition-duration(0.25s);
+		transform: scale(1);
+		transition-duration: 0.25s;
 
 		&:hover {
 			box-shadow: 0 0 2px 0 rgba($color: #222, $alpha: 1);
 		}
 
 		&:active {
-			@include transform(scale(0.96));
+			transform: scale(0.96);
 			box-shadow: 0 0 2px 0 rgba($color: $color-black, $alpha: 1);
 		}
 

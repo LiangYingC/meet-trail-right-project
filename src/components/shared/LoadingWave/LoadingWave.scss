@@ -7,7 +7,7 @@
 		top: 50%;
 		left: 50%;
 		font-size: 26px;
-		@include transform(translate(-50%, -50%));
+		transform: translate(-50%, -50%);
 		color: $color-green;
 	}
 }
@@ -19,39 +19,25 @@
 	height: 80px;
 	left: 50%;
 	top: 50%;
-	@include transform(translate(-50%, -50%));
+	transform: translate(-50%, -50%);
 }
 
 .wave-loading div {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	@include transform(translate(-50%, -50%));
+	transform: translate(-50%, -50%);
 	border: 4px solid $color-green;
 	opacity: 1;
 	border-radius: 50%;
 	animation: wave-loading 1.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-	-webkit-animation: wave-loading 1.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
 .wave-loading div:nth-child(2) {
 	animation-delay: -0.5s;
-	-webkit-animation-delay: -0.5s;
 }
 
 @keyframes wave-loading {
-	0% {
-		width: 45px;
-		height: 45px;
-		opacity: 1;
-	}
-	100% {
-		width: 150px;
-		height: 150px;
-		opacity: 0;
-	}
-}
-@-webkit-keyframes wave-loading {
 	0% {
 		width: 45px;
 		height: 45px;

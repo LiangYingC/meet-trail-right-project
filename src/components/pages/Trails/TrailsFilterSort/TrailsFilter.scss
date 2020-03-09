@@ -16,11 +16,16 @@
 		padding: 18px 0;
 	}
 
+	.filter-list {
+		width: 100%;
+	}
+
 	.filter-title {
 		font-size: 18px;
 		font-weight: 600;
 		letter-spacing: 1px;
 		position: relative;
+		white-space: nowrap;
 	}
 
 	.filter-item {
@@ -60,7 +65,7 @@
 	#trails-filter {
 		z-index: 200;
 		transform: scale(0);
-		@include transition-duration(0.25s);
+		transition-duration: 0.25s;
 		margin-top: 0 !important;
 		background-color: transparent;
 		position: fixed;
@@ -93,7 +98,7 @@
 			position: fixed;
 			top: 50%;
 			left: 50%;
-			@include transform(translate(-50%, -50%));
+			transform: translate(-50%, -50%);
 			display: flex;
 		}
 
@@ -123,7 +128,7 @@
 
 		.filter-title {
 			left: 50%;
-			@include transform(translateX(-30%));
+			transform: translateX(-30%);
 
 			.filter-QustionBtn {
 				position: absolute;

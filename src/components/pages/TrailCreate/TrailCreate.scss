@@ -72,7 +72,7 @@
 			font-size: 16px;
 			font-weight: 400;
 			outline: none;
-			@include transition-duration(0.2s);
+			transition-duration: 0.2s;
 		}
 
 		textarea {
@@ -139,7 +139,7 @@
 				border-radius: $br-basic;
 				cursor: pointer;
 				overflow: hidden;
-				@include transition-duration(0.2s);
+				transition-duration: 0.2s;
 
 				&:hover {
 					border: 1.5px solid $color-green;
@@ -154,7 +154,7 @@
 					position: absolute;
 					top: 50%;
 					left: 50%;
-					@include transform(translate(-50%, -50%));
+					transform: translate(-50%, -50%);
 					z-index: 1;
 
 					p {
@@ -196,7 +196,7 @@
 				left: 0;
 				z-index: 100;
 				opacity: 0;
-				@include transition-duration(0.2s);
+				transition-duration: 0.2s;
 
 				&.active {
 					opacity: 1;
@@ -259,7 +259,7 @@
 					color: $color-green;
 					left: 51%;
 					bottom: 30%;
-					@include transform(translateX(-50%));
+					transform: translateX(-50%);
 				}
 			}
 		}
@@ -293,7 +293,7 @@
 			margin-right: 15px;
 			cursor: pointer;
 			position: relative;
-			@include transition-duration(0.2s);
+			transition-duration: 0.2s;
 
 			&:hover > .radio-mark {
 				border: 2px solid $color-green;
@@ -301,7 +301,7 @@
 
 			&.active > .radio-mark {
 				background-color: $color-green;
-				@include transition-duration(0.2s);
+				transition-duration: 0.2s;
 				border: none;
 			}
 
@@ -311,7 +311,7 @@
 				left: 50%;
 				opacity: 0;
 				z-index: -1;
-				@include transform(translate(-50%, -50%));
+				transform: translate(-50%, -50%);
 			}
 
 			.radio-mark {
@@ -342,7 +342,7 @@
 			border-radius: $br-basic;
 			cursor: pointer;
 			position: relative;
-			@include transition-duration(0.2s);
+			transition-duration: 0.2s;
 
 			&:hover {
 				font-weight: 550;
@@ -364,7 +364,7 @@
 				left: 50%;
 				opacity: 0;
 				z-index: -1;
-				@include transform(translate(-50%, -50%));
+				transform: translate(-50%, -50%);
 			}
 		}
 

@@ -8,7 +8,7 @@
 				margin: 0 auto;
 				text-align: center;
 				left: 50%;
-				@include transform(translateX(-50%));
+				transform: translateX(-50%);
 			}
 		}
 	}

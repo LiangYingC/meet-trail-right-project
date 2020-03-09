@@ -34,7 +34,6 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%) scale(1);
-			-webkit-transform: translate(-50%, -50%) scale(1);
 
 			&.m-smail {
 				animation: smail-loading 1.4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;

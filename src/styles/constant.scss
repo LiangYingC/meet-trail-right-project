@@ -19,19 +19,3 @@ $border-basic: 0.5px solid #aaa;
 /* Font */
 $font-color-basic: #555;
 $font-family: "Noto Sans TC", "Microsoft JhengHei", "sans-serif";
-
-/* Mix */
-@mixin transition-duration($time) {
-	-webkit-transition-duration: $time;
-	-moz-transition-duration: $time;
-	-ms-transition-duration: $time;
-	transition-duration: $time;
-}
-
-@mixin transform($effct) {
-	-webkit-transform: $effct;
-	-moz-transform: $effct;
-	-ms-transform: $effct;
-	-o-transform: $effct;
-	transform: $effct;
-}

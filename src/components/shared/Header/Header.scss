@@ -6,7 +6,7 @@
 	top: 0;
 	left: 0;
 	z-index: 100;
-	@include transition-duration(0.3s);
+	transition-duration: 0.3s;
 
 	&.hide {
 		top: -60px;
@@ -72,7 +72,7 @@
 			padding: 18px 0;
 			border: 4.5px solid transparent;
 			cursor: pointer;
-			@include transition-duration(0.2s);
+			transition-duration: 0.2s;
 
 			&:hover {
 				color: #222;
@@ -84,10 +84,10 @@
 				top: 0px;
 				right: -28px;
 				width: 30px;
-				@include transition-duration(0.1s);
+				transition-duration: 0.1s;
 
 				&.active {
-					@include transform(rotate(180deg));
+					transform: rotate(180deg);
 				}
 			}
 		}
@@ -111,7 +111,7 @@
 	background-color: $color-white;
 	z-index: 200;
 	box-shadow: 0 0.5px 3.5px rgba(0, 0, 0, 0.3);
-	@include transition-duration(0.3s);
+	transition-duration: 0.3s;
 
 	&.hide {
 		bottom: -60px;
