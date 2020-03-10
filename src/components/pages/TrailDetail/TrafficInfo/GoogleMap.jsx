@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-import Button from '../../../shared/Button';
-
-const mapStyles = {
-    width: '100%',
-    height: '100%',
-    left: '25%',
-    transform: 'translateX(-25%)'
-};
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 class GoogleMapContainer extends Component {
     constructor(props) {
@@ -22,11 +14,9 @@ class GoogleMapContainer extends Component {
         }
     }
 
-    fetchPlaces = (mapProps, map) => {
-        // 利用 Palces API 找到步道經緯度
+    setMapCenter = (mapProps, map) => {
         const { google } = mapProps
         const service = new google.maps.places.PlacesService(map)
-
 
         const { trailTitle } = this.props
         const request = {
@@ -37,29 +27,31 @@ class GoogleMapContainer extends Component {
         service.findPlaceFromQuery(request, data => {
             this.setState({
                 mapCenter: {
-                    lat: data[0].geometry.location.lat() - 0.00015,
+                    lat: data[0].geometry.location.lat(),
                     lng: data[0].geometry.location.lng()
                 }
             })
         })
     }
 
-    onMarkerClick = (marker) => {
-        this.setState({
-            activeMarker: marker,
-            isShowInfoWindow: true
-        })
+    onMarkerClick = (trailTitle) => {
+        window.open(`https://www.google.com.tw/maps/search/${trailTitle}`, 'Go to Google Map')
     }
 
     render() {
-        const { mapCenter, isShowInfoWindow, activeMarker } = this.state
+        const { mapCenter } = this.state
         const { trailTitle, google } = this.props
         return (
             <Map
                 google={google}
-                onReady={this.fetchPlaces}
+                onReady={this.setMapCenter}
                 zoom={16}
-                style={mapStyles}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    left: '25%',
+                    transform: 'translateX(-25%)'
+                }}
                 initialCenter={{
                     lat: '24.181623',
                     lng: '121.281346'
@@ -69,17 +61,8 @@ class GoogleMapContainer extends Component {
                 <Marker
                     name={trailTitle}
                     position={mapCenter}
-                    onClick={this.onMarkerClick}
+                    onClick={() => this.onMarkerClick(trailTitle)}
                 />
-                <InfoWindow
-                    marker={activeMarker}
-                    visible={isShowInfoWindow}
-                >
-                    <div>
-                        <h1>{trailTitle}</h1>
-                    </div>
-                </InfoWindow>
-
             </ Map>
         )
     }
