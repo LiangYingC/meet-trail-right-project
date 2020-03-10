@@ -103,4 +103,4 @@ class App extends Component {
 }
 
 App.contextType = AuthUserContext;
-export default App
+export default App;
