@@ -1,4 +1,4 @@
-import { APP, DB } from '../lib';
+import { APP, DB } from './index';
 
 test('time should transfrom from minute to hour minute', () => {
     expect(APP.transfromTimefromMinToHourMin(90)).toBe('1 小時 30 分鐘')
