@@ -12,7 +12,6 @@ import UploadImgInput from './Inputs/UploadImgInput.jsx';
 import RadioCheckboxInput from './Inputs/RadioCheckboxInput.jsx';
 import TrailLocationInput from './Inputs/TrailLocationInput.jsx';
 import TrailRouteInput from './Inputs/TrailRouteInput.jsx';
-
 import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class TrailCreate extends Component {
@@ -50,10 +49,8 @@ class TrailCreate extends Component {
                 } else if (file.size > 5000000) {
                     this.toggleAlertBox(true, '檔案不可超過', '5 MB', '喔')
                 } else {
-                    console.log('go upload')
                     const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}${nameTage}`).put(file)
                     uploadTask.on('state_changed', snapshot => {
-                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                         const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
                         this.setState({
                             isShowImgLoading: {
@@ -199,11 +196,7 @@ class TrailCreate extends Component {
     createTrail = (inputValue, sceneryData, difficultyData) => {
         const { userData } = this.context
         const { history } = this.props
-        console.log(inputValue)
-        console.log(sceneryData)
-        console.log(difficultyData)
-        console.log(userData)
-        console.log(APP.tansformTrialDataFromStateToDB(inputValue, sceneryData, difficultyData, userData))
+
         this.setState({
             isShowCreateLoading: true
         })
@@ -223,10 +216,10 @@ class TrailCreate extends Component {
                 DB.ref('trails').doc(newTrail.id)
                     .update({
                         id: newTrail.id
+                    }).then(() => {
+                        history.push(`/trails/detail/${newTrail.id}`)
+                        localStorage.setItem('MTR_Trail_Create', JSON.stringify(null))
                     })
-
-                // history.push(`/trails/detail/${newTrail.id}`)
-                localStorage.setItem('MTR_Trail_Create', JSON.stringify(null))
             })
     }
 
