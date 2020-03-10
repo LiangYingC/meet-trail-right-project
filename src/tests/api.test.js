@@ -7,7 +7,6 @@ test("youtube search API", () => {
     return axios.get(searchVedioUrl)
         .then((response) => {
             const data = response.data
-            expect(data).toBeDefined()
             expect(data.items[0].snippet).toBeDefined()
             expect(data.items.length).toBeGreaterThan(3)
             expect(typeof data.items[0].id.videoId).toBe('string')
@@ -23,7 +22,6 @@ test("youtube channels API", () => {
     return axios.get(channelUrl)
         .then((response) => {
             const data = response.data
-            expect(data).toBeDefined()
             expect(data.items[0].snippet).toBeDefined()
             expect(typeof data.items[0].snippet.title).toBe('string')
             expect(typeof data.items[0].snippet.thumbnails.default.url).toBe('string')
