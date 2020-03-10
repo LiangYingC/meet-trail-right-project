@@ -50,6 +50,7 @@ class TrailCreate extends Component {
                 } else if (file.size > 5000000) {
                     this.toggleAlertBox(true, '檔案不可超過', '5 MB', '喔')
                 } else {
+                    console.log('go upload')
                     const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}${nameTage}`).put(file)
                     uploadTask.on('state_changed', snapshot => {
                         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -198,14 +199,18 @@ class TrailCreate extends Component {
     createTrail = (inputValue, sceneryData, difficultyData) => {
         const { userData } = this.context
         const { history } = this.props
-
+        console.log(inputValue)
+        console.log(sceneryData)
+        console.log(difficultyData)
+        console.log(userData)
+        console.log(APP.tansformTrialDataFromStateToDB(inputValue, sceneryData, difficultyData, userData))
         this.setState({
             isShowCreateLoading: true
         })
 
         DB.ref('trails')
             .add(
-                APP.tansformTrialDataFromStateToDB(inputValue, userData, sceneryData, difficultyData)
+                APP.tansformTrialDataFromStateToDB(inputValue, sceneryData, difficultyData, userData)
             ).then(newTrail => {
                 const newCreateList = userData.createList
                 newCreateList.push(newTrail.id)
@@ -220,7 +225,7 @@ class TrailCreate extends Component {
                         id: newTrail.id
                     })
 
-                history.push(`/trails/detail/${newTrail.id}`)
+                // history.push(`/trails/detail/${newTrail.id}`)
                 localStorage.setItem('MTR_Trail_Create', JSON.stringify(null))
             })
     }

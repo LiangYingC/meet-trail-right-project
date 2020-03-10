@@ -13,13 +13,13 @@ export const APP = {
     },
 
     transfromTimefromMinToHourMin: (time) => {
-        return time > 60 ?
-            `${Math.floor(time / 60)} 小時 ${time % 60 > 0 ? `${time % 60}分鐘` : ''}`
+        return time >= 60 ?
+            `${Math.floor(time / 60)} 小時 ${time % 60 > 0 ? `${time % 60} 分鐘` : ''}`
             :
             `${time} 分鐘`
     },
 
-    tansformTrialDataFromStateToDB: (inputValue, userData, sceneryData, difficultyData) => {
+    tansformTrialDataFromStateToDB: (inputValue, sceneryData, difficultyData, userData) => {
         return {
             id: null,
             title: inputValue.title,
@@ -60,7 +60,7 @@ export const APP = {
 }
 
 // Firebase Database library
-import { db } from '../config';
+import { db, storage } from '../config';
 import firebase from '../config';
 
 export const DB = {
@@ -72,11 +72,11 @@ export const DB = {
     },
 
     storageRef: filePath => {
-        const storageRef = firebase.storage().ref()
+        const storageRef = storage.ref()
         return storageRef.child(filePath)
     },
 
-    signUp: (email, pwd, name, history, callback, callbackSed) => {
+    signUp: (email, pwd, name, history, toggleAlertWord, closeLoginBox) => {
         firebase.auth()
             .createUserWithEmailAndPassword(email, pwd)
             .then(data => {
@@ -96,26 +96,26 @@ export const DB = {
                 if (history) {
                     history.push('/profile')
                 } else {
-                    callbackSed()
+                    closeLoginBox()
                 }
             })
             .catch(error => {
-                callback(error)
+                toggleAlertWord(error)
             })
     },
 
-    signIn: (email, pwd, history, callback, callbackSed) => {
+    signIn: (email, pwd, history, toggleAlertWord, closeLoginBox) => {
         firebase.auth()
             .signInWithEmailAndPassword(email, pwd)
             .then(data => {
                 if (history) {
                     history.push('/profile')
                 } else {
-                    callbackSed()
+                    closeLoginBox()
                 }
             })
             .catch(error => {
-                callback(error)
+                toggleAlertWord(error)
             })
     },
 
@@ -125,8 +125,6 @@ export const DB = {
             .then(() => {
                 if (history) {
                     history.push('/trails')
-                } else {
-                    callbackSed()
                 }
             })
     },
