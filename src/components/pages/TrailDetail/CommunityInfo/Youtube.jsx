@@ -40,6 +40,7 @@ class Youtube extends Component {
         fetch(vedioUrl, { method: 'Get' })
             .then(res => res.json())
             .then(vedioData => {
+                console.log(vedioData)
                 let youtubeList = []
                 vedioData.items.map(vedioItem => {
                     const channelUrl = `${youtubeConfig.baseUrl}/channels?part=snippet
