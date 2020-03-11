@@ -35,10 +35,25 @@ class Trails extends Component {
     }
 
     componentDidMount() {
-        this.handleSort()
+        this.handleSearch()
     }
 
-    handleSort = () => {
+    componentWillUnmount() {
+        this.unsubscribeGetTrails()
+    }
+
+    handleSearch = () => {
+        const { history } = this.props
+        const getSearchValue = (searchValue) => {
+            const equalPosition = history.location.search.indexOf('=')
+            searchValue = decodeURI(history.location.search.slice(equalPosition + 1))
+            this.handleSort(searchValue)
+        }
+        let searchValue = ''
+        history.location.search ? getSearchValue(searchValue) : this.handleSort(searchValue)
+    }
+
+    handleSort = (searchValue) => {
         const { sortCheckedValue } = this.state
         let sortKey
         let sortRank
@@ -66,34 +81,14 @@ class Trails extends Component {
             default:
                 break;
         }
-        this.handleSearch(sortKey, sortRank)
-    }
-
-    handleSearch = (sortKey, sortRank) => {
-        const { history } = this.props
-        const getSearchValue = (sortKey, sortRank, searchValue) => {
-            const equalPosition = history.location.search.indexOf('=')
-            searchValue = decodeURI(history.location.search.slice(equalPosition + 1))
-            this.getTrailsList(sortKey, sortRank, searchValue)
-        }
-        let searchValue = ''
-
-        this.clearTrailsList()
-        history.location.search ? getSearchValue(sortKey, sortRank, searchValue) : this.getTrailsList(sortKey, sortRank, searchValue)
-    }
-
-    clearTrailsList = () => {
-        this.setState({
-            trailsAll: null,
-            trailsVisible: null
-        })
+        this.getTrailsList(sortKey, sortRank, searchValue)
     }
 
     getTrailsList = (sortKey, sortRank, searchValue) => {
-        DB.ref('trails')
+        this.clearTrailsList()
+        this.unsubscribeGetTrails = DB.ref('trails')
             .orderBy(sortKey, sortRank)
-            .get()
-            .then(querySnapshot => {
+            .onSnapshot(querySnapshot => {
                 let trailsData = []
                 querySnapshot.forEach(doc => {
                     if (doc.data().title.indexOf(`${searchValue}`) >= 0) {
@@ -105,6 +100,13 @@ class Trails extends Component {
                     }, () => this.setVisibleList())
                 })
             })
+    }
+
+    clearTrailsList = () => {
+        this.setState({
+            trailsAll: null,
+            trailsVisible: null
+        })
     }
 
     setVisibleList = () => {
@@ -148,13 +150,13 @@ class Trails extends Component {
         e.persist()
         this.setState({
             sortCheckedValue: Number(e.target.value)
-        }, this.handleSort)
+        }, this.handleSearch)
     }
 
     changeFilter = (e) => {
         e.persist()
         this.setState(preState => ({
-            filterCheckedList: preState.filterCheckedList.map((filter, index) => {
+            filterCheckedList: preState.filterCheckedList.map(filter => {
                 if (filter.tag === e.target.name) {
                     return {
                         tag: e.target.name,

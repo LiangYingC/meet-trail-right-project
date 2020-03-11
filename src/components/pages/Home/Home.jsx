@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { DB } from '../../../lib';
+import { DB, APP } from '../../../lib';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import TrailsList from '../../shared/TrailsList';
@@ -25,6 +25,10 @@ class Home extends Component {
         this.getRankTrailsList('view_count', 'desc', 4, 'popularList')
     }
 
+    componentWillUnmount() {
+        this.unsubscribeGetRankTrails()
+    }
+
     getEditorChooseTrailsList = () => {
         DB.ref('trails')
             .orderBy('timestamp', 'desc')
@@ -43,11 +47,10 @@ class Home extends Component {
     }
 
     getRankTrailsList = (orderkey, orderRankType, limitNum, listName) => {
-        DB.ref('trails')
+        this.unsubscribeGetRankTrails = DB.ref('trails')
             .orderBy(orderkey, orderRankType)
             .limit(limitNum)
-            .get()
-            .then(querySnapshot => {
+            .onSnapshot(querySnapshot => {
                 let trailsData = []
                 querySnapshot.forEach(doc => {
                     trailsData.push(doc.data())
@@ -154,12 +157,7 @@ class Home extends Component {
                                                         </div>
                                                         <div className="flex tag">
                                                             <div className="time">
-                                                                {
-                                                                    trail.time > 60 ?
-                                                                        `${Math.floor(trail.time / 60)} 小時 
-                                                    ${trail.time % 60 > 0 ? `${trail.time % 60}分鐘` : ''}`
-                                                                        : `${trail.time} 分鐘`
-                                                                }
+                                                                {APP.transfromTimefromMinToHourMin(trail.time)}
                                                             </div>
                                                             <div className="diffuculty">{trail.difficulty}</div>
                                                             <div className="city">{trail.location.city}</div>

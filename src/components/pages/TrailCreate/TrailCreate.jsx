@@ -12,7 +12,6 @@ import UploadImgInput from './Inputs/UploadImgInput.jsx';
 import RadioCheckboxInput from './Inputs/RadioCheckboxInput.jsx';
 import TrailLocationInput from './Inputs/TrailLocationInput.jsx';
 import TrailRouteInput from './Inputs/TrailRouteInput.jsx';
-
 import AuthUserContext from '../../../contexts/AuthUserContext';
 
 class TrailCreate extends Component {
@@ -52,7 +51,6 @@ class TrailCreate extends Component {
                 } else {
                     const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}${nameTage}`).put(file)
                     uploadTask.on('state_changed', snapshot => {
-                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                         const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
                         this.setState({
                             isShowImgLoading: {
@@ -205,7 +203,7 @@ class TrailCreate extends Component {
 
         DB.ref('trails')
             .add(
-                APP.tansformTrialDataFromStateToDB(inputValue, userData, sceneryData, difficultyData)
+                APP.tansformTrialDataFromStateToDB(inputValue, sceneryData, difficultyData, userData)
             ).then(newTrail => {
                 const newCreateList = userData.createList
                 newCreateList.push(newTrail.id)
@@ -218,10 +216,10 @@ class TrailCreate extends Component {
                 DB.ref('trails').doc(newTrail.id)
                     .update({
                         id: newTrail.id
+                    }).then(() => {
+                        history.push(`/trails/detail/${newTrail.id}`)
+                        localStorage.setItem('MTR_Trail_Create', JSON.stringify(null))
                     })
-
-                history.push(`/trails/detail/${newTrail.id}`)
-                localStorage.setItem('MTR_Trail_Create', JSON.stringify(null))
             })
     }
 

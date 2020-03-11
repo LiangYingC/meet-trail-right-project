@@ -5,4 +5,4 @@ const AuthUserContext = React.createContext({
     userData: null
 })
 
-export default AuthUserContext
+export default AuthUserContext;
