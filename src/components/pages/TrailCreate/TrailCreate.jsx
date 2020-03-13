@@ -43,7 +43,6 @@ class TrailCreate extends Component {
                 const fileTitle = this.state.inputValue.title
                 let nameTage
                 id === 'cover-img' ? nameTage = '封面圖' : nameTage = '路線圖'
-
                 if (fileTitle.length < 1) {
                     this.toggleAlertBox(true, '請先輸入', '步道名稱', '喔')
                 } else if (file.size > 5000000) {
