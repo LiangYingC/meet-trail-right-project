@@ -19,7 +19,10 @@ class Routes extends Component {
         const { isLogin } = this.context
         return (
             <Switch>
-                <Route path="/trails/detail/:id" component={TrailDetail} />
+                <Route
+                    path="/trails/detail/:id"
+                    render={(props) => <TrailDetail {...props} key={props.location.key} />}
+                />
                 <Route
                     path="/trails"
                     render={(props) => <Trails {...props} key={props.location.key} />}

@@ -282,6 +282,8 @@ class TrailCreate extends Component {
             isShowCreateLoading
         } = this.state
 
+        const { history } = this.props
+
         const {
             locationObj,
             difficultyList,
@@ -290,7 +292,7 @@ class TrailCreate extends Component {
 
         return (
             <Fragment>
-                <Header />
+                <Header history={history} />
                 <div id="trail-create">
                     <h2>新增步道</h2>
                     <div className="wrap">
