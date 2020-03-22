@@ -6,5 +6,5 @@ bundle.js
 /public/src
 
 # keys files
-/config/ignore.js
+/src/config/ignore.js
 ignore.js
