@@ -54,13 +54,12 @@ class Profile extends Component {
         const file = e.target.files[0]
 
         if (file.size > 1000000) {
-            console.log('檔案過大')
+
         } else {
             const uploadTask = DB.storageRef(`/users/${userData.id}/${userData.name}的照片`).put(file)
             uploadTask.on('state_changed', snapshot => {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done')
             }, error => {
                 console.log(error)
             }, () => {
@@ -86,8 +85,6 @@ class Profile extends Component {
         const pathName = this.props.location.pathname
         const { userData } = this.context
         const { history } = this.props
-        console.log(this.props)
-
         return (
             <Fragment>
                 <Header history={history} />

@@ -38,10 +38,6 @@ class Trails extends Component {
         this.handleSearch()
     }
 
-    componentWillUnmount() {
-        this.unsubscribeGetTrails()
-    }
-
     handleSearch = () => {
         const { history } = this.props
         const getSearchValue = (searchValue) => {
@@ -86,19 +82,23 @@ class Trails extends Component {
 
     getTrailsList = (sortKey, sortRank, searchValue) => {
         this.clearTrailsList()
-        this.unsubscribeGetTrails = DB.ref('trails')
+        DB.ref('trails')
             .orderBy(sortKey, sortRank)
-            .onSnapshot(querySnapshot => {
+            .get()
+            .then(querySnapshot => {
                 let trailsData = []
                 querySnapshot.forEach(doc => {
                     if (doc.data().title.indexOf(`${searchValue}`) >= 0) {
                         trailsData.push(doc.data())
                     }
-                    this.setState({
-                        trailsAll: trailsData,
-                        trailsVisible: trailsData
-                    }, () => this.setVisibleList())
                 })
+                return trailsData
+            })
+            .then(trailsData => {
+                this.setState({
+                    trailsAll: trailsData,
+                    trailsVisible: trailsData
+                }, () => this.setVisibleList())
             })
     }
 

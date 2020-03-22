@@ -28,7 +28,6 @@ class App extends Component {
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                console.log('onAuthState true')
                 DB.ref('users').doc(user.uid)
                     .onSnapshot(doc => {
                         const userData = {
@@ -46,7 +45,6 @@ class App extends Component {
 
 
             } else {
-                console.log('onAuthState false')
                 const userData = {
                     id: '',
                     name: '',

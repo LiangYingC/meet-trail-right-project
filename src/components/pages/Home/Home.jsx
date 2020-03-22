@@ -31,16 +31,17 @@ class Home extends Component {
 
     getEditorChooseTrailsList = () => {
         DB.ref('trails')
-            .orderBy('timestamp', 'desc')
+            .orderBy('view_count', 'desc')
             .get()
             .then(querySnapshot => {
-                let trailsData = []
+                let trailsList = []
                 querySnapshot.forEach(doc => {
-                    if (doc.data().title.indexOf(`合歡`) >= 0) {
-                        trailsData.push(doc.data())
+                    const trailData = doc.data()
+                    if (trailData.title.indexOf(`合歡`) >= 0 && trailsList.length < 5) {
+                        trailsList.push(doc.data())
                     }
                     this.setState({
-                        editorChooseList: trailsData
+                        editorChooseList: trailsList
                     })
                 })
             })
@@ -51,11 +52,11 @@ class Home extends Component {
             .orderBy(orderkey, orderRankType)
             .limit(limitNum)
             .onSnapshot(querySnapshot => {
-                let trailsData = []
+                let trailsList = []
                 querySnapshot.forEach(doc => {
-                    trailsData.push(doc.data())
+                    trailsList.push(doc.data())
                     this.setState({
-                        [listName]: trailsData
+                        [listName]: trailsList
                     })
                 })
             })

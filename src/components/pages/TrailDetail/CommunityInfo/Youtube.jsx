@@ -76,7 +76,7 @@ class Youtube extends Component {
         }
         return (
             <div className="community-info__youtube">
-                <h3>Youtube</h3>
+                <h3>YouTube</h3>
                 <div className="flex youtube-list">
                     {
                         youtubeList.map(youtube => {

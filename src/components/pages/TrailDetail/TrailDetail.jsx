@@ -67,6 +67,7 @@ class TrailDetail extends Component {
 
     render() {
         const { trailData, weatherData } = this.state
+        const { history } = this.props
         if (trailData === null) {
             return (
                 <Fragment>
@@ -112,7 +113,7 @@ class TrailDetail extends Component {
 
             return (
                 <Fragment>
-                    <Header />
+                    <Header history={history} />
                     <TopInfo topInfoData={topInfoData} />
                     <BasicInfo basicInfoData={basicInfoData} />
                     <CommunityInfo communityInfoData={communityInfoData} />
