@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { DB, APP } from '../../../lib';
 import ProfileNoList from './ProfileNoList.jsx';
@@ -57,16 +57,16 @@ class ProfileLike extends Component {
         const { likeList } = this.state
         if (likeList === null) {
             return (
-                <Fragment>
+                <>
                     <div className="title">
                         <h2>我的最愛</h2>
                     </div>
                     <LoadingWave />
-                </Fragment>
+                </>
             )
         }
         return (
-            <Fragment>
+            <>
                 <div className="title">
                     <h2>我的最愛</h2>
                 </div>
@@ -123,7 +123,7 @@ class ProfileLike extends Component {
                             </div>
                         </div>
                 }
-            </Fragment>
+            </>
         )
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { DB } from '../../../lib';
 import SignInPanel from './SignInPanel.jsx';
 import SignUpPanel from './SignUpPanel.jsx';
@@ -117,7 +117,7 @@ class LoginBox extends Component {
         } = this.props
 
         return (
-            <Fragment>
+            <>
                 <div className={`login-panel-wrap ${isShowLoginBox ? 'active' : ''} `}>
                     <div className="layer"></div>
                     <SignInPanel
@@ -142,7 +142,7 @@ class LoginBox extends Component {
                         closeLoginBox={closeLoginBox}
                     />
                 </div>
-            </Fragment>
+            </>
         )
     }
 

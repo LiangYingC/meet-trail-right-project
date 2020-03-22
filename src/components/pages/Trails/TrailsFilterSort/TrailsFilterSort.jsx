@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import TrailsFilter from './TrailsFilter.jsx';
 import TrailsSort from './TrailsSort.jsx';
 
@@ -85,7 +85,7 @@ class TrailsFilterSort extends Component {
         } = this.state
 
         return (
-            <Fragment>
+            <>
                 <TrailsFilter
                     filterCheckedList={filterCheckedList}
                     changeFilter={changeFilter}
@@ -113,7 +113,7 @@ class TrailsFilterSort extends Component {
                         <p><i className="fas fa-sort-amount-up-alt"></i>排序</p>
                     </div>
                 </div>
-            </Fragment>
+            </>
         )
     }
 }

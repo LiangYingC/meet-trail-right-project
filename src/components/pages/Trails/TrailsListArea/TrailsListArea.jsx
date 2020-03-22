@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import LoginBox from '../../../shared/LoginBox';
 import TrailsList from '../../../shared/TrailsList'
 import TrailsListSkeleton from '../../../shared/TrailsList/TrialsListSkeleton.jsx';
@@ -83,7 +83,7 @@ class TrailsListArea extends Component {
         } = this.state
         const { trailsVisible } = this.props
         return (
-            <Fragment>
+            <>
                 <section id="trails-list-area">
                     <div className="wrap">
                         <div className="flex">
@@ -122,7 +122,7 @@ class TrailsListArea extends Component {
                     isShowLoginBox={isShowLoginBox}
                     closeLoginBox={this.toggleLoginBox}
                 />
-            </Fragment>
+            </>
         )
     }
 }

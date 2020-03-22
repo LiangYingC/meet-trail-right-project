@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
-    BrowserRouter as Router,
     Route,
     Link,
     Switch
@@ -13,7 +12,6 @@ import ProfileReport from './ProfileReport.jsx';
 import ProfileComment from './ProfileComment.jsx';
 import ProfileTrail from './ProfileTrail.jsx';
 import AuthUserContext from '../../../contexts/AuthUserContext';
-
 
 const profileRoutes = [
 
@@ -86,7 +84,7 @@ class Profile extends Component {
         const { userData } = this.context
         const { history } = this.props
         return (
-            <Fragment>
+            <>
                 <Header history={history} />
                 <section id="profile">
                     <div className="flex wrap">
@@ -169,7 +167,7 @@ class Profile extends Component {
                     </div>
                 </section>
                 <Footer />
-            </Fragment >
+            </>
         )
     }
 }

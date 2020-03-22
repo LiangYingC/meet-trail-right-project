@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Link
@@ -51,16 +51,16 @@ class ProfileLike extends Component {
         const { createList } = this.state
         if (createList === null) {
             return (
-                <Fragment>
+                <>
                     <div className="title">
                         <h2>我提供的步道</h2>
                     </div>
                     <LoadingWave />
-                </Fragment>
+                </>
             )
         }
         return (
-            <Fragment>
+            <>
                 <div className="title">
                     <h2>我提供的步道</h2>
                 </div>
@@ -95,7 +95,7 @@ class ProfileLike extends Component {
                             </div>
                         </div>
                 }
-            </Fragment>
+            </>
         )
     }
 }

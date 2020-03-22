@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Header from '../../../components/shared/Header';
 import Footer from '../../../components/shared/Footer';
 import Loginbox from '../../shared/LoginBox';
 
 const Login = () => {
     return (
-        <Fragment>
+        <>
             <Header />
             <div id="login">
                 <div className="wrap">
@@ -18,7 +18,7 @@ const Login = () => {
                 </div>
             </div>
             <Footer />
-        </Fragment>
+        </>
     )
 }
 

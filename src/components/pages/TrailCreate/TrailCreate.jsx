@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { DB, APP } from '../../../lib';
 import { TrailCreateConst } from '../../../constants';
 import Header from '../../shared/Header';
@@ -291,7 +291,7 @@ class TrailCreate extends Component {
         } = TrailCreateConst
 
         return (
-            <Fragment>
+            <>
                 <Header history={history} />
                 <div id="trail-create">
                     <h2>新增步道</h2>
@@ -327,12 +327,12 @@ class TrailCreate extends Component {
                             changeValue={this.changeValue}
                             isShowImgLoading={isShowImgLoading}
                             reminderContent={
-                                <Fragment>
+                                <>
                                     <p>1. 此<span>封面圖</span>會呈現在步道頁面最上方</p>
                                     <p>2. 建議圖片尺寸比例為<span> 3 : 2 </span></p>
                                     <p>3. 建議圖片寬度至少大於<span> 800 像素 </span></p>
                                     <p>4. 檔案須小於<span> 5 MB</span></p>
-                                </Fragment>
+                                </>
                             }
                         />
 
@@ -428,12 +428,12 @@ class TrailCreate extends Component {
                             changeValue={this.changeValue}
                             isShowImgLoading={isShowImgLoading}
                             reminderContent={
-                                <Fragment>
+                                <>
                                     <p>1. 此<span>路線圖</span>，呈現在步道頁面<span>路線資訊</span>處</p>
                                     <p>2. 建議圖片尺寸比例為<span> 3 : 2 </span></p>
                                     <p>3. 建議圖片寬度至少大於<span> 800 像素 </span></p>
                                     <p>4. 檔案須小於<span> 5 MB</span></p>
-                                </Fragment>
+                                </>
                             }
                         />
 
@@ -460,7 +460,7 @@ class TrailCreate extends Component {
                 />
                 <Footer />
                 <LoadingPage isShow={isShowCreateLoading} />
-            </Fragment>
+            </>
         )
     }
 }

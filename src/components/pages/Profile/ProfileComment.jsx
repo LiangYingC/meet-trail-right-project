@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import ProfileNoList from './ProfileNoList.jsx';
 
 class ProfileComment extends Component {
@@ -8,7 +8,7 @@ class ProfileComment extends Component {
 
     render() {
         return (
-            <Fragment>
+            <>
                 <div className="title">
                     <h2>步道評論</h2>
                 </div>
@@ -16,7 +16,7 @@ class ProfileComment extends Component {
                     <p>目前有 <span>0</span> 則步道評論</p>
                 </div>
                 <ProfileNoList text={'目前尚無提供任何評論喔'} />
-            </Fragment>
+            </>
         )
     }
 }
