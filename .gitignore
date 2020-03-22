@@ -4,3 +4,7 @@
 # cache files
 bundle.js
 /public/src
+
+# keys files
+/config/ignore.js
+ignore.js
