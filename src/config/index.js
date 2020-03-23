@@ -18,11 +18,9 @@ const firebaseConfig = {
     measurementId: 'G-QV2C25SEQY'
 }
 firebase.initializeApp(firebaseConfig)
-
 export const db = firebase.firestore();
 export const storage = firebase.storage();
 export default firebase;
-
 
 // Weather
 export const weatherConfig = {
@@ -39,7 +37,6 @@ export const youtubeConfig = {
 }
 
 // Google Map
-
 export const googleMapConfig = {
     apiKey: apiKeys.googleMapKey,
 }
