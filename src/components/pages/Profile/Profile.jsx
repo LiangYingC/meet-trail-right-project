@@ -14,12 +14,6 @@ import ProfileTrail from './ProfileTrail.jsx';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 
 const profileRoutes = [
-
-    {
-        path: "/profile/comment",
-        exact: false,
-        main: () => <ProfileComment />
-    },
     {
         path: "/profile/report",
         exact: false,
@@ -120,12 +114,6 @@ class Profile extends Component {
                                             <li className={`${pathName === '/profile' ? 'active' : ''}`}>
                                                 <i className="fas fa-heart"></i>
                                                 <p>我的收藏</p>
-                                            </li>
-                                        </Link>
-                                        <Link to="/profile/comment">
-                                            <li className={`${pathName === '/profile/comment' ? 'active' : ''}`}>
-                                                <i className="fas fa-comment"></i>
-                                                <p>步道評論</p>
                                             </li>
                                         </Link>
                                         <Link to="/profile/report">
