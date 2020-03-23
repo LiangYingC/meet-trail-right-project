@@ -9,7 +9,6 @@ import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
 import ProfileLike from './ProfileLike.jsx';
 import ProfileReport from './ProfileReport.jsx';
-import ProfileComment from './ProfileComment.jsx';
 import ProfileTrail from './ProfileTrail.jsx';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 
