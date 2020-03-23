@@ -57,7 +57,10 @@ Meet-Mountain-Right is a trail information website.
 
 ![RWD on Home Page](https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FREADME%2FRWD%20on%20Home%20Page.gif?alt=media&token=cfb2b507-6e5a-4622-ba37-670cceb1f55d)
 
-
+## ToDo
+- Infinite scroll feature on Trails page
+- Click question btn on filter on Trails page
+- Edit trail infomation feature on Profile page
 
 
 
