@@ -12,8 +12,6 @@ import TrailDetail from '../components/pages/TrailDetail';
 import TrailCreate from '../components/pages/TrailCreate';
 import AuthUserContext from '../contexts/AuthUserContext';
 
-
-
 class Routes extends Component {
     render() {
         const { isLogin } = this.context
@@ -36,7 +34,6 @@ class Routes extends Component {
                 </Route>
                 <Route path="/" component={Home} />
             </Switch >
-
         )
     }
 }

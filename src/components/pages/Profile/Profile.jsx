@@ -7,28 +7,8 @@ import {
 import { DB } from '../../../lib';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
-import ProfileLike from './ProfileLike.jsx';
-import ProfileReport from './ProfileReport.jsx';
-import ProfileTrail from './ProfileTrail.jsx';
+import { profileRoutes } from '../../../routes/profileRoutes'
 import AuthUserContext from '../../../contexts/AuthUserContext';
-
-const profileRoutes = [
-    {
-        path: "/profile/report",
-        exact: false,
-        main: () => <ProfileReport />
-    },
-    {
-        path: "/profile/trail",
-        exact: false,
-        main: () => <ProfileTrail />
-    },
-    {
-        path: "/profile",
-        exact: true,
-        main: () => <ProfileLike />
-    }
-]
 
 class Profile extends Component {
     constructor(props) {
