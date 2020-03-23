@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { DB, APP } from '../../../lib';
 import Header from '../../shared/Header';
@@ -78,7 +78,7 @@ class Home extends Component {
         const { history } = this.props
 
         return (
-            <Fragment>
+            <>
                 <Header history={history} />
                 <div id="home">
                     <section className="home-banner">
@@ -203,7 +203,7 @@ class Home extends Component {
                     closeLoginBox={this.toggleLoginBox}
                 />
                 <Footer />
-            </Fragment>
+            </>
         )
     }
 }

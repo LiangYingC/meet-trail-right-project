@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { DB } from '../../../lib';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
@@ -70,12 +70,12 @@ class TrailDetail extends Component {
         const { history } = this.props
         if (trailData === null) {
             return (
-                <Fragment>
+                <>
                     <Header />
                     <div className="trail-detail-loading">
                         <LoadingWave />
                     </div>
-                </Fragment>
+                </>
             )
         } else {
             const topInfoData = {
@@ -112,14 +112,14 @@ class TrailDetail extends Component {
             }
 
             return (
-                <Fragment>
+                <>
                     <Header history={history} />
                     <TopInfo topInfoData={topInfoData} />
                     <BasicInfo basicInfoData={basicInfoData} />
                     <CommunityInfo communityInfoData={communityInfoData} />
                     <TrafficInfo trafficInfoData={trafficInfoData} />
                     <Footer />
-                </Fragment >
+                </>
             )
         }
     }

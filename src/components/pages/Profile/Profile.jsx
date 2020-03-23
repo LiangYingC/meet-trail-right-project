@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
-    BrowserRouter as Router,
     Route,
     Link,
     Switch
@@ -8,36 +7,8 @@ import {
 import { DB } from '../../../lib';
 import Header from '../../shared/Header';
 import Footer from '../../shared/Footer';
-import ProfileLike from './ProfileLike.jsx';
-import ProfileReport from './ProfileReport.jsx';
-import ProfileComment from './ProfileComment.jsx';
-import ProfileTrail from './ProfileTrail.jsx';
+import { profileRoutes } from '../../../routes/profileRoutes'
 import AuthUserContext from '../../../contexts/AuthUserContext';
-
-
-const profileRoutes = [
-
-    {
-        path: "/profile/comment",
-        exact: false,
-        main: () => <ProfileComment />
-    },
-    {
-        path: "/profile/report",
-        exact: false,
-        main: () => <ProfileReport />
-    },
-    {
-        path: "/profile/trail",
-        exact: false,
-        main: () => <ProfileTrail />
-    },
-    {
-        path: "/profile",
-        exact: true,
-        main: () => <ProfileLike />
-    }
-]
 
 class Profile extends Component {
     constructor(props) {
@@ -86,7 +57,7 @@ class Profile extends Component {
         const { userData } = this.context
         const { history } = this.props
         return (
-            <Fragment>
+            <>
                 <Header history={history} />
                 <section id="profile">
                     <div className="flex wrap">
@@ -122,12 +93,6 @@ class Profile extends Component {
                                             <li className={`${pathName === '/profile' ? 'active' : ''}`}>
                                                 <i className="fas fa-heart"></i>
                                                 <p>我的收藏</p>
-                                            </li>
-                                        </Link>
-                                        <Link to="/profile/comment">
-                                            <li className={`${pathName === '/profile/comment' ? 'active' : ''}`}>
-                                                <i className="fas fa-comment"></i>
-                                                <p>步道評論</p>
                                             </li>
                                         </Link>
                                         <Link to="/profile/report">
@@ -169,7 +134,7 @@ class Profile extends Component {
                     </div>
                 </section>
                 <Footer />
-            </Fragment >
+            </>
         )
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Link
@@ -56,16 +56,16 @@ class ProfileReport extends Component {
         const { reportList } = this.state
         if (reportList === null) {
             return (
-                <Fragment>
+                <>
                     <div className="title">
                         <h2>步道近況回報</h2>
                     </div>
                     <LoadingWave />
-                </Fragment>
+                </>
             )
         }
         return (
-            <Fragment>
+            <>
                 <div className="title">
                     <h2>步道近況回報</h2>
                 </div>
@@ -107,7 +107,7 @@ class ProfileReport extends Component {
                             </div>
                         </div>
                 }
-            </Fragment>
+            </>
         )
     }
 }

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import {
     NavLink,
     Link,
@@ -61,7 +61,7 @@ class Header extends Component {
         const { isHideHeader } = this.state
         const { isLogin, userData } = this.context
         return (
-            <Fragment >
+            <>
                 <header id="header" className={`${isHideHeader ? 'hide' : ''}`}>
                     <div className="flex wrap">
                         <Link to='/' >
@@ -150,7 +150,7 @@ class Header extends Component {
                         </NavLink>
                     </ul>
                 </div>
-            </Fragment >
+            </>
         )
     }
 }

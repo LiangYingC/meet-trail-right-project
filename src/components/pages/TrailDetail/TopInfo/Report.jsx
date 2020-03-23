@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { DB, APP } from '../../../../lib';
 import Button from '../../../shared/Button';
 import LoginBox from '../../../shared/LoginBox';
@@ -140,7 +140,7 @@ class Report extends Component {
             )
         }
         return (
-            < Fragment >
+            <>
                 <div className="top-info__report">
                     <div className="flex report-title">
                         <h4>
@@ -173,14 +173,14 @@ class Report extends Component {
                     }
                     {
                         reportList.length === 0 ? '' :
-                            <Fragment>
+                            <>
                                 <div className="divider"></div>
                                 <Button
                                     text={'我要回報步道近況'}
                                     id={'report-btn'}
                                     onClick={this.toggleReportInputBox}
                                 />
-                            </Fragment>
+                            </>
                     }
                 </div>
                 <div className={`report-input ${isShowReportInputBox ? 'active' : ''}`} >
@@ -221,7 +221,7 @@ class Report extends Component {
                     isShowLoginBox={isShowLoginBox}
                     closeLoginBox={this.closeLoginBox}
                 />
-            </Fragment >
+            </>
         )
     }
 }

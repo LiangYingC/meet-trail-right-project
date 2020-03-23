@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { DB } from '../../../lib';
 import { TrailsConst } from '../../../constants';
 import Header from '../../shared/Header';
@@ -177,7 +177,7 @@ class Trails extends Component {
         const { history } = this.props
 
         return (
-            <Fragment>
+            <>
                 <Header history={history} />
                 <TrailsFilterSort
                     filterCheckedList={filterCheckedList}
@@ -187,7 +187,7 @@ class Trails extends Component {
                 />
                 <TrailsListArea trailsVisible={trailsVisible} />
                 <Footer />
-            </Fragment>
+            </>
         )
     }
 }
