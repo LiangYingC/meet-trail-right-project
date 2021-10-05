@@ -39,53 +39,58 @@ class TrailCreate extends Component {
 
     switch (name) {
       case 'upload-img':
-        const file = e.target.files[0];
-        const fileTitle = this.state.inputValue.title;
-        let nameTage;
-        id === 'cover-img' ? (nameTage = '封面圖') : (nameTage = '路線圖');
-        if (fileTitle.length < 1) {
-          this.toggleAlertBox(true, '請先輸入', '步道名稱', '喔');
-        } else if (file.size > 5000000) {
-          this.toggleAlertBox(true, '檔案不可超過', '5 MB', '喔');
-        } else {
-          const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}${nameTage}`).put(
-            file
-          );
-          uploadTask.on(
-            'state_changed',
-            snapshot => {
-              const progress = Math.floor((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-              this.setState({
-                isShowImgLoading: {
-                  id: id,
-                  progress: progress,
-                },
-              });
-            },
-            error => {
-              if (error) {
-                this.toggleAlertBox(true, '有錯誤發生，請重新上傳', '', '');
-              }
-            },
-            () => {
-              this.setState({
-                isShowImgLoading: {
-                  id: '',
-                  progress: '',
-                },
-              });
-              // Handle successful uploads on complete
-              uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-                this.setState(preState => ({
-                  inputValue: {
-                    ...preState.inputValue,
-                    [nameTage === '封面圖' ? 'coverImg' : 'routeImg']: downloadURL,
+        {
+          const file = e.target.files[0];
+          const fileTitle = this.state.inputValue.title;
+          let nameTage;
+          id === 'cover-img' ? (nameTage = '封面圖') : (nameTage = '路線圖');
+          if (fileTitle.length < 1) {
+            this.toggleAlertBox(true, '請先輸入', '步道名稱', '喔');
+          } else if (file.size > 5000000) {
+            this.toggleAlertBox(true, '檔案不可超過', '5 MB', '喔');
+          } else {
+            const uploadTask = DB.storageRef(`/trails/${fileTitle}/${fileTitle}${nameTage}`).put(
+              file
+            );
+            uploadTask.on(
+              'state_changed',
+              snapshot => {
+                const progress = Math.floor(
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                );
+                this.setState({
+                  isShowImgLoading: {
+                    id: id,
+                    progress: progress,
                   },
-                }));
-              });
-            }
-          );
+                });
+              },
+              error => {
+                if (error) {
+                  this.toggleAlertBox(true, '有錯誤發生，請重新上傳', '', '');
+                }
+              },
+              () => {
+                this.setState({
+                  isShowImgLoading: {
+                    id: '',
+                    progress: '',
+                  },
+                });
+                // Handle successful uploads on complete
+                uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+                  this.setState(preState => ({
+                    inputValue: {
+                      ...preState.inputValue,
+                      [nameTage === '封面圖' ? 'coverImg' : 'routeImg']: downloadURL,
+                    },
+                  }));
+                });
+              }
+            );
+          }
         }
+
         break;
 
       case 'scenery':
@@ -136,6 +141,7 @@ class TrailCreate extends Component {
                 dist: '',
               },
             }));
+            break;
           case 'dist':
             this.setState(preState => ({
               inputValue: {
@@ -143,7 +149,6 @@ class TrailCreate extends Component {
                 dist: value,
               },
             }));
-          default:
             break;
         }
         break;
