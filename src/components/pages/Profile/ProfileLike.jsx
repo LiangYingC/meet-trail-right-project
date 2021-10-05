@@ -82,7 +82,7 @@ class ProfileLike extends Component {
             <div className="wrap">
               {likeList.map((item, index) => {
                 return (
-                  <Link to={`/trails/detail/${item.id}`}>
+                  <Link to={`/trails/detail/${item.id}`} key={item.id}>
                     <div className={`flex like-item-container key=${item.id}`}>
                       <div className="like-item-img" key={index}>
                         <img src={item.mainImage} alt={`${item.title}的圖片`} />
