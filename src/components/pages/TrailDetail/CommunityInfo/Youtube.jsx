@@ -98,7 +98,7 @@ class Youtube extends Component {
                 </div>
                 <div className="video-content">
                   <div className="flex">
-                    <img src={youtube.channelPic} />
+                    <img src={youtube.channelPic} alt={`${youtube.channelTitle} 的圖片`} />
                     <p className="video-title">{youtube.videoTitle}</p>
                   </div>
                   <p className="channel-title">{youtube.channelTitle}</p>
