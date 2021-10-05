@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GoogleMap from './GoogleMap.jsx';
 import { DB } from '../../../../lib/index.js';
 
