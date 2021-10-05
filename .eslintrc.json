@@ -1,63 +1,58 @@
 {
-    "parser": "@babel/eslint-parser",
-    "parserOptions": {
-        "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
-        "sourceType": "module", // Allows for the use of imports
-        "ecmaFeatures": {
-            "jsx": true // Allows for the parsing of JSX
-        },
-        "useJSXTextNode": true // If this is false, the parser creates the AST of JSX texts as the legacy style
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2020, // Allows for the parsing of modern ECMAScript features
+    "sourceType": "module", // Allows for the use of imports
+    "ecmaFeatures": {
+      "jsx": true // Allows for the parsing of JSX
     },
-    "plugins": [
-        "react-hooks",
-        "prettier"
-    ],
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended", // Uses the recommended rules from eslint-plugin-react
-        "plugin:jsx-a11y/recommended", // Uses the recommended rules from the eslint-plugin-jsx-a11y
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:react-hooks/recommended", // Uses the recommended rules from the eslint-plugin-react-hooks to make better hooks.
-        "plugin:prettier/recommended" // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
-    ],
-    "env": {
-        "es6": true,
-        "browser": true,
-        "commonjs": true,
-        "jest": true,
-        "node": true
-    },
-    "settings": {
-        "react": {
-            "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React which u install to use.
-        }
-    },
-    "rules": {
-        "react/prop-types": 0,
-        "react/react-in-jsx-scope": 0, // Can use JSX without import React
-        "react-hooks/rules-of-hooks": "error", // If break rules-of-hooks, will show error
-        "react-hooks/exhaustive-deps": "warn", // If break exhaustive-deps, will show warn
-        "jsx-a11y/anchor-is-valid": "off", // Have href attribute is 「 not 」 required on an anchor (<a>), so Link can use (<Link> will generates href attribute).
-        "no-console": "off",
-        "prettier/prettier": [
-            // Can replace @eslint-plugin-reactp rules. Ref : https://github.com/prettier/eslint-plugin-prettier#options
-            "error",
-            {
-                "singleQuote": true
-            },
-            {
-                "usePrettierrc": true
-            }
-        ],
-        "import/no-unresolved": [
-            "error",
-            // Can use import form '@XXX'
-            {
-                "ignore": [
-                    "^@"
-                ]
-            }
-        ]
+    "useJSXTextNode": true // If this is false, the parser creates the AST of JSX texts as the legacy style
+  },
+  "plugins": ["react-hooks", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended", // Uses the recommended rules from eslint-plugin-react
+    "plugin:jsx-a11y/recommended", // Uses the recommended rules from the eslint-plugin-jsx-a11y
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react-hooks/recommended", // Uses the recommended rules from the eslint-plugin-react-hooks to make better hooks.
+    "plugin:prettier/recommended" // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "commonjs": true,
+    "jest": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React which u install to use.
     }
+  },
+  "rules": {
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0, // Can use JSX without import React
+    "react-hooks/rules-of-hooks": "error", // If break rules-of-hooks, will show error
+    "react-hooks/exhaustive-deps": "warn", // If break exhaustive-deps, will show warn
+    "jsx-a11y/anchor-is-valid": "off", // Have href attribute is 「 not 」 required on an anchor (<a>), so Link can use (<Link> will generates href attribute).
+    "no-console": "off",
+    "prettier/prettier": [
+      // Can replace @eslint-plugin-reactp rules. Ref : https://github.com/prettier/eslint-plugin-prettier#options
+      "error",
+      {
+        "singleQuote": true
+      },
+      {
+        "usePrettierrc": true
+      }
+    ],
+    "import/no-unresolved": [
+      "error",
+      // Can use import form '@XXX'
+      {
+        "ignore": ["^@"]
+      }
+    ]
+  }
 }

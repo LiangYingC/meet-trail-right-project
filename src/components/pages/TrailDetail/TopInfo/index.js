@@ -1,2 +1,2 @@
-import TopInfo from './TopInfo.jsx'
-export default TopInfo
+import TopInfo from './TopInfo.jsx';
+export default TopInfo;

@@ -1,82 +1,82 @@
 .basic-info-description {
-	color: $color-grey;
-	padding: 0 30px;
-	line-height: 1.4;
-	letter-spacing: 0.6px;
+  color: $color-grey;
+  padding: 0 30px;
+  line-height: 1.4;
+  letter-spacing: 0.6px;
 }
 
 .basic-info-list {
-	justify-content: flex-start;
-	margin: 30px;
+  justify-content: flex-start;
+  margin: 30px;
 
-	.top-left {
-		width: 50%;
-	}
+  .top-left {
+    width: 50%;
+  }
 }
 
 .basic-info-list {
-	.basic-info-item {
-		margin: 15px;
-	}
+  .basic-info-item {
+    margin: 15px;
+  }
 
-	.subtitle {
-		font-size: 1rem;
-		margin-right: 10px;
-		position: relative;
+  .subtitle {
+    font-size: 1rem;
+    margin-right: 10px;
+    position: relative;
 
-		&::after {
-			content: "";
-			display: block;
-			border-style: solid;
-			border-width: 8px;
-			border-color: transparent transparent transparent $color-blue;
-			position: absolute;
-			left: -15px;
-			top: 3px;
-		}
-	}
+    &::after {
+      content: '';
+      display: block;
+      border-style: solid;
+      border-width: 8px;
+      border-color: transparent transparent transparent $color-blue;
+      position: absolute;
+      left: -15px;
+      top: 3px;
+    }
+  }
 
-	p:nth-child(2) {
-		font-size: 1.25rem;
-		font-weight: bold;
-	}
+  p:nth-child(2) {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
 }
 
 @media screen and (max-width: 716px) {
-	.basic-info-list {
-		flex-direction: column;
-		align-items: flex-start;
-		margin: 0;
-		margin-left: 35px;
+  .basic-info-list {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0;
+    margin-left: 35px;
 
-		.basic-info-item {
-			white-space: nowrap;
-		}
+    .basic-info-item {
+      white-space: nowrap;
+    }
 
-		.down-right {
-			margin-top: -10px;
-		}
-	}
+    .down-right {
+      margin-top: -10px;
+    }
+  }
 }
 
 @media screen and (max-width: 716px) {
-	.basic-info-description {
-		font-size: 0.875rem;
-		line-height: 1.5;
-	}
+  .basic-info-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
 
-	.basic-info-list {
-		.basic-info-item {
-			.subtitle {
-				font-size: 0.875rem;
+  .basic-info-list {
+    .basic-info-item {
+      .subtitle {
+        font-size: 0.875rem;
 
-				&::after {
-					top: 1px;
-				}
-			}
-			p {
-				font-size: 1.125rem;
-			}
-		}
-	}
+        &::after {
+          top: 1px;
+        }
+      }
+      p {
+        font-size: 1.125rem;
+      }
+    }
+  }
 }

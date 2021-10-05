@@ -1,589 +1,589 @@
 #home {
-	margin-top: 60px;
-	margin-bottom: 0px;
+  margin-top: 60px;
+  margin-bottom: 0px;
 
-	.home-banner {
-		background-attachment: fixed;
-		background-size: cover;
-		background-image: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E6%96%B0%E5%B1%B1%E5%A4%A2%E6%B9%96%E6%AD%A5%E9%81%93%20banner%202500x1667.jpg?alt=media&token=4355da38-6d4f-464a-9002-dae61422dad6);
-		width: 100%;
-		height: 660px;
-		position: relative;
-		overflow: hidden;
+  .home-banner {
+    background-attachment: fixed;
+    background-size: cover;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E6%96%B0%E5%B1%B1%E5%A4%A2%E6%B9%96%E6%AD%A5%E9%81%93%20banner%202500x1667.jpg?alt=media&token=4355da38-6d4f-464a-9002-dae61422dad6);
+    width: 100%;
+    height: 660px;
+    position: relative;
+    overflow: hidden;
 
-		.layer {
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			background: linear-gradient(90deg, #333 5%, transparent 45%);
-			opacity: 0.5;
-		}
+    .layer {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: linear-gradient(90deg, #333 5%, transparent 45%);
+      opacity: 0.5;
+    }
 
-		.home-content {
-			position: absolute;
-			top: calc(45%);
-			left: calc(10% + 19px);
-			transform: translateY(-45%);
-			color: $color-white;
+    .home-content {
+      position: absolute;
+      top: calc(45%);
+      left: calc(10% + 19px);
+      transform: translateY(-45%);
+      color: $color-white;
 
-			h2 {
-				font-size: 2.25rem;
-				font-weight: 600;
-				letter-spacing: 1.5px;
-				line-height: 1.5;
-				color: $color-white;
-				margin: 5px 0;
-			}
+      h2 {
+        font-size: 2.25rem;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        line-height: 1.5;
+        color: $color-white;
+        margin: 5px 0;
+      }
 
-			p {
-				font-size: 1rem;
-				font-weight: 400;
-				letter-spacing: 1px;
-			}
-		}
+      p {
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 1px;
+      }
+    }
 
-		.home-btn-container {
-			#home-btn {
-				font-size: 1.125rem;
-				font-weight: 600;
-				padding: 10px 15px;
-				margin-right: 15px;
-				letter-spacing: 1px;
-				background-color: transparent;
-				border: 1.5px solid $color-white;
-				border-radius: $br-basic * 2;
+    .home-btn-container {
+      #home-btn {
+        font-size: 1.125rem;
+        font-weight: 600;
+        padding: 10px 15px;
+        margin-right: 15px;
+        letter-spacing: 1px;
+        background-color: transparent;
+        border: 1.5px solid $color-white;
+        border-radius: $br-basic * 2;
 
-				&:hover {
-					box-shadow: inset 0 0 13px 5px rgba($color: $color-white, $alpha: 0.2);
-				}
-			}
-		}
-	}
+        &:hover {
+          box-shadow: inset 0 0 13px 5px rgba($color: $color-white, $alpha: 0.2);
+        }
+      }
+    }
+  }
 
-	.home-web-intro {
-		width: 100%;
-		background-color: #fcfcfc;
-		padding: 60px 30px;
+  .home-web-intro {
+    width: 100%;
+    background-color: #fcfcfc;
+    padding: 60px 30px;
 
-		.wrap {
-			width: 80%;
-			padding: 30px 40px;
-			justify-content: space-around;
-			margin: 0 auto;
-			border: 1.5px solid #999;
-			border-radius: $br-basic;
+    .wrap {
+      width: 80%;
+      padding: 30px 40px;
+      justify-content: space-around;
+      margin: 0 auto;
+      border: 1.5px solid #999;
+      border-radius: $br-basic;
 
-			.intro-item {
-				display: flex;
-				align-items: center;
-				color: #666;
-				padding: 10px 20px;
+      .intro-item {
+        display: flex;
+        align-items: center;
+        color: #666;
+        padding: 10px 20px;
 
-				.icon {
-					font-size: 42px;
-					color: $color-green;
-					padding-right: 10px;
-					opacity: 0.8;
-				}
+        .icon {
+          font-size: 42px;
+          color: $color-green;
+          padding-right: 10px;
+          opacity: 0.8;
+        }
 
-				.description {
-					font-size: 1.125rem;
-					line-height: 1.3;
-					letter-spacing: 1px;
+        .description {
+          font-size: 1.125rem;
+          line-height: 1.3;
+          letter-spacing: 1px;
 
-					&.web {
-						display: block;
-					}
+          &.web {
+            display: block;
+          }
 
-					&.mobile {
-						display: none;
-						white-space: nowrap;
-					}
-				}
-			}
-		}
-	}
+          &.mobile {
+            display: none;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
 
-	.home-editor-choose {
-		background-color: $color-white;
-		padding: 20px 0;
-		border: 1px solid $color-white;
+  .home-editor-choose {
+    background-color: $color-white;
+    padding: 20px 0;
+    border: 1px solid $color-white;
 
-		.home-editor-choose-title {
-			font-size: 1.4rem;
-			font-weight: 700;
-			line-height: 1.5;
-			margin-top: 30px;
-			margin-bottom: 20px;
+    .home-editor-choose-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-top: 30px;
+      margin-bottom: 20px;
 
-			.fas {
-				font-size: 1.75rem;
-				color: $color-black;
-				padding-right: 5px;
-			}
-		}
+      .fas {
+        font-size: 1.75rem;
+        color: $color-black;
+        padding-right: 5px;
+      }
+    }
 
-		.home-editor-choose-list {
-			justify-content: space-between;
+    .home-editor-choose-list {
+      justify-content: space-between;
 
-			.home-editor-choose-item {
-				width: 25%;
-				margin: 0 6px;
-				height: 270px;
-				background-position: center center;
-				background-size: cover;
-				border-radius: $br-basic * 2;
-				position: relative;
-				overflow: hidden;
-				transition-duration: 0.4s;
+      .home-editor-choose-item {
+        width: 25%;
+        margin: 0 6px;
+        height: 270px;
+        background-position: center center;
+        background-size: cover;
+        border-radius: $br-basic * 2;
+        position: relative;
+        overflow: hidden;
+        transition-duration: 0.4s;
 
-				cursor: pointer;
+        cursor: pointer;
 
-				&:hover {
-					width: 45%;
+        &:hover {
+          width: 45%;
 
-					.content {
-						bottom: 30px;
-					}
+          .content {
+            bottom: 30px;
+          }
 
-					.tag {
-						bottom: 3px;
-						opacity: 1;
-					}
-				}
+          .tag {
+            bottom: 3px;
+            opacity: 1;
+          }
+        }
 
-				.layer {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-					background: linear-gradient(transparent 65%, rgba(0, 0, 0, 0.7));
-					border-radius: 0 0 4px 4px;
-				}
+        .layer {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(transparent 65%, rgba(0, 0, 0, 0.7));
+          border-radius: 0 0 4px 4px;
+        }
 
-				.content {
-					position: absolute;
-					bottom: 0;
-					left: 0;
-					padding: 10px 10px 15px;
-					transition-duration: 0.45s;
+        .content {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 10px 10px 15px;
+          transition-duration: 0.45s;
 
-					h3 {
-						font-size: 1.125rem;
-						color: $color-white;
-						letter-spacing: 1.2px;
-					}
-				}
+          h3 {
+            font-size: 1.125rem;
+            color: $color-white;
+            letter-spacing: 1.2px;
+          }
+        }
 
-				.tag {
-					white-space: nowrap;
-					display: flex;
-					position: absolute;
-					bottom: -70px;
-					left: 0;
-					color: $color-white;
-					padding: 5px 10px;
-					opacity: 0;
-					transition-duration: 0.45s;
+        .tag {
+          white-space: nowrap;
+          display: flex;
+          position: absolute;
+          bottom: -70px;
+          left: 0;
+          color: $color-white;
+          padding: 5px 10px;
+          opacity: 0;
+          transition-duration: 0.45s;
 
-					> div {
-						font-size: 0.875rem;
-						padding: 5px 8px;
-						margin-right: 10px;
-						border: 1px solid $color-white;
-						border-radius: $br-basic * 2;
-						box-shadow: inset 0 0 10px 3px rgba($color: $color-white, $alpha: 0.35);
-					}
-				}
-			}
-		}
-	}
+          > div {
+            font-size: 0.875rem;
+            padding: 5px 8px;
+            margin-right: 10px;
+            border: 1px solid $color-white;
+            border-radius: $br-basic * 2;
+            box-shadow: inset 0 0 10px 3px rgba($color: $color-white, $alpha: 0.35);
+          }
+        }
+      }
+    }
+  }
 
-	.home-trail-list {
-		padding: 20px 0;
-		background-color: $color-white;
+  .home-trail-list {
+    padding: 20px 0;
+    background-color: $color-white;
 
-		.title {
-			font-size: 1.35rem;
-			font-weight: 700;
-			line-height: 1.5;
-			margin-top: 30px;
-			margin-bottom: 10px;
+    .title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-top: 30px;
+      margin-bottom: 10px;
 
-			.fas {
-				font-size: 1.375rem;
-				color: $color-black;
-				padding-right: 5px;
-			}
-		}
+      .fas {
+        font-size: 1.375rem;
+        color: $color-black;
+        padding-right: 5px;
+      }
+    }
 
-		.like-rank {
-			.trails-list {
-				width: 100%;
-			}
+    .like-rank {
+      .trails-list {
+        width: 100%;
+      }
 
-			.trail-detail {
-				h3 {
-					font-size: 1.125;
-				}
+      .trail-detail {
+        h3 {
+          font-size: 1.125;
+        }
 
-				p {
-					font-size: 13px;
-					padding: 5px;
-				}
-			}
-		}
-	}
+        p {
+          font-size: 13px;
+          padding: 5px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1750px) {
-	#home {
-		.home-banner {
-			.home-content {
-				left: 18.5vw;
-			}
-		}
-	}
+  #home {
+    .home-banner {
+      .home-content {
+        left: 18.5vw;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1430px) {
-	#home {
-		.home-trail-list {
-			.trail-item {
-				width: calc(25% - 20px);
-				margin: 20px 10px;
-			}
+  #home {
+    .home-trail-list {
+      .trail-item {
+        width: calc(25% - 20px);
+        margin: 20px 10px;
+      }
 
-			.trail-detail {
-				padding-bottom: 8px;
+      .trail-detail {
+        padding-bottom: 8px;
 
-				h3 {
-					font-size: 1.125rem;
-					padding-bottom: 12px;
-				}
-			}
-		}
-	}
+        h3 {
+          font-size: 1.125rem;
+          padding-bottom: 12px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1300px) {
-	#home {
-		.home-editor-choose,
-		.home-trail-list {
-			.wrap {
-				width: 95%;
-			}
-		}
+  #home {
+    .home-editor-choose,
+    .home-trail-list {
+      .wrap {
+        width: 95%;
+      }
+    }
 
-		.home-web-intro {
-			.wrap {
-				width: 100%;
-			}
-		}
-	}
+    .home-web-intro {
+      .wrap {
+        width: 100%;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 1140px) {
-	#home {
-		.home-banner {
-			background-image: initial;
-			background-color: transparent;
-			position: relative;
+  #home {
+    .home-banner {
+      background-image: initial;
+      background-color: transparent;
+      position: relative;
 
-			&:before {
-				// deal with parallax in iOS Phone, need to rewrite
-				content: "";
-				position: fixed;
-				top: 0px;
-				height: 720px;
-				left: 0;
-				right: 0;
-				z-index: -1;
-				background: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E7%95%A2%E7%A5%BF%E5%B1%B1%E6%AD%A5%E9%81%93%20banner.jpg?alt=media&token=c83637c8-3148-450e-bcae-95227af327fa)
-					center center;
-				background-size: cover;
-				box-shadow: inset 0 0 200px 30px rgba($color: $color-black, $alpha: 0.5);
-			}
-			.layer {
-				opacity: 0;
-			}
+      &:before {
+        // deal with parallax in iOS Phone, need to rewrite
+        content: '';
+        position: fixed;
+        top: 0px;
+        height: 720px;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        background: url(https://firebasestorage.googleapis.com/v0/b/meet-trail-right.appspot.com/o/projectPictures%2FhomeBanner%2F%E7%95%A2%E7%A5%BF%E5%B1%B1%E6%AD%A5%E9%81%93%20banner.jpg?alt=media&token=c83637c8-3148-450e-bcae-95227af327fa)
+          center center;
+        background-size: cover;
+        box-shadow: inset 0 0 200px 30px rgba($color: $color-black, $alpha: 0.5);
+      }
+      .layer {
+        opacity: 0;
+      }
 
-			.home-content {
-				top: 35%;
-				left: 50%;
-				transform: translate(-50%, -35%);
-			}
-		}
+      .home-content {
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -35%);
+      }
+    }
 
-		.home-trail-list {
-			.like-rank,
-			.popular-rank {
-				.trail-img {
-					.fa-heart {
-						bottom: initial;
-						top: 10px;
-						right: 10px;
-						padding: 8px;
-						font-size: 0.875rem;
-					}
-				}
-			}
-		}
-	}
+    .home-trail-list {
+      .like-rank,
+      .popular-rank {
+        .trail-img {
+          .fa-heart {
+            bottom: initial;
+            top: 10px;
+            right: 10px;
+            padding: 8px;
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 993px) {
-	#home {
-		.home-trail-list {
-			.wrap {
-				width: 100%;
-			}
+  #home {
+    .home-trail-list {
+      .wrap {
+        width: 100%;
+      }
 
-			.like-rank,
-			.popular-rank {
-				.title {
-					padding-left: 30px;
-				}
+      .like-rank,
+      .popular-rank {
+        .title {
+          padding-left: 30px;
+        }
 
-				.trails-list {
-					overflow-x: scroll;
-					flex-wrap: nowrap;
-					-webkit-overflow-scrolling: touch;
+        .trails-list {
+          overflow-x: scroll;
+          flex-wrap: nowrap;
+          -webkit-overflow-scrolling: touch;
 
-					&::-webkit-scrollbar {
-						background-color: initial;
-					}
+          &::-webkit-scrollbar {
+            background-color: initial;
+          }
 
-					&::-webkit-scrollbar-thumb,
-					&::-webkit-scrollbar-thumb:hover,
-					&::-webkit-scrollbar-thumb:active {
-						background-color: transparent;
-					}
-				}
+          &::-webkit-scrollbar-thumb,
+          &::-webkit-scrollbar-thumb:hover,
+          &::-webkit-scrollbar-thumb:active {
+            background-color: transparent;
+          }
+        }
 
-				.trail-item {
-					flex: none;
-					width: calc(25% + 10px);
+        .trail-item {
+          flex: none;
+          width: calc(25% + 10px);
 
-					.trail-img {
-						height: 20.5vw;
-					}
-				}
+          .trail-img {
+            height: 20.5vw;
+          }
+        }
 
-				.trail-item:first-child {
-					margin-left: 20px;
-				}
-			}
-		}
+        .trail-item:first-child {
+          margin-left: 20px;
+        }
+      }
+    }
 
-		.home-web-intro {
-			.wrap {
-				padding: 20px;
+    .home-web-intro {
+      .wrap {
+        padding: 20px;
 
-				.intro-item {
-					.icon {
-						font-size: 40px;
-					}
+        .intro-item {
+          .icon {
+            font-size: 40px;
+          }
 
-					.description {
-						font-size: 1.25rem;
-						line-height: 1.3;
-						letter-spacing: 1.5px;
+          .description {
+            font-size: 1.25rem;
+            line-height: 1.3;
+            letter-spacing: 1.5px;
 
-						&.web {
-							display: none;
-						}
+            &.web {
+              display: none;
+            }
 
-						&.mobile {
-							display: block;
-						}
-					}
-				}
-			}
-		}
+            &.mobile {
+              display: block;
+            }
+          }
+        }
+      }
+    }
 
-		.home-editor-choose {
-			.wrap {
-				width: 100%;
-			}
-			.home-editor-choose-title {
-				padding-left: 1.875rem;
-			}
+    .home-editor-choose {
+      .wrap {
+        width: 100%;
+      }
+      .home-editor-choose-title {
+        padding-left: 1.875rem;
+      }
 
-			.home-editor-choose-list {
-				padding-bottom: 15px;
-				overflow-x: scroll;
-				-webkit-overflow-scrolling: touch;
-				&::-webkit-scrollbar {
-					background-color: initial;
-				}
+      .home-editor-choose-list {
+        padding-bottom: 15px;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar {
+          background-color: initial;
+        }
 
-				&::-webkit-scrollbar-thumb,
-				&::-webkit-scrollbar-thumb:hover,
-				&::-webkit-scrollbar-thumb:active {
-					background-color: transparent;
-				}
+        &::-webkit-scrollbar-thumb,
+        &::-webkit-scrollbar-thumb:hover,
+        &::-webkit-scrollbar-thumb:active {
+          background-color: transparent;
+        }
 
-				.home-editor-choose-item {
-					flex: none;
-					width: calc(33.3% + 80px);
-					transition-duration: 0.4s;
-					transform: scale(1);
+        .home-editor-choose-item {
+          flex: none;
+          width: calc(33.3% + 80px);
+          transition-duration: 0.4s;
+          transform: scale(1);
 
-					&:hover,
-					&:active {
-						width: calc(33.3% + 80px);
-						transform: scale(0.98);
-					}
+          &:hover,
+          &:active {
+            width: calc(33.3% + 80px);
+            transform: scale(0.98);
+          }
 
-					.content {
-						bottom: 30px;
-					}
+          .content {
+            bottom: 30px;
+          }
 
-					.tag {
-						bottom: 3px;
-						opacity: 1;
-					}
-				}
+          .tag {
+            bottom: 3px;
+            opacity: 1;
+          }
+        }
 
-				.home-editor-choose-item:first-child {
-					margin-left: 20px;
-				}
-			}
-		}
-	}
+        .home-editor-choose-item:first-child {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
-	#home .home-trail-list {
-		.like-rank,
-		.popular-rank {
-			.trails-list .trail-item {
-				width: calc(33.3% + 10px);
-			}
-		}
-	}
+  #home .home-trail-list {
+    .like-rank,
+    .popular-rank {
+      .trails-list .trail-item {
+        width: calc(33.3% + 10px);
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 715px) {
-	#home {
-		.home-editor-choose .home-editor-choose-list .home-editor-choose-item {
-			width: calc(50% + 40px);
+  #home {
+    .home-editor-choose .home-editor-choose-list .home-editor-choose-item {
+      width: calc(50% + 40px);
 
-			&:hover,
-			&:active {
-				width: calc(50% + 40px);
-			}
-		}
+      &:hover,
+      &:active {
+        width: calc(50% + 40px);
+      }
+    }
 
-		.home-web-intro {
-			padding: 25px 10px;
-			.wrap {
-				padding: 10px;
-				.intro-item {
-					.icon {
-						font-size: 1.5rem;
-					}
+    .home-web-intro {
+      padding: 25px 10px;
+      .wrap {
+        padding: 10px;
+        .intro-item {
+          .icon {
+            font-size: 1.5rem;
+          }
 
-					.description {
-						font-size: 0.875rem;
-						line-height: 1.2;
-					}
-				}
-			}
-		}
-	}
+          .description {
+            font-size: 0.875rem;
+            line-height: 1.2;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 595px) {
-	#home {
-		.home-trail-list {
-			.like-rank,
-			.popular-rank {
-				.trails-list .trail-item {
-					width: calc(33.3% + 30px);
-					.trail-img {
-						height: 25vw;
-					}
-				}
-			}
-		}
+  #home {
+    .home-trail-list {
+      .like-rank,
+      .popular-rank {
+        .trails-list .trail-item {
+          width: calc(33.3% + 30px);
+          .trail-img {
+            height: 25vw;
+          }
+        }
+      }
+    }
 
-		.home-banner {
-			height: 500px;
+    .home-banner {
+      height: 500px;
 
-			&:before {
-				height: 560px;
-			}
+      &:before {
+        height: 560px;
+      }
 
-			.home-content {
-				top: 35%;
-				left: 50%;
-				transform: translate(-50%, -35%);
+      .home-content {
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, -35%);
 
-				h2 {
-					font-size: 1.5rem;
-					white-space: nowrap;
-				}
+        h2 {
+          font-size: 1.5rem;
+          white-space: nowrap;
+        }
 
-				p {
-					font-size: 0.825rem;
-					white-space: nowrap;
-				}
+        p {
+          font-size: 0.825rem;
+          white-space: nowrap;
+        }
 
-				.search-bar {
-					width: 345px;
-				}
+        .search-bar {
+          width: 345px;
+        }
 
-				.home-btn-container {
-					#home-btn {
-						padding: 5px 10px;
-						font-size: 1rem;
-						box-shadow: inset 0 0 15px 5px rgba($color: $color-white, $alpha: 0.4);
-					}
-				}
-			}
-		}
-	}
+        .home-btn-container {
+          #home-btn {
+            padding: 5px 10px;
+            font-size: 1rem;
+            box-shadow: inset 0 0 15px 5px rgba($color: $color-white, $alpha: 0.4);
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 416px) {
-	#home {
-		.home-banner {
-			height: 400px;
+  #home {
+    .home-banner {
+      height: 400px;
 
-			&:before {
-				height: 460px;
-			}
-		}
+      &:before {
+        height: 460px;
+      }
+    }
 
-		.home-web-intro {
-			display: none;
-		}
+    .home-web-intro {
+      display: none;
+    }
 
-		.home-trail-list {
-			.like-rank,
-			.popular-rank {
-				.trails-list .trail-item {
-					width: calc(100% - 90px);
+    .home-trail-list {
+      .like-rank,
+      .popular-rank {
+        .trails-list .trail-item {
+          width: calc(100% - 90px);
 
-					.trail-img {
-						height: 45vw;
-					}
-				}
-			}
-		}
+          .trail-img {
+            height: 45vw;
+          }
+        }
+      }
+    }
 
-		.home-editor-choose .home-editor-choose-list .home-editor-choose-item {
-			width: calc(100% - 65px);
+    .home-editor-choose .home-editor-choose-list .home-editor-choose-item {
+      width: calc(100% - 65px);
 
-			&:hover,
-			&:active {
-				width: calc(100% - 65px);
-			}
-		}
-	}
+      &:hover,
+      &:active {
+        width: calc(100% - 65px);
+      }
+    }
+  }
 }

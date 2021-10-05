@@ -4,6 +4,7 @@
   "description": "meet-trail-right personal project",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write .",
     "lint": "eslint . --ext js --ext jsx",
     "test": "jest",
     "start": "webpack-dev-server --mode development --open",
