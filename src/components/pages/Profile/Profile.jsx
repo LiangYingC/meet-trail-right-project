@@ -20,8 +20,7 @@ class Profile extends Component {
     const { userData, handleUserData } = this.context;
     const file = e.target.files[0];
 
-    if (file.size > 1000000) {
-    } else {
+    if (file.size < 1000000) {
       const uploadTask = DB.storageRef(`/users/${userData.id}/${userData.name}的照片`).put(file);
       uploadTask.on(
         'state_changed',
