@@ -9,7 +9,6 @@
   "bracketSpacing": true,
   "endOfLine": "auto",
   "htmlWhitespaceSensitivity": "ignore",
-  "jsxBracketSameLine": false,
   "jsxSingleQuote": false,
   "trailingComma": "es5"
 }
