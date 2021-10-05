@@ -63,8 +63,7 @@ export const APP = {
 };
 
 // Firebase Database library
-import { db, storage } from '../config';
-import firebase from '../config';
+import firebase, { db, storage } from '../config';
 
 export const DB = {
   time: () => firebase.firestore.FieldValue.serverTimestamp(),
@@ -112,7 +111,7 @@ export const DB = {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, pwd)
-      .then(data => {
+      .then(() => {
         if (history) {
           history.push('/profile');
         } else {
