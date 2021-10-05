@@ -96,7 +96,13 @@ class SearchBar extends Component {
           autoComplete="off"
         />
         {searchInputValue ? (
-          <div className="search-icon" onClick={this.changeSearchParam}>
+          <div
+            role="button"
+            tabIndex={0}
+            className="search-icon"
+            onClick={this.changeSearchParam}
+            onKeyDown={this.changeSearchParam}
+          >
             <i className="fas fa-search"></i>
           </div>
         ) : (
@@ -108,7 +114,7 @@ class SearchBar extends Component {
           <div className="search-list">
             {searchList.map(searchItem => {
               return (
-                <Link to={`/trails/detail/${searchItem.id}`}>
+                <Link to={`/trails/detail/${searchItem.id}`} key={searchItem.id}>
                   <div className={`flex search-item`} key={searchItem.id}>
                     <div className="flex trail-title">
                       <i className="fas fa-mountain"></i>
