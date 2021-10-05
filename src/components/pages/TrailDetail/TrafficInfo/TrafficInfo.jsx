@@ -69,7 +69,7 @@ const TrafficInfo = ({ trafficInfoData }) => {
                 </p>
               </div>
               {trafficInfoData.routeImage ? (
-                <a href={trafficInfoData.routeImage} target="_blank">
+                <a href={trafficInfoData.routeImage} target="_blank" rel="noreferrer">
                   <button className="basic-btn">看大圖</button>
                 </a>
               ) : (
