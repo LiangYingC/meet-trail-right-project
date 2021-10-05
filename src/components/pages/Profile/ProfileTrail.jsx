@@ -69,9 +69,9 @@ class ProfileLike extends Component {
         ) : (
           <div className="create-list">
             <div className="flex wrap">
-              {createList.map((item, index) => {
+              {createList.map(item => {
                 return (
-                  <div className={`create-item key=${item.id}`}>
+                  <div className={`create-item key=${item.id}`} key={item.id}>
                     <div className="img">
                       <div className="layer"></div>
                       <img src={item.mainImage} alt={`${item.title}的圖片`} />
