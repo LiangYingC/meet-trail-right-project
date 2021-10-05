@@ -81,7 +81,7 @@ class ProfileReport extends Component {
             <div className="wrap">
               {reportList.map(item => {
                 return (
-                  <Link to={`/trails/detail/${item.trail.id}`}>
+                  <Link to={`/trails/detail/${item.trail.id}`} key={item.trail.id}>
                     <div className={`report-item-container key=${item.trail.id}`}>
                       <div className="flex report-item">
                         <div className="flex report-item-subcontainer">
