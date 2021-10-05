@@ -1,6 +1,6 @@
 import React from 'react';
 
-const QuestionButton = ({ onClick }) => {
+const QuestionButton = () => {
   return <i className="far fa-question-circle"></i>;
 };
 
