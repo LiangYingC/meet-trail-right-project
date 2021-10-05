@@ -87,6 +87,7 @@ class Youtube extends Component {
               <div className="youtube-item" key={youtube.videoId}>
                 <div className="video-container">
                   <iframe
+                    title={youtube.title}
                     width="350px"
                     height="220"
                     src={`https://www.youtube.com/embed/${youtube.videoId}`}
