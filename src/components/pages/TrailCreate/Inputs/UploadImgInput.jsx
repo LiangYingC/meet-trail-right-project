@@ -21,7 +21,7 @@ const UploadImgInput = ({
               <i className="fas fa-plus-circle"></i>點擊上傳
             </p>
           </i>
-          <img src={imgValue} />
+          <img src={imgValue} alt="上傳的步道圖片" />
           <div
             className={`loading-img-wrap 
                         ${isShowImgLoading.id === id ? 'active' : ''}
