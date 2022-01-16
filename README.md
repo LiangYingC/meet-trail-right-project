@@ -22,7 +22,6 @@ Meet-Mountain-Right is a trail information website.
   - [Central Weather Bureau](https://opendata.cwb.gov.tw/dist/opendata-swagger.html)
   - [Youtube Search](https://developers.google.com/youtube/v3/docs/search/list)
   - [Youtube Channels](https://developers.google.com/youtube/v3/docs/channels)
-  - [Google Map](https://developers.google.com/maps/documentation/javascript/tutorial?hl=zh-tw)
 - Firebase
   - Storage
   - Cloud Firestore

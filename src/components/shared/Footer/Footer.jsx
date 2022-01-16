@@ -1,6 +1,8 @@
 import React from 'react';
 
 const Footer = () => {
+  const thisYear = new Date().getFullYear();
+
   return (
     <footer id="footer">
       <div className="flex wrap">
@@ -32,7 +34,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="footer-copyright">© 2020 選山步道 All rights reserved.</div>
+        <div className="footer-copyright">© {thisYear} 選山步道 All rights reserved.</div>
       </div>
     </footer>
   );
