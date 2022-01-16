@@ -35,8 +35,3 @@ export const youtubeConfig = {
   order: 'relevance',
   maxResults: 5,
 };
-
-// Google Map
-export const googleMapConfig = {
-  apiKey: apiKeys.googleMapKey,
-};
