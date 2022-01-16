@@ -1,5 +1,4 @@
 import React from 'react';
-import GoogleMap from './GoogleMap.jsx';
 import { DB } from '../../../../lib/index.js';
 
 const TrafficInfo = ({ trafficInfoData }) => {
@@ -98,12 +97,6 @@ const TrafficInfo = ({ trafficInfoData }) => {
                 </label>
               </div>
             )}
-          </div>
-        </div>
-        <div className="traffic-info__google-map">
-          <h3>Google 地圖</h3>
-          <div className="google-map">
-            <GoogleMap trailTitle={trafficInfoData.title} />
           </div>
         </div>
       </div>
