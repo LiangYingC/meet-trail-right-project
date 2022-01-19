@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '../Button';
 
 const Alert = ({ isShow, wordHead, wordTail, hightlight, onClick }) => {

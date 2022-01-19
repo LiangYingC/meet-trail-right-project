@@ -1,4 +1,3 @@
-import React from 'react';
 import AuthUserContext from '../../../contexts/AuthUserContext';
 import { DB } from '../../../lib';
 

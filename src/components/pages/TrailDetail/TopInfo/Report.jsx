@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { DB, APP } from '../../../../lib';
 import Button from '../../../shared/Button';
 import LoginBox from '../../../shared/LoginBox';

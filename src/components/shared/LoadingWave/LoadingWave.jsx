@@ -1,5 +1,3 @@
-import React from 'react';
-
 const LoadingWave = () => {
   return (
     <div className="wave-loading-container">

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import ProfileNoList from './ProfileNoList.jsx';
 import AuthUserContext from '../../../contexts/AuthUserContext';

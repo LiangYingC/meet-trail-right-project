@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { DB } from '../../../lib';
 import ProfileNoList from './ProfileNoList.jsx';

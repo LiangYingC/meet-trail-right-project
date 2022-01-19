@@ -1,4 +1,3 @@
-import React from 'react';
 import { DB } from '../../../../lib/index.js';
 
 const TrafficInfo = ({ trafficInfoData }) => {

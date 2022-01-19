@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import LoginBox from '../../../shared/LoginBox';
 import TrailsList from '../../../shared/TrailsList';
 import TrailsListSkeleton from '../../../shared/TrailsList/TrialsListSkeleton.jsx';

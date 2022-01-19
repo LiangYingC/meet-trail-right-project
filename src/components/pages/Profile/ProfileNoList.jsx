@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ProfileNoList = ({ text }) => {
   return (
     <div className="flex empty-list">

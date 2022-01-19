@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import Routes from './routes';
 import firebase from './config';
 import { BrowserRouter as Router } from 'react-router-dom';

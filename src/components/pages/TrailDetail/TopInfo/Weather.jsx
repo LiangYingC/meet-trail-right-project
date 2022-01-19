@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { TrailDetailConst } from '../../../../constants';
 import { weatherConfig } from '../../../../config';
 

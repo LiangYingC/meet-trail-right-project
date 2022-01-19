@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import headerLogoImg from '../../../assets/logo/logo260x70-deep .png';
 import headerLogoSmallImg from '../../../assets/logo/logo270x270-deep .png';

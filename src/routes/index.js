@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';

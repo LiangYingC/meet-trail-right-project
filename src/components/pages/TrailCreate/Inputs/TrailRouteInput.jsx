@@ -1,4 +1,3 @@
-import React from 'react';
 const TrailRouteInput = ({ inputValue, changeValue, alterWord }) => {
   return (
     <div className="form-item">
