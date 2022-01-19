@@ -1,4 +1,3 @@
-import React from 'react';
 import Weather from './Weather.jsx';
 import Report from './Report.jsx';
 

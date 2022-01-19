@@ -1,4 +1,3 @@
-import React from 'react';
 import { TrailsConst } from '../../../../constants';
 import Button from '../../../shared/Button';
 import QuestionButton from '../../../shared/QuestionButton';

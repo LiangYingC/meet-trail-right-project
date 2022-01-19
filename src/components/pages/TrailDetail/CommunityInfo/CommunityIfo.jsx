@@ -1,4 +1,3 @@
-import React from 'react';
 import Youtube from './Youtube.jsx';
 
 const CommunityInfo = ({ communityInfoData }) => {

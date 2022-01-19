@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { DB } from '../../../lib';
 import SignInPanel from './SignInPanel.jsx';
 import SignUpPanel from './SignUpPanel.jsx';

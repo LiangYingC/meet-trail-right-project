@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { DB } from '../../../lib';
 import { TrailsConst } from '../../../constants';
 import Header from '../../shared/Header';

@@ -1,6 +1,6 @@
-import React from 'react';
+import { createContext } from 'react';
 
-const AuthUserContext = React.createContext({
+const AuthUserContext = createContext({
   isLogin: null,
   userData: null,
 });

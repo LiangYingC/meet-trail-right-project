@@ -1,5 +1,3 @@
-import React from 'react';
-
 const LoadingPage = ({ isShow }) => {
   return (
     <div className={`loading-page-wrap ${isShow ? 'active' : ''} `}>

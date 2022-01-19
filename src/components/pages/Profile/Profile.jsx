@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import { DB } from '../../../lib';
 import Header from '../../shared/Header';

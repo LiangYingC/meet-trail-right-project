@@ -1,4 +1,3 @@
-import React from 'react';
 import { APP } from '../../../../lib';
 import QuestionButton from '../../../shared/QuestionButton';
 

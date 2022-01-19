@@ -1,5 +1,3 @@
-import React from 'react';
-
 const TrailLocationInput = ({ inputValue, changeValue, locationObj }) => {
   return (
     <div className="form-item">

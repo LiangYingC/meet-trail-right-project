@@ -1,4 +1,3 @@
-import React from 'react';
 import ProfileLike from '../components/pages/Profile/ProfileLike.jsx';
 import ProfileReport from '../components/pages/Profile/ProfileReport.jsx';
 import ProfileTrail from '../components/pages/Profile/ProfileTrail.jsx';
